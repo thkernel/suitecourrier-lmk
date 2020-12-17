@@ -1,0 +1,41 @@
+<div class="br-pageheader">
+  <nav class="breadcrumb pd-0 mg-0 tx-12">
+    <span class="breadcrumb-item active"><h5>Courrier départ</h5></span>
+  </nav>
+</div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
+
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Nouveau'), new_departure_mail_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: false %>
+        </div>
+      </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+
+  <thead>
+    <tr>
+      <th>Registre</th>
+      <th>Réf.</th>
+
+      <th>Date dép.</th>
+      <th>Nature</th>
+      <th>Corresp.</th>
+      <th>Objet</th>
+    
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody class="departure-mails-index">
+    <%= render "index" %>
+  </tbody>
+</table>
+</div>
+</div>
+<div id="departure-mail-modal" class="c-modal modal fade" data-backdrop="static"></div>

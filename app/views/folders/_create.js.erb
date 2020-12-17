@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @folder.errors.any? %>
+  <% @folder.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".folders-index").html("<%= escape_javascript(render 'index') %>");
+  $("#folder-modal").modal("hide");
+ 
+<% end %>

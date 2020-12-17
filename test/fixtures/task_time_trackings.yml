@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: task_time_trackings
+#
+#  id                 :bigint           not null, primary key
+#  imputation_item_id :bigint
+#  start_date         :datetime
+#  end_date           :datetime
+#  status             :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imputation_item: one
+  start_date: 2020-07-31 15:26:44
+  end_date: 2020-07-31 15:26:44
+  status: MyString
+
+two:
+  imputation_item: two
+  start_date: 2020-07-31 15:26:44
+  end_date: 2020-07-31 15:26:44
+  status: MyString

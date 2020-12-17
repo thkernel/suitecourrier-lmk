@@ -1,0 +1,83 @@
+<%= form_with(model: imputation, local: true) do |form| %>
+ <% if imputation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(imputation.errors.count, "error") %> prohibited this imputation from being saved:</h2>
+
+      <ul>
+      <% imputation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :direction_id , "Direction", class: "required"%>
+      <%= form.collection_select(:direction_id, @directions, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :division_id , "Division"%>
+      <%= form.collection_select(:division_id, @divisions, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :service_id , "Service" %>
+      <%= form.collection_select(:service_id, @services, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :recipient_id, "Destinataire", class: "required" %>
+      <%= form.collection_select(:recipient_id, @recipients, :user_id, :full_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+    </div>
+  </div>
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Tâches</legend>
+    <div class="row">
+      <div class="prescription-items">
+
+        <table class="table  responsive ">
+          <thead>
+            <tr role="row">
+              <th>Tâche</th>
+              <th>Description</th>
+              <th>Date d'échéance</th>
+              <th>Priorité</th>
+              <th>Progression</th>
+            </tr>
+          </thead>
+          <tbody class="items">
+            <%= form.fields_for :imputation_items do |item| %>
+                <%= render 'imputation_item_fields', f: item %>
+            <% end %>
+          </tbody>
+        </table>  
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), form, :imputation_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
+
+  
+    
+ 
+
+ 
+
+  <div class="form-group pull-right">
+    <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+  </div>
+<% end %>

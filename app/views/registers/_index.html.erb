@@ -1,0 +1,25 @@
+<% @registers.each do |register| %>
+    <tr>
+        <td><%= register.register_type  %></td>
+
+      <td><%= register.name %></td>
+    <td><%= register.start_date.strftime("%d/%m/%Y") if register.start_date.present? %></td>
+    <td><%= register.end_date.strftime("%d/%m/%Y") if register.end_date.present? %></td>
+  
+   
+    <td><%= register.status %></td>
+  
+    <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_register_path(register), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), register_delete_path(register), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+    </tr>
+<% end %>

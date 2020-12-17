@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: request_imputations
+#
+#  id          :bigint           not null, primary key
+#  uid         :string
+#  service_id  :bigint
+#  receiver_id :bigint
+#  request_id  :bigint
+#  status      :string
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service: one
+  receiver: one
+  request: one
+  status: MyString
+  user: one
+
+two:
+  service: two
+  receiver: two
+  request: two
+  status: MyString
+  user: two

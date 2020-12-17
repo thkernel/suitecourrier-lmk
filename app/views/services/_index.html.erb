@@ -1,0 +1,21 @@
+<% @services.each do |service| %>
+      <tr>
+        <td><%= division(service.division_id).name if service.division_id  %></td>
+        <td><%= service.name %></td>
+       
+       
+      <td>
+					<div class="action-buttons">
+					<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_service_path(service), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), service_delete_path(service), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+        
+      </tr>
+    <% end %>

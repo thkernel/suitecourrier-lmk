@@ -1,0 +1,177 @@
+
+  <div class="container page-wrapper mg-t-80 mg-b-30">
+ 
+    <div class="row">
+      <div class="col-md-9">
+        <!-- -->
+        <div class="card shadow-base bd-0">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Informations courrier</h6>
+          </div><!-- card-header -->
+          <div class="card-body">
+           
+            <ul class="list-2-cols list-unstyled">
+              <li class="detail-address">
+                  <strong>Référence interne: </strong> 
+                  <span><%= @arrival_mail.internal_reference%></span>
+                  
+              </li>
+              <li class="detail-address">
+                  <strong>Référence externe: </strong> 
+                  <span><%= @arrival_mail.external_reference%></span>
+                  
+              </li>
+
+              <li class="detail-address">
+                <strong>Registre: </strong> 
+                <span><%= register(@arrival_mail.register_id).name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nature: </strong> 
+                <span><%= nature(@arrival_mail.nature_id).name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Support: </strong> 
+                <span><%= support(@arrival_mail.support_id).name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Lié à un courrier?: </strong> 
+                <span><%= @arrival_mail.linked_to_mail %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Réf. courrier lié: </strong> 
+                <span><%= @arrival_mail.reference_linked_mail %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date départ: </strong> 
+                <span><%= @arrival_mail.departure_date %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date réception: </strong> 
+                <span><%= @arrival_mail.receipt_date %></span>
+              </li>
+              <li class="detail-city">
+                <strong>A répondre? </strong> 
+                <span><%= @arrival_mail.to_answer %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Délai: </strong> 
+                <span><%= @arrival_mail.response_limit_time %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date réponse: </strong> 
+                <span><%= @arrival_mail.response_date %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Expéditeur: </strong> 
+                <span><%= correspondent(@arrival_mail.correspondent_id).correspondent_name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Objet: </strong> 
+                <span><%= @arrival_mail.object %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Description: </strong> 
+                <span><%= @arrival_mail.description %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Dossier: </strong> 
+                <span><%= folder(@arrival_mail.folder_id).name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Statut: </strong> 
+                <span><%= @arrival_mail.status %></span>
+              </li>
+              	
+						</ul>
+          </div>
+        </div>
+      </div>
+     
+        
+
+       
+      <div class="col-md-3">
+         
+        <div class="card shadow-base  bd-0 ">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Imputations</h6>
+          </div><!-- card-header -->
+           
+          <div class="list-group">
+            <% @arrival_mail.imputations.each do |imputation | %>
+              <div class="list-group-item pd-y-15 pd-x-20 d-xs-flex align-items-center justify-content-start">
+                <%= user_avatar(imputation.recipient_id, 48)%>
+                <div class="mg-xs-l-15 mg-t-10 mg-xs-t-0 mg-r-auto">
+                  <p class="mg-b-0 tx-inverse tx-medium"><%= user(imputation.recipient_id).profile.full_name %></p>
+                  <span class="d-block tx-13"><%= user(imputation.recipient_id).profile.position %></span>
+                </div>
+                
+                
+              </div><!-- list-group-item --> 
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Tâches</h6>
+            
+          </div><!-- card-header -->
+          <div class="card-body">
+            
+            <div class="row align-items-center">
+              <div class="col-6 tx-12">Total</div><!-- col-3 -->
+              <div class="col-6">
+                <div class="rounded-0 mg-b-0">
+                  <%= arrival_mail_total_task(@arrival_mail.id) %>
+                </div><!-- progress -->
+              </div><!-- col-9 -->
+            </div><!-- row -->
+            <div class="row align-items-center mg-t-5">
+              <div class="col-6 tx-12">Terminées</div><!-- col-3 -->
+              <div class="col-6">
+                  <%= arrival_mail_total_completed_task(@arrival_mail.id) %>
+              </div><!-- col-9 -->
+            </div><!-- row -->
+            <div class="row align-items-center mg-t-5">
+              <div class="col-6 tx-12">Non termiées</div><!-- col-3 -->
+              <div class="col-6">
+                <%= arrival_mail_total_uncompleted_task(@arrival_mail.id) %>
+              </div><!-- col-9 -->
+            </div><!-- row -->
+          </div><!-- card-body -->
+        </div>
+
+         <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Pièces-jointes</h6>
+            
+          </div><!-- card-header -->
+         
+            
+            <ul class="list-group">
+              <% @arrival_mail.drive_attachments.each do |file| %>
+                <li class="list-group-item rounded-top-0">
+                  <p class="mg-b-0">
+                    <i class="fa fa-file-text-o tx-info mg-r-8"></i>
+                    <strong class="tx-inverse tx-medium">
+                      <%= link_to file.name, download_file_path(key: file.drive_blob.key), remote: false %>
+                    </strong>
+                  
+                    
+                  </p>
+                </li>
+              <% end %>
+              <!-- add more here -->
+            </ul>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,27 @@
+<% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= activity_field_name(company.activity_field_id) %></td>
+        <td><%= company.city %></td>
+        <td><%= company.state %></td>
+        <td><%= company.country %></td>
+        <td><%= company.phone %></td>
+        <td><%= company.fax %></td>
+        <td><%= company.zip_code %></td>
+      
+        
+        <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_company_path(company), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), company_delete_path(company), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+
+      </tr>
+    <% end %>

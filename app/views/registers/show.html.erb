@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @registry.reference %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @registry.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @registry.end_date %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @registry.name %>
+</p>
+
+<p>
+  <strong>Registry type:</strong>
+  <%= @registry.registry_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @registry.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @registry.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @registry.user %>
+</p>
+
+<%= link_to 'Edit', edit_registry_path(@registry) %> |
+<%= link_to 'Back', registries_path %>

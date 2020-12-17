@@ -1,0 +1,31 @@
+<% @departure_mails.each do |departure_mail| %>
+      <tr>
+        <td><%= register(departure_mail.register_id).name %></td>
+          <td><%= departure_mail.internal_reference %></td>
+
+        <td><%= departure_mail.departure_date.strftime("%d/%m/%Y") %></td>
+        <td><%= nature(departure_mail.nature_id).name %></td>
+        <td><%= correspondent(departure_mail.correspondent_id).organization_name %></td>
+        <td><%= departure_mail.object %></td>
+
+       
+        <td>
+
+         <span class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_departure_mail_path(departure_mail), title: "Modifier", remote: false %>
+
+
+<%= link_to raw('<i class="fa fa-archive" aria-hidden="true"></i>
+'), departure_mail_archive_path(departure_mail), remote: true, title: "Archiver", class: "archive" %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), departure_mail_delete_path(departure_mail), remote: true, title: "Supprimer", class: "delete" %>
+</span>
+
+        </td>
+      </tr>
+    <% end %>

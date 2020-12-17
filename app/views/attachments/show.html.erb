@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attachment.name %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @attachment.link %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @attachment.status %>
+</p>
+
+<p>
+  <strong>Binder:</strong>
+  <%= @attachment.binder %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @attachment.user %>
+</p>
+
+<%= link_to 'Edit', edit_attachment_path(@attachment) %> |
+<%= link_to 'Back', attachments_path %>

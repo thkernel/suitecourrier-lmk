@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Registry:</strong>
+  <%= @departure_mail.registry %>
+</p>
+
+<p>
+  <strong>Internal reference:</strong>
+  <%= @departure_mail.internal_reference %>
+</p>
+
+<p>
+  <strong>External reference:</strong>
+  <%= @departure_mail.external_reference %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @departure_mail.departure_date %>
+</p>
+
+<p>
+  <strong>Reference arrival mail:</strong>
+  <%= @departure_mail.reference_arrival_mail %>
+</p>
+
+<p>
+  <strong>Response limit time:</strong>
+  <%= @departure_mail.response_limit_time %>
+</p>
+
+<p>
+  <strong>Response date:</strong>
+  <%= @departure_mail.response_date %>
+</p>
+
+<p>
+  <strong>Support:</strong>
+  <%= @departure_mail.support %>
+</p>
+
+<p>
+  <strong>Nature:</strong>
+  <%= @departure_mail.nature %>
+</p>
+
+<p>
+  <strong>Correspondent:</strong>
+  <%= @departure_mail.correspondent %>
+</p>
+
+<p>
+  <strong>Object:</strong>
+  <%= @departure_mail.object %>
+</p>
+
+<p>
+  <strong>Short description:</strong>
+  <%= @departure_mail.short_description %>
+</p>
+
+<p>
+  <strong>Attachments:</strong>
+  <%= @departure_mail.attachments %>
+</p>
+
+<p>
+  <strong>Attachments number:</strong>
+  <%= @departure_mail.attachments_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @departure_mail.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @departure_mail.user %>
+</p>
+
+<%= link_to 'Edit', edit_departure_mail_path(@departure_mail) %> |
+<%= link_to 'Back', departure_mails_path %>

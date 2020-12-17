@@ -1,0 +1,90 @@
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h5>Demandes</h5></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
+
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Nouvelle demande'), new_request_path(), class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+ <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mes demandes</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Mes imputations</a>
+      </div>
+    </nav>
+    <div class="tab-content  mg-t-30" id="nav-tabContent">
+
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+       
+        <table id="requests-table" class="table display responsive nowrap">
+
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Prénom</th>
+              <th>Nom</th>
+            
+              <th>Année acad.</th>
+              <th>Classe</th>
+            
+              <th>Date demande</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody class="requests">
+            <%= render "index", requests: @current_user_requests %>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        
+        
+      <table id="imputations-table" class="table display responsive nowrap">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Service</th>
+            <th>Bénéficiaire</th>
+            <th>Nbr. Tâches</th>
+            <th>Vue</th>
+          
+            <th>Actions</th>    
+          </tr>
+        </thead>
+
+        <tbody class="imputations">
+          <%= render "imputations/index", imputations: @imputations %>
+        </tbody>
+      </table>
+
+      </div>
+
+     
+    </div>
+
+
+</div>
+</div>
+<div id="request-modal" class="c-modal modal fade" data-backdrop="static"></div>

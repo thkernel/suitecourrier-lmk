@@ -1,0 +1,137 @@
+
+  <div class="container page-wrapper mg-t-80 mg-b-30">
+ 
+    <div class="row">
+      <div class="col-md-8">
+        <!-- -->
+        <div class="card shadow-base bd-0">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Document</h6>
+          </div><!-- card-header -->
+          <div class="card-body">
+            <div class="document-head">
+              <div class="document-title">
+                <h4><%= @document.name %></h4>
+              </div>
+              <div class="document-meta">
+                <span>
+                  <p>
+                    <%= "Par #{user(@document.user_id).profile.full_name} - #{l(@document.created_at, format: :long, locale: :"fr")}" %>
+                  </p>
+                </span>
+              </div>
+            </div>
+            <div class="document-content">
+              <%= @document.description.html_safe %>
+            </div>
+           
+            
+          </div>
+        </div>
+      </div>
+     
+        
+
+       
+      <div class="col-md-4">
+         
+        <div class="card shadow-base  bd-0 ">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Imputations</h6>
+          </div><!-- card-header -->
+           
+          <div class="list-group">
+            <% @document.imputations.each do |imputation | %>
+              <div class="list-group-item pd-y-15 pd-x-20 d-xs-flex align-items-center justify-content-start">
+                <%= user_avatar(imputation.recipient_id, 48)%>
+                <div class="mg-xs-l-15 mg-t-10 mg-xs-t-0 mg-r-auto">
+                  <p class="mg-b-0 tx-inverse tx-medium"><%= user(imputation.recipient_id).profile.full_name %></p>
+                  <span class="d-block tx-13"><%= user(imputation.recipient_id).profile.position %></span>
+                </div>
+                
+                
+              </div><!-- list-group-item --> 
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Classement</h6>
+            
+          </div><!-- card-header -->
+          <div class="card-body">
+            
+            <ul class="list-1-cols list-unstyled">
+              <li class="detail-address">
+                  <strong>Support: </strong> 
+                  <span><%= support(@document.support_id).name %></span>
+                  
+              </li>
+
+              <li class="detail-address">
+                  <strong>Nature: </strong> 
+                  <span><%= nature(@document.nature_id).name %></span>
+                  
+              </li>
+
+              <li class="detail-address">
+                  <strong>Classeur: </strong> 
+                  <span><%= folder(@document.folder_id).name %></span>
+                  
+              </li>
+              
+            </ul>
+
+          </div><!-- card-body -->
+        </div>
+
+        <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Indexes</h6>
+            
+          </div><!-- card-header -->
+          <div class="card-body">
+            
+            <% @document.tags.each do |tag| %>
+              <span class="tag-item">
+                <%= tag %>
+              </span>
+            <% end %>
+          </div><!-- card-body -->
+        </div>
+
+        <div class="card shadow-base bd-0 mg-t-15">
+          <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Pièces-jointes</h6>
+            
+          </div><!-- card-header -->
+         
+            
+            <ul class="list-group">
+              <% @document.drive_attachments.each do |file| %>
+                <li class="list-group-item rounded-top-0">
+                  <p class="mg-b-0">
+                    <i class="fa fa-file-text-o tx-info mg-r-8"></i>
+                    <strong class="tx-inverse tx-medium">
+                      <%= link_to file.name, download_file_path(key: file.drive_blob.key), remote: false %>
+                    </strong>
+                  
+                    
+                  </p>
+                </li>
+              <% end %>
+              <!-- add more here -->
+            </ul>
+          
+        </div>
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+

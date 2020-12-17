@@ -1,0 +1,60 @@
+<%= form_with(model: config, local: false) do |form| %>
+ 
+    <div class="modal-body">
+        <ul class="errors">
+        </ul>
+       
+       
+
+        <div class="form-group">
+            <%= form.label :smtp_address, "Adresse du serveur SMTP" %>
+            <%= form.text_field :smtp_address, class: "form-control", placeholder: "Ex: mail.domaine.com", required: true %>
+        </div>
+        <div class="form-group">
+            <%= form.label :smtp_domain, "Domaine" %>
+            <%= form.text_field :smtp_domain, class: "form-control", placeholder: "Ex: localhost ou domain.com", required: true %>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <%= form.label :smtp_user_name, "Identifiant utilisateur" %>
+                <%= form.text_field :smtp_user_name, class: "form-control", placeholder: "Ex: utilisateur@domaine.com", required: true %>
+            </div>
+
+            <div class="form-group col-md-6">
+                <%= form.label :smtp_user_password, "Mot de passe" %>
+                <%= form.password_field :smtp_user_password, class: "form-control", placeholder: "Mot de passe", required: true %>
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            <%= form.label :smtp_port, "Port SMTP" %>
+            <%= form.number_field :smtp_port, class: "form-control", placeholder: "Ex: 465 ou 995 etc...", required: true %>
+        </div>
+
+        <div class="form-group">
+            <%= form.label :smtp_authentification, "Type d'authentificaion" %>
+            <%= form.text_field :smtp_authentification, class: "form-control", placeholder: "Ex: plain", required: true %>
+        </div>
+
+        <div class="form-group">
+           
+            <%= form.check_box :smtp_enable_starttls_auto %>
+             <%= form.label :smtp_enable_starttls_auto, "Start TLS auto" %>
+        </div>
+
+        <div class="form-group">
+            
+            <%= form.check_box :smtp_ssl %>
+            <%= form.label :smtp_ssl, "SSL" %>
+        </div>
+
+ 
+       </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

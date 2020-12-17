@@ -1,0 +1,101 @@
+<%= form_with(model: document, local: true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="row">
+      <div class="col-md-8">
+      
+          <div class="row">
+            <div class="form-group col-md-12">
+              <%= form.label :name, "Nom", class: "required" %>
+              <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+            </div>
+
+            <div class="form-group col-md-12">
+              <%= form.label :description, "Description" %>
+              <%= form.cktext_area :description, class: "form-control" %>
+            </div>
+
+
+             
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mt-15">
+              <div class="card-header">
+                <h6>Fichiers</h6>
+              </div>
+              <div class="card-body">
+                <div class="form-group ">
+                  <%= form.label :files, "Pièces-jointes" %>
+                  <%= form.file_field :files, class: "form-control", multiple: true %> 
+                </div>
+                
+              </div>
+            </div>
+            </div>
+          </div>
+       
+
+       
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="card">
+          <div class="card-header">
+            <h6>Classement</h6>
+          </div>
+          <div class="card-body">
+            <div class="form-group ">
+                <%= form.label :support_id, "Support", class: "required" %>
+                <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+              </div>
+
+            <div class="form-group ">
+              <%= form.label :nature_id, "Nature", class: "required" %>
+              <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+            </div>
+
+            <div class="form-group ">
+              <%= form.label :folder_id, "Classeur", class: "required" %>
+              <%= form.collection_select(:folder_id, @folders, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-15">
+          <div class="card-header">
+            <h6>Indexation</h6>
+          </div>
+          <div class="card-body">
+            <div class="form-group ">
+              <%= form.label :tag_list, "Etiquettes" %>
+              <%= form.collection_select(:tag_list, ActsAsTaggableOn::Tag.all, :name, :name, { value: @selected_tags}, class: "form-control", style: "width: 100%", multiple: true) %> 
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+     
+
+  
+
+      <div class="form-group pull-right">
+        <%= form.submit class: "btn btn-primary tx-uppercase" %>
+      </div>
+<% end %>

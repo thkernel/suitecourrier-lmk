@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: ability_items
+#
+#  id            :bigint           not null, primary key
+#  ability_id    :bigint
+#  permission_id :bigint
+#  status        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ability: one
+  permission: one
+  status: MyString
+
+two:
+  ability: two
+  permission: two
+  status: MyString

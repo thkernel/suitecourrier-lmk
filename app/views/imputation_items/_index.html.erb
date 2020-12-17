@@ -1,0 +1,33 @@
+ <% @imputation.imputation_items.each do |item| %>
+                  <tr>
+                    <td class="tx-12">
+                      <%= item.created_at.strftime("%d/%m/%Y") %>
+                    </td>
+                    <td>
+                      <%= item.title %>
+                    </td>
+                    <td class="tx-12">
+                      <%= item.due_date.strftime("%d/%m/%Y") %>
+                    </td>
+                     <td class="tx-12">
+                      <%= item.start_date.strftime("%d/%m/%Y") %>
+                    </td>
+                     <td class="tx-12">
+                      <%= item.completed_date.strftime("%d/%m/%Y") if item.completed_date %>
+                    </td>
+                    <td class="tx-12">
+                      <%= task_status(item.task_status_id).name %>
+                    </td>
+                    <td>
+                        <%= link_to raw('<span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-pencil fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+'),  edit_imputation_item_path(item.id), title: "Modifier", remote: true %>
+
+
+
+                    </td>
+                   
+                  </tr>
+                  <% end %>

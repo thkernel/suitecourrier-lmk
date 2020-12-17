@@ -1,0 +1,18 @@
+<% @divisions.each do |division| %>
+    <tr>
+    <td><%= direction(division.direction_id).name %></td>
+    <td><%= division.name %></td>
+    <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_division_path(division), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), division_delete_path(division), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+    </tr>
+<% end %>

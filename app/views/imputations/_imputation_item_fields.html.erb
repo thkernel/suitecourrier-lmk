@@ -1,0 +1,32 @@
+<tr class="nested-fields">
+
+    
+    <td>
+    <%= f.text_field :title, class: "form-control", placeholder: "Titre", required: true %> 
+
+    </td>
+     <td>
+        <%= f.text_area :description, class: "form-control", required: true %>
+    </td>
+    <td>
+        <%= f.date_field :due_date, class: "form-control", required: true %>
+    </td>
+
+    <td>
+        <%= f.select(:priority, PRIORITIES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+    </td>
+    <td>
+    
+    <%= f.select(:status, TASK_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+    </td>
+    <td>
+      
+    <%= link_to_remove_association raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), f, class: 'delete' %>
+  
+    </td>
+
+
+
+</tr>

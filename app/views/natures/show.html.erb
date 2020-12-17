@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @nature.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @nature.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @nature.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @nature.user %>
+</p>
+
+<%= link_to 'Edit', edit_nature_path(@nature) %> |
+<%= link_to 'Back', natures_path %>

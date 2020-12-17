@@ -1,0 +1,22 @@
+<% @tickets.each do |ticket| %>
+    <tr>
+        <td><%= ticket.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= ticket.title %></td>
+        <td><%= ticket.priority %></td>
+        <td><%= ticket.due_date.strftime("%d/%m/%Y") if ticket.due_date %></td>
+        <td><%= ticket.start_date.strftime("%d/%m/%Y") if ticket.start_date %></td>
+        <td><%= ticket.completed_date.strftime("%d/%m/%Y") if ticket.completed_date  %></td>
+        <td>    
+		<div class="action-buttons">
+					<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_ticket_path(ticket), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), ticket_delete_path(ticket), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+    </tr>
+<% end %>

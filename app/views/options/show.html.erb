@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @option.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @option.value %>
+</p>
+
+<p>
+  <strong>Autoload:</strong>
+  <%= @option.autoload %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @option.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @option.user %>
+</p>
+
+<%= link_to 'Edit', edit_option_path(@option) %> |
+<%= link_to 'Back', options_path %>

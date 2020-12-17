@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task type:</strong>
+  <%= @request_imputation_task.task_type %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @request_imputation_task.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @request_imputation_task.description %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @request_imputation_task.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @request_imputation_task.end_date %>
+</p>
+
+<p>
+  <strong>Closing date:</strong>
+  <%= @request_imputation_task.closing_date %>
+</p>
+
+<p>
+  <strong>Task status:</strong>
+  <%= @request_imputation_task.task_status %>
+</p>
+
+<p>
+  <strong>Request imputation:</strong>
+  <%= @request_imputation_task.request_imputation %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @request_imputation_task.user %>
+</p>
+
+<%= link_to 'Edit', edit_request_imputation_task_path(@request_imputation_task) %> |
+<%= link_to 'Back', request_imputation_tasks_path %>

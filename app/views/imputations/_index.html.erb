@@ -1,0 +1,28 @@
+ <% @imputations.each do |imputation| %>
+      <tr>
+        <td><%= imputation.uid %>
+        <td><%= imputation.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= service(imputation.service_id).name %></td>
+        <td><%= user(imputation.recipient_id).profile.full_name %></td>
+        <td><%= imputation_item_count(imputation.id) %></td>
+        <td><%= imputation_viewed?(imputation) %></td>
+        <td>
+           <span class="action-buttons">
+            <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>'), show_imputation_path(imputation.uid), title: "Voir", remote: false  %>
+          
+
+       
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_imputation_path(imputation.uid), title: "Modifier", remote: false %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), imputation_delete_path(imputation.id), remote: true, title: "Supprimer", class: "delete" %>
+</span>
+</td>
+
+
+      </tr>
+    <% end %>

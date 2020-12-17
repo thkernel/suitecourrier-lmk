@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @correspondent.errors.any? %>
+  <% @correspondent.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".correspondents").html("<%= escape_javascript(render 'index') %>");
+  $("#correspondent-modal").modal("hide");
+ 
+<% end %>

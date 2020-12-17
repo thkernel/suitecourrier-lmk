@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: request_imputation_tasks
+#
+#  id                    :bigint           not null, primary key
+#  uid                   :string
+#  task_type_id          :bigint
+#  title                 :string
+#  description           :text
+#  start_date            :datetime
+#  end_date              :datetime
+#  closing_date          :datetime
+#  task_status_id        :bigint
+#  request_imputation_id :bigint
+#  user_id               :bigint
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_type: one
+  title: MyString
+  description: MyText
+  start_date: 2020-07-19 16:20:35
+  end_date: 2020-07-19 16:20:35
+  closing_date: 2020-07-19 16:20:35
+  task_status: one
+  request_imputation: one
+  user: one
+
+two:
+  task_type: two
+  title: MyString
+  description: MyText
+  start_date: 2020-07-19 16:20:35
+  end_date: 2020-07-19 16:20:35
+  closing_date: 2020-07-19 16:20:35
+  task_status: two
+  request_imputation: two
+  user: two

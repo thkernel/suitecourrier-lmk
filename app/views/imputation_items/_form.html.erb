@@ -1,0 +1,38 @@
+<%= form_with(model: imputation_item, local: false) do |form| %>
+ 
+<div class="modal-body">
+    <ul class="errors">
+    </ul>
+ 
+  <div class="form-group">
+    <%= form.label :title, "Titre", class: "required" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "Titre", readonly: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control", readonly: true %>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :due_date, "Date d'échéance" %>
+      <%= form.date_field :due_date, class: "form-control", readonly: true %>
+    </div>
+
+  
+
+    <div class="form-group col-md-6">
+      <%= form.label :status, "Progression", class: "required" %>
+      <%= form.select :status , TASK_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %> 
+
+    </div>
+  </div>
+
+ 
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

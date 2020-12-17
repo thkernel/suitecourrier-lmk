@@ -1,0 +1,103 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+fr:
+  hello: "Hello world"
+  helpers:
+    submit:
+      create: "Enregistrer"
+      update: "Modifier"
+  subscription_successfull: "Vous êtes abonné avec succès!"
+  subscription_exist: "Cette adresse email existe déjà dans nos base donées!"
+  time_limit: "Délai"
+  currency_id: "Devise"
+  time_unity_id: "Unité"
+  amount: "Montant"
+  content: "Description"
+  submit: "SOUMETTRE"
+  bid_create_successfully: 'Offre postée avec succès!'
+  user_contact_create_successfull: "Coordonnées ont été enregistré avec succès!"
+  user_contact_update_successfull: "Coordonnées ont été mise à jour avec succès!"
+  user_contact_create_error: "Erreur d'enregistrement des coordonnées!"
+  project_create_successfull: "Le projet a été crée avec succès!"
+  project_update_successfull: "Le projet a  été modifié avec succès!"
+  project_destroy_successfull: "Le projet a  été supprimé avec succès!"
+  project_create_error: "Erreur de création du projet!"
+  project_attributed_succefull: "Projet attribué avec succès!"
+  posted_ago: "Il y'a"
+  posted: "Posté(e): "
+  expire_at: "Date limite"
+  budget: "Quel est votre budget approximatif ? "
+  open: "Ouvert"
+  closed: "Fermé"
+  category_id: "Catégorie"
+  skills: "Compétences"
+  skill: "Compétence"
+  availability: "Disponible"
+  specialization: "Spécialisation"
+  user_name: "Nom"
+  login: "Login ou Email"
+  leave_blank_password: "laissez vide si vous ne voulez pas le changer"
+  type_current_password: "nous avons besoin de votre mot de passe actuel pour confirmer vos modifications"
+  visibility: "Visible"
+  presentation: "Présentation"
+  country: "Pays"
+  city: "Ville"
+  address: "Adresse"
+  phone: "Téléphone"
+  new_project: "Nouveau projet"
+  attributed: "Attribué"
+  start_date: "Date début"
+  end_date: "Date fin"
+  position: "Poste"
+  tasks: "Tâches"
+  currently_working: "J'y travail toujours"
+  company: "Entreprise ou Organisation"
+  professional_experience: "Expérience professionnelle"
+  educations: "Etudes et diplômes"
+  new_record: "Ajouter"
+  update_record: "Modifier"
+  degree: "Diplôme, niveau"
+  school: "Université, école, etc..."
+  title: "Titre"
+  description: "Description"
+  create: "Ajouter"
+  edit: "Modifier"
+  delete: "Supprimer"
+  error_404_title: "Oops! page non trouvée."
+  error_404_body: "La page que vous recherchez a peut-être été supprimée ou son nom a été modifié ou est temporairement indisponible."
+  error_422_title: "Requête non traitable."
+  error_422_body: "La requête est incompréhensible ou incomplète."
+  error_500_title: "Oops! Erreur interne du serveur."
+  error_500_body: "Le serveur  a rencontré un problème l’empêchant de répondre à traiter votre demande."
+
+
+  

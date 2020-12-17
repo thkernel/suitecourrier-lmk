@@ -1,0 +1,137 @@
+
+  <div class="container page-wrapper mg-t-80 mg-b-30">
+ 
+    <div class="row">
+      <div class="col-md-9">
+        <!-- -->
+        <div class="card shadow-base bd-0">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Informations de la demande</h6>
+          </div><!-- card-header -->
+          <div class="card-body">
+           
+            <ul class="list-2-cols list-unstyled">
+              <li class="detail-address">
+                  <strong>Référence: </strong> 
+                  <span><%= @request.uid %></span>
+                  
+              </li>
+              <li class="detail-address">
+                  <strong>Type: </strong> 
+                  <span><%= request_type(@request.request_type_id).name  %></span>
+                  
+              </li>
+
+              <li class="detail-address">
+                <strong>Prénom: </strong> 
+                <span><%= @request.first_name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nom: </strong> 
+                <span><%= @request.last_name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Genre: </strong> 
+                <span><%= @request.gender %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date de naissance: </strong> 
+                <span><%= @request.born_date.strftime("%d/%m/%Y") %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Lieu de naissance: </strong> 
+                <span><%= @request.born_place %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Année academique: </strong> 
+                <span><%= @request.academic_year %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Grade: </strong> 
+                <span><%= @request.grade %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Spécialité </strong> 
+                <span><%= @request.specialty %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date de demande: </strong> 
+                <span><%= @request.request_date.strftime("%d/%m/%Y") %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Numéro matricule: </strong> 
+                <span><%= @request.identification_number %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Description: </strong> 
+                <span><%= @request.description %></span>
+              </li>
+              
+              
+						</ul>
+          </div>
+        </div>
+      </div>
+     
+        
+
+       
+      <div class="col-md-3">
+         
+        <div class="card shadow-base  bd-0 ">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Imputations</h6>
+          </div><!-- card-header -->
+           
+          <div class="list-group">
+            <% @request.imputations.each do |imputation | %>
+              <div class="list-group-item pd-y-15 pd-x-20 d-xs-flex align-items-center justify-content-start">
+                <%= user_avatar(imputation.recipient_id, 48)%>
+                <div class="mg-xs-l-15 mg-t-10 mg-xs-t-0 mg-r-auto">
+                  <p class="mg-b-0 tx-inverse tx-medium"><%= user(imputation.recipient_id).profile.full_name %></p>
+                  <span class="d-block tx-13"><%= user(imputation.recipient_id).profile.position %></span>
+                </div>
+                
+                
+              </div><!-- list-group-item --> 
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="card shadow-base bd-0 mg-t-15">
+              <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h6 class="card-title tx-uppercase tx-12 mg-b-0">Tâches</h6>
+                
+              </div><!-- card-header -->
+              <div class="card-body">
+               
+                <div class="row align-items-center">
+                  <div class="col-6 tx-12">Total</div><!-- col-3 -->
+                  <div class="col-6">
+                    <div class="rounded-0 mg-b-0">
+                      <%= arrival_mail_total_task(@request.id) %>
+                    </div><!-- progress -->
+                  </div><!-- col-9 -->
+                </div><!-- row -->
+                <div class="row align-items-center mg-t-5">
+                  <div class="col-6 tx-12">Terminées</div><!-- col-3 -->
+                  <div class="col-6">
+                     <%= arrival_mail_total_completed_task(@request.id) %>
+                  </div><!-- col-9 -->
+                </div><!-- row -->
+                <div class="row align-items-center mg-t-5">
+                  <div class="col-6 tx-12">Non termiées</div><!-- col-3 -->
+                  <div class="col-6">
+                    <%= arrival_mail_total_uncompleted_task(@request.id) %>
+                  </div><!-- col-9 -->
+                </div><!-- row -->
+              </div><!-- card-body -->
+            </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,75 @@
+<%= form_with(model: ticket, local: false) do |form| %>
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+
+    <div class="form-group">
+      <%= form.label :title, "Titre", class: "required" %>
+      <%= form.text_field :title, class: "form-control", placeholder: "Titre", required: true %>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= form.label :status, "Statut", class: "required" %>
+        <%= form.select :status, TICKET_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
+      </div>
+
+      <div class="form-group col-md-6">
+        <%= form.label :priority, "Priorité", class: "required" %>
+        <%= form.select :priority, PRIORITIES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= fields_for :ticket_users do |tu| %>
+        <div class="form-group col-md-12">
+          <%= tu.label :recipient_id, "Destinataire", class: "required" %>
+          <%= collection_select(:recipients, :id,  @recipients, :id, :full_name, {selected: (@selected_ticket_users.map(&:recipient_id) unless @selected_ticket_users.nil?)}, {class: "form-control", style: "width: 100%;", multiple: true,required: true}) %>
+
+        </div>
+      <% end %>
+
+    </div>
+
+    <div class="form-group">
+      <%= form.label :content, "Contenu" %>
+      <%= form.cktext_area :content, class: "form-control" %>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <%= form.label :due_date, "Date d'écheance" %>
+        <%= form.date_field :due_date, class: "form-control" %>
+      </div>
+
+      <div class="form-group col-md-4">
+        <%= form.label :start_date, "Date début" %>
+        <%= form.date_field :start_date, class: "form-control" %>
+      </div>
+      <% unless @ticket.new_record? %>
+
+        <div class="form-group  col-md-4">
+          <%= form.label :completed_date, "Date fin" %>
+          <%= form.date_field :completed_date , class: "form-control" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <%= form.label :files, "Pièces-jointes" %>
+        <%= form.file_field :files, class: "form-control", multiple: true %>
+      </div>
+    </div>
+
+  
+
+     </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+
+
+<% end %>

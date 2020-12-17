@@ -1,0 +1,38 @@
+<div class="signin-page">
+    <div class="signin--page__header">
+			
+		<div class="tx-center mg-b-20">Création du compte administrateur!</div>
+	</div>
+	<div class="sigin-page__body">
+
+
+<%= form_with(model: user, url: create_admin_path, local: false) do |f| %>
+		
+				
+    <div class="form-group">
+        <%= f.label "Login" %>
+        <%= f.text_field :login, autofocus: true, autocomplete: "full_name", class: "form-control", placeholder: "Login", required: true   %>
+    </div>
+    
+
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "E-mail", required: true %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Mot de passe", required: true %>
+    </div>
+							
+			
+	<div class="form-group">
+		
+		<%= f.submit  class: "btn btn-primary btn-block",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+	</div>
+<% end %>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ticket.title %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @ticket.priority %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @ticket.content %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @ticket.due_date %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @ticket.start_date %>
+</p>
+
+<p>
+  <strong>Completed date:</strong>
+  <%= @ticket.completed_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ticket.user %>
+</p>
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

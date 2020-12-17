@@ -1,0 +1,76 @@
+<header>
+		<nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+          	<!-- Logo -->
+          	
+			<div class="navbar-brand">
+				<% if user_signed_in? %>
+					<%= link_to dashboard_path do %>
+						<%= image_tag "logo/logo.png", class: "logo" %> 
+					<% end %>
+
+				<% else %>
+
+					<%= link_to root_url, class: "navbar-brand" do %>
+						<%= image_tag "logo/logo.png", class: "logo" %> 
+					<% end %>
+				<% end %>
+			</div><!-- .site-branding -->
+
+            <div class="d-flex ml-auto">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#globalNavbar" aria-controls="globalNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                	<span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="globalNavbar">
+             
+
+            	<ul class="navbar-nav mr-auto order-1">
+					<div id="site-navigation" class="main-navigation float-right">
+
+					
+
+					</div>
+            		
+					<li class="nav-item">
+	                	<%= link_to "Consultation en ligne", new_advice_path , class: "nav-link" %>
+	                </li>
+	                
+	                <li class="nav-item">
+	                	<%= link_to "Prise de rendez-vous", search_doctors_path, class: "nav-link" %>
+	                </li>
+					<li class="nav-item">
+	                	<%= link_to "Matérieux médicaux", root_path, class: "nav-link" %>
+	                </li>
+					<!--
+					<li class="nav-item">
+	                	<%= link_to "Espace agrégée", root_path , class: "nav-link" %>
+	                </li>
+					-->
+					<li class="nav-item">
+	                	<%= link_to "Actualités", blog_path , class: "nav-link" %>
+	                </li>
+	            
+            	</ul>
+                <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
+                    
+					<% if user_signed_in? %>
+            			<%= render "components/signedin/signedin" %>
+
+					<% else %>
+						<li class="nav-item">
+						<!-- <a class="nav-link" href="#">Link</a> -->
+							<%= link_to "Connexion", new_user_session_path, class: "btn btn-primary lift" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-danger lift" %>
+						</li>
+					<% end %>
+                  	
+                </ul>
+                
+            </div>
+        </div>
+        </nav>
+	</header><!-- #masthead -->

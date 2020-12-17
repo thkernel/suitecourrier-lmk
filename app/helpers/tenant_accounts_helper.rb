@@ -1,0 +1,2 @@
+module TenantAccountsHelper
+end

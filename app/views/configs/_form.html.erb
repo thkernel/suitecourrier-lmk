@@ -1,0 +1,67 @@
+<%= form_with(model: smtp_config, local: true) do |form| %>
+  <% if smtp_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(smtp_config.errors.count, "error") %> prohibited this smtp_config from being saved:</h2>
+
+      <ul>
+      <% smtp_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :host %>
+    <%= form.text_field :host %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :domain %>
+    <%= form.text_field :domain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :port %>
+    <%= form.number_field :port %>
+  </div>
+
+  <div class="field">
+    <%= form.label :authentification %>
+    <%= form.text_field :authentification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :enable_starttls_auto %>
+    <%= form.check_box :enable_starttls_auto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ssl %>
+    <%= form.check_box :ssl %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

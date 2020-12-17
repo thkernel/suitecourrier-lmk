@@ -1,0 +1,40 @@
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h4>Registres</h4></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
+
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_register_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
+
+        </div>
+
+    </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+  <thead>
+    <tr>
+     <th>Type de registre</th>
+      <th>Nom</th>
+      <th>Date début</th>
+      <th>Date fin</th>
+      <th>Status</th>
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody class="registers">
+    <%= render "index" %>
+  </tbody>
+</table>
+</div>
+</div>
+<div id="register-modal" class="c-modal modal fade" data-backdrop="static"></div>

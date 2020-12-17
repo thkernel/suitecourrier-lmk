@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @ticket.errors.any? %>
+  <% @ticket.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".tickets").html("<%= escape_javascript(render 'index') %>");
+  $("#ticket-modal").modal("hide");
+ 
+<% end %>

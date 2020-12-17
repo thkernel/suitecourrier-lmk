@@ -1,0 +1,57 @@
+<div class="br-pageheader">
+  <nav class="breadcrumb pd-0 mg-0 tx-12">
+    <span class="breadcrumb-item active">
+    <h5>
+    <% if @arrival_mail.present? %>
+      <%=  "Imputations | Courrier d'arrivée: #{@arrival_mail.internal_reference }" %>
+    <% elsif @request.present? %>
+      <%=  "Imputations | Demande: #{@request.uid }" %>
+    <% elsif @document.present? %>
+      <%=  "Imputations | Document: #{@document.uid }" %>
+    <% end %>
+    </h5>
+    </span>
+  </nav>
+</div><!-- br-pageheader -->
+<div class="br-pagebody">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
+
+        <div class="text-right">
+        <% if @arrival_mail.present? %>
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Nouvelle imputation'), new_imputation_path(uid: @arrival_mail.uid, rtype: "ArrivalMail"), class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: false %>
+          <% elsif @request.present? %>
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Nouvelle imputation'), new_imputation_path(uid: @request.uid, rtype: "Request"), class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: false %>
+          <% elsif @document.present? %>
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Nouvelle imputation'), new_imputation_path(uid: @document.uid, rtype: "Document"), class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: false %>
+
+        <% end %>
+        </div>
+      </div>
+
+
+<table id="imputations-table" class="table table-striped display responsive nowrap">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Service</th>
+      <th>Bénéficiaire</th>
+      <th>Nbr. Tâches</th>
+      <th>Vue</th>
+     
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+ <tbody class="imputations">
+    <%= render "index" %>
+  </tbody>
+</table>
+
+</div>
+</div>
+<div id="imputation-modal" class="c-modal modal fade" data-backdrop="static"></div>

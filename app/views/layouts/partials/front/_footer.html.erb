@@ -1,0 +1,73 @@
+<div class="footer-one">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 footer-widget">
+				<h4 class="footer-widget-title">A propos</h4>
+				<p class="footer-widget-content">
+					Ko-Santé est une plateforme web et mobile mise en relation entre patients et professionel de la santé.
+				</p>
+			</div>
+			
+            
+			<!-- Footer widget 3 -->
+			<div class="col-md-3 footer-widget">
+				<h4 class="footer-widget-title">Nos spécialités</h4>
+				<div class="footer-widget-content">
+					<ul>
+						<% all_specialities.each do |speciality| %>
+						<li>
+							<%= link_to "#{speciality.name} (#{count_speciality(speciality.id)})", speciality_name_filter_path(id: speciality.id) %>
+						</li>
+						<% end %>
+						<li><%= link_to "Plus de spécialités...", all_specialities_path %></li>
+
+					</ul>
+				</div>
+			</div><!-- end -->
+				
+			<!-- Footer widget 4 -->
+			<div class="col-md-3 footer-widget">
+				<h4 class="footer-widget-title"> Structures</h4>
+				<div class="footer-widget-content">
+					<ul>
+						<% all_structure_types.each do |structure_type| %>
+							<li>
+								<%= link_to "#{structure_type.name} (#{count_structure_type(structure_type.id)})", structure_type_filter_path(id: structure_type.id) %>
+							</li>
+						<% end %>
+					
+					</ul>
+				</div>
+			</div>
+
+			<!-- Footer widget 4 -->
+			<div class="col-md-3 footer-widget">
+				<h4 class="footer-widget-title"> Informations</h4>
+				<div class="footer-widget-content">
+					<ul>
+						
+					
+						<li><%= link_to "Blog", blog_path %></li>
+						<li><%= link_to "FAQ", root_path %></li>
+						<li><%= link_to "Conditions d'utilisation", root_path %></li>
+						<li><%= link_to "Politique de confidentialité", root_path %></li>
+					
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 copyright">
+				&copy;<%= Time.now.year %> Ko-Santé - Tout droits réservés
+			</div>
+
+			<div class="col-md-6">
+				
+			</div>
+
+		</div>
+
+	</div>
+</div>

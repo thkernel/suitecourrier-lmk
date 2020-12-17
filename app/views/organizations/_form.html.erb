@@ -1,0 +1,92 @@
+<%= form_with(model: organization, local: true) do |form| %>
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :organization_type_id, "Type d'oragnisation", class: "required" %>
+          <%= form.collection_select(:organization_type_id, @organization_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :name, "Nom", class: "required" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+        </div>
+      </div>
+    </div>
+
+  <div class="form-group">
+    <%= form.label :address, "Adresse" %>
+    <%= form.text_field :address, class: "form-control", placeholder: "Adresse" %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :city, "Ville", class: "required" %>
+        <%= form.text_field :city, class: "form-control", placeholder: "Ville", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :country, "Pays", class: "required" %>
+        <%= form.text_field :country, class: "form-control", placeholder: "Pays", required: true %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :phone, "Téléphone", class: "required" %>
+        <%= form.text_field :phone, class: "form-control", placeholder: "Téléphone", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :fax %>
+        <%= form.text_field :fax, class: "form-control", placeholder: "Fax" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :zip_code, "Code postal" %>
+        <%= form.text_field :zip_code, class: "form-control", placeholder: "Code Postal" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= form.label :web_site, "Site web" %>
+        <%= form.text_field :web_site, class: "form-control", placeholder: "Site web" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :logo, "Logo" %>
+        <%= form.file_field :logo, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

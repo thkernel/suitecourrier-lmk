@@ -1,0 +1,18 @@
+<% @correspondent_types.each do |correspondent_type| %>
+    <tr>
+    <td><%= correspondent_type.name %></td>
+    <td><%= correspondent_type.description %></td>
+    <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_correspondent_type_path(correspondent_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), correspondent_type_delete_path(correspondent_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+    </tr>
+<% end %>

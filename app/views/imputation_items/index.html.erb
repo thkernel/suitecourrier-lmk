@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Request Imputation Tasks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task type</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Closing date</th>
+      <th>Task status</th>
+      <th>Request imputation</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @request_imputation_tasks.each do |request_imputation_task| %>
+      <tr>
+        <td><%= request_imputation_task.task_type %></td>
+        <td><%= request_imputation_task.title %></td>
+        <td><%= request_imputation_task.description %></td>
+        <td><%= request_imputation_task.start_date %></td>
+        <td><%= request_imputation_task.end_date %></td>
+        <td><%= request_imputation_task.closing_date %></td>
+        <td><%= request_imputation_task.task_status %></td>
+        <td><%= request_imputation_task.request_imputation %></td>
+        <td><%= request_imputation_task.user %></td>
+        <td><%= link_to 'Show', request_imputation_task %></td>
+        <td><%= link_to 'Edit', edit_request_imputation_task_path(request_imputation_task) %></td>
+        <td><%= link_to 'Destroy', request_imputation_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Request Imputation Task', new_request_imputation_task_path %>

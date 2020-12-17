@@ -1,0 +1,24 @@
+<% @documents.each do |document| %>
+    <tr>
+    <td><%= document.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= support(document.support_id).name %></td>
+    <td><%= nature(document.nature_id).name %></td>
+    <td><%= folder(document.folder_id).name %></td>
+    <td><%= document.name %></td>
+    <td>
+	    <div class="action-buttons">
+                  <%= link_to raw('<i class="fa fa-share-alt" aria-hidden="true"></i>'), imputations_path(uid: document.uid, rtype: "Document") %>
+
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_document_path(document), title: "Modifier", remote: false %>
+<%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>
+'),  show_document_path(document.uid), title: "Voir", remote: false %>
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), document_delete_path(document), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+    </tr>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  ticket: one
+  recipient: one
+
+two:
+  uid: MyString
+  ticket: two
+  recipient: two

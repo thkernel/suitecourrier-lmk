@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= "#{APPLICATION_NAME} - #{devise_title(controller_name)}" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="d-flex align-items-center justify-content-center bg-br-primary ht-100v">
+	    <div class="login-wrapper wd-300 wd-xs-350 pd-25 pd-xs-40 bg-white rounded shadow-base">
+
+			<%= render :partial => 'layouts/partials/flash_messages', :flash => flash %>
+			<%= yield %>
+		</div>
+	</div>
+  </body>
+</html>

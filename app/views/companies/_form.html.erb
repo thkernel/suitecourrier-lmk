@@ -1,0 +1,81 @@
+<%= form_with(model: company, local: false) do |form| %>
+ <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+
+  <div class="row">
+    <div class="col-md-6">
+         <div class="form-group">
+            <%= form.label t(:name) %>
+            <%= form.text_field :name, class: "form-control", placeholder: "#{t(:name)}", id: :company_name, required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :activity_field_id %>
+            <%= form.collection_select(:activity_field_id, @activity_fields, :id, :name, {prompt: "#{t(:select)}"}, class: "form-control", required: true) %> 
+
+          </div>
+
+          <div class="form-group">
+            <%= form.label t(:slogan) %>
+            <%= form.text_field :slogan, class: "form-control", placeholder: "#{t(:slogan)}", id: :company_slogan %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label t(:address) %>
+            <%= form.text_field :address_one, class: "form-control", placeholder: "#{t(:address)}", id: :company_address_one %>
+          </div>
+
+         
+
+
+
+
+    </div>
+
+    <div class="col-md-6">
+
+          
+
+        <div class="form-group">
+          <%= form.label t(:city) %>
+          <%= form.text_field :city, class: "form-control", placeholder: "#{t(:city)}", id: :company_city %>
+        </div>
+
+       
+        <div class="form-group">
+          <%= form.label t(:country) %>
+          <%= form.text_field :country, class: "form-control", placeholder: "#{t(:country)}", id: :company_country %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label t(:phone) %>
+          <%= form.text_field :phone, class: "form-control", placeholder: "#{t(:phone)}", id: :company_phone %>
+        </div>
+
+        
+        
+
+        <div class="form-group">
+          <%= form.label t(:web_site) %>
+          <%= form.text_field :web_site, class: "form-control", placeholder: "#{t(:web_site)}", id: :company_web_site %>
+        </div>
+
+
+    </div>
+
+
+  </div>
+ 
+
+  
+
+  
+
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<% @correspondents.each do |correspondent| %>
+      <tr>
+            <td><%= correspondent_type(correspondent.correspondent_type_id).name %></td>
+
+        <td><%= correspondent.organization_name %></td>
+        <td><%= correspondent.phone %></td>
+        <td><%= correspondent.city %></td>
+        <td><%= correspondent.country %></td>
+        <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_correspondent_path(correspondent), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), correspondent_delete_path(correspondent), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+        
+      </tr>
+    <% end %>

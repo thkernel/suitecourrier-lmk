@@ -1,0 +1,64 @@
+<%= form_with(model: register, local: false) do |form| %>
+ <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+  <div class="row">
+   <div class="col-md-6">
+    <div class="form-group">
+      <%= form.label :register_type, "Type de registre", class: "required" %>
+      <%= form.select :register_type, REGISTER_TYPES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
+
+    </div>
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :name, "Nom", class: "required" %>
+        <%= form.text_field :name, class: "form-control", id: :register_name , placeholder: "Nom", required: true %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :start_date, "Date début", class: "required" %>
+        <%= form.date_field :start_date, class: "form-control", id: :register_start_date , required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :end_date, "Date fin", class: "required" %>
+        <%= form.date_field :end_date, class: "form-control", id: :register_end_date, required: true %>
+      </div>
+    </div>
+
+  </div>
+
+  <% unless @register.new_record? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :status, "Statut", class: "required" %>
+          <%= form.select  :status, REGISTER_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%",  required: true %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  
+
+  
+  
+  
+
+  
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @user.profile.full_name %>,<br>
+      Vous avez reçus une nouvelle imputation.<br>
+      <p>
+      Réf: <strong><%= @imputation.uid %><br> 
+      
+      </p>
+    </p>
+    <p>
+      Pour se connecter à l'application, suivez juste ce lien: <%= @url %>.<br>
+    </p>
+    <p>
+   
+    </p>
+  </body>
+</html>

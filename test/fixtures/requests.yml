@@ -1,0 +1,55 @@
+# == Schema Information
+#
+# Table name: requests
+#
+#  id                    :bigint           not null, primary key
+#  uid                   :string
+#  request_type_id       :bigint
+#  first_name            :string
+#  last_name             :string
+#  gender                :string
+#  born_date             :datetime
+#  born_place            :string
+#  academic_year         :string
+#  grade                 :string
+#  specialty             :string
+#  request_date          :datetime
+#  description           :text
+#  identification_number :text
+#  status                :string
+#  user_id               :bigint
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request_type: one
+  first_name: MyString
+  last_name: MyString
+  gender: MyString
+  born_date: 2020-07-19 13:10:48
+  born_place: MyString
+  academic_year: MyString
+  grade: MyString
+  specialty: MyString
+  request_date: 2020-07-19 13:10:48
+  description: MyText
+  status: MyString
+  user: one
+
+two:
+  request_type: two
+  first_name: MyString
+  last_name: MyString
+  gender: MyString
+  born_date: 2020-07-19 13:10:48
+  born_place: MyString
+  academic_year: MyString
+  grade: MyString
+  specialty: MyString
+  request_date: 2020-07-19 13:10:48
+  description: MyText
+  status: MyString
+  user: two

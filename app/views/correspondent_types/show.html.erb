@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @correspondent_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @correspondent_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @correspondent_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @correspondent_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_correspondent_type_path(@correspondent_type) %> |
+<%= link_to 'Back', correspondent_types_path %>

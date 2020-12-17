@@ -1,0 +1,32 @@
+<%= form_with(model: organization_type, local: true) do |form| %>
+  <% if organization_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(organization_type.errors.count, "error") %> prohibited this organization_type from being saved:</h2>
+
+      <ul>
+      <% organization_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :organization_type_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :organization_type_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :organization_type_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
