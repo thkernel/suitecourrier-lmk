@@ -14,6 +14,18 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -45,11 +57,7 @@ class User < ApplicationRecord
 	has_one  :organization, dependent: :destroy
 	has_many :imputations, dependent: :destroy
 	has_many :request_imputations, dependent: :destroy
-	has_many :request_types, dependent: :destroy
-	has_many :requests, dependent: :destroy
 	has_many :tasks, dependent: :destroy
-	has_many :directions, dependent: :destroy
-	has_many :divisions, dependent: :destroy
 	has_many :documents, dependent: :destroy
 	has_many :tickets, dependent: :destroy
 	has_many :activity_logs, dependent: :destroy

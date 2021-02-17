@@ -20,13 +20,13 @@ class ServicesController < ApplicationController
 
   # GET /services/new
   def new
-    @divisions = Division.all
+    @services = Service.all
     @service = Service.new
   end
 
   # GET /services/1/edit
   def edit
-    @divisions = Division.all
+    @services = Service.all
   end
 
   # POST /services
@@ -97,6 +97,6 @@ class ServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.require(:service).permit(:name, :division_id, :description)
+      params.require(:service).permit(:name, :parent_id, :description)
     end
 end

@@ -2,7 +2,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
   def change
     create_table :services do |t|
       t.string :uid
-      t.references :division
+      t.references :parent, index: true
       t.string :name
       t.text :description
       t.string :status

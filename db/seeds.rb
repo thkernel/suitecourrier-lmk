@@ -58,41 +58,18 @@ else
     users = User.all
 end
 
-# Direction.
-unless Direction.all.present?
-    directions = Direction.create(
-        [
-            {name: "Direction 1" , user_id: users.first.id},
-            {name: "Direction 2", user_id: users.first.id},
-            {name: "Direction 3", user_id: users.first.id}
-
-        ])
-else
-    directions = Direction.all
-end
 
 
-# Division.
-unless Division.all.present?
-    divisions = Division.create(
-        [
-            {name: "Division 1" , direction_id: directions.first.id, user_id: users.first.id},
-            {name: "Division 2", direction_id: directions.first.id, user_id: users.first.id},
-            {name: "Division 3", direction_id: directions.first.id, user_id: users.first.id}
 
-        ])
-else
-    divisions = Division.all
-end
 
 
 # Service.
 unless Service.all.present?
     services = Service.create(
         [
-            {name: "Informatique", division_id: divisions.first.id , user_id: users.first.id},
-            {name: "Direction", division_id: divisions.first.id, user_id: users.first.id},
-            {name: "Comptabilité", division_id: divisions.first.id , user_id: users.first.id}
+            {name: "Informatique", user_id: users.first.id},
+            {name: "Direction",  user_id: users.first.id},
+            {name: "Comptabilité", user_id: users.first.id}
 
         ])
 else
@@ -106,40 +83,30 @@ unless Profile.all.present?
         {
             first_name: "Super",  
             last_name: "User",
-            direction_id: directions.first.id, 
-            division_id: divisions.first.id, 
             service_id: services.first.id,   
             user_id: User.find_by(login: "superuser").id
         },
         {
             first_name: "Root",  
             last_name: "Root",
-            direction_id: directions.first.id, 
-            division_id: divisions.first.id, 
             service_id: services.first.id, 
             user_id: User.find_by(login: "root").id
         },
         {
             first_name: "User",  
             last_name: "User",
-            direction_id: directions.first.id, 
-            division_id: divisions.first.id, 
             service_id: services.first.id, 
             user_id: User.find_by(login: "user").id
         },
         {
             first_name: "Guest",  
             last_name: "Guest",
-            direction_id: directions.first.id, 
-            division_id: divisions.first.id, 
             service_id: services.first.id, 
             user_id: User.find_by(login: "guest").id
         },
         {
             first_name: "Demo",  
             last_name: "Demo",
-            direction_id: directions.first.id, 
-            division_id: divisions.first.id, 
             service_id: services.first.id, 
             user_id: User.find_by(login: "demo").id
         }
@@ -163,23 +130,6 @@ else
 end
 
 
-
-=begin
-unless Organization.all.present?
-    organizations = Organization.create([
-        {
-            name: "Upcase LLC",  
-            organization_type_id: organization_types.first.id,
-            web_site: "upcase.net", 
-            user_id: users.first.id
-        }
-    
-    ])
-else   
-    organizations = Organization.all
-end
-
-=end
 
 unless Support.all.present?
     supports = Support.create(
@@ -205,11 +155,6 @@ unless Nature.all.present?
 end
 
 
-
-
-
-
-
 unless CorrespondentType.all.present?
     correspondent_types = CorrespondentType.create(
         [
@@ -221,6 +166,20 @@ unless CorrespondentType.all.present?
 else    
     correspondent_types =  CorrespondentType.all
 
+end
+
+unless Organization.all.present?
+    organizations = Organization.create([
+        {
+            name: "Upcase LLC",  
+            organization_type_id: organization_types.first.id,
+            web_site: "upcase.net", 
+            user_id: users.first.id
+        }
+    
+    ])
+else   
+    organizations = Organization.all
 end
 
 
@@ -253,22 +212,6 @@ end
 
 
 
-
-
-
-
-
-# Request type.
-unless RequestType.all.present?
-    request_types = RequestType.create(
-        [
-            {name: "Demande d'attestation d'admissibilité", user_id: users.first.id},
-            {name: "Demande d'authentification de bulletin", user_id: users.first.id}
-        ])
-else    
-    request_types =  RequestType.all
-
-end
 
 unless Folder.all.present?
     folders = Folder.create(

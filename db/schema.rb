@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.string "object"
     t.text "description"
     t.string "reserved_suite"
+    t.string "priority"
     t.bigint "folder_id"
     t.string "status"
     t.bigint "user_id"
@@ -167,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.bigint "correspondent_id"
     t.string "object"
     t.text "description"
+    t.string "priority"
     t.bigint "folder_id"
     t.string "status"
     t.bigint "user_id"
@@ -178,28 +180,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.index ["register_id"], name: "index_departure_mails_on_register_id"
     t.index ["support_id"], name: "index_departure_mails_on_support_id"
     t.index ["user_id"], name: "index_departure_mails_on_user_id"
-  end
-
-  create_table "directions", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_directions_on_user_id"
-  end
-
-  create_table "divisions", force: :cascade do |t|
-    t.bigint "direction_id"
-    t.string "name"
-    t.text "description"
-    t.string "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["direction_id"], name: "index_divisions_on_direction_id"
-    t.index ["user_id"], name: "index_divisions_on_user_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -220,27 +200,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "drive_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "attachable_type", null: false
-    t.bigint "attachable_id", null: false
-    t.bigint "drive_blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["attachable_type", "attachable_id"], name: "index_drive_attachments_on_attachable_type_and_attachable_id"
-    t.index ["drive_blob_id"], name: "index_drive_attachments_on_drive_blob_id"
-  end
-
-  create_table "drive_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_drive_blobs_on_key", unique: true
-  end
-
   create_table "features", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -258,8 +217,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.text "description"
     t.string "status"
     t.bigint "parent_id"
-    t.string "google_drive_parent_id"
-    t.string "google_drive_file_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -286,8 +243,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.string "uid"
     t.string "imputable_type"
     t.bigint "imputable_id"
-    t.bigint "direction_id"
-    t.bigint "division_id"
     t.bigint "service_id"
     t.bigint "recipient_id"
     t.datetime "viewed_at"
@@ -295,8 +250,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["direction_id"], name: "index_imputations_on_direction_id"
-    t.index ["division_id"], name: "index_imputations_on_division_id"
     t.index ["imputable_type", "imputable_id"], name: "index_imputations_on_imputable_type_and_imputable_id"
     t.index ["recipient_id"], name: "index_imputations_on_recipient_id"
     t.index ["service_id"], name: "index_imputations_on_service_id"
@@ -392,13 +345,9 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.text "description"
     t.string "status"
     t.bigint "service_id"
-    t.bigint "direction_id"
-    t.bigint "division_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["direction_id"], name: "index_profiles_on_direction_id"
-    t.index ["division_id"], name: "index_profiles_on_division_id"
     t.index ["service_id"], name: "index_profiles_on_service_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
@@ -418,39 +367,6 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
 
-  create_table "request_types", force: :cascade do |t|
-    t.string "uid"
-    t.string "name"
-    t.text "description"
-    t.string "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_request_types_on_user_id"
-  end
-
-  create_table "requests", force: :cascade do |t|
-    t.string "uid"
-    t.bigint "request_type_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "gender"
-    t.datetime "born_date"
-    t.string "born_place"
-    t.string "academic_year"
-    t.string "grade"
-    t.string "specialty"
-    t.datetime "request_date"
-    t.text "description"
-    t.text "identification_number"
-    t.string "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["request_type_id"], name: "index_requests_on_request_type_id"
-    t.index ["user_id"], name: "index_requests_on_user_id"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -462,14 +378,14 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
 
   create_table "services", force: :cascade do |t|
     t.string "uid"
-    t.bigint "division_id"
+    t.bigint "parent_id"
     t.string "name"
     t.text "description"
     t.string "status"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["division_id"], name: "index_services_on_division_id"
+    t.index ["parent_id"], name: "index_services_on_parent_id"
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
@@ -558,11 +474,25 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -583,18 +513,12 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
   add_foreign_key "departure_mails", "registers"
   add_foreign_key "departure_mails", "supports"
   add_foreign_key "departure_mails", "users"
-  add_foreign_key "directions", "users"
-  add_foreign_key "divisions", "directions"
-  add_foreign_key "divisions", "users"
   add_foreign_key "documents", "folders"
   add_foreign_key "documents", "natures"
   add_foreign_key "documents", "supports"
   add_foreign_key "documents", "users"
-  add_foreign_key "drive_attachments", "drive_blobs"
   add_foreign_key "folders", "users"
   add_foreign_key "imputation_items", "imputations"
-  add_foreign_key "imputations", "directions"
-  add_foreign_key "imputations", "divisions"
   add_foreign_key "imputations", "services"
   add_foreign_key "imputations", "users"
   add_foreign_key "natures", "users"
@@ -604,14 +528,9 @@ ActiveRecord::Schema.define(version: 2020_10_14_141250) do
   add_foreign_key "permission_items", "permissions"
   add_foreign_key "permissions", "features"
   add_foreign_key "permissions", "roles"
-  add_foreign_key "profiles", "directions"
-  add_foreign_key "profiles", "divisions"
   add_foreign_key "profiles", "services"
   add_foreign_key "profiles", "users"
   add_foreign_key "registers", "users"
-  add_foreign_key "request_types", "users"
-  add_foreign_key "requests", "request_types"
-  add_foreign_key "requests", "users"
   add_foreign_key "services", "users"
   add_foreign_key "supports", "users"
   add_foreign_key "taggings", "tags"

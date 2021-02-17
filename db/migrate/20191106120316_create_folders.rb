@@ -7,8 +7,8 @@ class CreateFolders < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :status
       t.references :parent, index: true
-      t.string :google_drive_parent_id
-      t.string :google_drive_file_id
+      #t.string :google_drive_parent_id
+      #t.string :google_drive_file_id
       t.references :user, foreign_key: true
 
       t.timestamps

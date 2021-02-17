@@ -23,10 +23,10 @@ class CreateArrivalMails < ActiveRecord::Migration[5.2]
       t.references :correspondent, foreign_key: true
       t.string :object
       t.text :description
-      #t.boolean :attachments
-      #t.string :attachments_number
+      
       
       t.string :reserved_suite
+      t.string :priority
       t.references :folder, foreign_key: true
       
       t.string :status

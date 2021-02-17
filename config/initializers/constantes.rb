@@ -1,4 +1,4 @@
-APPLICATION_NAME = "GEID"
+APPLICATION_NAME = "Courrier Suite"
 GENDERS = [["Homme"], ["Femme"]]
 REGISTER_STATUSES = [["Ouvert"], ["Fermé"]]
 REGISTER_TYPES = [["Registre arrivée"], ["Registre départ"]]

@@ -1,7 +1,7 @@
 <% @services.each do |service| %>
       <tr>
-        <td><%= division(service.division_id).name if service.division_id  %></td>
         <td><%= service.name %></td>
+        <td><%= service.parent_id %></td>
        
        
       <td>

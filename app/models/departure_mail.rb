@@ -17,6 +17,7 @@
 #  correspondent_id      :bigint
 #  object                :string
 #  description           :text
+#  priority              :string
 #  folder_id             :bigint
 #  status                :string
 #  user_id               :bigint

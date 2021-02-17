@@ -20,6 +20,7 @@
 #  object                :string
 #  description           :text
 #  reserved_suite        :string
+#  priority              :string
 #  folder_id             :bigint
 #  status                :string
 #  user_id               :bigint

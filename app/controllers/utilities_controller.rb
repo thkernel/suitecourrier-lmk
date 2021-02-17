@@ -1,5 +1,5 @@
 require "rake"
-Geid::Application.load_tasks
+CourrierSuite::Application.load_tasks
 class UtilitiesController < ApplicationController
     #authorize_resource
     before_action :authenticate_user!

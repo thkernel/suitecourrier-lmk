@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :ticket_users
   resources :activity_logs
+
   get 'oauth2callback' => 'static_pages#set_google_drive_token'
   get 'static_pages/files' => 'static_pages#files'
 
@@ -11,10 +12,10 @@ Rails.application.routes.draw do
   get "folder/:uid/edit" => "folders#edit", as: :edit_folder
   get "folder/:uid/delete" => "folders#delete", as: :folder_delete
   get "/downloadfile/:key" => "folders#download_drive_file", as: :download_file
+  
   resources :folders , except: [:edit] do
 
-  
-   
+
   end
 
   
@@ -86,12 +87,7 @@ Rails.application.routes.draw do
   get "setup/organization" => "organizations#setup", as: :setup_organization
 
  
-  resources :requests do   
-    get "delete"
-  end
-  resources :request_types do   
-    get "delete"
-  end
+ 
   #root 'home#index'
   resources :tenants do   
     get "delete"

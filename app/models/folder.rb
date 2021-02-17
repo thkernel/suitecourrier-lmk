@@ -2,18 +2,16 @@
 #
 # Table name: folders
 #
-#  id                     :bigint           not null, primary key
-#  uid                    :string
-#  name                   :string
-#  path                   :string
-#  description            :text
-#  status                 :string
-#  parent_id              :bigint
-#  google_drive_parent_id :string
-#  google_drive_file_id   :string
-#  user_id                :bigint
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id          :bigint           not null, primary key
+#  uid         :string
+#  name        :string
+#  path        :string
+#  description :text
+#  status      :string
+#  parent_id   :bigint
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class Folder < ApplicationRecord

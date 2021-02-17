@@ -6,8 +6,6 @@
 #  uid            :string
 #  imputable_type :string
 #  imputable_id   :bigint
-#  direction_id   :bigint
-#  division_id    :bigint
 #  service_id     :bigint
 #  recipient_id   :bigint
 #  viewed_at      :datetime
@@ -25,8 +23,6 @@ class Imputation < ApplicationRecord
 
   belongs_to :user
   belongs_to :user, :foreign_key => "recipient_id", :class_name => "User"
-  belongs_to :direction
-  belongs_to :division, optional: true
   belongs_to :service, optional: true
   belongs_to :imputable, polymorphic: true
 

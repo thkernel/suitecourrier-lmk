@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  uid         :string
-#  division_id :bigint
+#  parent_id   :bigint
 #  name        :string
 #  description :text
 #  status      :string
@@ -15,7 +15,8 @@
 
 class Service < ApplicationRecord
   include SharedUtils::Generate
-
+  acts_as_tree
+  
   before_save :generate_random_number_uid
   belongs_to :user
   has_many :profiles, dependent: :destroy

@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
 
   protect_from_forgery with: :exception
-	before_action :google_login, except: [:set_google_drive_token]
 	include ApplicationHelper
 
 	rescue_from CanCan::AccessDenied do |exception|  
@@ -39,11 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-	def google_login
-		unless $drive.get_credentials
-			redirect_to oauth2callback_path
-		end
-	end
+	
 		
 	def storable_location?
 		request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 

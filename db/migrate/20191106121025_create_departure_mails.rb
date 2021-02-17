@@ -4,7 +4,7 @@ class CreateDepartureMails < ActiveRecord::Migration[5.2]
       t.string :uid
       t.references :register, foreign_key: true
       t.string :internal_reference, unique: true
-      #t.string :external_reference
+     
       
       t.datetime :departure_date
       
@@ -21,8 +21,7 @@ class CreateDepartureMails < ActiveRecord::Migration[5.2]
       t.references :correspondent, foreign_key: true
       t.string :object
       t.text :description
-      #t.boolean :attachments
-      #t.string :attachments_number
+      t.string :priority
       t.references :folder, foreign_key: true
       t.string :status
       t.references :user, foreign_key: true

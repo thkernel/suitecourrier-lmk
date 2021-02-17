@@ -186,23 +186,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @last_requests.take(5).each do |request| %>
-                    <tr>
-                    
-                      <td class="valign-middle"><%= request.created_at.strftime("%d/%m/%Y") %></td>
-                      <td class="valign-middle"><%= request.request_date.strftime("%d/%m/%Y") %></td>
-                      <td class="valign-middle"><%= request.identification_number %></td>
-                      <td class="valign-middle"><%= request.student_full_name %></td>
-                      <td class="valign-middle"><%= request.status %></td>
-
-                    </tr>
-                  <% end %>
+                  
                  
                 </tbody>
               </table>
               
               <div class="card-footer tx-12 pd-y-15 bg-transparent">
-                <%= link_to raw('<i class="fa fa-angle-down mg-r-5"></i>Voir tout'), requests_path %>
               </div><!-- card-footer -->
             </div>
 

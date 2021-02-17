@@ -11,9 +11,6 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :status
       t.references :service, foreign_key: true
-      t.references :direction, foreign_key: true
-      t.references :division, foreign_key: true
-      #t.integer :company_id
       t.references :user, foreign_key: true
 
       t.timestamps
