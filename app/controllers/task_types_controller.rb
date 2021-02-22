@@ -1,4 +1,9 @@
 class TaskTypesController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+  layout "dashboard"
+  
+  
   before_action :set_task_type, only: [:show, :edit, :update, :destroy]
 
   # GET /task_types
@@ -24,7 +29,7 @@ class TaskTypesController < ApplicationController
   # POST /task_types
   # POST /task_types.json
   def create
-    @task_type = TaskType.new(task_type_params)
+    @task_type = current_user.task_types.build(task_type_params)
 
     respond_to do |format|
       if @task_type.save
@@ -45,13 +50,21 @@ class TaskTypesController < ApplicationController
   def update
     respond_to do |format|
       if @task_type.update(task_type_params)
+        @task_types = TaskType.all
+        
         format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_type }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @task_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+  end
+
+  def delete
+    @task_type = TaskType.find(params[:task_type_id])
   end
 
   # DELETE /task_types/1
@@ -72,6 +85,6 @@ class TaskTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_type_params
-      params.require(:task_type).permit(:uid, :name, :description, :status, :user_id)
+      params.require(:task_type).permit(:name, :description)
     end
 end

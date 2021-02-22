@@ -1,11 +1,11 @@
 $("ul.errors").html("");
-<% if @task.errors.any? %>
-  <% @task.errors.full_messages.each do |message| %>
+<% if @task_type.errors.any? %>
+  <% @task_type.errors.full_messages.each do |message| %>
  
     $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
   <% end %>
 <% else %>
   $(".task-types").html("<%= escape_javascript(render 'index') %>");
-  $("#task-modal").modal("hide");
+  $("#task-type-modal").modal("hide");
  
 <% end %>
