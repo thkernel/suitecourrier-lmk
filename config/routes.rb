@@ -1,17 +1,36 @@
 Rails.application.routes.draw do
-  resources :ticket_types
-  resources :task_statuses
-  resources :task_types
-  resources :internal_memos
-  resources :register_types
+  resources :ticket_types do   
+    get "delete"
+  end
+  resources :task_statuses do   
+    get "delete"
+  end
+  resources :task_types do   
+    get "delete"
+  end
+  resources :internal_memos do   
+    get "delete"
+  end
+  resources :register_types do   
+    get "delete"
+  end
   resources :user_entity_items
-  resources :user_entities
+  resources :user_entities do   
+    get "delete"
+  end
   resources :general_settings
   resources :storage_areas
   resources :smtp_server_settings
-  resources :priorities
-  resources :statuses
-  resources :entities
+  resources :priorities do   
+    get "delete"
+  end
+  resources :statuses do   
+    get "delete"
+  end
+
+  resources :entities do   
+    get "delete"
+  end
   resources :entity_types
   resources :ticket_users
   resources :activity_logs

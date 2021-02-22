@@ -28,11 +28,14 @@ class TaskTypesController < ApplicationController
 
     respond_to do |format|
       if @task_type.save
+        @task_types = TaskType.all
         format.html { redirect_to @task_type, notice: 'Task type was successfully created.' }
         format.json { render :show, status: :created, location: @task_type }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @task_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
