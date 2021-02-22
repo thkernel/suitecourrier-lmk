@@ -12,12 +12,12 @@
   <ul class="errors"></ul>
   Etes-vous sûr de vouloir supprimer ce enregistrement?
   <p>
-  Nom: <b> <%= @nature.name %></b>
+  Nom: <b> <%= @mail_type.name %></b>
   </p>
   </div>
   <div class="modal-footer">
     <%= link_to "Non", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: { dismiss: "modal" } %>
-    <%= link_to "Oui", nature_path(@nature), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+    <%= link_to "Oui", mail_type_path(@mail_type), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
   </div>
   </div>
 </div>

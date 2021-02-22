@@ -46,7 +46,7 @@ class User < ApplicationRecord
 	has_many :registers, dependent: :destroy
 	has_many :services, dependent: :destroy
 	has_many :supports, dependent: :destroy
-	has_many :natures, dependent: :destroy
+	has_many :mail_types, dependent: :destroy
 	has_many :correspondent_types, dependent: :destroy
 	has_many :organization_types, dependent: :destroy
 	has_many :correspondents, dependent: :destroy
