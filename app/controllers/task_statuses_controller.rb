@@ -1,4 +1,8 @@
 class TaskStatusesController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+  layout "dashboard"
+
   before_action :set_task_status, only: [:show, :edit, :update, :destroy]
 
   # GET /task_statuses
@@ -24,15 +28,19 @@ class TaskStatusesController < ApplicationController
   # POST /task_statuses
   # POST /task_statuses.json
   def create
-    @task_status = TaskStatus.new(task_status_params)
+    @task_status = current_user.task_statuses.build(task_status_params)
 
     respond_to do |format|
       if @task_status.save
+        @task_statuses = TaskStatus.all
+        
         format.html { redirect_to @task_status, notice: 'Task status was successfully created.' }
         format.json { render :show, status: :created, location: @task_status }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @task_status.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,13 +50,21 @@ class TaskStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @task_status.update(task_status_params)
+        @task_statuses = TaskStatus.all
+
         format.html { redirect_to @task_status, notice: 'Task status was successfully updated.' }
         format.json { render :show, status: :ok, location: @task_status }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @task_status.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+  end
+
+  def delete
+    @task_status = TaskStatus.find(params[:task_status_id])
   end
 
   # DELETE /task_statuses/1
@@ -69,6 +85,6 @@ class TaskStatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_status_params
-      params.require(:task_status).permit(:uid, :name, :description, :status, :user_id)
+      params.require(:task_status).permit(:name, :description)
     end
 end

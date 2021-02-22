@@ -58,6 +58,8 @@ class User < ApplicationRecord
 	has_many :imputations, dependent: :destroy
 	has_many :request_imputations, dependent: :destroy
 	has_many :task_types, dependent: :destroy
+	has_many :task_statuses, dependent: :destroy
+
 	has_many :tasks, dependent: :destroy
 	has_many :documents, dependent: :destroy
 	has_many :ticket_types, dependent: :destroy
