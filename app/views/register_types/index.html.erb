@@ -1,37 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h4>Types de registre</h4></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
 
-<h1>Register Types</h1>
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_register_type_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+        </div>
+
+    </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+
   <thead>
     <tr>
-      <th>Uid</th>
-      <th>Name</th>
-      <th>Short name</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      
+      <th>Nom</th>
+      <th>Nom court</th>
+     
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @register_types.each do |register_type| %>
-      <tr>
-        <td><%= register_type.uid %></td>
-        <td><%= register_type.name %></td>
-        <td><%= register_type.short_name %></td>
-        <td><%= register_type.description %></td>
-        <td><%= register_type.status %></td>
-        <td><%= register_type.user %></td>
-        <td><%= link_to 'Show', register_type %></td>
-        <td><%= link_to 'Edit', edit_register_type_path(register_type) %></td>
-        <td><%= link_to 'Destroy', register_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="register-types">
+    <%= render "index" %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Register Type', new_register_type_path %>
+</div>
+</div>
+<div id="register-type-modal" class="c-modal modal fade" data-backdrop="static"></div>

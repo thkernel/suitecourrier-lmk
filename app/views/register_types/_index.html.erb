@@ -1,0 +1,21 @@
+<% @register_types.each do |register_type| %>
+  <tr>
+    
+    <td><%= register_type.name %></td>
+    <td><%= register_type.short_name %></td>
+   
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_register_type_path(register_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), register_type_delete_path(register_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+
+  </tr>
+<% end %>

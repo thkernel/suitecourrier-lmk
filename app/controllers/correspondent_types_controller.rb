@@ -9,7 +9,7 @@ class CorrespondentTypesController < ApplicationController
   # GET /correspondent_types.json
   def index
     @correspondent_types = CorrespondentType.all
-    record_activity("Afficher la liste des types correspondant (ID: #{@correspondent_type.id})")
+    #record_activity("Afficher la liste des types correspondant (ID: #{@correspondent_type.id})")
 
   end
 
