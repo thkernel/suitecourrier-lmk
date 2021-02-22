@@ -1,0 +1,17 @@
+<% @organization_types.each do |organization_type| %>
+  <tr>
+    <td><%= organization_type.name %></td>
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_organization_type_path(organization_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), organization_type_delete_path(organization_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

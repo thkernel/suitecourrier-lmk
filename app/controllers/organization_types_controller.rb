@@ -2,7 +2,7 @@ class OrganizationTypesController < ApplicationController
   authorize_resource
   before_action :authenticate_user!
   before_action :set_organization_type, only: [:show, :edit, :update, :destroy]
-
+  layout "dashboard"
   # GET /organization_types
   # GET /organization_types.json
   def index
@@ -26,15 +26,18 @@ class OrganizationTypesController < ApplicationController
   # POST /organization_types
   # POST /organization_types.json
   def create
-    @organization_type = OrganizationType.new(organization_type_params)
+    @organization_type = current_user.organization_types.build(organization_type_params)
 
     respond_to do |format|
       if @organization_type.save
+        @organization_types = OrganizationType.all
         format.html { redirect_to @organization_type, notice: 'Organization type was successfully created.' }
         format.json { render :show, status: :created, location: @organization_type }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @organization_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,14 +47,22 @@ class OrganizationTypesController < ApplicationController
   def update
     respond_to do |format|
       if @organization_type.update(organization_type_params)
+        @organization_types = OrganizationType.all
+
         format.html { redirect_to @organization_type, notice: 'Organization type was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization_type }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @organization_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+  def delete
+      @organization_type = OrganizationType.find(params[:organization_type_id])
+    end
 
   # DELETE /organization_types/1
   # DELETE /organization_types/1.json
@@ -71,6 +82,6 @@ class OrganizationTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_type_params
-      params.require(:organization_type).permit(:name, :status, :user_id)
+      params.require(:organization_type).permit(:name)
     end
 end

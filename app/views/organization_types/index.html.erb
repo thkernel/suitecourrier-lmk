@@ -1,31 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h4>Types d'organisation</h4></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
 
-<h1>Organization Types</h1>
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_organization_type_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+        </div>
+
+    </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Nom</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @organization_types.each do |organization_type| %>
-      <tr>
-        <td><%= organization_type.name %></td>
-        <td><%= organization_type.status %></td>
-        <td><%= organization_type.user %></td>
-        <td><%= link_to 'Show', organization_type %></td>
-        <td><%= link_to 'Edit', edit_organization_type_path(organization_type) %></td>
-        <td><%= link_to 'Destroy', organization_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="organization-types">
+    <%= render "index" %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Organization Type', new_organization_type_path %>
+</div>
+</div>
+<div id="organization-type-modal" class="c-modal modal fade" data-backdrop="static"></div>
