@@ -1,0 +1,18 @@
+<% @entity_types.each do |entity_type| %>
+  <tr>
+    
+    <td><%= entity_type.name %></td>
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_entity_type_path(entity_type), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), entity_type_delete_path(entity_type), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

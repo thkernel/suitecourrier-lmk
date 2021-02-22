@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   resources :entities do   
     get "delete"
   end
-  resources :entity_types
+  resources :entity_types do   
+    get "delete"
+  end
   resources :ticket_users
   resources :activity_logs
 

@@ -61,6 +61,9 @@ class User < ApplicationRecord
 	has_many :documents, dependent: :destroy
 	has_many :ticket_types, dependent: :destroy
 	has_many :tickets, dependent: :destroy
+	has_many :entity_types, dependent: :destroy
+	has_many :entities, dependent: :destroy
+
 	has_many :activity_logs, dependent: :destroy
 
 

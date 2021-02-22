@@ -1,4 +1,8 @@
 class EntityTypesController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+  layout "dashboard"
+  
   before_action :set_entity_type, only: [:show, :edit, :update, :destroy]
 
   # GET /entity_types
@@ -24,15 +28,18 @@ class EntityTypesController < ApplicationController
   # POST /entity_types
   # POST /entity_types.json
   def create
-    @entity_type = EntityType.new(entity_type_params)
+    @entity_type = current_user.entity_types.build(entity_type_params)
 
     respond_to do |format|
       if @entity_type.save
+        @entity_types = EntityType.all
         format.html { redirect_to @entity_type, notice: 'Entity type was successfully created.' }
         format.json { render :show, status: :created, location: @entity_type }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @entity_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,14 +49,23 @@ class EntityTypesController < ApplicationController
   def update
     respond_to do |format|
       if @entity_type.update(entity_type_params)
+        @entity_types = EntityType.all
         format.html { redirect_to @entity_type, notice: 'Entity type was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity_type }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @entity_type.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+
+  def delete
+    @entity_type = EntityType.find(params[:entity_type_id])
+  end
+
 
   # DELETE /entity_types/1
   # DELETE /entity_types/1.json
@@ -69,6 +85,6 @@ class EntityTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def entity_type_params
-      params.require(:entity_type).permit(:uid, :name, :description, :status, :user_id)
+      params.require(:entity_type).permit(:name, :description)
     end
 end
