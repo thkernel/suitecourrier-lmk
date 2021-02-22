@@ -1,0 +1,52 @@
+<%= form_with(model: internal_memo, local: true) do |form| %>
+  <% if internal_memo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(internal_memo.errors.count, "error") %> prohibited this internal_memo from being saved:</h2>
+
+      <ul>
+      <% internal_memo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mail_type_id %>
+    <%= form.text_field :mail_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority_id %>
+    <%= form.text_field :priority_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :correspondent_id %>
+    <%= form.text_field :correspondent_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :folder_id %>
+    <%= form.text_field :folder_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  application_name: MyString
+  login_screen_message: MyString
+  home_screen_message: MyString
+  logo: MyString
+  wallpaper: MyString
+  user: one
+
+two:
+  application_name: MyString
+  login_screen_message: MyString
+  home_screen_message: MyString
+  logo: MyString
+  wallpaper: MyString
+  user: two

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @internal_memo.uid %>
+</p>
+
+<p>
+  <strong>Mail type:</strong>
+  <%= @internal_memo.mail_type %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @internal_memo.priority %>
+</p>
+
+<p>
+  <strong>Correspondent:</strong>
+  <%= @internal_memo.correspondent %>
+</p>
+
+<p>
+  <strong>Folder:</strong>
+  <%= @internal_memo.folder %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @internal_memo.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @internal_memo.user %>
+</p>
+
+<%= link_to 'Edit', edit_internal_memo_path(@internal_memo) %> |
+<%= link_to 'Back', internal_memos_path %>

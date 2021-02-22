@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  mail_type: one
+  priority: one
+  correspondent: one
+  folder: one
+  status: MyString
+  user: one
+
+two:
+  uid: MyString
+  mail_type: two
+  priority: two
+  correspondent: two
+  folder: two
+  status: MyString
+  user: two

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Register Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Short name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @register_types.each do |register_type| %>
+      <tr>
+        <td><%= register_type.uid %></td>
+        <td><%= register_type.name %></td>
+        <td><%= register_type.short_name %></td>
+        <td><%= register_type.description %></td>
+        <td><%= register_type.status %></td>
+        <td><%= register_type.user %></td>
+        <td><%= link_to 'Show', register_type %></td>
+        <td><%= link_to 'Edit', edit_register_type_path(register_type) %></td>
+        <td><%= link_to 'Destroy', register_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Register Type', new_register_type_path %>

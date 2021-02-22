@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  parent_entity: one
+  entity_type: one
+  name: MyString
+  short_name: MyString
+  phone: MyString
+  email: MyString
+  address: MyString
+  description: MyText
+  status: MyString
+  user: one
+
+two:
+  uid: MyString
+  parent_entity: two
+  entity_type: two
+  name: MyString
+  short_name: MyString
+  phone: MyString
+  email: MyString
+  address: MyString
+  description: MyText
+  status: MyString
+  user: two

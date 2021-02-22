@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @storage_area.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @storage_area.name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @storage_area.short_name %>
+</p>
+
+<p>
+  <strong>Maximum size:</strong>
+  <%= @storage_area.maximum_size %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @storage_area.path %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @storage_area.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @storage_area.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @storage_area.user %>
+</p>
+
+<%= link_to 'Edit', edit_storage_area_path(@storage_area) %> |
+<%= link_to 'Back', storage_areas_path %>

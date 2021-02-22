@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  name: MyString
+  short_name: MyString
+  maximum_size: 1
+  path: MyString
+  description: MyText
+  status: MyString
+  user: one
+
+two:
+  uid: MyString
+  name: MyString
+  short_name: MyString
+  maximum_size: 1
+  path: MyString
+  description: MyText
+  status: MyString
+  user: two

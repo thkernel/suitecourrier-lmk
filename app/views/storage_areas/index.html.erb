@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Storage Areas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Short name</th>
+      <th>Maximum size</th>
+      <th>Path</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storage_areas.each do |storage_area| %>
+      <tr>
+        <td><%= storage_area.uid %></td>
+        <td><%= storage_area.name %></td>
+        <td><%= storage_area.short_name %></td>
+        <td><%= storage_area.maximum_size %></td>
+        <td><%= storage_area.path %></td>
+        <td><%= storage_area.description %></td>
+        <td><%= storage_area.status %></td>
+        <td><%= storage_area.user %></td>
+        <td><%= link_to 'Show', storage_area %></td>
+        <td><%= link_to 'Edit', edit_storage_area_path(storage_area) %></td>
+        <td><%= link_to 'Destroy', storage_area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Storage Area', new_storage_area_path %>

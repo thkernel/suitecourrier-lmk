@@ -18,7 +18,8 @@ class CreateArrivalMails < ActiveRecord::Migration[5.2]
       t.datetime :response_date
 
       t.references :support, foreign_key: true
-      t.references :nature, foreign_key: true
+      t.references :mail_type, foreign_key: true
+      t.boolean :confidential
 
       t.references :correspondent, foreign_key: true
       t.string :object
@@ -26,9 +27,10 @@ class CreateArrivalMails < ActiveRecord::Migration[5.2]
       
       
       t.string :reserved_suite
-      t.string :priority
+      t.references :priority, foreign_key: true
       t.references :folder, foreign_key: true
-      
+      t.references :processing_entity, index: true
+      t.datetime :processing_deadline
       t.string :status
       t.references :user, foreign_key: true
 

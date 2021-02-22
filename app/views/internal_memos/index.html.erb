@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Internal Memos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uid</th>
+      <th>Mail type</th>
+      <th>Priority</th>
+      <th>Correspondent</th>
+      <th>Folder</th>
+      <th>Status</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @internal_memos.each do |internal_memo| %>
+      <tr>
+        <td><%= internal_memo.uid %></td>
+        <td><%= internal_memo.mail_type %></td>
+        <td><%= internal_memo.priority %></td>
+        <td><%= internal_memo.correspondent %></td>
+        <td><%= internal_memo.folder %></td>
+        <td><%= internal_memo.status %></td>
+        <td><%= internal_memo.user %></td>
+        <td><%= link_to 'Show', internal_memo %></td>
+        <td><%= link_to 'Edit', edit_internal_memo_path(internal_memo) %></td>
+        <td><%= link_to 'Destroy', internal_memo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Internal Memo', new_internal_memo_path %>

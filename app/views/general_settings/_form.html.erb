@@ -1,0 +1,47 @@
+<%= form_with(model: general_setting, local: true) do |form| %>
+  <% if general_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(general_setting.errors.count, "error") %> prohibited this general_setting from being saved:</h2>
+
+      <ul>
+      <% general_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :application_name %>
+    <%= form.text_field :application_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :login_screen_message %>
+    <%= form.text_field :login_screen_message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :home_screen_message %>
+    <%= form.text_field :home_screen_message %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logo %>
+    <%= form.text_field :logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wallpaper %>
+    <%= form.text_field :wallpaper %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

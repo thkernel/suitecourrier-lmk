@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Entities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_entities.each do |user_entity| %>
+      <tr>
+        <td><%= user_entity.user %></td>
+        <td><%= user_entity.status %></td>
+        <td><%= link_to 'Show', user_entity %></td>
+        <td><%= link_to 'Edit', edit_user_entity_path(user_entity) %></td>
+        <td><%= link_to 'Destroy', user_entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Entity', new_user_entity_path %>

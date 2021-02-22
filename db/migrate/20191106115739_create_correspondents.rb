@@ -15,6 +15,7 @@ class CreateCorrespondents < ActiveRecord::Migration[5.2]
       t.string :zip_code
       t.string :email  
       t.string :contact_email
+      t.string :contact_phone
       t.string :status
       t.references :user, foreign_key: true
 

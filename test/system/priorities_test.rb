@@ -14,8 +14,12 @@ class PrioritiesTest < ApplicationSystemTestCase
     visit priorities_url
     click_on "New Priority"
 
+    fill_in "Color", with: @priority.color
+    fill_in "Description", with: @priority.description
     fill_in "Name", with: @priority.name
+    fill_in "Processing time in days", with: @priority.processing_time_in_days
     fill_in "Status", with: @priority.status
+    fill_in "Uid", with: @priority.uid
     fill_in "User", with: @priority.user_id
     click_on "Create Priority"
 
@@ -27,8 +31,12 @@ class PrioritiesTest < ApplicationSystemTestCase
     visit priorities_url
     click_on "Edit", match: :first
 
+    fill_in "Color", with: @priority.color
+    fill_in "Description", with: @priority.description
     fill_in "Name", with: @priority.name
+    fill_in "Processing time in days", with: @priority.processing_time_in_days
     fill_in "Status", with: @priority.status
+    fill_in "Uid", with: @priority.uid
     fill_in "User", with: @priority.user_id
     click_on "Update Priority"
 

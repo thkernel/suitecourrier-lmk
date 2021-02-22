@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @register_type.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @register_type.name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @register_type.short_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @register_type.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @register_type.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @register_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_register_type_path(@register_type) %> |
+<%= link_to 'Back', register_types_path %>

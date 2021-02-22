@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  resources :ticket_types
+  resources :task_statuses
+  resources :task_types
+  resources :internal_memos
+  resources :register_types
+  resources :user_entity_items
+  resources :user_entities
+  resources :general_settings
+  resources :storage_areas
+  resources :smtp_server_settings
+  resources :priorities
+  resources :statuses
+  resources :entities
+  resources :entity_types
   resources :ticket_users
   resources :activity_logs
 
@@ -194,7 +208,7 @@ Rails.application.routes.draw do
 	#get "/companies/edit/:id" => "companies#edit", as: :edit_company
 	#patch "/companies/:id"  => "companies#update", as: :company
 
-  resources :natures do     
+  resources :mail_types do     
     get "delete"
 
     

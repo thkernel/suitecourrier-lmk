@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_entity.user %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @user_entity.status %>
+</p>
+
+<%= link_to 'Edit', edit_user_entity_path(@user_entity) %> |
+<%= link_to 'Back', user_entities_path %>

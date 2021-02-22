@@ -63,18 +63,6 @@ end
 
 
 
-# Service.
-unless Service.all.present?
-    services = Service.create(
-        [
-            {name: "Informatique", user_id: users.first.id},
-            {name: "Direction",  user_id: users.first.id},
-            {name: "Comptabilité", user_id: users.first.id}
-
-        ])
-else
-    services = Service.all
-end
 
 
 # Profile
@@ -83,37 +71,52 @@ unless Profile.all.present?
         {
             first_name: "Super",  
             last_name: "User",
-            service_id: services.first.id,   
+            #service_id: services.first.id,   
             user_id: User.find_by(login: "superuser").id
         },
         {
             first_name: "Root",  
             last_name: "Root",
-            service_id: services.first.id, 
+            #service_id: services.first.id, 
             user_id: User.find_by(login: "root").id
         },
         {
             first_name: "User",  
             last_name: "User",
-            service_id: services.first.id, 
+            #service_id: services.first.id, 
             user_id: User.find_by(login: "user").id
         },
         {
             first_name: "Guest",  
             last_name: "Guest",
-            service_id: services.first.id, 
+            #service_id: services.first.id, 
             user_id: User.find_by(login: "guest").id
         },
         {
             first_name: "Demo",  
             last_name: "Demo",
-            service_id: services.first.id, 
+            #service_id: services.first.id, 
             user_id: User.find_by(login: "demo").id
         }
     
     ])
 
 end
+
+
+# Service.
+unless EntityType.all.present?
+    entity_types = EntityType.create(
+        [
+            {name: "Bureau", user_id: users.first.id},
+            {name: "Direction",  user_id: users.first.id},
+            {name: "Service", user_id: users.first.id}
+
+        ])
+else
+    entity_types = EntityType.all
+end
+
 
 unless OrganizationType.all.present?
     organization_types = OrganizationType.create(
@@ -143,8 +146,8 @@ unless Support.all.present?
 end
 
 
-unless Nature.all.present?
-    natures = Nature.create(
+unless MailType.all.present?
+    mail_types = MailType.create(
         [
             {name: "Facture", user_id: users.first.id },
             {name: "Lettre" , user_id: users.first.id },
@@ -196,14 +199,25 @@ end
 
 
 
+unless RegisterType.all.present?
+    register_types = RegisterType.create(
+        [
+
+            { name: "COURRIER D'ARRIVÉE",  user_id: users.first.id},
+            { name: "COURRIER DEPART", user_id: users.first.id}
+        ])
+else    
+    registers =  Register.all
+
+end
 
 
 unless Register.all.present?
     registers = Register.create(
         [
 
-            {register_type: REGISTER_TYPES[0][0], name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
-            {register_type: REGISTER_TYPES[1][0], name: "COURRIER DEPART 2020", user_id: users.first.id}
+            {register_type_id: RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id , name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
+            {register_type_id: RegisterType.find_by(name: "COURRIER DEPART").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
         ])
 else    
     registers =  Register.all

@@ -1,23 +1,19 @@
-# == Schema Information
-#
-# Table name: priorities
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  status     :string
-#  user_id    :bigint
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  uid: MyString
   name: MyString
+  color: MyString
+  processing_time_in_days: 1
+  description: MyText
   status: MyString
   user: one
 
 two:
+  uid: MyString
   name: MyString
+  color: MyString
+  processing_time_in_days: 1
+  description: MyText
   status: MyString
   user: two

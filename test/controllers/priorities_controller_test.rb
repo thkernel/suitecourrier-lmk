@@ -17,7 +17,7 @@ class PrioritiesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create priority" do
     assert_difference('Priority.count') do
-      post priorities_url, params: { priority: { name: @priority.name, status: @priority.status, user_id: @priority.user_id } }
+      post priorities_url, params: { priority: { color: @priority.color, description: @priority.description, name: @priority.name, processing_time_in_days: @priority.processing_time_in_days, status: @priority.status, uid: @priority.uid, user_id: @priority.user_id } }
     end
 
     assert_redirected_to priority_url(Priority.last)
@@ -34,7 +34,7 @@ class PrioritiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update priority" do
-    patch priority_url(@priority), params: { priority: { name: @priority.name, status: @priority.status, user_id: @priority.user_id } }
+    patch priority_url(@priority), params: { priority: { color: @priority.color, description: @priority.description, name: @priority.name, processing_time_in_days: @priority.processing_time_in_days, status: @priority.status, uid: @priority.uid, user_id: @priority.user_id } }
     assert_redirected_to priority_url(@priority)
   end
 
