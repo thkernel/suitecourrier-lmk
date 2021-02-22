@@ -1,4 +1,9 @@
 class PrioritiesController < ApplicationController
+  authorize_resource
+  
+  before_action :authenticate_user!
+  layout "dashboard"
+
   before_action :set_priority, only: [:show, :edit, :update, :destroy]
 
   # GET /priorities
@@ -24,15 +29,19 @@ class PrioritiesController < ApplicationController
   # POST /priorities
   # POST /priorities.json
   def create
-    @priority = Priority.new(priority_params)
+    @priority = current_user.priorities.build(priority_params)
 
     respond_to do |format|
       if @priority.save
+        @priorities = Priority.all
+
         format.html { redirect_to @priority, notice: 'Priority was successfully created.' }
         format.json { render :show, status: :created, location: @priority }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @priority.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -42,14 +51,23 @@ class PrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @priority.update(priority_params)
+        @priorities = Priority.all
+
         format.html { redirect_to @priority, notice: 'Priority was successfully updated.' }
         format.json { render :show, status: :ok, location: @priority }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @priority.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+  def delete
+    @priority = Priority.find(params[:priority_id])
+  end
+
 
   # DELETE /priorities/1
   # DELETE /priorities/1.json
@@ -69,6 +87,6 @@ class PrioritiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def priority_params
-      params.require(:priority).permit(:uid, :name, :color, :processing_time_in_days, :description, :status, :user_id)
+      params.require(:priority).permit(:name, :color, :processing_time_in_days, :description)
     end
 end

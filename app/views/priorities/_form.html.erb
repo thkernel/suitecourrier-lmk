@@ -1,52 +1,48 @@
-<%= form_with(model: priority, local: true) do |form| %>
-  <% if priority.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(priority.errors.count, "error") %> prohibited this priority from being saved:</h2>
+<%= form_with(model: priority, local: false) do |form| %>
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
 
-      <ul>
-      <% priority.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :name, "Nom", class: "required" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+        </div>
+      </div>
     </div>
-  <% end %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :color, "Couleur" %>
+          <%= form.color_field :color, class: "form-control", placeholder: "Couleur" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :processing_time_in_days, "Délai (jours)" %>
+          <%= form.number_field :processing_time_in_days, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :color %>
-    <%= form.text_field :color %>
-  </div>
+  
 
-  <div class="field">
-    <%= form.label :processing_time_in_days %>
-    <%= form.number_field :processing_time_in_days %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
   </div>
 <% end %>

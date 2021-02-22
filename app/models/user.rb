@@ -63,6 +63,8 @@ class User < ApplicationRecord
 	has_many :tickets, dependent: :destroy
 	has_many :entity_types, dependent: :destroy
 	has_many :entities, dependent: :destroy
+	has_many :priorities, dependent: :destroy
+
 
 	has_many :activity_logs, dependent: :destroy
 

@@ -1,39 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h4>Priorités</h4></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
 
-<h1>Priorities</h1>
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_priority_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+        </div>
+
+    </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
   <thead>
     <tr>
-      <th>Uid</th>
-      <th>Name</th>
-      <th>Color</th>
-      <th>Processing time in days</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      
+      <th>Nom</th>
+      <th>Couleur</th>
+      <th>Délai de traitement (jours)</th>
+      
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @priorities.each do |priority| %>
-      <tr>
-        <td><%= priority.uid %></td>
-        <td><%= priority.name %></td>
-        <td><%= priority.color %></td>
-        <td><%= priority.processing_time_in_days %></td>
-        <td><%= priority.description %></td>
-        <td><%= priority.status %></td>
-        <td><%= priority.user %></td>
-        <td><%= link_to 'Show', priority %></td>
-        <td><%= link_to 'Edit', edit_priority_path(priority) %></td>
-        <td><%= link_to 'Destroy', priority, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="priorities">
+    <%= render "index" %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Priority', new_priority_path %>
+</div>
+</div>
+<div id="priority-modal" class="c-modal modal fade" data-backdrop="static"></div>

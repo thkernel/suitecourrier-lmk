@@ -1,4 +1,6 @@
 class RegisterTypesController < ApplicationController
+  authorize_resource
+  
   before_action :set_register_type, only: [:show, :edit, :update, :destroy]
 
   # GET /register_types
