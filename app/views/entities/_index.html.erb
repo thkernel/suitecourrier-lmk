@@ -1,0 +1,21 @@
+<% @entities.each do |entity| %>
+  <tr>
+    
+    <td><%= entity.entity_type.name %></td>
+    <td><%= entity.name %></td>
+    <td><%= entity.short_name %></td>
+    <td><%= entity.parent_entity.name if entity.parent_entity %></td>
+   
+    
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_entity_path(entity), title: "Modifier", remote: true %>
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), entity_delete_path(entity), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

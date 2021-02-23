@@ -1,47 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="br-pageheader">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        
+        <span class="breadcrumb-item active"><h4>Entités</h4></span>
+      </nav>
+    </div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-20">
+  <div class="br-section-wrapper">
+    <div class="headers mg-b-20">
+        <div class="left-content">
+        </div>
 
-<h1>Entities</h1>
+        <div class="text-right">
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_entity_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
-<table>
+        </div>
+
+    </div>
+
+
+<table id="datatable1" class="table display responsive nowrap">
+
   <thead>
     <tr>
-      <th>Uid</th>
-      <th>Parent entity</th>
-      <th>Entity type</th>
-      <th>Name</th>
-      <th>Short name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Type d'entité</th>
+      <th>Nom</th>
+      <th>Nom court</th>
+      <th>Entité parente</th>
+      
+      <th>Actions</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @entities.each do |entity| %>
-      <tr>
-        <td><%= entity.uid %></td>
-        <td><%= entity.parent_entity %></td>
-        <td><%= entity.entity_type %></td>
-        <td><%= entity.name %></td>
-        <td><%= entity.short_name %></td>
-        <td><%= entity.phone %></td>
-        <td><%= entity.email %></td>
-        <td><%= entity.address %></td>
-        <td><%= entity.description %></td>
-        <td><%= entity.status %></td>
-        <td><%= entity.user %></td>
-        <td><%= link_to 'Show', entity %></td>
-        <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
-        <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <tbody class="entities">
+    <%= render "index" %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Entity', new_entity_path %>
+</div>
+</div>
+<div id="entity-modal" class="c-modal modal fade" data-backdrop="static"></div>

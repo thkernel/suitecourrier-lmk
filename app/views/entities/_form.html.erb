@@ -1,72 +1,76 @@
-<%= form_with(model: entity, local: true) do |form| %>
-  <% if entity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(entity.errors.count, "error") %> prohibited this entity from being saved:</h2>
+<%= form_with(model: entity, local: false) do |form| %>
+  
 
-      <ul>
-      <% entity.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :entity_type_id, "Typé d'entité", class: "required" %>
+          <%= form.collection_select(:entity_type_id, @entity_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :name, "Nom", class: "required" %>
+          <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :parent_entity_id %>
-    <%= form.text_field :parent_entity_id %>
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :short_name, "Nom court" %>
+          <%= form.text_field :short_name, class: "form-control", placeholder: "Nom court" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
 
-  <div class="field">
-    <%= form.label :entity_type_id %>
-    <%= form.text_field :entity_type_id %>
-  </div>
+        <div class="form-group">
+          <%= form.label :parent_entity_id, "Rattachée à" %>
+          <%= form.collection_select(:parent_entity_id, @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= form.label :phone, "Téléphone" %>
+          <%= form.text_field :phone, class: "form-control", placeholder: "Téléphone" %>
+        </div>
+      </div>
+      <div class="col-md-6">
 
-  <div class="field">
-    <%= form.label :short_name %>
-    <%= form.text_field :short_name %>
-  </div>
+        <div class="form-group">
+          <%= form.label :email, "Email" %>
+          <%= form.text_field :email, class: "form-control", placeholder: "Email" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+  
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
   </div>
 <% end %>

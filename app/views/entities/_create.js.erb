@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @entity.errors.any? %>
+  <% @entity.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".entities").html("<%= escape_javascript(render 'index') %>");
+  $("#entity-modal").modal("hide");
+ 
+<% end %>
