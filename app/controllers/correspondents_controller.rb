@@ -89,6 +89,6 @@ class CorrespondentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def correspondent_params
-      params.require(:correspondent).permit(:organization_name, :contact_first_name, :contact_last_name, :address, :phone, :city, :country, :zip_code, :contact_phone, :contact_email, :correspondent_type_id)
+      params.require(:correspondent).permit(:organization_name, :contact_first_name, :contact_last_name, :address, :phone, :city, :country, :email, :zip_code, :contact_phone, :contact_email, :correspondent_type_id)
     end
 end
