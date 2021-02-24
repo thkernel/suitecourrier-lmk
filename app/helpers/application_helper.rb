@@ -135,4 +135,41 @@ module ApplicationHelper
 		# We use string interpolation "#{key}" here to access the CSS classes we are going to create.
 	 end
 
+	def has_general_settings?
+	 	settings = GeneralSetting.first
+	 	if settings.present?
+	 		true
+	 	else
+	 		false
+	 	end
+	 end
+
+	 def has_smtp_server_settings?
+	 	smtp_server = SmtpServerSetting.first
+	 	if smtp_server.present?
+	 		true
+	 	else
+	 		false
+	 	end
+	 end
+
+
+	 def has_storage_area?
+	 	storage_area = StorageArea.first
+	 	if storage_area.present?
+	 		true
+	 	else
+	 		false
+	 	end
+	 end
+
+	 def has_organization?
+	 	organization = Organization.first
+	 	if organization.present?
+	 		true
+	 	else
+	 		false
+	 	end
+	 end
+
 end

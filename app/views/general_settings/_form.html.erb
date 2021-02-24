@@ -1,47 +1,42 @@
 <%= form_with(model: general_setting, local: true) do |form| %>
-  <% if general_setting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(general_setting.errors.count, "error") %> prohibited this general_setting from being saved:</h2>
+  <ul class="errors">
+  </ul>
 
-      <ul>
-      <% general_setting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :application_name, "Nom de l'application", class: "required" %>
+        <%= form.text_field :application_name, class: "form-control", placeholder: "Nom de l'application", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :login_screen_message, "Message d'écran de connexion" %>
+        <%= form.text_field :login_screen_message, class: "form-control", placeholder: "Message d'écran de connexion" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :home_screen_message, "Message de l'écran d'accueil" %>
+        <%= form.text_field :home_screen_message, class: "form-control", placeholder: "Message d'écran de connexion" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :logo, "Logo" %>
+        <%= form.file_field :logo, class: "form-control" %>
+      </div>
+
+     <div class="form-group">
+        <%= form.label :wallpaper, "Image de fond d'écran" %>
+        <%= form.file_field :wallpaper, class: "form-control" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :application_name %>
-    <%= form.text_field :application_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :login_screen_message %>
-    <%= form.text_field :login_screen_message %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group text-right">
+        <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :home_screen_message %>
-    <%= form.text_field :home_screen_message %>
-  </div>
-
-  <div class="field">
-    <%= form.label :logo %>
-    <%= form.text_field :logo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :wallpaper %>
-    <%= form.text_field :wallpaper %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

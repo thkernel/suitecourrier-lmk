@@ -55,6 +55,10 @@ class User < ApplicationRecord
 	has_many :departure_mails, dependent: :destroy
 	has_one  :profile, dependent: :destroy
 	has_one  :organization, dependent: :destroy
+	has_one  :general_setting, dependent: :destroy
+	has_one  :smtp_server_setting, dependent: :destroy
+	has_one  :storage_area_setting, dependent: :destroy
+
 	has_many :imputations, dependent: :destroy
 	has_many :request_imputations, dependent: :destroy
 	has_many :task_types, dependent: :destroy

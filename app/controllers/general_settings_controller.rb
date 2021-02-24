@@ -28,7 +28,7 @@ class GeneralSettingsController < ApplicationController
 
     respond_to do |format|
       if @general_setting.save
-        format.html { redirect_to @general_setting, notice: 'General setting was successfully created.' }
+        format.html { redirect_to configurations_path, notice: 'General setting was successfully created.' }
         format.json { render :show, status: :created, location: @general_setting }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class GeneralSettingsController < ApplicationController
   def update
     respond_to do |format|
       if @general_setting.update(general_setting_params)
-        format.html { redirect_to @general_setting, notice: 'General setting was successfully updated.' }
+        format.html { redirect_to configurations_path, notice: 'General setting was successfully updated.' }
         format.json { render :show, status: :ok, location: @general_setting }
       else
         format.html { render :edit }

@@ -48,6 +48,10 @@ Rails.application.routes.draw do
   get "folder/:uid/delete" => "folders#delete", as: :folder_delete
   get "/downloadfile/:key" => "folders#download_drive_file", as: :download_file
   
+
+  get "configurations" => "configurations#show", as: :configurations
+
+
   resources :folders , except: [:edit] do
 
 

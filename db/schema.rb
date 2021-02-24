@@ -253,11 +253,11 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.string "path"
     t.text "description"
     t.string "status"
-    t.bigint "parent_folder_id"
+    t.bigint "parent_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_folder_id"], name: "index_folders_on_parent_folder_id"
+    t.index ["parent_id"], name: "index_folders_on_parent_id"
     t.index ["user_id"], name: "index_folders_on_user_id"
   end
 

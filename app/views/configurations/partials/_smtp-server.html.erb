@@ -1,0 +1,5 @@
+<% if has_smtp_server_settings? %>
+	<%= render "smtp_server_settings/form", smtp_server_setting: @smtp_server_setting %>
+<% else %>
+	<%= render "smtp_server_settings/form", smtp_server_setting: @smtp_server_setting %>
+<% end %>

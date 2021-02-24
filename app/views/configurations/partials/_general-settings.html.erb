@@ -1,0 +1,5 @@
+<% if has_general_settings? %>
+	<%= render "general_settings/form", general_setting: @general_setting %>
+<% else %>
+	<%= render "general_settings/form",general_setting: @general_setting %>
+<% end %>

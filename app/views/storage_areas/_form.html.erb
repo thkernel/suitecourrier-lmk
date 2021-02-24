@@ -1,57 +1,35 @@
 <%= form_with(model: storage_area, local: true) do |form| %>
-  <% if storage_area.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(storage_area.errors.count, "error") %> prohibited this storage_area from being saved:</h2>
+ 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :name, "Nom", class: "required" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+      </div>
 
-      <ul>
-      <% storage_area.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div class="form-group">
+        <%= form.label :short_name, "Nom court" %>
+        <%= form.text_field :short_name, class: "form-control", placeholder: "Nom court" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :maximum_size, "Taille maximum (Go)" %>
+        <%= form.number_field :maximum_size, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :path, "Chémin d'accès", class: "required" %>
+        <%= form.file_field :path, class: "form-control", placeholder: "Chémin d'accès", required: true %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :short_name %>
-    <%= form.text_field :short_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :maximum_size %>
-    <%= form.number_field :maximum_size %>
-  </div>
-
-  <div class="field">
-    <%= form.label :path %>
-    <%= form.text_field :path %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group text-right">
+        <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+      </div>
+    </div>
   </div>
 <% end %>

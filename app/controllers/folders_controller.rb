@@ -1,5 +1,7 @@
 class FoldersController < ApplicationController
+  before_action :authenticate_user!
   authorize_resource
+
  # Include shared utils.
  include SharedUtils::Folder
 

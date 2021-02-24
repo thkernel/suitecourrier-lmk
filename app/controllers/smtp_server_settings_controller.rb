@@ -28,7 +28,7 @@ class SmtpServerSettingsController < ApplicationController
 
     respond_to do |format|
       if @smtp_server_setting.save
-        format.html { redirect_to @smtp_server_setting, notice: 'Smtp server setting was successfully created.' }
+        format.html { redirect_to configurations_path, notice: 'Smtp server setting was successfully created.' }
         format.json { render :show, status: :created, location: @smtp_server_setting }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SmtpServerSettingsController < ApplicationController
   def update
     respond_to do |format|
       if @smtp_server_setting.update(smtp_server_setting_params)
-        format.html { redirect_to @smtp_server_setting, notice: 'Smtp server setting was successfully updated.' }
+        format.html { redirect_to configurations_path, notice: 'Smtp server setting was successfully updated.' }
         format.json { render :show, status: :ok, location: @smtp_server_setting }
       else
         format.html { render :edit }
