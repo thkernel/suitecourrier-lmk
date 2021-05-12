@@ -5,7 +5,7 @@ set :stages, %w(production staging)
 set :default_stage, "production"
 
 set :application, "gedwin"
-set :repo_url, "https://github.com/thkernel/gedwin.git"
+set :repo_url, "https://github.com/thkernel/suitecourrier.git"
 #set :ssh_options, { auth_methods: %w(password), password: "AMOSXZIBITDE88" }
 
 # Default branch is :master
