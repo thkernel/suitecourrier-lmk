@@ -4,22 +4,25 @@
                       <%= item.created_at.strftime("%d/%m/%Y") %>
                     </td>
                     <td>
-                      <%= item.title %>
+                      <%= item.task_type.name %>
+                    </td>
+                    <td>
+                      <%= item.description %>
                     </td>
                     <td class="tx-12">
-                      <%= item.due_date.strftime("%d/%m/%Y") %>
+                      <%= item.due_date.strftime("%d/%m/%Y") if item.due_date.present? %>
                     </td>
                      <td class="tx-12">
                       <%= item.start_date.strftime("%d/%m/%Y") if item.start_date.present? %>
                     </td>
                      <td class="tx-12">
-                      <%= item.completed_date.strftime("%d/%m/%Y") if item.completed_date %>
+                      <%= item.completed_date.strftime("%d/%m/%Y") if item.completed_date.present? %>
                     </td>
                      <td class="tx-12">
-                      <%= item.priority %>
+                      <%= item.priority.name %>
                     </td>
                     <td class="tx-12">
-                      <%= item.status %>
+                      <%= item.task_status.name %>
                     </td>
                     <td>
                         <%= link_to raw('<span class="fa-stack fa-lg">

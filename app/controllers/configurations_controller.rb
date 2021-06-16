@@ -24,11 +24,11 @@ class ConfigurationsController < ApplicationController
   		@smtp_server_setting = SmtpServerSetting.new
   	end
 
-  	# For storage areas.
-  	if has_storage_area?
-  		@storage_area = StorageArea.first
+  	# For storage sevices settings.
+  	if has_storage_service_setting?
+  		@storage_service_setting = StorageServiceSetting.first
   	else
-  		@storage_area = StorageArea.new
+  		@storage_service_setting = StorageServiceSetting.new
   	end
 
     # For organization.
@@ -40,14 +40,6 @@ class ConfigurationsController < ApplicationController
       @organization = Organization.new
     end
 
-
-
   end
-
-  
- 
-
- 
-
  
 end

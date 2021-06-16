@@ -19,12 +19,15 @@ class RegistersController < ApplicationController
 
   # GET /registers/new
   def new
+    @register_types = RegisterType.all
     @register = Register.new
     
   end
 
   # GET /registers/1/edit
   def edit
+
+    @register_types = RegisterType.all
     
 
   end
@@ -36,7 +39,7 @@ class RegistersController < ApplicationController
     
   
     
-    Register.where(register_type: @register.register_type).update_all(status: REGISTER_STATUSES[1][0])
+    Register.where(register_type_id: @register.register_type_id).update_all(status: REGISTER_STATUSES[1][0])
      
     
     @register.status =  REGISTER_STATUSES[0][0]
@@ -62,8 +65,14 @@ class RegistersController < ApplicationController
   # PATCH/PUT /registers/1.json
   def update
     
-    Register.where(register_type: @register.register_type).update_all(status: REGISTER_STATUSES[1][0])
-    @register.status = @register.register_type
+
+    other_registers = Register.where(register_type_id: @register.register_type_id)
+    other_registers = other_registers.where.not(id: @register.id)
+
+    other_registers.update_all(status: REGISTER_STATUSES[1][0])
+
+    #Register.where(register_type_id: @register.register_type_id).update_all(status: REGISTER_STATUSES[1][0])
+    #@register.status = @register.register_type
 
     respond_to do |format|
       if @register.update(register_params)
@@ -111,6 +120,6 @@ class RegistersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def register_params
-      params.require(:register).permit(:start_date, :end_date, :name, :register_type, :status)
+      params.require(:register).permit(:start_date, :end_date, :name, :register_type_id, :status)
     end
 end

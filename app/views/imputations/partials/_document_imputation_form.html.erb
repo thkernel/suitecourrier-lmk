@@ -1,0 +1,75 @@
+<%= form_with(model: imputation, local: true,  url: new_imputation_path(uid: @document.uid, rtype: "Document")) do |form| %>
+ <% if imputation.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+
+      <ul>
+      <% imputation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="form-group col-md-6 customSelect">
+      <%= form.label :entity_id , "Entité", class: "required"%>
+      <%= form.collection_select(:entity_id, @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+    </div>
+
+
+
+    <div class="form-group col-md-6 customSelect">
+      <%= form.label :recipient_id, "Destinataire", class: "required" %>
+      <%= form.collection_select(:recipient_id, @recipients, :user_id, :full_name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+
+    </div>
+  </div>
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Tâches</legend>
+    <div class="row">
+      <div class="prescription-items">
+
+        <table class="table  responsive ">
+          <thead>
+            <tr role="row">
+              <th>Type</th>
+              <th>Description</th>
+              <th>Date d'échéance</th>
+              <th>Priorité</th>
+              <th>Progression</th>
+            </tr>
+          </thead>
+          <tbody class="items">
+            <%= form.fields_for :imputation_items do |item| %>
+                <%= render 'imputation_item_fields', f: item %>
+            <% end %>
+          </tbody>
+        </table>  
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= link_to_add_association raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), form, :imputation_items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
+
+  
+    
+ 
+
+ 
+
+  <div class="form-group pull-right">
+    <%= form.submit class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+  </div>
+<% end %>

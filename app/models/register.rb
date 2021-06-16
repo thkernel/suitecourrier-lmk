@@ -2,18 +2,18 @@
 #
 # Table name: registers
 #
-#  id            :bigint           not null, primary key
-#  uid           :string
-#  register_type :string
-#  name          :string
-#  start_date    :datetime
-#  end_date      :datetime
-#  reference     :string
-#  description   :text
-#  status        :string
-#  user_id       :bigint
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id               :bigint           not null, primary key
+#  uid              :string
+#  register_type_id :bigint
+#  name             :string
+#  start_date       :datetime
+#  end_date         :datetime
+#  reference        :string
+#  description      :text
+#  status           :string
+#  user_id          :bigint
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class Register < ApplicationRecord
@@ -23,6 +23,7 @@ class Register < ApplicationRecord
 
   
   belongs_to :user
+  belongs_to :register_type
 
 
   # Validations

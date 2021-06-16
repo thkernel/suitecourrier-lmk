@@ -378,13 +378,30 @@ span.tag-item{
 }
 
 
+#datatable_paginate {
+    margin-left: auto !important;
+}
 
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    background-color: transparent !important;
+}
 
+.next .page-link, .previous .page-link{
+    width: 100% !important;
+    padding: 11px  !important;
+}
 
+.action-buttons .delete{
+    color: red !important;
+}
 
-
-
-
+.permission-item{
+    background-color: #0066cc;
+    color: white;
+    padding: 3px;
+    border-radius: 12px;
+    margin-right: 4px;
+}
 
 
 

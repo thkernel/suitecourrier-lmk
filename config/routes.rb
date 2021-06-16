@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :storage_services
+  resources :storage_service_settings
   resources :ticket_types do   
     get "delete"
   end
@@ -51,7 +53,7 @@ Rails.application.routes.draw do
 
   get "configurations" => "configurations#show", as: :configurations
 
-
+  get "/get/last_folder" => "folders#last_folder"
   resources :folders , except: [:edit] do
 
 
@@ -76,14 +78,12 @@ Rails.application.routes.draw do
   end
 
  
-    get "custom_users/get_divisions" => "custom_users#get_divisions"
-    get "custom_users/get_services" => "custom_users#get_services"
-    get "imputations/get_divisions" => "imputations#get_divisions"
-    get "imputations/get_services" => "imputations#get_services"
-  
+  get "custom_users/get_entities" => "custom_users#get_entities"
+  get "imputations/get_profiles" => "imputations#get_profiles"
+
+    
   
 
-  
 
   
   resources :notifications
@@ -110,7 +110,7 @@ Rails.application.routes.draw do
     get "delete"
     
   end
-  #post "imputations/new"
+  post "imputations/new"
   #get "imputations/new", controller: "imputations", action: :new
   #post "imputations/new", controller: "imputations", action: :create
 
@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   get "imputation/show/:uid" => "imputations#show", as: :show_imputation
   get "imputation/edit/:uid" => "imputations#edit", as: :edit_imputation
   get "arrival-mail/show/:uid" => "arrival_mails#show", as: :show_arrival_mail
+  get "departure-mail/show/:uid" => "departure_mails#show", as: :show_departure_mail
   get "document/show/:uid" => "documents#show", as: :show_document
   get "request/show/:uid" => "requests#show", as: :show_request
   get "/settings/smtp" => "smtp_configurations#settings", as: :smtp_settings
@@ -182,6 +183,8 @@ Rails.application.routes.draw do
 
   
   resources :options
+
+  get "/get/last_correspondent" => "correspondents#last_correspondent"
   resources :correspondents do    
     get "delete"
   end
@@ -233,12 +236,16 @@ Rails.application.routes.draw do
 	#get "/companies/edit/:id" => "companies#edit", as: :edit_company
 	#patch "/companies/:id"  => "companies#update", as: :company
 
+
+  get "/get/last_mail_type" => "mail_types#last_mail_type"
   resources :mail_types do     
     get "delete"
 
     
   end
   
+
+  get "/get/last_support" => "supports#last_support"
   resources :supports do      
     get "delete"
   end

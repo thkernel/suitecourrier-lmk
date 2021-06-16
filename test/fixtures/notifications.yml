@@ -3,6 +3,7 @@
 # Table name: notifications
 #
 #  id               :bigint           not null, primary key
+#  uid              :string
 #  nature           :string
 #  recipient_id     :bigint
 #  content          :text

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Storage Services</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Storage service name</th>
+      <th>Storage service setting</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storage_services.each do |storage_service| %>
+      <tr>
+        <td><%= storage_service.storage_service_name %></td>
+        <td><%= storage_service.storage_service_setting %></td>
+        <td><%= link_to 'Show', storage_service %></td>
+        <td><%= link_to 'Edit', edit_storage_service_path(storage_service) %></td>
+        <td><%= link_to 'Destroy', storage_service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Storage Service', new_storage_service_path %>

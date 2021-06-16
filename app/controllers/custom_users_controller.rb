@@ -11,9 +11,9 @@ class CustomUsersController < ApplicationController
 		def new
 		
 		
-			@directions = Direction.all
-			@divisions = Division.all
-			@services = Service.all
+			@entity_types = EntityType.all
+			@entities = Entity.all
+			
 			@roles = Role.where.not(name: "superuser")
 		
 			#@roles = Role.all
@@ -21,9 +21,10 @@ class CustomUsersController < ApplicationController
 			@user.build_profile
 		end
 
-		def get_divisions
+		def get_entities
 			puts "ID: #{params[:id]}"
-			@divisions = Division.where(direction_id: params[:id]).map { |division| [division.name, division.id] }.unshift('Sélectionner')
+			@entities = Entity.where(entity_type_id: params[:id])#.map { |entity| [entity.name, entity.id] }.unshift('Sélectionner')
+			puts "ENTITIES: #{@entities.inspect}"
 		end
 
 		def get_services
@@ -82,9 +83,9 @@ class CustomUsersController < ApplicationController
     # GET /users/1/edit
 		def edit
 			
-			@directions = Direction.all
-			@divisions = Division.all
-			@services = Service.all
+			@entity_types = EntityType.all
+			@entities = Entity.all
+
 			@roles = Role.where.not(name: "superuser")
 			@user.profile || @user.build_profile 
     end
@@ -221,7 +222,7 @@ class CustomUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password,:password_confirmation, :role_id,  profile_attributes: [:first_name, :last_name, :civility, :direction_id, :division_id, :service_id])
+      params.require(:user).permit(:email, :password,:password_confirmation, :role_id,  profile_attributes: [:first_name, :last_name, :civility, :entity_type_id, :entity_id, :position])
     end
 
 end

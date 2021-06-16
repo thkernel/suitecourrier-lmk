@@ -2,7 +2,7 @@
       <tr>
         <td><%= imputation.uid %>
         <td><%= imputation.created_at.strftime("%d/%m/%Y") %></td>
-        <td><%= service(imputation.service_id).name %></td>
+        <td><%= imputation.entity.name %></td>
         <td><%= user(imputation.recipient_id).profile.full_name %></td>
         <td><%= imputation_item_count(imputation.id) %></td>
         <td><%= imputation_viewed?(imputation) %></td>

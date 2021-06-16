@@ -23,6 +23,14 @@ class MailTypesController < ApplicationController
     @mail_type = MailType.new
   end
 
+
+  def last_nature
+    last_mail_type = MailType.last
+    mail_types = MailType.all
+    data = {:last_record => last_mail_type, :all_records => mail_types}
+    render :json => data
+  end
+
   
 
   # GET /natures/1/edit

@@ -2,13 +2,14 @@
 #
 # Table name: tasks
 #
-#  id          :bigint           not null, primary key
-#  uid         :string
-#  title       :string
-#  description :text
-#  user_id     :bigint
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :bigint           not null, primary key
+#  uid          :string
+#  task_type_id :bigint
+#  title        :string
+#  description  :text
+#  user_id      :bigint
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class Task < ApplicationRecord

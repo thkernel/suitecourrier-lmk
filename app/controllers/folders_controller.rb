@@ -1,7 +1,5 @@
 class FoldersController < ApplicationController
-  before_action :authenticate_user!
   authorize_resource
-
  # Include shared utils.
  include SharedUtils::Folder
 
@@ -17,7 +15,7 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     #@folders = Folder.all
-    @folders = current_user.folders.roots   
+    @folders = Folder.where(parent_id: nil)
     record_activity("Afficher la liste des dossiers.")
 
   end
@@ -36,25 +34,44 @@ class FoldersController < ApplicationController
 
   end
 
+
+  def last_folder
+    last_folder = Folder.last
+    folders = Folder.all
+    data = {:last_record => last_folder, :all_records => folders}
+    render :json => data
+  end
+
+  
+
   # GET /folders/new
   def new
    
-    @folders = Folder.all
-    @folder = current_user.folders.new     
+    @folders = Folder.where(parent_id: nil)
+    @folder = Folder.new
+    #@folder = current_user.folders.new     
     #if there is "folder_id" param, we know that we are under a folder, thus, we will essentially create a subfolder 
-    if params[:uid] #if we want to create a folder inside another folder 
+    #if params[:uid] #if we want to create a folder inside another folder 
         
       #we still need to set the @current_folder to make the buttons working fine 
-      @current_folder = current_user.folders.find_by(uid: params[:uid]) 
+      #@current_folder = current_user.folders.find_by(uid: params[:uid]) 
         
       #then we make sure the folder we are creating has a parent folder which is the @current_folder 
-      @folder.parent_id = @current_folder.id 
-    end
+      #@folder.parent_id = @current_folder.id 
+    #end
 
   end
 
   # GET /folders/1/edit
   def edit
+    @folders = Folder.where(parent_id: nil)
+  end
+
+  def last_folder
+    last_folder = Folder.last
+    folders = Folder.all
+    data = {:last_record => last_folder, :all_records => folders}
+    render :json => data
   end
 
 
@@ -102,20 +119,33 @@ end
         record_activity("Créer un nouveau dossier (ID: #{@folder.id})")
 
         if @folder.parent_id #checking if we have a parent folder on this one 
-          file_id = $drive.create_folder(@folder.name.upcase, parent_id: @folder.parent.google_drive_file_id)
+          
+          Thread.new do
+            Rails.application.executor.wrap do
+              file_id = $drive.create_folder(@folder.name.upcase, parent_id: @folder.parent.google_drive_file_id)
+              # Update google drive file ID
+              @folder.update_column(:google_drive_file_id, file_id.id)
+            end
+          end
 
-           # Update google drive file ID
-          @folder.update_column(:google_drive_file_id, file_id.id)
+           
             
           format.html { redirect_to browse_path(uid: Folder.find(@folder.parent_id).uid), notice: 'Folder was successfully created.' }
           format.json { render :show, status: :created, location: @folder }
           format.js
           
         else
-          file_id = $drive.create_folder(@folder.name.upcase)
 
-          # Update google drive file ID
-          @folder.update_column(:google_drive_file_id, file_id.id)
+          Thread.new do
+            Rails.application.executor.wrap do
+              file_id = $drive.create_folder(@folder.name.upcase)
+              # Update google drive file ID
+              @folder.update_column(:google_drive_file_id, file_id.id)
+            end
+          end
+          
+
+
 
           format.html { redirect_to folders_path, notice: 'Folder was successfully created.' }
           format.json { render :show, status: :created, location: @folder }
@@ -129,23 +159,21 @@ end
       end
     end
 
-    @folders = current_user.folders.roots 
+    @folders = Folder.where(parent_id: nil)
   end
 
   # PATCH/PUT /folders/1
   # PATCH/PUT /folders/1.json
   def update
-    @parent_folder = @folder.parent 
+    #@parent_folder = @folder.parent 
     respond_to do |format|
       if @folder.update(folder_params)
         record_activity("Modifier un dossier (ID: #{@folder.id})")
 
-        if @parent_folder
-          format.html { redirect_to browse_path(uid: Folder.find(@folder.parent_id).uid), notice: "Successfully deleted the folder and all the contents inside."}
-        else
+        
           format.html { redirect_to folders_path, notice: 'Folder was successfully destroyed.' }
           format.json { head :no_content }
-        end
+        
       end
     end
   end
@@ -161,7 +189,7 @@ end
   # DELETE /folders/1.json
   def destroy
     @folder = current_user.folders.find(params[:id]) 
-    @parent_folder = @folder.parent #grabbing the parent folder 
+    #@parent_folder = @folder.parent #grabbing the parent folder 
   
    @folder.destroy 
   
@@ -169,14 +197,17 @@ end
     respond_to do |format|
       record_activity("Supprimer un dossier (ID: #{@folder.id})")
 
-      $drive.delete(@folder.google_drive_file_id) 
+      Thread.new do
+          Rails.application.executor.wrap do
+            $drive.delete(@folder.google_drive_file_id) 
+          end
+        end
+      
 
-      if @parent_folder
-        format.html { redirect_to browse_path(uid: Folder.find(@folder.parent_id).uid), notice: "Successfully deleted the folder and all the contents inside."}
-      else
+      
         format.html { redirect_to folders_path, notice: 'Folder was successfully destroyed.' }
         format.json { head :no_content }
-      end
+      
     end
   end
 
@@ -184,7 +215,7 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_folder
       if params[:id].present?
-      @folder = Folder.find(params[:id])
+        @folder = Folder.find(params[:id])
       else  
         @folder = Folder.find_by(uid: params[:uid])
       end

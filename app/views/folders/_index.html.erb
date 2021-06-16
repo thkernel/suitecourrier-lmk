@@ -1,16 +1,12 @@
 <% @folders.each do |folder| %>
-      <tr>
-        <td>
-        <i class="fa fa-folder-open-o" aria-hidden="true"></i>
-          <%= link_to folder.name, browse_path(uid: folder.uid) %>
-
-        </td>
-       
-      
-        <td>
+    <tr>
+    
+    <td><%= folder.name %></td>
+   
+   <td>
 	    <div class="action-buttons">
 			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
-'),  edit_folder_path(uid: folder.uid), title: "Modifier", remote: false %>
+'),  edit_folder_path(uid: folder.uid), title: "Modifier", remote: true %>
 
 
 
@@ -19,5 +15,5 @@
 '), folder_delete_path(uid: folder.uid), remote: true, title: "Supprimer", class: "delete" %>
 </div>
 </td>
-      </tr>
-    <% end %>
+    </tr>
+<% end %>

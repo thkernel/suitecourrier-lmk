@@ -1,6 +1,7 @@
 class CreateGeneralSettings < ActiveRecord::Migration[5.2]
   def change
     create_table :general_settings do |t|
+      t.string :uid
       t.string :application_name
       t.string :login_screen_message
       t.string :home_screen_message

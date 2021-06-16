@@ -1,6 +1,6 @@
 <% @registers.each do |register| %>
     <tr>
-        <td><%= register.register_type  %></td>
+        <td><%= register.register_type.name  %></td>
 
       <td><%= register.name %></td>
     <td><%= register.start_date.strftime("%d/%m/%Y") if register.start_date.present? %></td>

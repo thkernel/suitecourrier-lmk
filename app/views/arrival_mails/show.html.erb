@@ -27,12 +27,12 @@
                 <span><%= register(@arrival_mail.register_id).name %></span>
               </li>
               <li class="detail-city">
-                <strong>Nature: </strong> 
-                <span><%= nature(@arrival_mail.nature_id).name %></span>
+                <strong>Type de courrier: </strong> 
+                <span><%= @arrival_mail.mail_type.name %></span>
               </li>
               <li class="detail-city">
                 <strong>Support: </strong> 
-                <span><%= support(@arrival_mail.support_id).name %></span>
+                <span><%= @arrival_mail.support.name %></span>
               </li>
               <li class="detail-city">
                 <strong>Lié à un courrier?: </strong> 
@@ -152,17 +152,19 @@
          
             
             <ul class="list-group">
-              <% @arrival_mail.drive_attachments.each do |file| %>
-                <li class="list-group-item rounded-top-0">
-                  <p class="mg-b-0">
-                    <i class="fa fa-file-text-o tx-info mg-r-8"></i>
-                    <strong class="tx-inverse tx-medium">
-                      <%= link_to file.name, download_file_path(key: file.drive_blob.key), remote: false %>
-                    </strong>
-                  
+              <% if @arrival_mail.files.attached? %>
+                <% @arrival_mail.files.attachments.each do |file| %>
+                  <li class="list-group-item rounded-top-0">
+                    <p class="mg-b-0">
+                      <i class="fa fa-file-text-o tx-info mg-r-8"></i>
+                      <strong class="tx-inverse tx-medium">
+                        <%= link_to file.blob.filename, rails_blob_path(file.blob, disposition: 'attachment') %>
+                      </strong>
                     
-                  </p>
-                </li>
+                      
+                    </p>
+                  </li>
+                <% end %>
               <% end %>
               <!-- add more here -->
             </ul>

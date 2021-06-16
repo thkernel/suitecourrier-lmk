@@ -15,14 +15,18 @@
 #  response_limit_time   :datetime
 #  response_date         :datetime
 #  support_id            :bigint
-#  nature_id             :bigint
+#  mail_type_id          :bigint
+#  confidential          :boolean
 #  correspondent_id      :bigint
 #  object                :string
 #  description           :text
 #  reserved_suite        :string
-#  priority              :string
+#  priority_id           :bigint
 #  folder_id             :bigint
+#  processing_entity_id  :bigint
+#  processing_deadline   :datetime
 #  status                :string
+#  year                  :integer
 #  user_id               :bigint
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -39,17 +43,17 @@ class ArrivalMail < ApplicationRecord
 
   belongs_to :register
   belongs_to :support
-  belongs_to :nature
+  belongs_to :mail_type
   belongs_to :correspondent
   belongs_to :folder, optional: true
 
   has_many :imputations, as: :imputable,  dependent: :destroy
-  has_many :drive_attachments, as: :attachable,  dependent: :destroy
+  #has_many :drive_attachments, as: :attachable,  dependent: :destroy
 
   validates :internal_reference, presence: true, uniqueness: true
 
 
-  #has_many_attached :files
+  has_many_attached :files
 
   
 end

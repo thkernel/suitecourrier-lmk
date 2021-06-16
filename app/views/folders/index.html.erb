@@ -1,4 +1,4 @@
-<div class="br-pageheader">
+<div class="br-pageheader mg-30">
       <nav class="breadcrumb pd-0 mg-0 tx-12">
         
         <span class="breadcrumb-item active"><h5>Dossiers</h5></span>
@@ -8,14 +8,19 @@
   <div class="br-section-wrapper">
     <div class="headers mg-b-20">
         <div class="left-content">
-          <%= render :partial => "breadcrumbs" %>
+          
+          <!-- render :partial => "breadcrumbs" -->
+
         </div>
 
         <div class="text-right">
         <!--
           <%= link_to "create file", create_file_path %>
            -->
-            <%= render "folders/shared/new_folder"%>
+            <!-- render "folders/shared/new_folder"% -->
+
+
+            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_folder_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
 
           
         </div>
@@ -23,7 +28,7 @@
     </div>
 
 
-<table class="table table-striped">
+<table id="datatable1" class="table display responsive nowrap">
 
   <thead>
     <tr>

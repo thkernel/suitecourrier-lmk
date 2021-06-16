@@ -22,6 +22,17 @@ class SupportsController < ApplicationController
     @support = Support.new
   end
 
+
+
+
+  def last_support
+    last_support = Support.last
+    supports = Support.all
+    data = {:last_record => last_support, :all_records => supports}
+    render :json => data
+  end
+  
+
   # GET /supports/1/edit
   def edit
   end

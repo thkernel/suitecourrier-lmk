@@ -91,33 +91,21 @@ class DepartureMailsController < ApplicationController
   # GET /departure_mails/new
   def new
 
-    last_departure_mail = DepartureMail.last(1)
-    if last_departure_mail.present? 
-      id_str = last_departure_mail[0].id.to_s
+    
+    
       
-      if id_str.size == 1
-        @internal_reference = "000#{last_departure_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str.size == 2
-        @internal_reference = "00#{last_departure_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str.size == 3
-        @internal_reference = "0#{last_departure_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str == 4
-        @internal_reference = "#{last_departure_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      end
-    else
-      
-      @internal_reference = "0001|SUP|#{Time.new.month}|#{Time.new.year}"
-    end
+      @internal_reference = last_departure_mail
+    
     
     @departure_mail = DepartureMail.new
    
     
    
-    @registers = Register.where("status = ? AND register_type = ?", "Ouvert", "Registre départ")
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
     
-    @natures = Nature.all 
+    @mail_types = MailType.all 
     @supports = Support.all
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
 
 
@@ -125,10 +113,10 @@ class DepartureMailsController < ApplicationController
 
   # GET /departure_mails/1/edit
   def edit
-    @registers = Register.all 
-    @natures = Nature.all 
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+    @mail_types = MailType.all 
     @supports = Support.all
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
 
 
@@ -141,15 +129,24 @@ class DepartureMailsController < ApplicationController
     @departure_mail = current_user.departure_mails.build(departure_mail_params)
     @departure_mail.status = "Enable"
 
+    @departure_mail.year = Time.now.year
+
     respond_to do |format|
       if @departure_mail.save
         record_activity("Créer un nouveau courrier départ (ID: #{@departure_mail.id})")
 
-        UploadFileService.upload(files, @departure_mail,  parent_id: Folder.find(@departure_mail.folder_id).google_drive_file_id)
+        #UploadFileService.upload(files, @departure_mail,  parent_id: Folder.find(@departure_mail.folder_id).google_drive_file_id)
 
         format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully created.' }
         format.json { render :show, status: :created, location: @departure_mail }
       else
+
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+        @mail_types = MailType.all 
+        @supports = Support.all
+        @folders = Folder.where.not(parent_id: nil)
+        @correspondents = Correspondent.all
+
         format.html { render :new }
         format.json { render json: @departure_mail.errors, status: :unprocessable_entity }
       end
@@ -192,11 +189,15 @@ class DepartureMailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_departure_mail
-      @departure_mail = DepartureMail.find(params[:id])
+      if params[:id]
+        @departure_mail = DepartureMail.find(params[:id])
+      elsif params[:uid]
+        @departure_mail = DepartureMail.find_by(uid: params[:uid])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def departure_mail_params
-      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id)
+      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :mail_type_id, :correspondent_id, :object, :description, :folder_id, files: [])
     end
 end

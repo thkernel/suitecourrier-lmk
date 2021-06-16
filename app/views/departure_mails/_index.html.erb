@@ -4,7 +4,7 @@
           <td><%= departure_mail.internal_reference %></td>
 
         <td><%= departure_mail.departure_date.strftime("%d/%m/%Y") %></td>
-        <td><%= nature(departure_mail.nature_id).name %></td>
+        <td><%= departure_mail.mail_type.name %></td>
         <td><%= correspondent(departure_mail.correspondent_id).organization_name %></td>
         <td><%= departure_mail.object %></td>
 
@@ -20,6 +20,8 @@
 '), departure_mail_archive_path(departure_mail), remote: true, title: "Archiver", class: "archive" %>
 
 
+<%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>
+'),  show_departure_mail_path(departure_mail.uid), title: "Voir", remote: false %>
 
 
 <%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>

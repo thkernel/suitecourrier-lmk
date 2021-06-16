@@ -1,7 +1,6 @@
 module ApplicationHelper
 	# Include all helpers
 	include CorrespondentsHelper
-	include BindersHelper
 	include RegistersHelper
 
     def resource_name
@@ -100,6 +99,65 @@ module ApplicationHelper
 		
 	end
 
+
+
+	def last_arrival_mail()
+		#Get year
+		year = Time.now.year 
+
+		last_arrival_mail = ArrivalMail.where(year: year).last
+
+		puts "LAST ARRIVAL MAIL: #{last_arrival_mail.inspect} "
+
+		if last_arrival_mail.present? 
+      		id = last_arrival_mail.id
+      		id_str = id.to_s
+      		puts "A: #{id}"
+      
+	      if id_str.size == 1
+	        @internal_reference = "000#{last_arrival_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      elsif id_str.size == 2
+	        @internal_reference = "00#{last_arrival_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      elsif id_str.size == 3
+	        @internal_reference = "0#{last_arrival_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      elsif id_str == 4
+	        @internal_reference = "#{last_arrival_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      end
+	    else
+	      
+	      @internal_reference = "0001|#{Time.new.month}|#{Time.new.year}"
+	    end
+
+
+	end
+
+
+	def last_departure_mail
+		#Get year
+		year = Time.now.year 
+
+		last_departure_mail = DepartureMail.where(year: year).last
+
+    	if last_departure_mail.present? 
+      		id_str = last_departure_mail.id.to_s
+      
+	      	if id_str.size == 1
+	        	@internal_reference = "000#{last_departure_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      	elsif id_str.size == 2
+	        	@internal_reference = "00#{last_departure_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      	elsif id_str.size == 3
+	        	@internal_reference = "0#{last_departure_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      	elsif id_str == 4
+	        	@internal_reference = "#{last_departure_mail.id+1}|#{Time.new.month}|#{Time.new.year}"
+	      	end
+	    else
+      
+	      	@internal_reference = "0001|#{Time.new.month}|#{Time.new.year}"
+	    	
+	    end
+	 end
+
+
 	def is_account_locked?(user)
 		if user.status == 'enable'
 			false
@@ -157,6 +215,16 @@ module ApplicationHelper
 	 def has_storage_area?
 	 	storage_area = StorageArea.first
 	 	if storage_area.present?
+	 		true
+	 	else
+	 		false
+	 	end
+	 end
+
+
+	 def has_storage_service_setting?
+	 	storage_service_setting = StorageServiceSetting.first
+	 	if storage_service_setting.present?
 	 		true
 	 	else
 	 		false

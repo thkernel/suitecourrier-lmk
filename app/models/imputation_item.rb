@@ -4,13 +4,14 @@
 #
 #  id             :bigint           not null, primary key
 #  uid            :string
+#  task_type_id   :bigint
 #  title          :string
-#  description    :text
+#  priority_id    :bigint
 #  due_date       :datetime
 #  start_date     :datetime
 #  completed_date :datetime
-#  status         :string
-#  priority       :string
+#  task_status_id :bigint
+#  description    :text
 #  imputation_id  :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -22,14 +23,18 @@ class ImputationItem < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :imputation
+  belongs_to :task_status
+  belongs_to :task_type
+  belongs_to :priority
   
 
-  scope :completed, ->{where("status = ?", "Terminé")}
-  scope :uncompleted, ->{where("status IS NOT ?", "Terminé")}
+  scope :completed, ->{where("task_status_id = ?", TaskStatus.find_by(name: "Terminée").id)}
+  scope :uncompleted, ->{where("task_status_id IS NOT ?", TaskStatus.find_by(name: "Terminée").id)}
 
   # Validations.
-  validates :title, presence: true
-  validates :priority, presence: true
-  validates :status, presence: true
+  #validates :title, presence: true
+  validates :task_type_id, presence: true
+  validates :priority_id, presence: true
+  validates :task_status_id, presence: true
 
 end

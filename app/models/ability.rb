@@ -12,7 +12,7 @@ class Ability
     else
       user.role.permissions.each do |permission|
         permission.permission_items.each do |permission_item|
-          can permission_item.action_name.to_sym, Feature.find(permission_item.permission.feature_id)
+          can permission_item.action_name.to_sym, Feature.find(permission_item.permission.feature_id).subject_class.constantize
         end
       end
        #:read, :all

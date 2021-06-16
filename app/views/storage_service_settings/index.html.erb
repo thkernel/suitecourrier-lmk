@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Storage Service Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Local storage service</th>
+      <th>Local storage root</th>
+      <th>Amazon storage service name</th>
+      <th>Amazon storage access key</th>
+      <th>Amazon storage secret access key</th>
+      <th>Amazon storage region name</th>
+      <th>Amazon storage bucket name</th>
+      <th>Google storage service name</th>
+      <th>Google storage project name</th>
+      <th>Google storage credentials</th>
+      <th>Google storage bucket name</th>
+      <th>Microsoft storage service name</th>
+      <th>Microsoft storage account name</th>
+      <th>Microsoft storage access key</th>
+      <th>Microsoft storage container name</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storage_service_settings.each do |storage_service_setting| %>
+      <tr>
+        <td><%= storage_service_setting.local_storage_service %></td>
+        <td><%= storage_service_setting.local_storage_root %></td>
+        <td><%= storage_service_setting.amazon_storage_service_name %></td>
+        <td><%= storage_service_setting.amazon_storage_access_key_id %></td>
+        <td><%= storage_service_setting.amazon_storage_secret_access_key %></td>
+        <td><%= storage_service_setting.amazon_storage_region_name %></td>
+        <td><%= storage_service_setting.amazon_storage_bucket_name %></td>
+        <td><%= storage_service_setting.google_storage_service_name %></td>
+        <td><%= storage_service_setting.google_storage_project_name %></td>
+        <td><%= storage_service_setting.google_storage_credentials %></td>
+        <td><%= storage_service_setting.google_storage_bucket_name %></td>
+        <td><%= storage_service_setting.microsoft_storage_service_name %></td>
+        <td><%= storage_service_setting.microsoft_storage_account_name %></td>
+        <td><%= storage_service_setting.microsoft_storage_access_key %></td>
+        <td><%= storage_service_setting.microsoft_storage_container_name %></td>
+        <td><%= storage_service_setting.user %></td>
+        <td><%= link_to 'Show', storage_service_setting %></td>
+        <td><%= link_to 'Edit', edit_storage_service_setting_path(storage_service_setting) %></td>
+        <td><%= link_to 'Destroy', storage_service_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Storage Service Setting', new_storage_service_setting_path %>

@@ -1,0 +1,5 @@
+<% if has_storage_service_setting? %>
+	<%= render "storage_service_settings/form", storage_service_setting: @storage_service_setting %>
+<% else %>
+	<%= render "storage_service_settings/form", storage_service_setting: @storage_service_setting %>
+<% end %>

@@ -37,41 +37,60 @@ class ImputationsController < ApplicationController
     unless @imputation.viewed_at.present?
       @imputation.update_column(:viewed_at, Time.now)
     end
+
+    
   end
 
   def get_profiles
     
-    if params[:data].present?
-      service = Service.find(params[:data])
-      puts "SERVICE: #{service.inspect}"
-      @recipients = Profile.where(service_id: service.id)
+    if params[:id].present?
+      entity = Entity.find(params[:id])
+      puts "ENTITY: #{entity.inspect}"
+
+
+      role_ids = Role.where("name NOT IN (?)", ["superuser", "root", "demo"]).map {|role| role.id}
+      user_ids = User.where("role_id  IN (?)", role_ids).map {|user| user.id}
+    
+      @recipients = Profile.where("user_id  IN (?) AND entity_id = ?", user_ids, entity.id)
+    
 
       puts "RECIPIENT: #{@recipients}"
     end
   end
   # GET /imputations/new
   def new
-    @directions = Direction.all
-    @divisions = Division.all
-    @services = Service.all
+    
+    @entities = Entity.all
+    @task_types = TaskType.all
+    @priorities = Priority.all
+    @task_statuses = TaskStatus.all
    
    
 
-    role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+    role_ids = Role.where("name NOT IN (?)", ["superuser", "root", "demo"]).map {|role| role.id}
     @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
     puts "RECIPIENTS: #{@recipients}"
+
+    if imputation_params
+      create 
+      return 
+    end
+
     @imputation = Imputation.new
+    render :new
 
   end
 
   # GET /imputations/1/edit
   def edit
-    @directions = Direction.all
-    @divisions = Division.all
-    @services = Service.all
+    @entities = Entity.all
     
    
   
+    @task_types = TaskType.all
+    @priorities = Priority.all
+    @task_statuses = TaskStatus.all
+
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
     @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
     
@@ -128,7 +147,7 @@ class ImputationsController < ApplicationController
         if flash[:rtype].present? && flash[:rtype] == "ArrivalMail"
           @imputations = resource.imputations
 
-        elsif flash[:rtype].present? && flash[:rtype] == "Request"
+        elsif flash[:rtype].present? && flash[:rtype] == "Document"
           @imputations = resource.imputations
         end
         
@@ -136,11 +155,13 @@ class ImputationsController < ApplicationController
         format.json { render :show, status: :created, location: @imputation }
      
       else
-        @directions = Direction.all
-        @divisions = Division.all
-        @services = Service.all
+        @entities = Entity.all
+
+        @task_types = TaskType.all
+        @priorities = Priority.all
+        @task_statuses = TaskStatus.all
         
-        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        role_ids = Role.where("name NOT IN (?)", ["superuser", "demo", "root"]).map {|role| role.id}
         @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
         
         format.html { render :new}
@@ -167,6 +188,15 @@ class ImputationsController < ApplicationController
         format.json { render :show, status: :ok, location: @imputation }
         
       else
+        @entities = Entity.all
+
+        @task_types = TaskType.all
+        @priorities = Priority.all
+        @task_statuses = TaskStatus.all
+        
+        role_ids = Role.where("name NOT IN (?)", ["superuser", "demo", "root"]).map {|role| role.id}
+        @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
+        
         format.html { render :edit }
         format.json { render json: @imputation.errors, status: :unprocessable_entity }
         
@@ -208,11 +238,7 @@ class ImputationsController < ApplicationController
         
         flash[:arrival_mail] = @arrival_mail
         flash[:rtype] = "ArrivalMail"
-      elsif params[:rtype].present? && params[:rtype] == "Request"
-        
-        @request ||= Request.find_by(uid: params[:uid])
-        flash[:request] = @request
-        flash[:rtype] = "Request"
+      
       elsif params[:rtype].present? && params[:rtype] == "Document"
         
         @document ||= Document.find_by(uid: params[:uid])
@@ -228,7 +254,11 @@ class ImputationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def imputation_params
-      params.require(:imputation).permit(:direction_id, :division_id, :service_id, :recipient_id,  imputation_items_attributes: [:id,  :title, :due_date,  :description, :priority, :status, :_destroy])
+      if params[:imputation].nil? || params[:imputation].empty?
+       false
+      else
+        params.require(:imputation).permit(:entity_id,  :recipient_id,  imputation_items_attributes: [:id, :due_date,  :description, :priority_id, :task_status_id, :task_type_id, :_destroy])
+     end
     end
 
    

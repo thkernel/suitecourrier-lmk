@@ -32,6 +32,8 @@ class CreateArrivalMails < ActiveRecord::Migration[5.2]
       t.references :processing_entity, index: true
       t.datetime :processing_deadline
       t.string :status
+
+      t.integer :year
       t.references :user, foreign_key: true
 
       

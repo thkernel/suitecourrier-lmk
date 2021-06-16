@@ -6,7 +6,7 @@
 #  uid            :string
 #  imputable_type :string
 #  imputable_id   :bigint
-#  service_id     :bigint
+#  entity_id      :bigint
 #  recipient_id   :bigint
 #  viewed_at      :datetime
 #  status         :string
@@ -23,7 +23,7 @@ class Imputation < ApplicationRecord
 
   belongs_to :user
   belongs_to :user, :foreign_key => "recipient_id", :class_name => "User"
-  belongs_to :service, optional: true
+  belongs_to :entity, optional: true
   belongs_to :imputable, polymorphic: true
 
   has_many :imputation_items, dependent: :destroy
@@ -35,7 +35,7 @@ class Imputation < ApplicationRecord
   private 
 
   def no_imputation_items(attributes)
-   attributes[:title].blank?
+   attributes[:task_type_id].blank?
   end
   
   

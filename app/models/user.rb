@@ -44,7 +44,6 @@ class User < ApplicationRecord
   # Relationships
 	belongs_to :role
 	has_many :registers, dependent: :destroy
-	has_many :services, dependent: :destroy
 	has_many :supports, dependent: :destroy
 	has_many :mail_types, dependent: :destroy
 	has_many :correspondent_types, dependent: :destroy
@@ -57,10 +56,9 @@ class User < ApplicationRecord
 	has_one  :organization, dependent: :destroy
 	has_one  :general_setting, dependent: :destroy
 	has_one  :smtp_server_setting, dependent: :destroy
-	has_one  :storage_area_setting, dependent: :destroy
+	#has_one  :storage_area_setting, dependent: :destroy
 
 	has_many :imputations, dependent: :destroy
-	has_many :request_imputations, dependent: :destroy
 	has_many :task_types, dependent: :destroy
 	has_many :task_statuses, dependent: :destroy
 

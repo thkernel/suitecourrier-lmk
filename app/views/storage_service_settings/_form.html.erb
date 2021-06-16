@@ -1,0 +1,164 @@
+<%= form_with(model: storage_service_setting, local: true) do |form| %>
+  <% if storage_service_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(storage_service_setting.errors.count, "error") %> prohibited this storage_service_setting from being saved:</h2>
+
+      <ul>
+      <% storage_service_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+
+        <%= fields_for(:storage_services) do |storage_service_form| %>
+              <%= storage_service_form.label :storage_services, "Services de stockage", class: "required" %>
+              <%= storage_service_form.select(:storage_services, STORAGE_SERVICES, {selected: (@selected_storage_services.map(&:storage_service) unless @selected_storage_services.nil?)}, {class: "form-control", style: "width: 100%;",  multiple: true,required: true}) %>
+        <% end %>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Stockage local </legend>
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <%= form.label :local_storage_service, "Service" %>
+            <%= form.text_field :local_storage_service, class: "form-control", placeholder: "Service" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :local_storage_root, "Chemin" %>
+            <%= form.text_field :local_storage_root, class: "form-control", placeholder: "Chemin" %>
+          </div>
+        </div>
+      </div>
+  </fieldset>
+
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Amazon </legend>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <%= form.label :amazon_storage_service_name, "Service" %>
+          <%= form.text_field :amazon_storage_service_name, class: "form-control", placeholder: "Service" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :amazon_storage_access_key_id, "Access Key Id" %>
+          <%= form.text_field :amazon_storage_access_key_id, class: "form-control", placeholder: "Access Key Id" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :amazon_storage_secret_access_key, "Secret Access Id" %>
+          <%= form.text_field :amazon_storage_secret_access_key, class: "form-control", placeholder: "Secret Access Id" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <%= form.label :amazon_storage_region_name, "Région" %>
+          <%= form.text_field :amazon_storage_region_name, class: "form-control", placeholder: "Région" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :amazon_storage_bucket_name, "Bucket" %>
+          <%= form.text_field :amazon_storage_bucket_name, class: "form-control", placeholder: "Bucket" %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Google Cloud Platform </legend>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <%= form.label :google_storage_service_name, "Service" %>
+          <%= form.text_field :google_storage_service_name, class: "form-control", placeholder: "Service" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :google_storage_project_name, "Nom du projet" %>
+          <%= form.text_field :google_storage_project_name, class: "form-control", placeholder: "Nom du projet"  %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <%= form.label :google_storage_credentials, "Credentials" %>
+          <%= form.text_field :google_storage_credentials, class: "form-control", placeholder: "Credentials" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :google_storage_bucket_name, "Bucket" %>
+          <%= form.text_field :google_storage_bucket_name, class: "form-control", placeholder: "Bucket" %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+
+  <!-- Fieldset informations -->
+  <fieldset>
+    <legend>Microsoft Azure </legend>
+    <div class="row">
+      <div class="col-md-6">
+
+
+        <div class="form-group">
+          <%= form.label :microsoft_storage_service_name, "Service" %>
+          <%= form.text_field :microsoft_storage_service_name, class: "form-control", placeholder: "Service" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :microsoft_storage_account_name, "Nom du compte" %>
+          <%= form.text_field :microsoft_storage_account_name, class: "form-control", placeholder: "Nom du compte" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <%= form.label :microsoft_storage_access_key, "Access Key" %>
+          <%= form.text_field :microsoft_storage_access_key, class: "form-control", placeholder: "Access Key" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :microsoft_storage_container_name, "Container" %>
+          <%= form.text_field :microsoft_storage_container_name, class: "form-control", placeholder: "Container" %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group pull-right">
+        <%= form.submit class: "btn btn-primary " %>
+      </div>
+    </div>
+  </div>
+<% end %>

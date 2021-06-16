@@ -1,6 +1,7 @@
 class CreateNotifications < ActiveRecord::Migration[5.2]
   def change
     create_table :notifications do |t|
+      t.string :uid
       t.string :nature
       t.references :recipient, index: true
       t.text :content

@@ -10,6 +10,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.datetime :start_date
       t.datetime :completed_date
       t.string :status
+      t.integer :year
       t.references :user, foreign_key: true
 
       t.timestamps

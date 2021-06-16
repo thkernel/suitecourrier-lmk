@@ -1,6 +1,7 @@
 class CreateSmtpServerSettings < ActiveRecord::Migration[5.2]
   def change
     create_table :smtp_server_settings do |t|
+      t.string :uid
       t.string :delivery_method
       t.string :authentication_method
       t.string :host

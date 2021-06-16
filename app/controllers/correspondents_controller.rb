@@ -28,6 +28,14 @@ class CorrespondentsController < ApplicationController
     @correspondent_types = CorrespondentType.all
   end
 
+  def last_correspondent
+    last_correspondent = Correspondent.last
+    correspondents = Correspondent.all
+    data = {:last_record => last_correspondent, :all_records => correspondents}
+    render :json => data
+  end
+  
+
   # POST /correspondents
   # POST /correspondents.json
   def create

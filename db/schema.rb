@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_162849) do
+ActiveRecord::Schema.define(version: 2021_06_12_115043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.bigint "processing_entity_id"
     t.datetime "processing_deadline"
     t.string "status"
+    t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.string "uid"
     t.text "content"
     t.string "status"
     t.bigint "user_id"
@@ -166,6 +168,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.bigint "folder_id"
     t.datetime "processing_deadline"
     t.string "status"
+    t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -195,6 +198,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.string "object"
     t.text "description"
     t.string "status"
+    t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -262,6 +266,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   end
 
   create_table "general_settings", force: :cascade do |t|
+    t.string "uid"
     t.string "application_name"
     t.string "login_screen_message"
     t.string "home_screen_message"
@@ -282,21 +287,18 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   create_table "imputation_items", force: :cascade do |t|
     t.string "uid"
     t.bigint "task_type_id"
-    t.bigint "task_id"
     t.string "title"
     t.bigint "priority_id"
     t.datetime "due_date"
     t.datetime "start_date"
     t.datetime "completed_date"
     t.bigint "task_status_id"
-    t.text "notes"
-    t.string "status"
+    t.text "description"
     t.bigint "imputation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imputation_id"], name: "index_imputation_items_on_imputation_id"
     t.index ["priority_id"], name: "index_imputation_items_on_priority_id"
-    t.index ["task_id"], name: "index_imputation_items_on_task_id"
     t.index ["task_status_id"], name: "index_imputation_items_on_task_status_id"
     t.index ["task_type_id"], name: "index_imputation_items_on_task_type_id"
   end
@@ -332,6 +334,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.string "object"
     t.text "description"
     t.string "status"
+    t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -357,6 +360,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   end
 
   create_table "notifications", force: :cascade do |t|
+    t.string "uid"
     t.string "nature"
     t.bigint "recipient_id"
     t.text "content"
@@ -446,9 +450,13 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.string "phone"
     t.text "description"
     t.string "status"
+    t.bigint "entity_type_id"
+    t.bigint "entity_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_profiles_on_entity_id"
+    t.index ["entity_type_id"], name: "index_profiles_on_entity_type_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -490,6 +498,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   end
 
   create_table "smtp_server_settings", force: :cascade do |t|
+    t.string "uid"
     t.string "delivery_method"
     t.string "authentication_method"
     t.string "host"
@@ -530,6 +539,38 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_storage_areas_on_user_id"
+  end
+
+  create_table "storage_service_settings", force: :cascade do |t|
+    t.string "uid"
+    t.string "local_storage_service"
+    t.string "local_storage_root"
+    t.string "amazon_storage_service_name"
+    t.string "amazon_storage_access_key_id"
+    t.string "amazon_storage_secret_access_key"
+    t.string "amazon_storage_region_name"
+    t.string "amazon_storage_bucket_name"
+    t.string "google_storage_service_name"
+    t.string "google_storage_project_name"
+    t.string "google_storage_credentials"
+    t.string "google_storage_bucket_name"
+    t.string "microsoft_storage_service_name"
+    t.string "microsoft_storage_account_name"
+    t.string "microsoft_storage_access_key"
+    t.string "microsoft_storage_container_name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_storage_service_settings_on_user_id"
+  end
+
+  create_table "storage_services", force: :cascade do |t|
+    t.string "uid"
+    t.string "storage_service_name"
+    t.bigint "storage_service_setting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["storage_service_setting_id"], name: "index_storage_services_on_storage_service_setting_id"
   end
 
   create_table "supports", force: :cascade do |t|
@@ -608,30 +649,13 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
     t.datetime "start_date"
     t.datetime "completed_date"
     t.string "status"
+    t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["priority_id"], name: "index_tickets_on_priority_id"
     t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
-  end
-
-  create_table "user_entities", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_entities_on_user_id"
-  end
-
-  create_table "user_entity_items", force: :cascade do |t|
-    t.bigint "user_entity_id"
-    t.bigint "entity_id"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["entity_id"], name: "index_user_entity_items_on_entity_id"
-    t.index ["user_entity_id"], name: "index_user_entity_items_on_user_entity_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -701,7 +725,6 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   add_foreign_key "imputation_items", "priorities"
   add_foreign_key "imputation_items", "task_statuses"
   add_foreign_key "imputation_items", "task_types"
-  add_foreign_key "imputation_items", "tasks"
   add_foreign_key "imputations", "entities"
   add_foreign_key "imputations", "users"
   add_foreign_key "internal_memos", "correspondents"
@@ -718,6 +741,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   add_foreign_key "permissions", "features"
   add_foreign_key "permissions", "roles"
   add_foreign_key "priorities", "users"
+  add_foreign_key "profiles", "entities"
+  add_foreign_key "profiles", "entity_types"
   add_foreign_key "profiles", "users"
   add_foreign_key "register_types", "users"
   add_foreign_key "registers", "register_types"
@@ -725,6 +750,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   add_foreign_key "smtp_server_settings", "users"
   add_foreign_key "statuses", "users"
   add_foreign_key "storage_areas", "users"
+  add_foreign_key "storage_service_settings", "users"
+  add_foreign_key "storage_services", "storage_service_settings"
   add_foreign_key "supports", "users"
   add_foreign_key "task_statuses", "users"
   add_foreign_key "task_types", "users"
@@ -735,8 +762,5 @@ ActiveRecord::Schema.define(version: 2021_02_21_162849) do
   add_foreign_key "tickets", "priorities"
   add_foreign_key "tickets", "ticket_types"
   add_foreign_key "tickets", "users"
-  add_foreign_key "user_entities", "users"
-  add_foreign_key "user_entity_items", "entities"
-  add_foreign_key "user_entity_items", "user_entities"
   add_foreign_key "users", "roles"
 end

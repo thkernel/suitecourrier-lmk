@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Local storage service:</strong>
+  <%= @storage_service_setting.local_storage_service %>
+</p>
+
+<p>
+  <strong>Local storage root:</strong>
+  <%= @storage_service_setting.local_storage_root %>
+</p>
+
+<p>
+  <strong>Amazon storage service name:</strong>
+  <%= @storage_service_setting.amazon_storage_service_name %>
+</p>
+
+<p>
+  <strong>Amazon storage access key:</strong>
+  <%= @storage_service_setting.amazon_storage_access_key_id %>
+</p>
+
+<p>
+  <strong>Amazon storage secret access key:</strong>
+  <%= @storage_service_setting.amazon_storage_secret_access_key %>
+</p>
+
+<p>
+  <strong>Amazon storage region name:</strong>
+  <%= @storage_service_setting.amazon_storage_region_name %>
+</p>
+
+<p>
+  <strong>Amazon storage bucket name:</strong>
+  <%= @storage_service_setting.amazon_storage_bucket_name %>
+</p>
+
+<p>
+  <strong>Google storage service name:</strong>
+  <%= @storage_service_setting.google_storage_service_name %>
+</p>
+
+<p>
+  <strong>Google storage project name:</strong>
+  <%= @storage_service_setting.google_storage_project_name %>
+</p>
+
+<p>
+  <strong>Google storage credentials:</strong>
+  <%= @storage_service_setting.google_storage_credentials %>
+</p>
+
+<p>
+  <strong>Google storage bucket name:</strong>
+  <%= @storage_service_setting.google_storage_bucket_name %>
+</p>
+
+<p>
+  <strong>Microsoft storage service name:</strong>
+  <%= @storage_service_setting.microsoft_storage_service_name %>
+</p>
+
+<p>
+  <strong>Microsoft storage account name:</strong>
+  <%= @storage_service_setting.microsoft_storage_account_name %>
+</p>
+
+<p>
+  <strong>Microsoft storage access key:</strong>
+  <%= @storage_service_setting.microsoft_storage_access_key %>
+</p>
+
+<p>
+  <strong>Microsoft storage container name:</strong>
+  <%= @storage_service_setting.microsoft_storage_container_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @storage_service_setting.user %>
+</p>
+
+<%= link_to 'Edit', edit_storage_service_setting_path(@storage_service_setting) %> |
+<%= link_to 'Back', storage_service_settings_path %>

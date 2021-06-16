@@ -3,6 +3,7 @@
 # Table name: comments
 #
 #  id               :bigint           not null, primary key
+#  uid              :string
 #  content          :text
 #  status           :string
 #  user_id          :bigint

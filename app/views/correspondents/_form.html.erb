@@ -6,17 +6,17 @@
     <fieldset>
       <legend>Organisation</legend>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
           <div class="form-group">
-              <%= form.label :correspondent_type, "Type de correspondant" %>
+              <%= form.label :correspondent_type, "Type de correspondant", class: "required" %>
               <%= form.collection_select(:correspondent_type_id, @correspondent_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;", required: true) %> 
           </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="form-group">
             <%= form.label :organization_name, "Nom de l'organisation" %>
-            <%= form.text_field :organization_name, class: "form-control", placeholder: "Nom de l'organisation", required: true %>
+            <%= form.text_field :organization_name, class: "form-control", placeholder: "Nom de l'organisation", required: false %>
           </div>
         </div>
       </div>

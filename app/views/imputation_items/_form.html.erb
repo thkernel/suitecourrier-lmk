@@ -1,12 +1,12 @@
-<%= form_with(model: imputation_item, local: false) do |form| %>
+<%= form_with(model: imputation_item, local: true) do |form| %>
  
 <div class="modal-body">
     <ul class="errors">
     </ul>
  
   <div class="form-group">
-    <%= form.label :title, "Titre", class: "required" %>
-    <%= form.text_field :title, class: "form-control", placeholder: "Titre", readonly: true %>
+    <%= form.label :task_type_id, "Type", class: "required" %>
+    <%= form.collection_select :task_type_id , @task_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", readonly: true %> 
   </div>
 
   <div class="form-group">
@@ -23,8 +23,8 @@
   
 
     <div class="form-group col-md-6">
-      <%= form.label :status, "Progression", class: "required" %>
-      <%= form.select :status , TASK_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %> 
+      <%= form.label :task_status_id, "Progression", class: "required" %>
+      <%= form.collection_select :task_status_id , @task_statuses, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %> 
 
     </div>
   </div>

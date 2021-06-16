@@ -1,0 +1,2 @@
+module StorageServiceSettingsHelper
+end

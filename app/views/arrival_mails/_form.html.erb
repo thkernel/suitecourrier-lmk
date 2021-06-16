@@ -1,5 +1,18 @@
 <%= form_with(model: arrival_mail, local: true) do |form| %>
- 
+  <% if arrival_mail.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+
+      <ul>
+      <% arrival_mail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <!-- Courrier infos fieldset -->
     <fieldset>
       <legend>Courrier</legend>
@@ -13,7 +26,7 @@
 
         <div class="col-md-3">
           <div class="form-group">
-            <%= form.label :internal_reference, "Réf. interne" %>
+            <%= form.label :internal_reference, "Réf. interne", class: "required" %>
             <%= form.text_field :internal_reference,  class: "form-control", value: (arrival_mail.internal_reference.present? ? arrival_mail.internal_reference : @internal_reference ), placeholder: "Réf. interne", readonly: true %>
           </div>
         </div>
@@ -26,13 +39,11 @@
 
         <div class="col-sm-3">
           <div class="form-group">
-           <%= form.label :nature_id, "Nature", class: "required" %>
-            <div class="input-group customSelect">
-                <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, class: "form-control ", required: true) %> 
-                <div class="input-group-append">
-                  <%= link_to raw('<i class="fa fa-plus-circle" aria-hidden="true"></i>'), new_nature_path, class: "btn btn-outline-secondary", remote: true %>
-                </div>
-            </div>
+           <%= form.label :mail_type_id, "Type de courrier", class: "required" %>
+           
+            <%= form.collection_select(:mail_type_id, @mail_types, :id, :name, {prompt: "Sélectionner"}, :id => "mail_type_id", class: "form-control ", required: true) %> 
+                
+            
           </div>
           
         </div>
@@ -44,12 +55,10 @@
 
           <div class="form-group">
             <%= form.label :support_id, "Support", class: "required" %>
-            <div class="input-group customSelect">
-              <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, class: "form-control",  required: true) %> 
-              <div class="input-group-append">
-                <%= link_to raw('<i class="fa fa-plus-circle" aria-hidden="true"></i>'), new_support_path, class: "btn btn-outline-secondary", remote: true %>
-              </div>
-            </div>
+          
+              <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control",  required: true) %> 
+              
+            
           </div>
 
           
@@ -131,13 +140,9 @@
           <div class="col">
             <div class="form-group">
               <%= form.label :correspondent_id, "Expéditeur", class: "required" %>
-              <div class="input-group customSelect">
-                <%= form.collection_select(:correspondent_id, @correspondents, :id, :correspondent_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
-                <div class="input-group-append">
-                 
-                  <%= link_to raw('<i class="fa fa-plus-circle" aria-hidden="true"></i>
-'), new_correspondent_path, class: "btn btn-outline-secondary", remote: true %>
-              </div>
+              
+              <%= form.collection_select(:correspondent_id, @correspondents, :id, :correspondent_name, {prompt: "Sélectionner"}, :id => "correspondent_id", class: "form-control", required: true) %> 
+               
             </div>
           </div>
         </div>
@@ -147,7 +152,7 @@
     <fieldset>
       <legend>Détails</legend>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <%= form.label :object, "Objet" , class: "required"%>
             <%= form.text_field :object, id: :arrival_mail_object, class: "form-control", placeholder: "Objet" , required: true %>
@@ -160,22 +165,18 @@
 
         </div>
 
-         <div class="col-md-6">
+         <div class="col-md-12 ">
          
           <div class="form-group">
             <%= form.label :folder_id , "Dossier", class: "required" %>
-            <div class="input-group customSelect">
-              <%= form.collection_select(:folder_id, @folders, :id,:name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
-               <div class="input-group-append">
-                 
-                  <%= link_to raw('<i class="fa fa-plus-circle" aria-hidden="true"></i>
-'), new_folder_path, class: "btn btn-outline-secondary", remote: true %>
-              </div>
+           
+              <%= form.collection_select(:folder_id, @folders, :id,:name, {prompt: "Sélectionner"}, :id => "folder_id", class: "form-control", required: true) %> 
+               
           </div>
 
           <div class="form-group">
             <%= form.label :attachments, "Pièces-jointes" %>
-            <%= form.file_field :files, id: :arrival_mail_attachments_number , class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true %>
+            <%= form.file_field :files,  class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true %>
           </div>
 
 

@@ -1,4 +1,4 @@
-APPLICATION_NAME = "Courrier Suite"
+APPLICATION_NAME = "SuiteCourrier"
 GENDERS = [["Homme"], ["Femme"]]
 REGISTER_STATUSES = [["Ouvert"], ["Fermé"]]
 REGISTER_TYPES = [["Registre arrivée"], ["Registre départ"]]
@@ -8,3 +8,4 @@ TICKET_STATUSES = [["Nouveau"], ["En cours"], ["Résolu"], ["Fermé"], ["Rejeté
 PERMISSION_ACTIONS = [["read"], ["create"], ["update"], ["destroy"]]
 DELIVERY_METHOD = [["SMTP"]]
 AUTHENTICATION_METHOD = [["Aucune"], ["Plain"], ["TLS"], ["SSL"]]
+STORAGE_SERVICES = [["Local"], ["Amazon"], ["Google Cloud"], ["Microsoft Azure"]]

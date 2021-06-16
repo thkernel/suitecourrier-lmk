@@ -65,8 +65,8 @@
               </div>
 
             <div class="form-group ">
-              <%= form.label :nature_id, "Nature", class: "required" %>
-              <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+              <%= form.label :mail_type_id, "Type", class: "required" %>
+              <%= form.collection_select(:mail_type_id, @mail_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
             </div>
 
             <div class="form-group ">

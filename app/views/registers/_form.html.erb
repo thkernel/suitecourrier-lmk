@@ -6,8 +6,8 @@
   <div class="row">
    <div class="col-md-6">
     <div class="form-group">
-      <%= form.label :register_type, "Type de registre", class: "required" %>
-      <%= form.select :register_type, REGISTER_TYPES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
+      <%= form.label :register_type_id, "Type de registre", class: "required" %>
+      <%= form.collection_select :register_type_id, @register_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%;",  required: true %> 
 
     </div>
     </div>

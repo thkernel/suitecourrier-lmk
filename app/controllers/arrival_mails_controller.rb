@@ -101,43 +101,30 @@ class ArrivalMailsController < ApplicationController
   # GET /arrival_mails/new
   def new
    
-    last_arrival_mail = ArrivalMail.last(1)
-    if last_arrival_mail.present? 
-      id_str = last_arrival_mail[0].id.to_s
+    
       
-      if id_str.size == 1
-        @internal_reference = "000#{last_arrival_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str.size == 2
-        @internal_reference = "00#{last_arrival_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str.size == 3
-        @internal_reference = "0#{last_arrival_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      elsif id_str == 4
-        @internal_reference = "#{last_arrival_mail[0].id+1}|SUP|#{Time.new.month}|#{Time.new.year}"
-      end
-    else
-      
-      @internal_reference = "0001|SUP|#{Time.new.month}|#{Time.new.year}"
-    end
+    @internal_reference = last_arrival_mail
+   
     
     @arrival_mail = ArrivalMail.new
     
-    @registers = Register.where("status = ? AND register_type = ?", "Ouvert", "Registre arrivée")
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
     
-    @natures = Nature.all 
+    @mail_types = MailType.all 
     @supports = Support.all
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
-    @last_arrival_mail = ArrivalMail.last(1)
+    #@last_arrival_mail = ArrivalMail.last(1)
   end
 
   # GET /arrival_mails/1/edit
   def edit
     
-    @registers = Register.where("status = ? AND register_type = ?", "Ouvert", "Registre arrivée")
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
     
-    @natures = Nature.all 
+    @mail_types = MailType.all 
     @supports = Support.all
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
   end
 
@@ -151,13 +138,19 @@ class ArrivalMailsController < ApplicationController
 
     @arrival_mail = current_user.arrival_mails.build(arrival_mail_params)
     @arrival_mail.status = "Enable"
+
+    if @arrival_mail.response_date.present?
+      @arrival_mail.status = "Répondu"
+    end
+    
+    @arrival_mail.year = Time.now.year
     
     respond_to do |format|
       if @arrival_mail.save
         record_activity("Créer un courrier arrivée (ID: #{@arrival_mail.id})")
-        files = params[:arrival_mail][:files]
+        #files = params[:arrival_mail][:files]
 
-        UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
+        #UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
         
         @arrival_mails = ArrivalMail.where.not(status: "Archived")
 
@@ -165,11 +158,12 @@ class ArrivalMailsController < ApplicationController
         format.json { render :show, status: :created, location: @arrival_mail }
         format.js
       else
-        @registers = Register.where("status = ? AND register_type = ?", "Open", "Arrival mail")
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
+
     
-        @natures = Nature.all 
+        @mail_types = MailType.all 
         @supports = Support.all
-        @folders = Folder.all
+        @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
 
         format.html { render :new }
@@ -239,6 +233,6 @@ class ArrivalMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def arrival_mail_params
-      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id)
+      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :mail_type_id, :correspondent_id, :object, :description, :folder_id, files: [])
     end
 end

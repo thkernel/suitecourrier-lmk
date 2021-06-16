@@ -204,7 +204,7 @@ unless RegisterType.all.present?
         [
 
             { name: "COURRIER D'ARRIVÉE",  user_id: users.first.id},
-            { name: "COURRIER DEPART", user_id: users.first.id}
+            { name: "COURRIER DÉPART", user_id: users.first.id}
         ])
 else    
     registers =  Register.all
@@ -239,18 +239,189 @@ else
 end
 
 
+unless TaskType.all.present?
+    task_types = TaskType.create(
+        [
+            {name: "Reponse", user_id: users.first.id},
+            {name: "Validation", user_id: users.first.id},
+            {name: "Préparation", user_id: users.first.id},
+            {name: "Confirmation", user_id: users.first.id}
+        ])
+else    
+    task_types =  TaskType.all
+
+end
+
+
+unless TaskStatus.all.present?
+    task_statuses = TaskStatus.create(
+        [
+            {name: "En attente", user_id: users.first.id},
+            {name: "En cours", user_id: users.first.id},
+            {name: "Suspendue", user_id: users.first.id},
+            {name: "Terminée", user_id: users.first.id},
+            {name: "Annulée", user_id: users.first.id}
+        ])
+else    
+    task_statuses =  TaskStatus.all
+
+end
+
+
+unless Priority.all.present?
+    priorities = Priority.create(
+        [
+            {name: "Aucune", user_id: users.first.id},
+            {name: "Normale", user_id: users.first.id},
+            {name: "Basse", user_id: users.first.id},
+            {name: "Moyenne", user_id: users.first.id},
+            {name: "Haute", user_id: users.first.id},
+            {name: "Urgente", user_id: users.first.id}
+        ])
+else    
+    priorities =  Priority.all
+
+end
+
+
 
 unless Feature.all.present?
     features = Feature.create([
         {
-            name: "Utilisateurs" 
+            name: "Courrier d'arrivée",
+            subject_class: "ArrivalMail"
             
         },
         {
-            name: "Paramètres"
+            name: "Courrier départ" ,
+            subject_class: "DepartureMail"
+            
         },
         {
-            name: "Configurations" 
+            name: "Imputation",
+            subject_class: "Imputation"
+            
+        },
+        {
+            name: "Rôle",
+            subject_class: "Role"
+            
+        },
+        {
+            name: "Division",
+            subject_class: "Division" 
+            
+        },
+        {
+            name: "Logs",
+            subject_class: "ActivityLog"
+            
+        },
+        {
+            name: "Correspondant",
+            subject_class: "Correspondent"
+            
+        },
+        {
+            name: "Type de correspondant",
+            subject_class: "CorrespondentType" 
+            
+        },
+        {
+            name: "Service",
+            subject_class: "Service"
+            
+        },
+        {
+            name: "Configuration SMTP",
+            subject_class: "SmtpConfig" 
+            
+        },
+
+        {
+            name: "Registre",
+            subject_class: "Register"
+            
+        },
+        {
+            name: "Nature",
+            subject_class: "Nature" 
+            
+        },
+        {
+            name: "Support",
+            subject_class: "Support" 
+            
+        },
+        {
+            name: "Dossier",
+            subject_class: "Folder" 
+            
+        },
+        {
+            name: "Direction",
+            subject_class: "Direction" 
+            
+        },
+        {
+            name: "Demande",
+            subject_class: "Request" 
+            
+        },
+        {
+            name: "Type de demande",
+            subject_class: "RequestType"
+            
+        },
+        {
+            name: "Ticket",
+            subject_class: "Ticket" 
+            
+        },
+        {
+            name: "Document",
+            subject_class: "Document" 
+            
+        },
+        {
+            name: "Commantaire",
+            subject_class: "Comment" 
+            
+        },
+        {
+            name: "Organisation",
+            subject_class: "Organization" 
+            
+        },
+        {
+            name: "Type d'organisation",
+            subject_class: "OrganizationType" 
+            
+        },
+        {
+            name: "Type de tâche",
+            subject_class: "TaskType"   
+        },
+        {
+            name: "Status des tâches",
+            subject_class: "TastStatus" 
+            
+        },
+        {
+            name: "Permission",
+            subject_class: "Permission" 
+            
+        },
+        {
+            name: "Utilisateur",
+            subject_class: "User" 
+            
+        },
+        {
+            name: "Paramètre"
+        },
+        {
+            name: "Configuration" 
         }
     
     ])

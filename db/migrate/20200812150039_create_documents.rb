@@ -18,6 +18,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
       t.string :object
       t.text :description
       t.string :status
+      t.integer :year
       t.references :user, foreign_key: true
 
       t.timestamps

@@ -1,8 +1,8 @@
 
-<div class="br-pageheader">
+<div class="br-pageheader mg-30">
       
     </div><!-- br-pageheader -->
-<div class="br-pagebody mb-30">
+<div class="br-pagebody mg-b-30">
   <div class="br-section-wrapper">
     <div class="headers mg-b-20">
         
@@ -10,7 +10,13 @@
     <hr />
     </div>
 
-      <%= render 'form', imputation: @imputation %>
+      <% if @arrival_mail.present? %>
+      		<%= render 'imputations/partials/arrival_mail_imputation_form', imputation: @imputation %>
+
+
+      	<% elsif @document.present? %>
+      		<%= render 'imputations/partials/document_imputation_form', imputation: @imputation %>
+      	<% end %>
 
 </div>
   </div>

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: storage_services
+#
+#  id                         :bigint           not null, primary key
+#  uid                        :string
+#  storage_service_name       :string
+#  storage_service_setting_id :bigint
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  storage_service_name: MyString
+  storage_service_setting: one
+
+two:
+  storage_service_name: MyString
+  storage_service_setting: two

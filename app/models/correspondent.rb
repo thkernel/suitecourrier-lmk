@@ -32,7 +32,7 @@ class Correspondent < ApplicationRecord
   belongs_to :user
 
   # Validations
-  validates :organization_name, presence: true,  uniqueness: true
+  #validates :organization_name, presence: true,  uniqueness: true
   
 
   def correspondent_name

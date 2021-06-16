@@ -26,18 +26,18 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
-    @natures = Nature.all
+    @mail_types = MailType.all
    
     @document = Document.new
   end
 
   # GET /documents/1/edit
   def edit
-    @folders = Folder.all
+    @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
-    @natures = Nature.all
+    @mail_types = MailType.all
 
     puts "ALL TAGS: #{ActsAsTaggableOn::Tag.all.inspect}"
     @selected_tags = @document.tag_list
@@ -111,6 +111,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:support_id, :nature_id, :folder_id, :name, :description, tag_list: [])
+      params.require(:document).permit(:support_id, :mail_type_id, :folder_id, :name, :description, tag_list: [])
     end
 end

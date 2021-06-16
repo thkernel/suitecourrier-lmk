@@ -9,12 +9,12 @@
 					<div class="row">
 
                         <div class="form-group col-md-4">
-                            <%= p.label "Prénom" %>
+                            <%= p.label "Prénom", class: "required" %>
                             <%= p.text_field :first_name, class: "form-control", placeholder: "Prénom", required: true %>
                         </div>
 
                         <div class="form-group col-md-4">
-                            <%= p.label "Nom" %>
+                            <%= p.label "Nom", class: "required" %>
                             <%= p.text_field :last_name , class: "form-control", placeholder: "Nom" , required: true%>
                         </div>
 						
@@ -28,21 +28,23 @@
 					</div>
 
                     <div class="row">
-                        <div class="form-group col-md-4">
-							<%= p.label :direction_id, "Direction", class: "required" %> 
-							<%= p.collection_select :direction_id , @directions, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" , required: true %>
+                        <div class="form-group col-md-6">
+							<%= p.label :entity_type_id, "Type entité", class: "required" %> 
+							<%= p.collection_select :entity_type_id , @entity_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%" , required: true %>
 							
 						</div>
 
-                        <div class="form-group col-md-4">
-							<%= p.label :division_id, "Division", class: "required" %> 
-							<%= p.collection_select :division_id , @divisions, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%"  %>
+                        <div class="form-group col-md-6">
+							<%= p.label :entity_id, "Entité", class: "required" %> 
+							<%= p.collection_select :entity_id , @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%"  %>
 							
 						</div>
 
-                        <div class="form-group col-md-4">
-							<%= p.label :service_id, "Service", class: "required" %> 
-							<%= p.collection_select :service_id , @services, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%"  %>
+                       
+
+						<div class="form-group col-md-6">
+							<%= p.label :position, "Fonction", class: "required" %> 
+							<%= p.text_field :position , class: "form-control", placeholder: "Fonction"  %>
 							
 						</div>
                     </div>
@@ -56,7 +58,7 @@
 						
                         <div class="form-group col-md-6">
                             <%= f.label "Profil" %>
-                            <%= f.collection_select(:role_id, @roles,  :id, :name , {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %>
+                            <%= f.collection_select(:role_id, @roles,  :id, :name , {prompt: "Sélectionner un profil"}, class: "form-control", required: true) %>
                                                     
                         </div>
 

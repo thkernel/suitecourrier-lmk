@@ -1,0 +1,27 @@
+<%= form_with(model: storage_service, local: true) do |form| %>
+  <% if storage_service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(storage_service.errors.count, "error") %> prohibited this storage_service from being saved:</h2>
+
+      <ul>
+      <% storage_service.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :storage_service_name %>
+    <%= form.text_field :storage_service_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :storage_service_setting_id %>
+    <%= form.text_field :storage_service_setting_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

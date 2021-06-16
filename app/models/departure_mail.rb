@@ -13,13 +13,18 @@
 #  response_limit_time   :datetime
 #  response_date         :datetime
 #  support_id            :bigint
-#  nature_id             :bigint
+#  mail_type_id          :bigint
+#  confidential          :boolean
 #  correspondent_id      :bigint
+#  initiating_entity_id  :bigint
+#  processing_entity_id  :bigint
 #  object                :string
 #  description           :text
-#  priority              :string
+#  priority_id           :bigint
 #  folder_id             :bigint
+#  processing_deadline   :datetime
 #  status                :string
+#  year                  :integer
 #  user_id               :bigint
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -30,8 +35,11 @@ class DepartureMail < ApplicationRecord
 
   before_save :generate_random_number_uid
   belongs_to :user
+  belongs_to :mail_type
+  belongs_to :register 
+  belongs_to :support
   belongs_to :folder, optional: true
-  has_many :drive_attachments, as: :attachable,  dependent: :destroy
+  #has_many :drive_attachments, as: :attachable,  dependent: :destroy
 
   has_many_attached :files
 

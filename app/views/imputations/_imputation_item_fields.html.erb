@@ -1,23 +1,23 @@
 <tr class="nested-fields">
-
+    <td>
+        <%= f.collection_select(:task_type_id, @task_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+    </td>
     
     <td>
-    <%= f.text_field :title, class: "form-control", placeholder: "Titre", required: true %> 
+    <%= f.text_area :description, class: "form-control", placeholder: "Description", required: true %> 
 
     </td>
-     <td>
-        <%= f.text_area :description, class: "form-control", required: true %>
-    </td>
+     
     <td>
         <%= f.date_field :due_date, class: "form-control", required: true %>
     </td>
 
     <td>
-        <%= f.select(:priority, PRIORITIES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+        <%= f.collection_select(:priority_id, @priorities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
     </td>
     <td>
     
-    <%= f.select(:status, TASK_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+    <%= f.collection_select(:task_status_id, @task_statuses, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
 
     </td>
     <td>
