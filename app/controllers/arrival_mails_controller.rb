@@ -110,7 +110,7 @@ class ArrivalMailsController < ApplicationController
     
     @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
     
-    @mail_types = MailType.all 
+    @natures = Nature.all 
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
@@ -122,7 +122,7 @@ class ArrivalMailsController < ApplicationController
     
     @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
     
-    @mail_types = MailType.all 
+    @natures = Nature.all 
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
@@ -161,7 +161,7 @@ class ArrivalMailsController < ApplicationController
         @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
 
     
-        @mail_types = MailType.all 
+        @natures = Nature.all 
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
@@ -183,7 +183,7 @@ class ArrivalMailsController < ApplicationController
         record_activity("Modifier un courrier arrivée (ID: #{@arrival_mail.id})")
         files = params[:arrival_mail][:files]
 
-        UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
+        #UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
 
         @arrival_mails = ArrivalMail.where.not(status: "Archived")
 
@@ -191,6 +191,12 @@ class ArrivalMailsController < ApplicationController
         format.json { render :show, status: :ok, location: @arrival_mail }
         format.js
       else
+
+        @natures = Nature.all 
+        @supports = Support.all
+        @folders = Folder.where.not(parent_id: nil)
+        @correspondents = Correspondent.all
+
         format.html { render :edit }
         format.json { render json: @arrival_mail.errors, status: :unprocessable_entity }
         format.js
@@ -233,6 +239,6 @@ class ArrivalMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def arrival_mail_params
-      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :mail_type_id, :correspondent_id, :object, :description, :folder_id, files: [])
+      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id, files: [])
     end
 end

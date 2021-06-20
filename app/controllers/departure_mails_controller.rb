@@ -32,6 +32,32 @@ class DepartureMailsController < ApplicationController
   end
 
 
+
+  def get_natures
+    @natures = Nature.all.map { |nature| [nature.name, nature.id] }#.insert(0, "Sélectionner")
+    
+    #respond_to do |format|
+     
+        #format.json { render :show, status: :created, location: @arrival_mail }
+    #end
+    #@natures = Nature.where("name ILIKE ?", "%#{params[:term]}%").map{|item| {:id=>item.id,:text => item.name}}
+
+  end
+
+  def get_supports
+    @supports = Support.all.map { |support| [support.name, support.id] } 
+  end
+  
+  def get_folders
+    @folders = Folder.all.map { |folder| [folder.name, folder.id] } 
+  end
+
+  def get_correspondents
+    @correspondents = Correspondent.all.map { |correspondent| [correspondent.correspondent_name, correspondent.id] } 
+  end
+  
+
+
   def archive
     @departure_mail = DepartureMail.find(params[:departure_mail_id])
   end
@@ -103,7 +129,7 @@ class DepartureMailsController < ApplicationController
    
     @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
     
-    @mail_types = MailType.all 
+    @natures = Nature.all 
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
@@ -114,7 +140,7 @@ class DepartureMailsController < ApplicationController
   # GET /departure_mails/1/edit
   def edit
     @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
-    @mail_types = MailType.all 
+    @natures = Nature.all 
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
@@ -142,7 +168,7 @@ class DepartureMailsController < ApplicationController
       else
 
         @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
-        @mail_types = MailType.all 
+        @natures = Nature.all 
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
@@ -163,6 +189,13 @@ class DepartureMailsController < ApplicationController
         format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully updated.' }
         format.json { render :show, status: :ok, location: @departure_mail }
       else
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+        @natures = Nature.all 
+        @supports = Support.all
+        @folders = Folder.where.not(parent_id: nil)
+        @correspondents = Correspondent.all
+
+        
         format.html { render :edit }
         format.json { render json: @departure_mail.errors, status: :unprocessable_entity }
       end

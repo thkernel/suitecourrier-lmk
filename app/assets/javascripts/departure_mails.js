@@ -55,7 +55,7 @@ $(document).on('turbolinks:load', function(){
 
    
         // Get doctor by service
-        ajaxRefresh("#departure_mail_mail_type_id", "/departure_mails/get_mail_types", "GET");
+        ajaxRefresh("#departure_mail_nature_id", "/departure_mails/get_natures", "GET");
         ajaxRefresh("#departure_mail_support_id", "/departure_mails/get_supports", "GET");
         ajaxRefresh("#departure_mail_correspondent_id", "/departure_mails/get_correspondents", "GET");
         ajaxRefresh("#departure_mail_folder_id", "/departure_mails/get_folders", "GET");
@@ -66,13 +66,13 @@ $(document).on('turbolinks:load', function(){
 
 $(document).on('turbolinks:load', function() {  
 
-  $('#mail_type_id').select2({
+  $('#nature_id').select2({
         
         escapeMarkup: function (markup) { return markup; },
        
         language: {
             noResults: function () {
-                 return "<a data-remote='true' href='/mail_types/new'>+ Ajouter</a>";
+                 return "<a data-remote='true' href='/natures/new'>+ Ajouter</a>";
             }
         }
     });

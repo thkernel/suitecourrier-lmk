@@ -43,7 +43,7 @@ class ArrivalMail < ApplicationRecord
 
   belongs_to :register
   belongs_to :support
-  belongs_to :mail_type
+  belongs_to :nature
   belongs_to :correspondent
   belongs_to :folder, optional: true
 

@@ -35,7 +35,7 @@ class DepartureMail < ApplicationRecord
 
   before_save :generate_random_number_uid
   belongs_to :user
-  belongs_to :mail_type
+  belongs_to :nature
   belongs_to :register 
   belongs_to :support
   belongs_to :folder, optional: true

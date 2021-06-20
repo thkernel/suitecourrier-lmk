@@ -237,8 +237,8 @@ Rails.application.routes.draw do
 	#patch "/companies/:id"  => "companies#update", as: :company
 
 
-  get "/get/last_mail_type" => "mail_types#last_mail_type"
-  resources :mail_types do     
+  get "/get/last_nature" => "natures#last_nature"
+  resources :natures do     
     get "delete"
 
     

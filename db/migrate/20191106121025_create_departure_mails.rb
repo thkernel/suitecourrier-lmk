@@ -17,7 +17,7 @@ class CreateDepartureMails < ActiveRecord::Migration[5.2]
 
       
       t.references :support, foreign_key: true
-      t.references :mail_type, foreign_key: true
+      t.references :nature, foreign_key: true
       t.boolean :confidential
 
       t.references :correspondent, foreign_key: true

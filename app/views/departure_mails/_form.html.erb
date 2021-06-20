@@ -22,8 +22,8 @@
          <div class="col-md-3 ">
 
 <div class="form-group">
-            <%= form.label :mail_type_id, "Type de courrier", class: "required" %>
-            <%= form.collection_select(:mail_type_id, @mail_types, :id, :name, {prompt: "Sélectionner"}, :id => "mail_type_id", class: "form-control", required: true) %> 
+            <%= form.label :nature_id, "Nature", class: "required" %>
+            <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, :id => "nature_id", class: "form-control", required: true) %> 
 
         </div>
           

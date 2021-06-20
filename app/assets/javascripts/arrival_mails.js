@@ -54,7 +54,7 @@ function displayArrivalMailAnswerDates(){
 $(document).on('turbolinks:load', function(){
 
 
-        ajaxRefresh("#arrival_mail_mail_type_id", "/arrival_mails/get_mail_types", "GET");
+        ajaxRefresh("#arrival_mail_nature_id", "/arrival_mails/get_natures", "GET");
         ajaxRefresh("#arrival_mail_support_id", "/arrival_mails/get_supports", "GET");
         ajaxRefresh("#arrival_mail_correspondent_id", "/arrival_mails/get_correspondents", "GET");
         ajaxRefresh("#arrival_mail_folder_id", "/arrival_mails/get_folders", "GET");
@@ -64,13 +64,13 @@ $(document).on('turbolinks:load', function(){
 
 $(document).on('turbolinks:load', function() {  
 
-  $('#mail_type_id').select2({
+  $('#nature_id').select2({
         
         escapeMarkup: function (markup) { return markup; },
        
         language: {
             noResults: function () {
-                 return "<a data-remote='true' href='/mail_types/new'>+ Ajouter</a>";
+                 return "<a data-remote='true' href='/natures/new'>+ Ajouter</a>";
             }
         }
     });
@@ -124,9 +124,9 @@ $(document).on('turbolinks:load', function() {
 
 
 $(document).on('turbolinks:load', function() {
-    $('#arrival-mail #mail-type-modal').on('hide.bs.modal', function() {
+    $('#arrival-mail #nature-modal').on('hide.bs.modal', function() {
       
-    ajaxGetLastRecord('select[name="arrival_mail[mail_type_id]"]', "/get/last_mail_type", "GET");
+    ajaxGetLastRecord('select[name="arrival_mail[nature_id]"]', "/get/last_nature", "GET");
 
     });
 });

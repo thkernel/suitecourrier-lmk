@@ -1,7 +1,9 @@
 <%= form_with(model: document, local: true) do |form| %>
   <% if document.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
 
       <ul>
       <% document.errors.full_messages.each do |message| %>

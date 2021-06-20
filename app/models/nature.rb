@@ -12,7 +12,7 @@
 #  updated_at  :datetime         not null
 #
 
-class MailType < ApplicationRecord
+class Nature < ApplicationRecord
   include SharedUtils::Generate
 
   before_save :generate_random_number_uid

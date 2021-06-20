@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
   def new
     @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
-    @mail_types = MailType.all
+    @natures = Nature.all
    
     @document = Document.new
   end
@@ -37,7 +37,7 @@ class DocumentsController < ApplicationController
   def edit
     @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
-    @mail_types = MailType.all
+    @natures = Nature.all
 
     puts "ALL TAGS: #{ActsAsTaggableOn::Tag.all.inspect}"
     @selected_tags = @document.tag_list
@@ -54,12 +54,12 @@ class DocumentsController < ApplicationController
         record_activity("Créer un document (ID: #{@document.id})")
 
         files = params[:document][:files]
-        UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
+        #UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
 
         format.html { redirect_to documents_path, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
-        @folders = Folder.all
+        @folders = Folder.where.not(parent_id: nil)
         @supports = Support.all 
         @natures = Nature.all
         format.html { render :new }
@@ -75,12 +75,17 @@ class DocumentsController < ApplicationController
       if @document.update(document_params)
         record_activity("Modifier un document (ID: #{@document.id})")
         files = params[:document][:files]
-        UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
+       # UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
 
 
         format.html { redirect_to documents_path, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else
+
+        @folders = Folder.where.not(parent_id: nil)
+        @supports = Support.all 
+        @natures = Nature.all
+
         format.html { render :edit }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
@@ -111,6 +116,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:support_id, :mail_type_id, :folder_id, :name, :description, tag_list: [])
+      params.require(:document).permit(:support_id, :nature_id, :folder_id, :name, :description, tag_list: [], files: [])
     end
 end

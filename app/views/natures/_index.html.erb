@@ -1,0 +1,19 @@
+<% @natures.each do |nature| %>
+      <tr>
+        <td><%= nature.name %></td>
+        <td><%= nature.description %></td>
+       
+       <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_nature_path(nature), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), nature_delete_path(nature), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+      </tr>
+    <% end %>
