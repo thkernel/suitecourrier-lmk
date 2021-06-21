@@ -146,8 +146,8 @@ unless Support.all.present?
 end
 
 
-unless MailType.all.present?
-    mail_types = MailType.create(
+unless Nature.all.present?
+    natures = Nature.create(
         [
             {name: "Facture", user_id: users.first.id },
             {name: "Lettre" , user_id: users.first.id },
@@ -217,7 +217,7 @@ unless Register.all.present?
         [
 
             {register_type_id: RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id , name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
-            {register_type_id: RegisterType.find_by(name: "COURRIER DEPART").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
+            {register_type_id: RegisterType.find_by(name: "COURRIER DÉPART").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
         ])
 else    
     registers =  Register.all
@@ -427,3 +427,52 @@ unless Feature.all.present?
     ])
 
 end
+
+
+unless TicketStatus.all.present?
+    tiket_statuses = TicketStatus.create([
+        {
+            name: "Nouveau",
+            user_id: users.first.id   
+        },
+        {
+            name: "En cours",
+            user_id: users.first.id   
+        },
+        {
+            name: "Résolu",
+            user_id: users.first.id    
+        },
+        {
+            name: "Fermé",
+            user_id: users.first.id
+        },
+        {
+            name: "Rejeté",
+            user_id: users.first.id
+        },
+        {
+            name: "En attente",
+            user_id: users.first.id
+        }
+    ])
+end
+
+
+unless TicketType.all.present?
+    ticket_types = TicketType.create([
+        {
+            name: "Demande",
+            user_id: users.first.id    
+        },
+        {
+            name: "Information",
+            user_id: users.first.id    
+        },
+        {
+            name: "Confirmation",
+            user_id: users.first.id    
+        }
+    ])
+end
+

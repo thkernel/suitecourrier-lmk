@@ -1,6 +1,6 @@
 <%= form_with(model: ticket, local: false) do |form| %>
-  <div class="modal-body">
-    <ul class="errors">
+<div class="modal-body">
+  <ul class="errors">
     </ul>
 
 
@@ -10,20 +10,20 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-md-6">
-        <%= form.label :status, "Statut", class: "required" %>
-        <%= form.select :status, TICKET_STATUSES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
+      <div class="form-group col-md-6 customSelect">
+        <%= form.label :ticket_type_id, "Type", class: "required" %>
+        <%= form.collection_select :ticket_type_id, @ticket_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
       </div>
 
-      <div class="form-group col-md-6">
-        <%= form.label :priority, "Priorité", class: "required" %>
-        <%= form.select :priority, PRIORITIES, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
+      <div class="form-group col-md-6 customSelect">
+        <%= form.label :priority_id, "Priorité", class: "required" %>
+        <%= form.collection_select :priority_id, @priorities,:id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
       </div>
     </div>
 
     <div class="row">
       <%= fields_for :ticket_users do |tu| %>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-12 customSelect">
           <%= tu.label :recipient_id, "Destinataire", class: "required" %>
           <%= collection_select(:recipients, :id,  @recipients, :id, :full_name, {selected: (@selected_ticket_users.map(&:recipient_id) unless @selected_ticket_users.nil?)}, {class: "form-control", style: "width: 100%;", multiple: true,required: true}) %>
 

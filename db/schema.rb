@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.datetime "response_limit_time"
     t.datetime "response_date"
     t.bigint "support_id"
-    t.bigint "mail_type_id"
+    t.bigint "nature_id"
     t.boolean "confidential"
     t.bigint "correspondent_id"
     t.string "object"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.datetime "updated_at", null: false
     t.index ["correspondent_id"], name: "index_arrival_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_arrival_mails_on_folder_id"
-    t.index ["mail_type_id"], name: "index_arrival_mails_on_mail_type_id"
+    t.index ["nature_id"], name: "index_arrival_mails_on_nature_id"
     t.index ["priority_id"], name: "index_arrival_mails_on_priority_id"
     t.index ["processing_entity_id"], name: "index_arrival_mails_on_processing_entity_id"
     t.index ["register_id"], name: "index_arrival_mails_on_register_id"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.datetime "response_limit_time"
     t.datetime "response_date"
     t.bigint "support_id"
-    t.bigint "mail_type_id"
+    t.bigint "nature_id"
     t.boolean "confidential"
     t.bigint "correspondent_id"
     t.bigint "initiating_entity_id"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.index ["correspondent_id"], name: "index_departure_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_departure_mails_on_folder_id"
     t.index ["initiating_entity_id"], name: "index_departure_mails_on_initiating_entity_id"
-    t.index ["mail_type_id"], name: "index_departure_mails_on_mail_type_id"
+    t.index ["nature_id"], name: "index_departure_mails_on_nature_id"
     t.index ["priority_id"], name: "index_departure_mails_on_priority_id"
     t.index ["processing_entity_id"], name: "index_departure_mails_on_processing_entity_id"
     t.index ["register_id"], name: "index_departure_mails_on_register_id"
@@ -186,27 +186,20 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   create_table "documents", force: :cascade do |t|
     t.string "uid"
     t.string "slug"
+    t.string "internal_reference"
+    t.string "external_reference"
     t.bigint "support_id"
-    t.bigint "mail_type_id"
-    t.datetime "departure_date"
-    t.datetime "receipt_date"
-    t.bigint "correspondent_id"
-    t.bigint "initiating_entity_id"
-    t.bigint "processing_entity_id"
-    t.datetime "processing_deadline"
+    t.bigint "nature_id"
     t.bigint "folder_id"
-    t.string "object"
+    t.string "name"
     t.text "description"
     t.string "status"
     t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["correspondent_id"], name: "index_documents_on_correspondent_id"
     t.index ["folder_id"], name: "index_documents_on_folder_id"
-    t.index ["initiating_entity_id"], name: "index_documents_on_initiating_entity_id"
-    t.index ["mail_type_id"], name: "index_documents_on_mail_type_id"
-    t.index ["processing_entity_id"], name: "index_documents_on_processing_entity_id"
+    t.index ["nature_id"], name: "index_documents_on_nature_id"
     t.index ["support_id"], name: "index_documents_on_support_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
@@ -323,7 +316,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   create_table "internal_memos", force: :cascade do |t|
     t.string "uid"
     t.bigint "support_id"
-    t.bigint "mail_type_id"
+    t.bigint "nature_id"
     t.bigint "priority_id"
     t.bigint "correspondent_id"
     t.bigint "initiating_entity_id"
@@ -341,14 +334,14 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.index ["correspondent_id"], name: "index_internal_memos_on_correspondent_id"
     t.index ["folder_id"], name: "index_internal_memos_on_folder_id"
     t.index ["initiating_entity_id"], name: "index_internal_memos_on_initiating_entity_id"
-    t.index ["mail_type_id"], name: "index_internal_memos_on_mail_type_id"
+    t.index ["nature_id"], name: "index_internal_memos_on_nature_id"
     t.index ["priority_id"], name: "index_internal_memos_on_priority_id"
     t.index ["processing_entity_id"], name: "index_internal_memos_on_processing_entity_id"
     t.index ["support_id"], name: "index_internal_memos_on_support_id"
     t.index ["user_id"], name: "index_internal_memos_on_user_id"
   end
 
-  create_table "mail_types", force: :cascade do |t|
+  create_table "natures", force: :cascade do |t|
     t.string "uid"
     t.string "name"
     t.text "description"
@@ -356,7 +349,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_mail_types_on_user_id"
+    t.index ["user_id"], name: "index_natures_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -645,6 +638,17 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "ticket_statuses", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ticket_statuses_on_user_id"
+  end
+
   create_table "ticket_types", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -668,6 +672,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "uid"
+    t.string "reference"
     t.bigint "ticket_type_id"
     t.string "title"
     t.bigint "priority_id"
@@ -675,12 +680,13 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.datetime "due_date"
     t.datetime "start_date"
     t.datetime "completed_date"
-    t.string "status"
+    t.bigint "ticket_status_id"
     t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["priority_id"], name: "index_tickets_on_priority_id"
+    t.index ["ticket_status_id"], name: "index_tickets_on_ticket_status_id"
     t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
@@ -722,7 +728,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   add_foreign_key "activity_logs", "users"
   add_foreign_key "arrival_mails", "correspondents"
   add_foreign_key "arrival_mails", "folders"
-  add_foreign_key "arrival_mails", "mail_types"
+  add_foreign_key "arrival_mails", "natures"
   add_foreign_key "arrival_mails", "priorities"
   add_foreign_key "arrival_mails", "registers"
   add_foreign_key "arrival_mails", "supports"
@@ -733,14 +739,13 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   add_foreign_key "correspondents", "users"
   add_foreign_key "departure_mails", "correspondents"
   add_foreign_key "departure_mails", "folders"
-  add_foreign_key "departure_mails", "mail_types"
+  add_foreign_key "departure_mails", "natures"
   add_foreign_key "departure_mails", "priorities"
   add_foreign_key "departure_mails", "registers"
   add_foreign_key "departure_mails", "supports"
   add_foreign_key "departure_mails", "users"
-  add_foreign_key "documents", "correspondents"
   add_foreign_key "documents", "folders"
-  add_foreign_key "documents", "mail_types"
+  add_foreign_key "documents", "natures"
   add_foreign_key "documents", "supports"
   add_foreign_key "documents", "users"
   add_foreign_key "entities", "entity_types"
@@ -756,11 +761,11 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   add_foreign_key "imputations", "users"
   add_foreign_key "internal_memos", "correspondents"
   add_foreign_key "internal_memos", "folders"
-  add_foreign_key "internal_memos", "mail_types"
+  add_foreign_key "internal_memos", "natures"
   add_foreign_key "internal_memos", "priorities"
   add_foreign_key "internal_memos", "supports"
   add_foreign_key "internal_memos", "users"
-  add_foreign_key "mail_types", "users"
+  add_foreign_key "natures", "users"
   add_foreign_key "organization_types", "users"
   add_foreign_key "organizations", "organization_types"
   add_foreign_key "organizations", "users"
@@ -785,9 +790,11 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   add_foreign_key "task_types", "users"
   add_foreign_key "tasks", "task_types"
   add_foreign_key "tasks", "users"
+  add_foreign_key "ticket_statuses", "users"
   add_foreign_key "ticket_types", "users"
   add_foreign_key "ticket_users", "tickets"
   add_foreign_key "tickets", "priorities"
+  add_foreign_key "tickets", "ticket_statuses"
   add_foreign_key "tickets", "ticket_types"
   add_foreign_key "tickets", "users"
   add_foreign_key "users", "roles"

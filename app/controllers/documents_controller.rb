@@ -24,6 +24,29 @@ class DocumentsController < ApplicationController
     
   end
 
+
+  def get_natures
+    @natures = Nature.all.map { |nature| [nature.name, nature.id] }#.insert(0, "Sélectionner")
+    
+    #respond_to do |format|
+     
+        #format.json { render :show, status: :created, location: @arrival_mail }
+    #end
+    #@natures = Nature.where("name ILIKE ?", "%#{params[:term]}%").map{|item| {:id=>item.id,:text => item.name}}
+
+  end
+
+  def get_supports
+    @supports = Support.all.map { |support| [support.name, support.id] } 
+  end
+  
+  def get_folders
+    @folders = Folder.all.map { |folder| [folder.name, folder.id] } 
+  end
+
+
+  
+
   # GET /documents/new
   def new
     @folders = Folder.where.not(parent_id: nil)

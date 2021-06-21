@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ticket_statuses
   resources :storage_services
   resources :storage_service_settings
   resources :ticket_types do   
@@ -91,6 +92,13 @@ Rails.application.routes.draw do
   
   resources :documents do   
     get "delete"
+
+    collection do    
+      get "get_natures" => "documents#get_natures"
+      get "get_folders" => "documents#get_folders"
+      get "get_supports" => "documents#get_supports"
+    end
+
   end
   
   resources :task_time_trackings do   

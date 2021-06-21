@@ -114,8 +114,8 @@ class ImputationsController < ApplicationController
     if flash[:rtype].present? && flash[:rtype] == "ArrivalMail"
       resource = ArrivalMail.find(flash[:arrival_mail]["id"])
 
-    elsif flash[:rtype].present? && flash[:rtype] == "Request"
-      resource = Request.find(flash[:request]["id"])
+    elsif flash[:rtype].present? && flash[:rtype] == "Document"
+      resource = Document.find(flash[:document]["id"])
     else
       return
     end

@@ -2,7 +2,9 @@
     <tr>
         <td><%= ticket.created_at.strftime("%d/%m/%Y") %></td>
         <td><%= ticket.title %></td>
-        <td><%= ticket.priority %></td>
+        <td><%= ticket.ticket_type.name %></td>
+        <td><%= ticket.priority.name %></td>
+        <td><%= ticket.ticket_status.name %></td>
         <td><%= ticket.due_date.strftime("%d/%m/%Y") if ticket.due_date %></td>
         <td><%= ticket.start_date.strftime("%d/%m/%Y") if ticket.start_date %></td>
         <td><%= ticket.completed_date.strftime("%d/%m/%Y") if ticket.completed_date  %></td>

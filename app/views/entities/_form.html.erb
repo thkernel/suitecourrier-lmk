@@ -7,7 +7,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group customSelect">
           <%= form.label :entity_type_id, "Typé d'entité", class: "required" %>
           <%= form.collection_select(:entity_type_id, @entity_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
         </div>
@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-md-12">
 
-        <div class="form-group">
+        <div class="form-group customSelect">
           <%= form.label :parent_entity_id, "Rattachée à" %>
           <%= form.collection_select(:parent_entity_id, @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
         </div>

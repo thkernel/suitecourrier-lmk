@@ -1,5 +1,8 @@
 class InternalMemosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_internal_memo, only: [:show, :edit, :update, :destroy]
+  layout "dashboard"
+
 
   # GET /internal_memos
   # GET /internal_memos.json
@@ -24,7 +27,7 @@ class InternalMemosController < ApplicationController
   # POST /internal_memos
   # POST /internal_memos.json
   def create
-    @internal_memo = InternalMemo.new(internal_memo_params)
+    @internal_memo = current_user.internal_memo.build(internal_memo_params)
 
     respond_to do |format|
       if @internal_memo.save

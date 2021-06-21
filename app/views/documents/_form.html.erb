@@ -63,17 +63,17 @@
           <div class="card-body">
             <div class="form-group ">
                 <%= form.label :support_id, "Support", class: "required" %>
-                <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+                <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control", style: "width: 100%", required: true) %> 
               </div>
 
             <div class="form-group ">
-              <%= form.label :mail_type_id, "Type", class: "required" %>
-              <%= form.collection_select(:mail_type_id, @mail_types, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+              <%= form.label :nature_id, "Nature", class: "required" %>
+              <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, :id => "nature_id", class: "form-control", style: "width: 100%", required: true) %> 
             </div>
 
             <div class="form-group ">
               <%= form.label :folder_id, "Classeur", class: "required" %>
-              <%= form.collection_select(:folder_id, @folders, :id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true) %> 
+              <%= form.collection_select(:folder_id, @folders, :id, :name, {prompt: "Sélectionner"}, :id => "folder_id", class: "form-control", style: "width: 100%", required: true) %> 
 
             </div>
           </div>
@@ -84,7 +84,7 @@
             <h6>Indexation</h6>
           </div>
           <div class="card-body">
-            <div class="form-group ">
+            <div class="form-group customSelect">
               <%= form.label :tag_list, "Etiquettes" %>
               <%= form.collection_select(:tag_list, ActsAsTaggableOn::Tag.all, :name, :name, { value: @selected_tags}, class: "form-control", style: "width: 100%", multiple: true) %> 
              </div>

@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @task_status.errors.any? %>
+  <% @task_status.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".task-statuses").html("<%= escape_javascript(render 'index') %>");
+  $("#task-status-modal").modal("hide");
+ 
+<% end %>

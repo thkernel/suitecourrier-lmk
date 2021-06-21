@@ -1,0 +1,20 @@
+<% @internal_memos.each do |internal_memo| %>
+  <tr>
+    
+    <td><%= internal_memo.nature.name %></td>
+    <td><%= internal_memo.priority.name %></td>
+    <td><%= internal_memo.status %></td>
+    <td>
+	    <div class="action-buttons">
+			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_internal_memo_path(internal_memo), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), internal_memo_delete_path(internal_memo), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

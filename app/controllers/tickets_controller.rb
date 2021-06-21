@@ -18,6 +18,8 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
+    @priorities = Priority.all
+    @ticket_types = TicketType.all
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
     @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
     @ticket = Ticket.new
@@ -25,6 +27,8 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
+    @priorities = Priority.all
+    @ticket_types = TicketType.all
 
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
     @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
@@ -41,6 +45,9 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.build(ticket_params)
 
+    @ticket.ticket_status_id = TicketStatus.find_by(name: "En attente").id
+
+
     params[:recipients][:id].each do |ticket_user|
       unless ticket_user.empty?
         @ticket.ticket_users.build(recipient_id: ticket_user)
@@ -56,6 +63,13 @@ class TicketsController < ApplicationController
         format.json { render :show, status: :created, location: @ticket }
         format.js
       else
+
+        @priorities = Priority.all
+        @ticket_types = TicketType.all
+
+        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
+
         format.html { render :new }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
         format.js
@@ -115,6 +129,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:title, :status, :priority, :content, :due_date, :start_date, :completed_date, files: [])
+      params.require(:ticket).permit(:title, :ticket_type_id, :ticket_status_id, :priority_id, :content, :due_date, :start_date, :completed_date, files: [])
     end
 end

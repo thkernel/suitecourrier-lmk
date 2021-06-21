@@ -25,6 +25,9 @@ class Ticket < ApplicationRecord
 
   
   belongs_to :user
+  belongs_to :ticket_type
+  belongs_to :ticket_status
+  belongs_to :priority
 
   has_many_attached :files
   has_many :ticket_users, dependent: :destroy

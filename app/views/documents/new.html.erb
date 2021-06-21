@@ -1,10 +1,16 @@
+<div id="document">
+	<div class="container main-container ">
+	    <div class="page-wrapper pt-25">
+	        <h3 class="page-title">Ajouter un nouveau document</h3>
+	        <div class="page-content">
+	            <%= render 'form', document: @document %>
+	        </div>
+	    </div>
+	</div>
 
-<div class="container main-container ">
-    <div class="page-wrapper pt-25">
-        <h3 class="page-title">Ajouter un nouveau document</h3>
-        <div class="page-content">
-            <%= render 'form', document: @document %>
-        </div>
-    </div>
+	<div id="nature-modal" class="c-modal modal fade" data-backdrop="static"></div>
+<div id="support-modal" class="c-modal modal fade" data-backdrop="static"></div>
+<div id="folder-modal" class="c-modal modal fade" data-backdrop="static"></div>
+
 </div>
 
