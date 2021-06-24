@@ -2,6 +2,7 @@ module ApplicationHelper
 	# Include all helpers
 	include CorrespondentsHelper
 	include RegistersHelper
+	include MetaTagsHelper
 
     def resource_name
 	    :user

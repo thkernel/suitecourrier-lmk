@@ -103,6 +103,8 @@ gem 'google-api-client', '~> 0.43.0'
 gem 'countries', require: 'countries/global'
 gem 'acts_as_tree', '~> 2.9', '>= 2.9.1'
 gem 'faraday', '~> 1.0', '>= 1.0.1'
+gem 'meta-tags', '~> 2.13' # For SEO
+
 # This gem causes db:create to fail
 # You can enable it for tests as long as the db has been created
 group :production, :staging do

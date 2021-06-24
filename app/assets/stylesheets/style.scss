@@ -49,6 +49,77 @@
     bottom: 0;
 }
 
+
+.hero {
+    /*min-height: 400px;*/
+    min-height: calc(80vh - 56px);
+    position: relative;
+    z-index: 10;
+    color: #ffffff;
+    /*text-align: center;*/
+    padding-top: 60px;
+    background-color: white;
+}
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color:
+    rgba(0, 124, 194, 0.57);
+}
+
+.hero-content{
+    padding-top: 8%;
+}
+
+.hero img {
+    width: 100%;
+}
+.text-gray-soft {
+    color: #838E95 !important;
+    font-size: 1.25rem !important;
+}
+
+:hover, :focus, :active {
+    outline: none !important;
+}
+.text-bold {
+    font-weight: bold;
+}
+.display-1 {
+    font-size: 80px;
+    margin-bottom: 15px;
+}
+
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-weight: 900;
+    color: black;
+}
+.display-1 {
+    font-size: 6rem;
+    font-weight: 900 !important;
+    line-height: 1.1;
+}
+h1, .h1 {
+    font-size: 34px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #272727;
+    letter-spacing: -0.01em;
+}
+
+.without-header {
+        margin-top: 98px !important;
+    margin-bottom: 60px !important;
+}
+
+
 .components-panel{
     border: 1px solid #e2e4e7;
     padding: 1em;
@@ -78,6 +149,25 @@
     
     padding: 0 !important;
 }
+
+// For sticky footer
+html, body {
+    height: 100% !important;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.page-wrapper {
+    flex: 1 0 auto;
+    margin-top: 60px !important;
+}
+.footer {
+    flex-shrink: 0;
+}
+/* end */
+
+
 
 .footer-one{
     padding-top: 30px;
@@ -404,7 +494,17 @@ span.tag-item{
 }
 
 
+.share{
+    background-color: white !important;
+}
 
+.share img{
+    width: 100% !important;
+}
+
+.page-wrapper{
+    background-color: white !important;
+}
 
 
 

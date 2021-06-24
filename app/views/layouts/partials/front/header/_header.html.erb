@@ -9,9 +9,13 @@
           <div class= "navbar-brand">
            
 
-             <div class= "navbar-brand">
-                <%= image_tag "logo/logo.png", class: "navbar-brand-img" %> 
-              </div>
+             <% if current_organization.present? && current_organization.logo.attached? %>
+      <%= image_tag current_organization.logo, class: "logo" %>
+
+    <% else %>
+      <a href=""><span><%= APPLICATION_NAME %></span
+        <span></span></a>
+    <% end %>
             
           </div>
 

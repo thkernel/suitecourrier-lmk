@@ -137,6 +137,9 @@ Rails.application.routes.draw do
  
  
   #root 'home#index'
+  # Home route.
+  root to: "front#home"
+  
   resources :tenants do   
     get "delete"
   end

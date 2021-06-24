@@ -1,4 +1,8 @@
 APPLICATION_NAME = "SuiteCourrier"
+APPLICATION_SLOGAN = "Easy and fastly"
+APPLICATION_DESCRIPTION = "Embarquez votre entreprise"
+APPLICATION_KEYWORDS = [""]
+
 GENDERS = [["Homme"], ["Femme"]]
 REGISTER_STATUSES = [["Ouvert"], ["Fermé"]]
 REGISTER_TYPES = [["Registre arrivée"], ["Registre départ"]]
