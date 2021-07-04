@@ -5,7 +5,7 @@
 #  id                   :bigint           not null, primary key
 #  uid                  :string
 #  support_id           :bigint
-#  mail_type_id         :bigint
+#  nature_id            :bigint
 #  priority_id          :bigint
 #  correspondent_id     :bigint
 #  initiating_entity_id :bigint

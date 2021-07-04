@@ -12,12 +12,12 @@
   <ul class="errors"></ul>
   Etes-vous sûr de vouloir supprimer ce enregistrement?
   <p>
-  Nom: <b> <%= @task_status.name %></b>
+  Nom: <b> <%= @ticket_status.name %></b>
   </p>
   </div>
   <div class="modal-footer">
     <%= link_to "Non", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: { dismiss: "modal" } %>
-    <%= link_to "Oui", task_status_path(@task_status), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
+    <%= link_to "Oui", ticket_status_path(@ticket_status), method: :delete, remote: true, class: "btn btn-danger tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1" %>
   </div>
   </div>
 </div>

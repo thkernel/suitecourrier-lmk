@@ -13,7 +13,7 @@
 #  response_limit_time   :datetime
 #  response_date         :datetime
 #  support_id            :bigint
-#  mail_type_id          :bigint
+#  nature_id             :bigint
 #  confidential          :boolean
 #  correspondent_id      :bigint
 #  initiating_entity_id  :bigint

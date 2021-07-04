@@ -1,5 +1,10 @@
 class TicketStatusesController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+
   before_action :set_ticket_status, only: %i[ show edit update destroy ]
+
+  layout "dashboard"
 
   # GET /ticket_statuses or /ticket_statuses.json
   def index
@@ -25,8 +30,10 @@ class TicketStatusesController < ApplicationController
 
     respond_to do |format|
       if @ticket_status.save
+        @ticket_statuses = TicketStatus.all
         format.html { redirect_to @ticket_status, notice: "Ticket status was successfully created." }
         format.json { render :show, status: :created, location: @ticket_status }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @ticket_status.errors, status: :unprocessable_entity }
@@ -38,13 +45,20 @@ class TicketStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_status.update(ticket_status_params)
+        @ticket_statuses = TicketStatus.all
         format.html { redirect_to @ticket_status, notice: "Ticket status was successfully updated." }
         format.json { render :show, status: :ok, location: @ticket_status }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @ticket_status.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def delete
+    @ticket_status = TicketStatus.find(params[:ticket_status_id])
   end
 
   # DELETE /ticket_statuses/1 or /ticket_statuses/1.json
@@ -64,6 +78,6 @@ class TicketStatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_status_params
-      params.fetch(:ticket_status, {})
+      params.require(:ticket_status).permit(:name)
     end
 end

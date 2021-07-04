@@ -32,11 +32,14 @@
         <% else %>
         <li class="nav-item">
         <!-- <a class="nav-link" href="#">Link</a> -->
-          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-link" %>
+          <!-- link_to "Se connecter", new_user_session_path, class: "btn btn-link" -->
+          <%= link_to "Demandez un devis", new_quote_request_path, class: "btn btn-primary" %>
         </li>
         <li class="nav-item">
         <!-- <a class="nav-link" href="#">Link</a> -->
-          <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary" %>
+          <!-- link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary" -->
+          <%= link_to "Demandez un démo", new_demo_request_path, class: "btn btn-outline-primary" %>
+
         </li>
       <% end %>
       

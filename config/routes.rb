@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :ticket_statuses
+
+
+  get 'quote-request' => 'quote_requests#new', :as => "new_quote_request"
+  post 'quote-request' => 'quote_requests#create', :as => "create_quote_request"
+
+  get 'demo-request' => 'demo_requests#new', :as => "new_demo_request"
+  post 'demo-request' => 'demo_requests#create', :as => "create_demo_request"
+
+
+  resources :ticket_statuses do   
+    get "delete"
+  end
   resources :storage_services
   resources :storage_service_settings
   resources :ticket_types do   

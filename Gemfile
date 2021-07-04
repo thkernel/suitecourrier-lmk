@@ -111,6 +111,7 @@ group :production, :staging do
   gem 'active_record_slave'
 end
 
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

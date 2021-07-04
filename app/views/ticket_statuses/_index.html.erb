@@ -1,17 +1,17 @@
-<% @task_statuses.each do |task_status| %>
+<% @ticket_statuses.each do |ticket_status| %>
   <tr>
     
-    <td><%= task_status.name %></td>
+    <td><%= ticket_status.name %></td>
     <td>
                     <div class="action-buttons">
                     <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
-'),  edit_task_status_path(task_status), title: "Modifier", remote: true %>
+'),  edit_ticket_status_path(ticket_status), title: "Modifier", remote: true %>
 
 
 
 
 <%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
-'), task_status_delete_path(task_status), remote: true, title: "Supprimer", class: "delete" %>
+'), ticket_status_delete_path(ticket_status), remote: true, title: "Supprimer", class: "delete" %>
 </div>
 </td>
   </tr>

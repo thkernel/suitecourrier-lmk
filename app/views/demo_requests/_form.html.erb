@@ -1,0 +1,89 @@
+<%= form_with(model: demo_request, url: create_demo_request_path) do |form| %>
+ 
+ <% if demo_request.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+
+      <ul>
+      <% demo_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group customSelect">
+          <%= form.label :organization_type_id, "Type d'oragnisation", class: "required" %>
+          <%= form.collection_select(:organization_type_id, @organization_types, :name, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :name, "Nom", class: "required" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Nom", required: true %>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="form-group customSelect">
+          <%= form.label :country, "Pays", class: "required" %>
+          <%= form.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %> 
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :city, "Ville", class: "required" %>
+        <%= form.text_field :city, class: "form-control", placeholder: "Ville", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :phone_number, "Téléphone", class: "required" %>
+        <%= form.text_field :phone_number, class: "form-control", placeholder: "Téléphone", required: true %>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+      <div class="form-group customSelect">
+          <%= form.label :email, "E-mail", class: "required" %>
+          <%= form.email_field :email, class: "form-control", placeholder: "E-mail", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :website, "Site web" %>
+        <%= form.text_field :website, class: "form-control", placeholder: "Site web" %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :body, "Message", class: "required" %>
+        <%= form.text_area :body, class: "form-control", placeholder: "Message" %>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group pull-right">
+        <%= form.submit "Envoyer la demande", class: "btn btn-primary " %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

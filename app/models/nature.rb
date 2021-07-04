@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: mail_types
+# Table name: natures
 #
 #  id          :bigint           not null, primary key
 #  uid         :string

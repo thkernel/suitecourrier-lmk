@@ -19,11 +19,12 @@
   </head>
 
   <body>
-   
+   <%= render 'layouts/partials/tawk' %>
     <%= render('layouts/partials/front/header') %>
    
 
       <div class="page-wrapper">
+        <%= render :partial => 'layouts/partials/flash_messages', :flash => flash %>
           <% if controller_name != "front" && action_name != "home" %>
          
           <% end %>
