@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 600 !important;
 }
 .logo img {
-    width: 60px !important;
+    width: 190px !important;
 }
 .field_with_errors{
     color: red !important;
@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     border: 1px solid red;
 }
 .logo{
-    width: 44px;
+    width: 200px;
 }
 .navbar {
     
@@ -173,7 +173,7 @@ body {
     padding-top: 30px;
     /*margin-top: 3em;*/
     /*background: #f5f8fa;*/
-    background-color: #161e2c;
+    background-color: white;
     border-top: 4px solid #e5e9ee;
     padding-bottom: 1em;
 }
@@ -506,14 +506,43 @@ span.tag-item{
     background-color: white !important;
 }
 
+.features{
+    background-color: #2d3a4b;
+    color: #fff;
+}
 
+.feature-item {
+    text-align: center;
+}
+.feature-title{
+    padding: 0.9em 1.5em 0.8em 1.5em;
+    font-size: 1.651em;
+    font-weight: bold !important;
+    font-style: normal;
+    line-height: 1.3em;
+}
 
+.feature-title h5 {
+    /*margin-top: 0.4em;*/
+    margin-bottom: 0.8em;
+    color: #fff;
 
+}
+.feature-short-describe {
+    color: #fff ;
+}
 
-
-
-
-
+.feature-icon .fa {
+    font-size: 2.4rem !important;
+    font-weight: bold;
+    color: #fff !important;
+}
+.features-section-title{
+    color: #fff !important;
+}
+h2.section-title{
+    color: #fff !important;
+}
 
 
 
