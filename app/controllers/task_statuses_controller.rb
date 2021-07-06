@@ -34,7 +34,7 @@ class TaskStatusesController < ApplicationController
       if @task_status.save
         @task_statuses = TaskStatus.all
         
-        format.html { redirect_to @task_status, notice: 'Task status was successfully created.' }
+        format.html { redirect_to @task_status, notice: 'Statut enregistré avec succès.' }
         format.json { render :show, status: :created, location: @task_status }
         format.js
       else
@@ -52,7 +52,7 @@ class TaskStatusesController < ApplicationController
       if @task_status.update(task_status_params)
         @task_statuses = TaskStatus.all
 
-        format.html { redirect_to @task_status, notice: 'Task status was successfully updated.' }
+        format.html { redirect_to @task_status, notice: 'Statut modifié avec succès.' }
         format.json { render :show, status: :ok, location: @task_status }
         format.js
       else
@@ -72,7 +72,7 @@ class TaskStatusesController < ApplicationController
   def destroy
     @task_status.destroy
     respond_to do |format|
-      format.html { redirect_to task_statuses_url, notice: 'Task status was successfully destroyed.' }
+      format.html { redirect_to task_statuses_url, notice: 'Statut supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

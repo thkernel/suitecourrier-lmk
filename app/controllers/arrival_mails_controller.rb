@@ -86,7 +86,7 @@ class ArrivalMailsController < ApplicationController
         if arrival_mails.update_all(status: "Archived")
     
 
-          format.html { redirect_to arrival_mails_archives_path, notice: 'Arrival mail was successfully created.' }
+          format.html { redirect_to arrival_mails_archives_path, notice: 'Courrier archivé avec succès.' }
           format.json { render :show, status: :created, location: @arrival_mail }
           format.js
         end
@@ -154,7 +154,7 @@ class ArrivalMailsController < ApplicationController
         
         @arrival_mails = ArrivalMail.where.not(status: "Archived")
 
-        format.html { redirect_to arrival_mails_path, notice: 'Arrival mail was successfully created.' }
+        format.html { redirect_to arrival_mails_path, notice: 'Courrier enregistré avec succès.' }
         format.json { render :show, status: :created, location: @arrival_mail }
         format.js
       else
@@ -187,7 +187,7 @@ class ArrivalMailsController < ApplicationController
 
         @arrival_mails = ArrivalMail.where.not(status: "Archived")
 
-        format.html { redirect_to arrival_mails_path, notice: 'Arrival mail was successfully updated.' }
+        format.html { redirect_to arrival_mails_path, notice: 'Courrier modifié avec succès.' }
         format.json { render :show, status: :ok, location: @arrival_mail }
         format.js
       else
@@ -220,7 +220,7 @@ class ArrivalMailsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un courrier arrivée (ID: #{@arrival_mail.id})")
 
-      format.html { redirect_to arrival_mails_url, notice: 'Arrival mail was successfully destroyed.' }
+      format.html { redirect_to arrival_mails_url, notice: 'Courrier supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

@@ -50,7 +50,7 @@ class RegistersController < ApplicationController
 
         @registers = Register.all
 
-        format.html { redirect_to @register, notice: 'Register was successfully created.' }
+        format.html { redirect_to @register, notice: 'Registre enregistré avec succès.' }
         format.json { render :show, status: :created, location: @register }
         format.js
       else
@@ -81,7 +81,7 @@ class RegistersController < ApplicationController
 
         @registers = Register.all
 
-        format.html { redirect_to @register, notice: 'Register was successfully updated.' }
+        format.html { redirect_to @register, notice: 'Registre modifié avec succès.' }
         format.json { render :show, status: :ok, location: @register }
         format.js
       else
@@ -106,7 +106,7 @@ class RegistersController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un registre (ID: #{@ticket.id})")
 
-      format.html { redirect_to registers_url, notice: 'Register was successfully destroyed.' }
+      format.html { redirect_to registers_url, notice: 'Registre supprimé avec succès.' }
       format.json { head :no_content }
       format.js
     end

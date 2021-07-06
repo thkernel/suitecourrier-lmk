@@ -151,7 +151,7 @@ class ImputationsController < ApplicationController
           @imputations = resource.imputations
         end
         
-        format.html { redirect_to imputations_path(uid: flash[:rtype].constantize.find(@imputation.imputable_id).uid, rtype: flash[:rtype]), notice: 'Imputation was successfully created.' }
+        format.html { redirect_to imputations_path(uid: flash[:rtype].constantize.find(@imputation.imputable_id).uid, rtype: flash[:rtype]), notice: 'Imputation crée avec succès.' }
         format.json { render :show, status: :created, location: @imputation }
      
       else
@@ -184,7 +184,7 @@ class ImputationsController < ApplicationController
 
         #@imputations = @imputation.imputable_type.constantize.find(@imputation.imputable_id).imputations
 
-        format.html { redirect_to imputations_path(uid: @imputation.imputable_type.constantize.find(@imputation.imputable_id).uid, rtype: @imputation.imputable_type), notice: 'Imputation was successfully updated.' }
+        format.html { redirect_to imputations_path(uid: @imputation.imputable_type.constantize.find(@imputation.imputable_id).uid, rtype: @imputation.imputable_type), notice: 'Imputation modifée avec succès.' }
         format.json { render :show, status: :ok, location: @imputation }
         
       else
@@ -217,7 +217,7 @@ class ImputationsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer une imputation (ID: #{@imputation.id})")
 
-      format.html { redirect_to imputations_path(uid: @imputation.imputable_type.constantize.find(@imputation.imputable_id).uid, rtype: @imputation.imputable_type), notice: 'Imputation was successfully destroyed.' }
+      format.html { redirect_to imputations_path(uid: @imputation.imputable_type.constantize.find(@imputation.imputable_id).uid, rtype: @imputation.imputable_type), notice: 'Imputation supprimée avec succès.' }
       format.json { head :no_content }
     end
   end

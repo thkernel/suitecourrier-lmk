@@ -31,7 +31,7 @@ class TicketStatusesController < ApplicationController
     respond_to do |format|
       if @ticket_status.save
         @ticket_statuses = TicketStatus.all
-        format.html { redirect_to @ticket_status, notice: "Ticket status was successfully created." }
+        format.html { redirect_to @ticket_status, notice: "Statut enregistré avec succès." }
         format.json { render :show, status: :created, location: @ticket_status }
         format.js
       else
@@ -46,7 +46,7 @@ class TicketStatusesController < ApplicationController
     respond_to do |format|
       if @ticket_status.update(ticket_status_params)
         @ticket_statuses = TicketStatus.all
-        format.html { redirect_to @ticket_status, notice: "Ticket status was successfully updated." }
+        format.html { redirect_to @ticket_status, notice: "Statut modifié avec succès." }
         format.json { render :show, status: :ok, location: @ticket_status }
         format.js
       else
@@ -65,7 +65,7 @@ class TicketStatusesController < ApplicationController
   def destroy
     @ticket_status.destroy
     respond_to do |format|
-      format.html { redirect_to ticket_statuses_url, notice: "Ticket status was successfully destroyed." }
+      format.html { redirect_to ticket_statuses_url, notice: "Statut supprimé avec succès." }
       format.json { head :no_content }
     end
   end

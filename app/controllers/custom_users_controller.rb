@@ -43,8 +43,8 @@ class CustomUsersController < ApplicationController
 					@users = User.where.not(id: current_user.id)
 					record_activity("Créer un nouvel utilisateur (ID: #{@user.id})")
 
-					format.html { redirect_to all_users_path, notice: 'User was successfully created.' }
-					format.json { render :show, status: :created, location: @contributor }
+					format.html { redirect_to all_users_path, notice: "Compte d'utilisateur crée avec succès" }
+					format.json { render :show, status: :created, location: @user }
 					format.js
 		
 
@@ -107,7 +107,7 @@ class CustomUsersController < ApplicationController
 						@users = User.where.not(id: current_user.id)
 						record_activity("Désactiver le compte d'un utilisateur (ID: #{@user.id})")
 
-				format.html { redirect_to @user, notice: 'User was successfully updated.' }
+				format.html { redirect_to @user, notice: "Compte d'utilisateur désactiver avec succès." }
 				format.json { render :show, status: :ok, location: @user }
 				format.js
         
@@ -136,7 +136,7 @@ class CustomUsersController < ApplicationController
 						@users = User.where.not(id: current_user.id)
 						record_activity("Activer le compte d'un utilisateur (ID: #{@user.id})")
 
-				format.html { redirect_to @user, notice: 'User was successfully updated.' }
+				format.html { redirect_to @user, notice: "Compte d'utilisateur activé avec succè." }
 				format.json { render :show, status: :ok, location: @user }
 				format.js
       
@@ -167,7 +167,7 @@ class CustomUsersController < ApplicationController
         record_activity("Supprimer un utilisateur (ID: #{@user.id})")
 
 				respond_to do |format|
-					format.html { redirect_to all_users_path, notice: "L'utilisateur a été supprimer avec succès!" }
+					format.html { redirect_to all_users_path, notice: "Compte d'utilisateur a été supprimer avec succès!" }
 					format.json { head :no_content }
 					format.js
 			
@@ -194,7 +194,7 @@ class CustomUsersController < ApplicationController
 				@users = User.where.not(id: current_user.id)
         record_activity("Modifier un utilisateur (ID: #{@user.id})")
 
-				format.html { redirect_to all_users_path, notice: 'User was successfully updated.' }
+				format.html { redirect_to all_users_path, notice: "Compte d'utilisateur modifié avec succès." }
 				format.json { render :show, status: :ok, location: @user }
 				format.js
 			

@@ -33,14 +33,14 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :content, "Contenu" %>
-      <%= form.cktext_area :content, class: "form-control" %>
+      <%= form.label :content, "Contenu", class: "required" %>
+      <%= form.cktext_area :content, class: "form-control", required: true %>
     </div>
 
     <div class="row">
       <div class="form-group col-md-4">
-        <%= form.label :due_date, "Date d'écheance" %>
-        <%= form.date_field :due_date, class: "form-control" %>
+        <%= form.label :due_date, "Date d'écheance", class: "required" %>
+        <%= form.date_field :due_date, class: "form-control", required: true %>
       </div>
 
       <div class="form-group col-md-4">

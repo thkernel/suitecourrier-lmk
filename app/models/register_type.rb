@@ -16,4 +16,6 @@
 class RegisterType < ApplicationRecord
   belongs_to :user
   has_many :registers , dependent: :destroy
+  # Validations
+	validates :name, presence: true, uniqueness: true
 end

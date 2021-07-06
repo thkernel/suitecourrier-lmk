@@ -50,7 +50,7 @@ class PermissionsController < ApplicationController
     respond_to do |format|
       if @permission.save
         @permissions = Permission.all
-        format.html { redirect_to permissions_path, notice: 'permission was successfully created.' }
+        format.html { redirect_to permissions_path, notice: 'Permission enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @permission }
         format.js
       else
@@ -75,7 +75,7 @@ class PermissionsController < ApplicationController
     respond_to do |format|
       if @permission.update(permission_params)
         @permissions = Permission.all
-        format.html { redirect_to @permission, notice: 'permission was successfully updated.' }
+        format.html { redirect_to @permission, notice: 'Permission modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @permission }
         format.js
       else
@@ -96,7 +96,7 @@ class PermissionsController < ApplicationController
   def destroy
     @permission.destroy
     respond_to do |format|
-      format.html { redirect_to permissions_url, notice: 'permission was successfully destroyed.' }
+      format.html { redirect_to permissions_url, notice: 'Permission supprimée avec succès.' }
       format.json { head :no_content }
     end
   end

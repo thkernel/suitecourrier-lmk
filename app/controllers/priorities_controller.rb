@@ -35,7 +35,7 @@ class PrioritiesController < ApplicationController
       if @priority.save
         @priorities = Priority.all
 
-        format.html { redirect_to @priority, notice: 'Priority was successfully created.' }
+        format.html { redirect_to @priority, notice: 'Priorité enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @priority }
         format.js
       else
@@ -53,7 +53,7 @@ class PrioritiesController < ApplicationController
       if @priority.update(priority_params)
         @priorities = Priority.all
 
-        format.html { redirect_to @priority, notice: 'Priority was successfully updated.' }
+        format.html { redirect_to @priority, notice: 'Priorité modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @priority }
         format.js
       else
@@ -74,7 +74,7 @@ class PrioritiesController < ApplicationController
   def destroy
     @priority.destroy
     respond_to do |format|
-      format.html { redirect_to priorities_url, notice: 'Priority was successfully destroyed.' }
+      format.html { redirect_to priorities_url, notice: 'Priorité supprimée avec succès.' }
       format.json { head :no_content }
     end
   end

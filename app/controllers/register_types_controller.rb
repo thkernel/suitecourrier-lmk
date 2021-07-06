@@ -34,7 +34,7 @@ class RegisterTypesController < ApplicationController
       if @register_type.save
         @register_types = RegisterType.all
 
-        format.html { redirect_to @register_type, notice: 'Register type was successfully created.' }
+        format.html { redirect_to @register_type, notice: 'Type de registre enregistré avec succès.' }
         format.json { render :show, status: :created, location: @register_type }
         format.js
       else
@@ -52,7 +52,7 @@ class RegisterTypesController < ApplicationController
       if @register_type.update(register_type_params)
         @register_types = RegisterType.all
 
-        format.html { redirect_to @register_type, notice: 'Register type was successfully updated.' }
+        format.html { redirect_to @register_type, notice: 'Type de registre modifié avec succès.' }
         format.json { render :show, status: :ok, location: @register_type }
         format.js
       else
@@ -72,7 +72,7 @@ class RegisterTypesController < ApplicationController
   def destroy
     @register_type.destroy
     respond_to do |format|
-      format.html { redirect_to register_types_url, notice: 'Register type was successfully destroyed.' }
+      format.html { redirect_to register_types_url, notice: 'Type de registre supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

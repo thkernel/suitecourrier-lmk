@@ -38,7 +38,7 @@ class CorrespondentTypesController < ApplicationController
 
         @correspondent_types = CorrespondentType.all
 
-        format.html { redirect_to @correspondent_type, notice: 'Correspondent type was successfully created.' }
+        format.html { redirect_to @correspondent_type, notice: 'Type de correspondant enregistré avec succès.' }
         format.json { render :show, status: :created, location: @correspondent_type }
         format.js
       else
@@ -58,7 +58,7 @@ class CorrespondentTypesController < ApplicationController
 
         @correspondent_types = CorrespondentType.all
 
-        format.html { redirect_to @correspondent_type, notice: 'Correspondent type was successfully updated.' }
+        format.html { redirect_to @correspondent_type, notice: 'Type de correspondant modifié avec succès.' }
         format.json { render :show, status: :ok, location: @correspondent_type }
         format.js
       else
@@ -82,7 +82,7 @@ class CorrespondentTypesController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un type de correspondant (ID: #{@correspondent_type.id})")
 
-      format.html { redirect_to correspondent_types_url, notice: 'Correspondent type was successfully destroyed.' }
+      format.html { redirect_to correspondent_types_url, notice: 'Type de correspondant supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

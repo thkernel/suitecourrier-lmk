@@ -68,7 +68,7 @@ class DepartureMailsController < ApplicationController
       if @departure_mail.update_column(:status, "Archived")
   
 
-        format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully archived.' }
+        format.html { redirect_to departure_mails_path, notice: 'Courrier archivé avec succès.' }
         format.json { render :show, status: :created, location: @departure_mail }
         format.js
       else
@@ -163,7 +163,7 @@ class DepartureMailsController < ApplicationController
 
         #UploadFileService.upload(files, @departure_mail,  parent_id: Folder.find(@departure_mail.folder_id).google_drive_file_id)
 
-        format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully created.' }
+        format.html { redirect_to departure_mails_path, notice: 'Courrier enregistré avec succès.' }
         format.json { render :show, status: :created, location: @departure_mail }
       else
 
@@ -186,7 +186,7 @@ class DepartureMailsController < ApplicationController
       if @departure_mail.update(departure_mail_params)
         record_activity("Modifier un courrier départ (ID: #{@departure_mail.id})")
 
-        format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully updated.' }
+        format.html { redirect_to departure_mails_path, notice: 'Courrier modifié avec succès.' }
         format.json { render :show, status: :ok, location: @departure_mail }
       else
         @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
@@ -214,7 +214,7 @@ class DepartureMailsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un courrier départ (ID: #{@departure_mail.id})")
 
-      format.html { redirect_to departure_mails_path, notice: 'Departure mail was successfully destroyed.' }
+      format.html { redirect_to departure_mails_path, notice: 'Courrier supprimé avec succès.' }
       format.json { head :no_content }
     end
   end
@@ -231,6 +231,6 @@ class DepartureMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def departure_mail_params
-      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :mail_type_id, :correspondent_id, :object, :description, :folder_id, files: [])
+      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id, files: [])
     end
 end

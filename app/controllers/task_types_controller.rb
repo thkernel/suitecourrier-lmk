@@ -34,7 +34,7 @@ class TaskTypesController < ApplicationController
     respond_to do |format|
       if @task_type.save
         @task_types = TaskType.all
-        format.html { redirect_to @task_type, notice: 'Task type was successfully created.' }
+        format.html { redirect_to @task_type, notice: 'Type de tâche enregistré avec succès.' }
         format.json { render :show, status: :created, location: @task_type }
         format.js
       else
@@ -52,7 +52,7 @@ class TaskTypesController < ApplicationController
       if @task_type.update(task_type_params)
         @task_types = TaskType.all
         
-        format.html { redirect_to @task_type, notice: 'Task type was successfully updated.' }
+        format.html { redirect_to @task_type, notice: 'Type de tâche modifié avec succès.' }
         format.json { render :show, status: :ok, location: @task_type }
         format.js
       else
@@ -72,7 +72,7 @@ class TaskTypesController < ApplicationController
   def destroy
     @task_type.destroy
     respond_to do |format|
-      format.html { redirect_to task_types_url, notice: 'Task type was successfully destroyed.' }
+      format.html { redirect_to task_types_url, notice: 'Type tâche supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

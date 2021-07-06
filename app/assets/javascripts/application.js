@@ -64,6 +64,7 @@
 //= require arrival_mails
 //= require imputations
 //= require departure_mails
+//= require documents
 //= require custom_users
 
 
@@ -195,3 +196,24 @@ function ajaxFilterByID(source, route, verb){
 };
 
 
+$(document).on('turbolinks:load', function(){
+
+  $('#document_tag_list').select2({
+      tags: true,
+    
+      tokenSeparators: [',', ' '],
+      createTag: function (params) {
+          var term = $.trim(params.term);
+      
+          if (term === '') {
+            return null;
+          }
+      
+          return {
+            id: term,
+            text: term,
+            newTag: true // add additional parameters
+          }
+        }
+  });
+});

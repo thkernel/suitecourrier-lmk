@@ -79,7 +79,7 @@ class DocumentsController < ApplicationController
         files = params[:document][:files]
         #UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
 
-        format.html { redirect_to documents_path, notice: 'Document was successfully created.' }
+        format.html { redirect_to documents_path, notice: 'Document enregistré avec succès.' }
         format.json { render :show, status: :created, location: @document }
       else
         @folders = Folder.where.not(parent_id: nil)
@@ -101,7 +101,7 @@ class DocumentsController < ApplicationController
        # UploadFileService.upload(files, @document,  parent_id: Folder.find(@document.folder_id).google_drive_file_id)
 
 
-        format.html { redirect_to documents_path, notice: 'Document was successfully updated.' }
+        format.html { redirect_to documents_path, notice: 'Document modifié avec succès.' }
         format.json { render :show, status: :ok, location: @document }
       else
 
@@ -122,7 +122,7 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un document (ID: #{@document.id})")
 
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to documents_url, notice: 'Document supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

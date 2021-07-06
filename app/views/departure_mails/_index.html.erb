@@ -4,7 +4,7 @@
           <td><%= departure_mail.internal_reference %></td>
 
         <td><%= departure_mail.departure_date.strftime("%d/%m/%Y") %></td>
-        <td><%= departure_mail.mail_type.name %></td>
+        <td><%= departure_mail.nature.name %></td>
         <td><%= correspondent(departure_mail.correspondent_id).organization_name %></td>
         <td><%= departure_mail.object %></td>
 

@@ -40,7 +40,7 @@ class NaturesController < ApplicationController
   # POST /natures
   # POST /natures.json
   def create
-    @nature = current_user.natures.build(natures_params)
+    @nature = current_user.natures.build(nature_params)
 
     respond_to do |format|
       if @nature.save
@@ -48,7 +48,7 @@ class NaturesController < ApplicationController
 
         @natures = Nature.all
 
-        format.html { redirect_to @nature, notice: 'Nature was successfully created.' }
+        format.html { redirect_to @nature, notice: 'Nature crée avec succès.' }
         format.json { render :show, status: :created, location: @nature }
         format.js
       else
@@ -68,7 +68,7 @@ class NaturesController < ApplicationController
 
         @natures = Nature.all
 
-        format.html { redirect_to @nature, notice: 'Nature was successfully updated.' }
+        format.html { redirect_to @nature, notice: 'Nature modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @nature }
         format.js
       else
@@ -94,7 +94,7 @@ class NaturesController < ApplicationController
       @natures = Nature.all
       record_activity("Supprimer un type de courrier (ID: #{@nature.id})")
 
-      format.html { redirect_to nature_url, notice: 'Nature was successfully destroyed.' }
+      format.html { redirect_to nature_url, notice: 'Nature supprimée avec succès.' }
       format.json { head :no_content }
       format.js
     end

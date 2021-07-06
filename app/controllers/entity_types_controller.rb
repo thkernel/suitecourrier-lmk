@@ -33,7 +33,7 @@ class EntityTypesController < ApplicationController
     respond_to do |format|
       if @entity_type.save
         @entity_types = EntityType.all
-        format.html { redirect_to @entity_type, notice: 'Entity type was successfully created.' }
+        format.html { redirect_to @entity_type, notice: 'Type entité enregistré avec succès.' }
         format.json { render :show, status: :created, location: @entity_type }
         format.js
       else
@@ -50,7 +50,7 @@ class EntityTypesController < ApplicationController
     respond_to do |format|
       if @entity_type.update(entity_type_params)
         @entity_types = EntityType.all
-        format.html { redirect_to @entity_type, notice: 'Entity type was successfully updated.' }
+        format.html { redirect_to @entity_type, notice: 'Type entité modifié avec succès.' }
         format.json { render :show, status: :ok, location: @entity_type }
         format.js
       else
@@ -72,7 +72,7 @@ class EntityTypesController < ApplicationController
   def destroy
     @entity_type.destroy
     respond_to do |format|
-      format.html { redirect_to entity_types_url, notice: 'Entity type was successfully destroyed.' }
+      format.html { redirect_to entity_types_url, notice: 'Type entité supprimé avec succès.' }
       format.json { head :no_content }
     end
   end

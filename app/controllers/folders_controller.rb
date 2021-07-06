@@ -147,7 +147,7 @@ end
 
 
 
-          format.html { redirect_to folders_path, notice: 'Folder was successfully created.' }
+          format.html { redirect_to folders_path, notice: 'Dossier crée avec succès.' }
           format.json { render :show, status: :created, location: @folder }
           format.js
         end
@@ -171,7 +171,7 @@ end
         record_activity("Modifier un dossier (ID: #{@folder.id})")
 
         
-          format.html { redirect_to folders_path, notice: 'Folder was successfully destroyed.' }
+          format.html { redirect_to folders_path, notice: 'Dossier modifié avec succès.' }
           format.json { head :no_content }
         
       end
@@ -205,7 +205,7 @@ end
       
 
       
-        format.html { redirect_to folders_path, notice: 'Folder was successfully destroyed.' }
+        format.html { redirect_to folders_path, notice: 'Dossier supprimé avec succès.' }
         format.json { head :no_content }
       
     end

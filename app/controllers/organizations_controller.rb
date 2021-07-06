@@ -43,7 +43,7 @@ class OrganizationsController < ApplicationController
       if @organization.save
         record_activity("Créer une organisation (ID: #{@organization.id})")
 
-        format.html { redirect_to show_organization_path(@organization.uid), notice: 'Organization was successfully created.' }
+        format.html { redirect_to show_organization_path(@organization.uid), notice: 'Organisation crée avec succès.' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class OrganizationsController < ApplicationController
       if @organization.update(organization_params)
         record_activity("Modifier une organisation (ID: #{@organization.id})")
 
-        format.html { redirect_to show_organization_path(@organization.uid), notice: 'Organization was successfully updated.' }
+        format.html { redirect_to show_organization_path(@organization.uid), notice: 'Organisation modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer une organisation (ID: #{@organization.id})")
 
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      format.html { redirect_to organizations_url, notice: 'Organisation supprimée avec succès.' }
       format.json { head :no_content }
     end
   end

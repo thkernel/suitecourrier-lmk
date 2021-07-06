@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
+      
       <th>Status</th>
       <th>User</th>
       <th colspan="3"></th>
@@ -17,7 +17,7 @@
     <% @organizations.each do |organization| %>
       <tr>
         <td><%= organization.name %></td>
-        <td><%= organization.description %></td>
+        
         <td><%= organization.status %></td>
         <td><%= organization.user %></td>
         <td><%= link_to 'Show', organization %></td>

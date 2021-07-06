@@ -18,4 +18,7 @@ class CorrespondentType < ApplicationRecord
   before_save :generate_random_number_uid
 
   belongs_to :user
+
+  # Validations
+	validates :name, presence: true, uniqueness: true
 end

@@ -52,10 +52,8 @@ module ApplicationHelper
 
 	def current_organization
 	
-		organization = current_user.organization
-		if organization.present?
-			organization
-		end
+		organization = Organization.take
+		
 	end
 
 	def get_user(user_id)
@@ -178,7 +176,7 @@ module ApplicationHelper
 	end
 
 	def smtp_config?
-		config = Config.take
+		config = SmtpServerSetting.take
 
 		if config.present? && config.smtp_user_name.present? &&  config.smtp_user_password.present? && 
 			config.smtp_address.present? && config.smtp_port

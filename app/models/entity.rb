@@ -30,4 +30,7 @@ class Entity < ApplicationRecord
   #This is option for the self relationship.
   has_many :entities, class_name: "Entity", foreign_key: "parent_entity_id"
 
+   # Validations
+	validates :name, presence: true, uniqueness: true
+
 end

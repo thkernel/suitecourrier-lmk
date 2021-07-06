@@ -16,4 +16,7 @@ class EntityType < ApplicationRecord
   belongs_to :user
 
   has_many :entities, dependent: :destroy
+
+   # Validations
+	validates :name, presence: true, uniqueness: true
 end

@@ -48,7 +48,7 @@ class SupportsController < ApplicationController
 
         @supports = Support.all
 
-        format.html { redirect_to @support, notice: 'Support was successfully created.' }
+        format.html { redirect_to @support, notice: 'Support enregistré avec succès.' }
         format.json { render :show, status: :created, location: @support }
         format.js
       else
@@ -68,7 +68,7 @@ class SupportsController < ApplicationController
 
         @supports = Support.all
 
-        format.html { redirect_to @support, notice: 'Support was successfully updated.' }
+        format.html { redirect_to @support, notice: 'Support modifié avec succès.' }
         format.json { render :show, status: :ok, location: @support }
         format.js
       else
@@ -93,7 +93,7 @@ class SupportsController < ApplicationController
     respond_to do |format|
       record_activity("Supprimer un support (ID: #{@support.id})")
 
-      format.html { redirect_to supports_url, notice: 'Support was successfully destroyed.' }
+      format.html { redirect_to supports_url, notice: 'Support supprimé avec succès.' }
       format.json { head :no_content }
       format.js
     end
