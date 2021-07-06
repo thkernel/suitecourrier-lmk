@@ -1,7 +1,14 @@
 <!-- Side Navbar -->
 <!-- ########## START: LEFT PANEL ########## -->
 <div class="br-logo">
-	<a href=""><span></span><%= APPLICATION_NAME %><span></span></a>
+	<div class="sidebar-logo">
+		<% if current_organization.present? && current_organization.logo.attached? %>
+			<%= image_tag current_organization.logo %>
+
+		<% else %>
+			<%= image_tag "logo/logo.png", alt: "Logo" %> 
+		<% end %>
+	</div>
 </div>
 <div class="br-sideleft sideleft-scrollbar">
       <label class="sidebar-label pd-x-10 mg-t-20 op-3">Menu</label>
