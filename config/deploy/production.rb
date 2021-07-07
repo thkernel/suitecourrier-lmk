@@ -11,7 +11,7 @@ set :deploy_to, "/home/ubuntu/apps/rails/suitecourrier/suitecourrier.prod"   # t
 set :rails_env, "production"
 
 #server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
-server "suitecourrier.ml", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
+server "suitecourrier.com", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "master"
 set :port, 3012
