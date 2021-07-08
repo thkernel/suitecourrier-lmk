@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
 					:user_name => smtp_config.user_name,
 					:password => smtp_config.user_password,
           :enable_starttls_auto => smtp_config.enable_starttls_auto,
-          :ssl => smtp_config.smtp_ssl
+          :ssl => smtp_config.smtp_ssl,
+          :openssl_verify_mode => 'none'
 				})
 				
 			end
