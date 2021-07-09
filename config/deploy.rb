@@ -4,7 +4,7 @@ lock "~> 3.16.0"
 set :stages, %w(production staging)
 set :default_stage, "production"
 
-set :application, "gedwin"
+set :application, "suitecourrier"
 set :repo_url, "https://github.com/thkernel/suitecourrier.git"
 #set :ssh_options, { auth_methods: %w(password), password: "AMOSXZIBITDE88" }
 
