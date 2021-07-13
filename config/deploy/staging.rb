@@ -11,7 +11,7 @@ set :deploy_to, "/home/ubuntu/apps/rails/suitecourrier/suitecourrier.staging"   
 set :rails_env, "staging"
 
 #server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
-server "3.131.64.130", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
+server "suitecourrier.com", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "staging"
 set :port, 3040
