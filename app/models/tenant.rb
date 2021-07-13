@@ -31,20 +31,23 @@ class Tenant < ApplicationRecord
 
 	# Create administrator account onto db
 	def create_administrator(tenant)
-		random_password = ""
+
+        #Generate password string
+		random_password = SecureRandom.alphanumeric(10)
+        
 		#Switch to the current tenant
 		Apartment::Tenant.switch(tenant) do
             # Get all enable record in bank_commission_rate_tracker table.
-            user = User.create({
+            admin_user = User.create({
             	email: self.email,
             	password: random_password,
             	password_confirmation: random_password,
-            	role_id: Role.find_by(:name: "administrator").id
+            	role_id: Role.find_by(name: "administrator").id
             })
 
-            if user.present?
+            if admin_user.present?
 	            profile = Profile.new
-	            profile.user_id = user.id
+	            profile.user_id = admin_user.id
 	            profile.save
             end
         end
