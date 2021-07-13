@@ -1,23 +1,53 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @tenant.name %>
+  <strong>Organization type:</strong>
+  <%= @tenant.organization_type %>
 </p>
 
 <p>
-  <strong>Domain:</strong>
-  <%= @tenant.domain %>
+  <strong>Organization name:</strong>
+  <%= @tenant.organization_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @tenant.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @tenant.phone %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tenant.city %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @tenant.phone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @tenant.email %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @tenant.website %>
+</p>
+
+<p>
+  <strong>Subdomain:</strong>
+  <%= @tenant.subdomain %>
 </p>
 
 <p>
   <strong>Status:</strong>
   <%= @tenant.status %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @tenant.user %>
 </p>
 
 <%= link_to 'Edit', edit_tenant_path(@tenant) %> |

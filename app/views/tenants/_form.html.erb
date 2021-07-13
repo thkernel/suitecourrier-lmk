@@ -1,22 +1,67 @@
-<%= form_with(model: tenant, local: false) do |form| %>
-   <div class="modal-body">
-    <ul class="errors">
-    </ul>
+<%= form_with(model: tenant, local: true) do |form| %>
+  <% if tenant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tenant.errors.count, "error") %> prohibited this tenant from being saved:</h2>
 
-  <div class="form-group">
-    <%= form.label t(:name) %>
-    <%= form.text_field :name, class: "form-control", placeholder: "#{t(:name)}", id: :tenant_name, required: true %>
+      <ul>
+      <% tenant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :organization_type_id %>
+    <%= form.text_field :organization_type_id %>
   </div>
 
-  <div class="form-group">
-    <%= form.label t(:domain) %>
-    <%= form.text_field :domain, class: "form-control", placeholder: "#{t(:domain)}", id: :tenant_domain, required: true %>
+  <div class="field">
+    <%= form.label :organization_name %>
+    <%= form.text_field :organization_name %>
   </div>
 
- </div><!-- modal body -->
-  <div class="modal-footer">
-    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
-    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
   </div>
 
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subdomain %>
+    <%= form.text_field :subdomain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>

@@ -70,6 +70,7 @@ class User < ApplicationRecord
 	has_many :entities, dependent: :destroy
 	has_many :priorities, dependent: :destroy
 	has_many :register_types, dependent: :destroy
+	has_many :tenants, dependent: :destroy
 
 
 

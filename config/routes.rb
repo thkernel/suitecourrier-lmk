@@ -1,6 +1,15 @@
+# For subdmain.
+class SubdomainConstraint   
+  def self.matches?(request)     
+    request.subdomain.present? && request.subdomain != 'www'   
+  end 
+end 
+
+
 Rails.application.routes.draw do
 
 
+  resources :tenants
   get 'quote-request' => 'quote_requests#new', :as => "new_quote_request"
   post 'quote-request' => 'quote_requests#create', :as => "create_quote_request"
 

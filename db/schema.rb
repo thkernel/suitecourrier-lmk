@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_134039) do
+ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -638,6 +638,23 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "tenants", force: :cascade do |t|
+    t.bigint "organization_type_id"
+    t.string "organization_name"
+    t.string "address"
+    t.string "phone"
+    t.string "city"
+    t.string "email"
+    t.string "website"
+    t.string "subdomain"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_type_id"], name: "index_tenants_on_organization_type_id"
+    t.index ["user_id"], name: "index_tenants_on_user_id"
+  end
+
   create_table "ticket_statuses", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -790,6 +807,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_134039) do
   add_foreign_key "task_types", "users"
   add_foreign_key "tasks", "task_types"
   add_foreign_key "tasks", "users"
+  add_foreign_key "tenants", "organization_types"
+  add_foreign_key "tenants", "users"
   add_foreign_key "ticket_statuses", "users"
   add_foreign_key "ticket_types", "users"
   add_foreign_key "ticket_users", "tickets"

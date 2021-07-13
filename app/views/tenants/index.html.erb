@@ -1,40 +1,45 @@
-<div class="br-pageheader">
-      <nav class="breadcrumb pd-0 mg-0 tx-12">
-        
-        <span class="breadcrumb-item active"><h5>Clients</h5></span>
-      </nav>
-    </div><!-- br-pageheader -->
-<div class="br-pagebody">
-  <div class="br-section-wrapper">
-    <div class="headers mg-b-20">
-        <div class="left-content">
-        </div>
+<p id="notice"><%= notice %></p>
 
-        <div class="text-right">
-            <%= link_to raw('<i class="fa fa-plus" aria-hidden="true"></i> Ajouter'), new_tenant_path, class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", remote: true %>
+<h1>Tenants</h1>
 
-        </div>
-
-    </div>
-
-
-<table id="datatable1" class="table display responsive nowrap">
-
+<table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Domain</th>
+      <th>Organization type</th>
+      <th>Organization name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Website</th>
+      <th>Subdomain</th>
       <th>Status</th>
-     
-      <th>Actions</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody class="tenants-index">
-    <%= render "index" %>
+  <tbody>
+    <% @tenants.each do |tenant| %>
+      <tr>
+        <td><%= tenant.organization_type %></td>
+        <td><%= tenant.organization_name %></td>
+        <td><%= tenant.address %></td>
+        <td><%= tenant.phone %></td>
+        <td><%= tenant.city %></td>
+        <td><%= tenant.phone %></td>
+        <td><%= tenant.email %></td>
+        <td><%= tenant.website %></td>
+        <td><%= tenant.subdomain %></td>
+        <td><%= tenant.status %></td>
+        <td><%= link_to 'Show', tenant %></td>
+        <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
+        <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
-</div>
-</div>
-<div id="tenant-modal" class="c-modal modal fade" data-backdrop="static"></div>
+<br>
+
+<%= link_to 'New Tenant', new_tenant_path %>

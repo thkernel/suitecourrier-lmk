@@ -1,21 +1,12 @@
 class TenantsController < ApplicationController
-  # Include shared utils.
-  include SharedUtils::Folder
+  before_action :set_tenant, only: %i[ show edit update destroy ]
 
-
-  before_action :authenticate_user!
-  layout "dashboard"
-  
-  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
-
-  # GET /tenants
-  # GET /tenants.json
+  # GET /tenants or /tenants.json
   def index
     @tenants = Tenant.all
   end
 
-  # GET /tenants/1
-  # GET /tenants/1.json
+  # GET /tenants/1 or /tenants/1.json
   def show
   end
 
@@ -28,64 +19,40 @@ class TenantsController < ApplicationController
   def edit
   end
 
-  # POST /tenants
-  # POST /tenants.json
+  # POST /tenants or /tenants.json
   def create
-    @tenant = current_user.tenants.build(tenant_params)
+    @tenant = Tenant.new(tenant_params)
 
     respond_to do |format|
       if @tenant.save
-        @tenants = Tenant.all
-
-
-        create_folder( OutinStorage.configuration.path + @tenant.domain.downcase)
-
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
+        format.html { redirect_to @tenant, notice: "Tenant was successfully created." }
         format.json { render :show, status: :created, location: @tenant }
-        format.js
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
 
-  # PATCH/PUT /tenants/1
-  # PATCH/PUT /tenants/1.json
+  # PATCH/PUT /tenants/1 or /tenants/1.json
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
-        @tenants = Tenant.all
-
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
+        format.html { redirect_to @tenant, notice: "Tenant was successfully updated." }
         format.json { render :show, status: :ok, location: @tenant }
-        format.js
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
 
-
-  def delete
-    @tenant = Tenant.find(params[:tenant_id])
-  end
-
-
-  # DELETE /tenants/1
-  # DELETE /tenants/1.json
+  # DELETE /tenants/1 or /tenants/1.json
   def destroy
     @tenant.destroy
-    Apartment::Tenant.drop(@tenant.domain.downcase) 
-    @tenants = Tenant.all
-
     respond_to do |format|
-      format.html { redirect_to tenants_url, notice: 'Tenant was successfully destroyed.' }
+      format.html { redirect_to tenants_url, notice: "Tenant was successfully destroyed." }
       format.json { head :no_content }
-      
     end
   end
 
@@ -95,8 +62,8 @@ class TenantsController < ApplicationController
       @tenant = Tenant.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a list of trusted parameters through.
     def tenant_params
-      params.require(:tenant).permit(:name, :domain)
+      params.require(:tenant).permit(:organization_type_id, :organization_name, :address, :phone, :city, :phone, :email, :website, :subdomain, :status)
     end
 end
