@@ -25,7 +25,7 @@
                           <td class="valign-middle"><%= imputation_item.title %></td>
                           <td class="valign-middle"><%= imputation_item.priority %></td>
                           <td class="valign-middle"><%= imputation_item.due_date.strftime("%d/%m/%Y") %></td>
-                          <td class="valign-middle"><%= imputation_item.status %></td>
+                          <td class="valign-middle"><%= imputation_item.task_status.name %></td>
 
                         </tr>
                       <% end %>
@@ -66,8 +66,8 @@
                         <td class="valign-middle"><%= ticket.created_at.strftime("%d/%m/%Y") %></td>
                         <td class="valign-middle"><%= ticket.title%></td>
                         <td class="valign-middle"><%= ticket.due_date.strftime("%d/%m/%Y") %></td>
-                        <td class="valign-middle"><%= ticket.priority  %></td>
-                        <td class="valign-middle"><%= ticket.status %></td>
+                        <td class="valign-middle"><%= ticket.ticket_priority.name  %></td>
+                        <td class="valign-middle"><%= ticket.ticket_status.name %></td>
                         
                       </tr>
                     <% end %>
@@ -153,7 +153,7 @@
                       <td class="valign-middle"><%= imputation_item.title %></td>
                       <td class="valign-middle"><%= imputation_item.priority %></td>
                       <td class="valign-middle"><%= imputation_item.due_date.strftime("%d/%m/%Y") %></td>
-                      <td class="valign-middle"><%= imputation_item.status %></td>
+                      <td class="valign-middle"><%= imputation_item.task_status.name %></td>
 
                     </tr>
                   <% end %>

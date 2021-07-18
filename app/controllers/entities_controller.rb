@@ -90,6 +90,6 @@ class EntitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def entity_params
-      params.require(:entity).permit(:parent_entity_id, :entity_type_id, :name, :short_name, :phone, :email, :address, :description)
+      params.require(:entity).permit(:parent_entity_id, :entity_type_id, :name,  :phone, :email, :address, :description)
     end
 end

@@ -10,7 +10,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :phone
       t.text :description
       t.string :status
-      t.references :entity_type, foreign_key: true
+      #t.references :entity_type, foreign_key: true
       t.references :entity, foreign_key: true
       t.references :user, foreign_key: true
 

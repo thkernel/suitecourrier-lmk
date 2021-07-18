@@ -95,7 +95,10 @@ fr:
   read: "Voir"
   update: "Modifier"
   destroy: "Supprimer"
-  
+  arrival_mail: "Courrier arrivé"
+  departure_mail: "Courrier départ"
+  document: "Document"
+  ticket: "Ticket"
   error_404_title: "Oops! page non trouvée."
   error_404_body: "La page que vous recherchez a peut-être été supprimée ou son nom a été modifié ou est temporairement indisponible."
   error_422_title: "Requête non traitable."

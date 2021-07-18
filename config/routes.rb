@@ -9,7 +9,22 @@ end
 Rails.application.routes.draw do
 
 
-  resources :tenants
+  resources :task_priorities
+  resources :mail_categories do   
+    get "delete"
+  end
+  resources :mail_types do   
+    get "delete"
+  end
+  resources :mail_priorities do   
+    get "delete"
+  end
+  resources :mail_statuses do   
+    get "delete"
+  end
+  resources :tenants do   
+    get "delete"
+  end
   get 'quote-request' => 'quote_requests#new', :as => "new_quote_request"
   post 'quote-request' => 'quote_requests#create', :as => "create_quote_request"
 
@@ -43,7 +58,10 @@ Rails.application.routes.draw do
   end
   resources :general_settings
   resources :storage_areas
+
   resources :smtp_server_settings
+
+  get "/settings/smtp-server" => "smtp_server_settings#smtp_settings", as: :smtp_settings
   resources :priorities do   
     get "delete"
   end
@@ -151,7 +169,7 @@ Rails.application.routes.draw do
   get "departure-mail/show/:uid" => "departure_mails#show", as: :show_departure_mail
   get "document/show/:uid" => "documents#show", as: :show_document
   get "request/show/:uid" => "requests#show", as: :show_request
-  get "/settings/smtp" => "smtp_configurations#settings", as: :smtp_settings
+  #get "/settings/smtp" => "smtp_configurations#settings", as: :smtp_settings
   get "setup/organization" => "organizations#setup", as: :setup_organization
 
  
@@ -190,6 +208,8 @@ Rails.application.routes.draw do
     
     collection do    
       get "get_reference" => "departure_mails#get_reference"
+      get "get_initiators" => "departure_mails#get_initiators"
+      get "get_processing_recipients" => "departure_mails#get_processing_recipients"
     end
   end
 
@@ -209,6 +229,7 @@ Rails.application.routes.draw do
       get "get_folders" => "arrival_mails#get_folders"
       get "get_supports" => "arrival_mails#get_supports"
       get "get_correspondents" => "arrival_mails#get_correspondents"
+      get "get_profiles" => "arrival_mails#get_profiles"
     end
   end
 

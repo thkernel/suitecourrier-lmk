@@ -1,0 +1,11 @@
+<% @notifications.each do |notification| %>
+      <tr>
+      	<td><%= notification.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= notification.notificable_type %></td>
+       
+        <td><%= notification.content %></td>
+  
+       
+        
+      </tr>
+    <% end %>

@@ -25,7 +25,7 @@ class ImputationItem < ApplicationRecord
   belongs_to :imputation
   belongs_to :task_status
   belongs_to :task_type
-  belongs_to :priority
+  belongs_to :task_priority
   
 
   scope :completed, ->{where("task_status_id = ?", TaskStatus.find_by(name: "Terminée").id)}

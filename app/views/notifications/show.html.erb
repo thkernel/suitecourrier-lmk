@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
 
-<p>
+
+
+<div class="br-pageheader mg-30 ">
+  <nav class="breadcrumb pd-0 mg-0 tx-12">
+    <span class="breadcrumb-item active"><h5>Notification </h5></span>
+  </nav>
+</div><!-- br-pageheader -->
+<div class="br-pagebody mg-b-30">
+  <div class="br-section-wrapper">
+    
+
+
+    <p>
+  <strong>ID:</strong>
+  <%= @notification.id %>
+</p>
+
+   <p>
   <strong>Type:</strong>
-  <%= @notification.type %>
+  <%= @notification.notificable_type %>
 </p>
 
-<p>
-  <strong>Recipient:</strong>
-  <%= @notification.recipient %>
-</p>
+
 
 <p>
-  <strong>Content:</strong>
+  <strong>Description:</strong>
   <%= @notification.content %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @notification.status %>
-</p>
 
-<p>
-  <strong>Read at:</strong>
-  <%= @notification.read_at %>
-</p>
 
-<%= link_to 'Edit', edit_notification_path(@notification) %> |
-<%= link_to 'Back', notifications_path %>
+
+  </div>
+</div>
+
+

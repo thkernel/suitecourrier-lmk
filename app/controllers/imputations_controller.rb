@@ -62,7 +62,7 @@ class ImputationsController < ApplicationController
     
     @entities = Entity.all
     @task_types = TaskType.all
-    @priorities = Priority.all
+    @task_priorities = TaskPriority.all
     @task_statuses = TaskStatus.all
    
    
@@ -88,7 +88,7 @@ class ImputationsController < ApplicationController
    
   
     @task_types = TaskType.all
-    @priorities = Priority.all
+    @task_priorities = TaskPriority.all
     @task_statuses = TaskStatus.all
 
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
@@ -126,7 +126,7 @@ class ImputationsController < ApplicationController
     @imputation.imputable = resource
     #ImputationsService.imputable(resource)
     
-    notification_content = "Un courrier ou demande vous a été imputé."
+    notification_content = "Un #{t(snake_case(@imputation.imputable_type))} vous a été imputé. Réf: #{@imputation.imputable_id}"
    
 
     respond_to do |format|
@@ -158,7 +158,7 @@ class ImputationsController < ApplicationController
         @entities = Entity.all
 
         @task_types = TaskType.all
-        @priorities = Priority.all
+        @task_priorities = TaskPriority.all
         @task_statuses = TaskStatus.all
         
         role_ids = Role.where("name NOT IN (?)", ["superuser", "demo", "root"]).map {|role| role.id}
@@ -191,7 +191,7 @@ class ImputationsController < ApplicationController
         @entities = Entity.all
 
         @task_types = TaskType.all
-        @priorities = Priority.all
+        @task_priorities = TaskPriority.all
         @task_statuses = TaskStatus.all
         
         role_ids = Role.where("name NOT IN (?)", ["superuser", "demo", "root"]).map {|role| role.id}
@@ -257,7 +257,7 @@ class ImputationsController < ApplicationController
       if params[:imputation].nil? || params[:imputation].empty?
        false
       else
-        params.require(:imputation).permit(:entity_id,  :recipient_id,  imputation_items_attributes: [:id, :due_date,  :description, :priority_id, :task_status_id, :task_type_id, :_destroy])
+        params.require(:imputation).permit(:entity_id,  :recipient_id,  imputation_items_attributes: [:id, :due_date,  :description, :task_priority_id, :task_status_id, :task_type_id, :_destroy])
      end
     end
 

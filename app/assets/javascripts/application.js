@@ -70,15 +70,7 @@
 
 $(document).on('turbolinks:load', function() {
  var datatable = {
-        
-    dom: 'Bfrtip',
-    buttons: [
-      { extend: 'copyHtml5', footer: true },
-      { extend: 'csvHtml5', footer: true },
-      { extend: 'excelHtml5', footer: true },
-
-      { extend: 'pdfHtml5', footer: true }
-    ],
+      
     "searching": true,
     "ordering": true,
     language: {

@@ -24,7 +24,11 @@
 
               <li class="detail-address">
                 <strong>Registre: </strong> 
-                <span><%= register(@arrival_mail.register_id).name %></span>
+                <span><%= @arrival_mail.register.name %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Nature: </strong> 
+                <span><%= @arrival_mail.nature.name %></span>
               </li>
               <li class="detail-city">
                 <strong>Type de courrier: </strong> 
@@ -35,6 +39,10 @@
                 <span><%= @arrival_mail.support.name %></span>
               </li>
               <li class="detail-city">
+                <strong>Catégorie: </strong> 
+                <span><%= @arrival_mail.mail_category.name %></span>
+              </li>
+              <li class="detail-city">
                 <strong>Lié à un courrier?: </strong> 
                 <span><%= @arrival_mail.linked_to_mail %></span>
               </li>
@@ -42,13 +50,18 @@
                 <strong>Réf. courrier lié: </strong> 
                 <span><%= @arrival_mail.reference_linked_mail %></span>
               </li>
+
               <li class="detail-city">
-                <strong>Date départ: </strong> 
-                <span><%= @arrival_mail.departure_date %></span>
+                <strong>Date du courrier: </strong> 
+                <span><%= @arrival_mail.departure_date.strftime("%d/%m/%Y") %></span>
               </li>
               <li class="detail-city">
                 <strong>Date réception: </strong> 
-                <span><%= @arrival_mail.receipt_date %></span>
+                <span><%= @arrival_mail.receipt_date.strftime("%d/%m/%Y") %></span>
+              </li>
+              <li class="detail-city">
+                <strong>Date enregistrement: </strong> 
+                <span><%= @arrival_mail.created_at.strftime("%d/%m/%Y") %></span>
               </li>
               <li class="detail-city">
                 <strong>A répondre? </strong> 
@@ -70,17 +83,14 @@
                 <strong>Objet: </strong> 
                 <span><%= @arrival_mail.object %></span>
               </li>
-              <li class="detail-city">
-                <strong>Description: </strong> 
-                <span><%= @arrival_mail.description %></span>
-              </li>
+              
               <li class="detail-city">
                 <strong>Dossier: </strong> 
                 <span><%= folder(@arrival_mail.folder_id).name %></span>
               </li>
               <li class="detail-city">
                 <strong>Statut: </strong> 
-                <span><%= @arrival_mail.status %></span>
+                <span><%= @arrival_mail.mail_status.name %></span>
               </li>
               	
 						</ul>

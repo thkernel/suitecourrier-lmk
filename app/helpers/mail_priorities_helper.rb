@@ -1,0 +1,2 @@
+module MailPrioritiesHelper
+end

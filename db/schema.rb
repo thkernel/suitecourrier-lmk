@@ -64,25 +64,30 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.datetime "response_date"
     t.bigint "support_id"
     t.bigint "nature_id"
-    t.boolean "confidential"
     t.bigint "correspondent_id"
     t.string "object"
     t.text "description"
-    t.string "reserved_suite"
-    t.bigint "priority_id"
     t.bigint "folder_id"
     t.bigint "processing_entity_id"
+    t.bigint "processing_recipient_id"
     t.datetime "processing_deadline"
-    t.string "status"
+    t.bigint "mail_priority_id"
+    t.bigint "mail_status_id"
+    t.bigint "mail_type_id"
+    t.bigint "mail_category_id"
     t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["correspondent_id"], name: "index_arrival_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_arrival_mails_on_folder_id"
+    t.index ["mail_category_id"], name: "index_arrival_mails_on_mail_category_id"
+    t.index ["mail_priority_id"], name: "index_arrival_mails_on_mail_priority_id"
+    t.index ["mail_status_id"], name: "index_arrival_mails_on_mail_status_id"
+    t.index ["mail_type_id"], name: "index_arrival_mails_on_mail_type_id"
     t.index ["nature_id"], name: "index_arrival_mails_on_nature_id"
-    t.index ["priority_id"], name: "index_arrival_mails_on_priority_id"
     t.index ["processing_entity_id"], name: "index_arrival_mails_on_processing_entity_id"
+    t.index ["processing_recipient_id"], name: "index_arrival_mails_on_processing_recipient_id"
     t.index ["register_id"], name: "index_arrival_mails_on_register_id"
     t.index ["support_id"], name: "index_arrival_mails_on_support_id"
     t.index ["user_id"], name: "index_arrival_mails_on_user_id"
@@ -158,16 +163,21 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.datetime "response_date"
     t.bigint "support_id"
     t.bigint "nature_id"
-    t.boolean "confidential"
     t.bigint "correspondent_id"
     t.bigint "initiating_entity_id"
+    t.bigint "initiator_id"
     t.bigint "processing_entity_id"
+    t.bigint "processing_recipient_id"
+    t.datetime "processing_deadline"
+    t.bigint "validator_id"
+    t.datetime "validate_deadline"
     t.string "object"
     t.text "description"
-    t.bigint "priority_id"
     t.bigint "folder_id"
-    t.datetime "processing_deadline"
-    t.string "status"
+    t.bigint "mail_status_id"
+    t.bigint "mail_type_id"
+    t.bigint "mail_category_id"
+    t.bigint "mail_priority_id"
     t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -175,12 +185,18 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.index ["correspondent_id"], name: "index_departure_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_departure_mails_on_folder_id"
     t.index ["initiating_entity_id"], name: "index_departure_mails_on_initiating_entity_id"
+    t.index ["initiator_id"], name: "index_departure_mails_on_initiator_id"
+    t.index ["mail_category_id"], name: "index_departure_mails_on_mail_category_id"
+    t.index ["mail_priority_id"], name: "index_departure_mails_on_mail_priority_id"
+    t.index ["mail_status_id"], name: "index_departure_mails_on_mail_status_id"
+    t.index ["mail_type_id"], name: "index_departure_mails_on_mail_type_id"
     t.index ["nature_id"], name: "index_departure_mails_on_nature_id"
-    t.index ["priority_id"], name: "index_departure_mails_on_priority_id"
     t.index ["processing_entity_id"], name: "index_departure_mails_on_processing_entity_id"
+    t.index ["processing_recipient_id"], name: "index_departure_mails_on_processing_recipient_id"
     t.index ["register_id"], name: "index_departure_mails_on_register_id"
     t.index ["support_id"], name: "index_departure_mails_on_support_id"
     t.index ["user_id"], name: "index_departure_mails_on_user_id"
+    t.index ["validator_id"], name: "index_departure_mails_on_validator_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -341,6 +357,48 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.index ["user_id"], name: "index_internal_memos_on_user_id"
   end
 
+  create_table "mail_categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mail_categories_on_user_id"
+  end
+
+  create_table "mail_priorities", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.integer "processing_time_in_days"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mail_priorities_on_user_id"
+  end
+
+  create_table "mail_statuses", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mail_statuses_on_user_id"
+  end
+
+  create_table "mail_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mail_types_on_user_id"
+  end
+
   create_table "natures", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -443,13 +501,11 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "phone"
     t.text "description"
     t.string "status"
-    t.bigint "entity_type_id"
     t.bigint "entity_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["entity_id"], name: "index_profiles_on_entity_id"
-    t.index ["entity_type_id"], name: "index_profiles_on_entity_type_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -492,15 +548,13 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   create_table "smtp_server_settings", force: :cascade do |t|
     t.string "uid"
-    t.string "delivery_method"
-    t.string "authentication_method"
     t.string "host"
-    t.integer "port"
-    t.string "authentication"
     t.string "user_name"
-    t.string "password"
-    t.string "sending_address"
+    t.string "user_password"
     t.string "domain"
+    t.string "address"
+    t.integer "port"
+    t.string "authentification"
     t.boolean "enable_starttls_auto"
     t.boolean "ssl"
     t.bigint "user_id"
@@ -602,6 +656,18 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "task_priorities", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "color"
+    t.integer "processing_time_in_days"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_task_priorities_on_user_id"
   end
 
   create_table "task_statuses", force: :cascade do |t|
@@ -745,8 +811,11 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "activity_logs", "users"
   add_foreign_key "arrival_mails", "correspondents"
   add_foreign_key "arrival_mails", "folders"
+  add_foreign_key "arrival_mails", "mail_categories"
+  add_foreign_key "arrival_mails", "mail_priorities"
+  add_foreign_key "arrival_mails", "mail_statuses"
+  add_foreign_key "arrival_mails", "mail_types"
   add_foreign_key "arrival_mails", "natures"
-  add_foreign_key "arrival_mails", "priorities"
   add_foreign_key "arrival_mails", "registers"
   add_foreign_key "arrival_mails", "supports"
   add_foreign_key "arrival_mails", "users"
@@ -756,8 +825,11 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "correspondents", "users"
   add_foreign_key "departure_mails", "correspondents"
   add_foreign_key "departure_mails", "folders"
+  add_foreign_key "departure_mails", "mail_categories"
+  add_foreign_key "departure_mails", "mail_priorities"
+  add_foreign_key "departure_mails", "mail_statuses"
+  add_foreign_key "departure_mails", "mail_types"
   add_foreign_key "departure_mails", "natures"
-  add_foreign_key "departure_mails", "priorities"
   add_foreign_key "departure_mails", "registers"
   add_foreign_key "departure_mails", "supports"
   add_foreign_key "departure_mails", "users"
@@ -782,6 +854,10 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "internal_memos", "priorities"
   add_foreign_key "internal_memos", "supports"
   add_foreign_key "internal_memos", "users"
+  add_foreign_key "mail_categories", "users"
+  add_foreign_key "mail_priorities", "users"
+  add_foreign_key "mail_statuses", "users"
+  add_foreign_key "mail_types", "users"
   add_foreign_key "natures", "users"
   add_foreign_key "organization_types", "users"
   add_foreign_key "organizations", "organization_types"
@@ -791,7 +867,6 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "permissions", "roles"
   add_foreign_key "priorities", "users"
   add_foreign_key "profiles", "entities"
-  add_foreign_key "profiles", "entity_types"
   add_foreign_key "profiles", "users"
   add_foreign_key "register_types", "users"
   add_foreign_key "registers", "register_types"
@@ -803,6 +878,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "storage_services", "storage_service_settings"
   add_foreign_key "supports", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "task_priorities", "users"
   add_foreign_key "task_statuses", "users"
   add_foreign_key "task_types", "users"
   add_foreign_key "tasks", "task_types"

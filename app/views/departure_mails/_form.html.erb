@@ -1,56 +1,112 @@
 <%= form_with(model: departure_mail, local: true) do |form| %>
+
+<% if departure_mail.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+
+      <ul>
+      <% departure_mail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
   <!-- Courrier info -->
   <fieldset>
     <legend>
-    <h2>Courrier</h2>
+    Courrier
     </legend>
 
     <div class="row">
-        <div class="col-sm-3 customSelect">
+        <div class="col-sm-4 customSelect">
           <div class="form-group">
             <%= form.label :register, "Registre",  class: "required" %>
             <%= form.collection_select(:register_id, @registers, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="form-group">
             <%= form.label :internal_reference, "Réf. interne", class: "required" %>
             <%= form.text_field :internal_reference,  class: "form-control", value: (departure_mail.internal_reference.present? ? departure_mail.internal_reference : @internal_reference ), placeholder: "Réf. interne", readonly: true %>
           </div>
         </div>
-         <div class="col-md-3 ">
 
-<div class="form-group">
-            <%= form.label :nature_id, "Nature", class: "required" %>
-            <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, :id => "nature_id", class: "form-control", required: true) %> 
+        <div class="col-md-4">
+          <div class="form-group customSelect">
+           <%= form.label :mail_type_id, "Type", class: "required" %>
+           
+            <%= form.collection_select(:mail_type_id, @mail_types, :id, :name, {prompt: "Sélectionner"}, :id => "mail_type_id", class: "form-control ", required: true) %> 
+          </div>
+        </div>
+      </div>
+        
+
+
+      <div class="row">
+        
+
+        <div class="col-md-4">
+          <div class="form-group">
+           <%= form.label :nature_id, "Nature", class: "required" %>
+           
+            <%= form.collection_select(:nature_id, @natures, :id, :name, {prompt: "Sélectionner"}, :id => "nature_id", class: "form-control ", required: true) %> 
+                
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="form-group customSelect">
+            <%= form.label :mail_category_id, "Catégorie", class: "required" %>
+          
+              <%= form.collection_select(:mail_category_id, @mail_categories, :id, :name, {prompt: "Sélectionner"}, :id => "mail_category_id", class: "form-control",  required: true) %> 
+              
+            
+          </div>
 
         </div>
+
+        <div class="col-md-4">
+          <div class="form-group customSelect">
+            <%= form.label :support_id, "Support", class: "required" %>
+          
+              <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control",  required: true) %> 
+              
+            
+          </div>
+
           
         </div>
 
-        <div class="col-md-3">
-<div class="form-group">
-            <%= form.label :support_id, class: "required" %>
-            <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control", required: true) %> 
-
-          </div>
         
-        </div>
 
       </div>
 
       <div class="row">
-       
+       <div class="col-md-4">
+          <div class="form-group customSelect">
+            <%= form.label :mail_priority_id, "Priorité", class: "required" %>
+          
+              <%= form.collection_select(:mail_priority_id, @mail_priorities, :id, :name, {prompt: "Sélectionner"}, :id => "mail_priority_id", class: "form-control",  required: true) %> 
+              
+            
+          </div>
 
-        <div class="col-md-3">
+          
+        </div>
+
+        <div class="col-md-4">
             <div class="form-group">
             <%= form.label :linked_to_mail, "Lié à un courrier?", class: "required" %>
             <%= form.select :linked_to_mail, [["Oui"], ["Non"]], {prompt: "Sélectionner"},  class: "form-control", required: true %>
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group departure_mail_linked_mail">
             <%= form.label :reference_linked_mail, "Réf. courrier lié", class: "required" %>
             <%= form.text_field :reference_linked_mail,   class: "form-control", placeholder: "Réf. courrier lié" %>
@@ -62,7 +118,7 @@
 
   <!-- Horodatage -->
   <fieldset>
-    <legend><h2>Horodatage</h2></legend>
+    <legend>Horodatage</legend>
 
     <div class="row">
       <div class="col-md-3">
@@ -85,7 +141,7 @@
 
       <div class="col-md-3">
         <div class="form-group departure_mail_response_limit_time">
-          <%= form.label :response_limit_time, "Délai de réponse" %>
+          <%= form.label :response_limit_time, "Date limite de réponse" %>
           <%= form.date_field :response_limit_time, class: "form-control", placeholder: "#{}", id: :departure_mail_response_limit_time %>
         </div>
        
@@ -94,7 +150,7 @@
       <div class="col-md-3">
 
         <div class="form-group departure_mail_response_date">
-          <%= form.label :response_date, "Date de réponse" %>
+          <%= form.label :response_date, "Répondu le" %>
           <%= form.date_field :response_date, class: "form-control", placeholder: "#{}", id: :departure_mail_response_date %>
         </div>
 
@@ -104,9 +160,38 @@
     </div>
   </fieldset>
 
+  <!-- Expediteur -->
+    <fieldset>
+      <legend>Expéditeur</legend>
+
+      <div class="row">
+          <div class="col-md-6">
+            <div class="form-group customSelect">
+              <%= form.label :initiating_entity_id, "Service initiateur", class: "required" %>
+              
+              <%= form.collection_select(:initiating_entity_id, @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+               
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group customSelect">
+              <%= form.label :initiator_id, "Initiateur", class: "required" %>
+              
+              <%= form.collection_select(:initiator_id, @recipients, :user_id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+               
+            </div>
+          </div>
+
+          
+
+
+        </div>
+    </fieldset>
+
   <!-- Correspondant -->
     <fieldset>
-      <legend>Correspondant</legend>
+      <legend>Destinataire</legend>
 
         <div class="row">
           <div class="col-sm-12">
@@ -129,34 +214,76 @@
             <%= form.text_field :object, id: :arrival_mail_object, class: "form-control", placeholder: "Objet" %>
           </div>
 
-          <div class="form-group">
-            <%= form.label :description %>
-            <%= form.text_area :description, id: :arrival_mail_description, class: "form-control", placeholder: "Description" %>
-          </div>
-
         </div>
 
-         <div class="col-md-12">
          
-
-         <div class="form-group">
-            <%= form.label :folder_id, "Classeur", class: "required" %>
-            <%= form.collection_select(:folder_id, @folders, :id,:name, {prompt: "Sélectionner"}, :id => "folder_id", class: "form-control", required: true) %> 
-
-          </div>
-
-
-          <div class="form-group">
-            <%= form.label :files, "Pièces-jointes",  class: "required" %>
-            <%= form.file_field :files, id: :arrival_mail_attachments_number , class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true, required: true %>
-          </div>
-        </div>
 
 
       </div>
     </fieldset>
   
- 
+    <!-- Traitement -->
+    <fieldset>
+      <legend>Traitement</legend>
+
+      <div class="row">
+          <div class="col-md-3">
+            <div class="form-group customSelect">
+              <%= form.label :processing_entity_id, "Service traitant", class: "required" %>
+              
+              <%= form.collection_select(:processing_entity_id, @entities, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+               
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group customSelect">
+              <%= form.label :processing_recipient_id, "Personne traitante", class: "required" %>
+              
+              <%= form.collection_select(:processing_recipient_id, @recipients, :user_id, :full_name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+               
+            </div>
+          </div>
+
+          <div class="col-md-3">
+           <div class="form-group">
+              <%= form.label :processing_deadline, "Date limite de traitement ", class: "required" %>
+              <%= form.date_field :processing_deadline, class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group customSelect">
+              <%= form.label :mail_status_id, "Statut", class: "required" %>
+              
+              <%= form.collection_select(:mail_status_id, @mail_statuses, :id, :name, {prompt: "Sélectionner"}, class: "form-control", required: true) %> 
+               
+            </div>
+          </div>
+
+
+        </div>
+    </fieldset>
+
+     <!-- Classement -->
+    <fieldset>
+      <legend>Classement</legend>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label :folder_id, "Classeur", class: "required" %>
+            <%= form.collection_select(:folder_id, @folders, :id,:name, {prompt: "Sélectionner"}, :id => "folder_id", class: "form-control", required: true) %> 
+
+          </div>
+          <div class="form-group">
+            <%= form.label :files, "Pièces-jointes",  class: "required" %>
+            <%= form.file_field :files, id: :arrival_mail_attachments_number , class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true, required: true %>
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
 
   
 

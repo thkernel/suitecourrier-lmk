@@ -1,0 +1,11 @@
+$("ul.errors").html("");
+<% if @mail_type.errors.any? %>
+  <% @mail_type.errors.full_messages.each do |message| %>
+ 
+    $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
+  <% end %>
+<% else %>
+  $(".mail-types").html("<%= escape_javascript(render 'index') %>");
+  $("#mail-type-modal").modal("hide");
+ 
+<% end %>

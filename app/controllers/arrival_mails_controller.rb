@@ -51,6 +51,24 @@ class ArrivalMailsController < ApplicationController
     @arrival_mail = ArrivalMail.find(params[:arrival_mail_id])
   end
 
+
+  def get_profiles
+    
+    if params[:id].present?
+      entity = Entity.find(params[:id])
+      puts "ENTITY: #{entity.inspect}"
+
+
+      role_ids = Role.where("name NOT IN (?)", ["superuser", "root", "demo"]).map {|role| role.id}
+      user_ids = User.where("role_id  IN (?)", role_ids).map {|user| user.id}
+    
+      @recipients = Profile.where("user_id  IN (?) AND entity_id = ?", user_ids, entity.id)
+    
+
+      puts "RECIPIENT: #{@recipients}"
+    end
+  end
+
   def to_archive
 
     respond_to do |format|
@@ -114,6 +132,16 @@ class ArrivalMailsController < ApplicationController
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
+    @mail_types = MailType.all 
+    @mail_categories = MailCategory.all 
+    @mail_priorities = MailPriority.all 
+    @mail_statuses = MailStatus.all
+    @entities = Entity.all
+
+    role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+    @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
+
+
     #@last_arrival_mail = ArrivalMail.last(1)
   end
 
@@ -124,8 +152,17 @@ class ArrivalMailsController < ApplicationController
     
     @natures = Nature.all 
     @supports = Support.all
+    @mail_types = MailType.all 
+    @mail_categories = MailCategory.all 
+    @mail_priorities = MailPriority.all 
+    @mail_statuses = MailStatus.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
+    @entities = Entity.all
+
+    role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+    @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
+
   end
 
   # POST /arrival_mails
@@ -137,11 +174,9 @@ class ArrivalMailsController < ApplicationController
    
 
     @arrival_mail = current_user.arrival_mails.build(arrival_mail_params)
-    @arrival_mail.status = "Enable"
+    #@arrival_mail.status = "Enable"
 
-    if @arrival_mail.response_date.present?
-      @arrival_mail.status = "Répondu"
-    end
+    
     
     @arrival_mail.year = Time.now.year
     
@@ -152,7 +187,7 @@ class ArrivalMailsController < ApplicationController
 
         #UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
         
-        @arrival_mails = ArrivalMail.where.not(status: "Archived")
+        #@arrival_mails = ArrivalMail.where.not(status: "Archived")
 
         format.html { redirect_to arrival_mails_path, notice: 'Courrier enregistré avec succès.' }
         format.json { render :show, status: :created, location: @arrival_mail }
@@ -165,6 +200,15 @@ class ArrivalMailsController < ApplicationController
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
+
+        @mail_types = MailType.all 
+        @mail_categories = MailCategory.all 
+        @mail_priorities = MailPriority.all 
+        @mail_statuses = MailStatus.all
+        @entities = Entity.all
+
+        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
 
         format.html { render :new }
         format.json { render json: @arrival_mail.errors, status: :unprocessable_entity }
@@ -197,6 +241,15 @@ class ArrivalMailsController < ApplicationController
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
 
+        @mail_types = MailType.all 
+        @mail_categories = MailCategory.all 
+        @mail_priorities = MailPriority.all 
+        @mail_statuses = MailStatus.all
+        @entities = Entity.all
+
+        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
+
         format.html { render :edit }
         format.json { render json: @arrival_mail.errors, status: :unprocessable_entity }
         format.js
@@ -215,7 +268,7 @@ class ArrivalMailsController < ApplicationController
   # DELETE /arrival_mails/1.json
   def destroy
     @arrival_mail.destroy
-    @arrival_mails = ArrivalMail.where.not(status: "Archived")
+    #@arrival_mails = ArrivalMail.where.not(status: "Archived")
 
     respond_to do |format|
       record_activity("Supprimer un courrier arrivée (ID: #{@arrival_mail.id})")
@@ -239,6 +292,6 @@ class ArrivalMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def arrival_mail_params
-      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id, files: [])
+      params.require(:arrival_mail).permit(:register_id, :internal_reference, :external_reference, :departure_date, :receipt_date, :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object,  :folder_id, :mail_type_id, :mail_category_id, :mail_priority_id, :mail_status_id, :processing_entity_id, :processing_recipient_id, :processing_deadline, files: [])
     end
 end

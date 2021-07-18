@@ -8,8 +8,8 @@ class DepartureMailsController < ApplicationController
   # GET /departure_mails
   # GET /departure_mails.json
   def index
-    #@departure_mails = DepartureMail.all
-    @departure_mails = DepartureMail.where.not(status: "Archived")
+    @departure_mails = DepartureMail.all
+    #@departure_mails = DepartureMail.where.not(status: "Archived")
     record_activity("Afficher la liste des courriers départ.")
 
 
@@ -83,6 +83,38 @@ class DepartureMailsController < ApplicationController
     @departure_mails = DepartureMail.where(status: "Archived")
   end
 
+  def get_initiators
+    if params[:id].present?
+      entity = Entity.find(params[:id])
+      puts "ENTITY: #{entity.inspect}"
+
+
+      role_ids = Role.where("name NOT IN (?)", ["superuser", "root", "demo"]).map {|role| role.id}
+      user_ids = User.where("role_id  IN (?)", role_ids).map {|user| user.id}
+    
+      @recipients = Profile.where("user_id  IN (?) AND entity_id = ?", user_ids, entity.id)
+    
+
+      puts "RECIPIENT: #{@recipients}"
+    end
+  end
+
+  def get_processing_recipients
+    if params[:id].present?
+      entity = Entity.find(params[:id])
+      puts "ENTITY: #{entity.inspect}"
+
+
+      role_ids = Role.where("name NOT IN (?)", ["superuser", "root", "demo"]).map {|role| role.id}
+      user_ids = User.where("role_id  IN (?)", role_ids).map {|user| user.id}
+    
+      @recipients = Profile.where("user_id  IN (?) AND entity_id = ?", user_ids, entity.id)
+    
+
+      puts "RECIPIENT: #{@recipients}"
+    end
+  end
+
 
   def bulk_archive_modal
   end
@@ -133,6 +165,15 @@ class DepartureMailsController < ApplicationController
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
+    @mail_types = MailType.all 
+    @mail_categories = MailCategory.all 
+    @mail_priorities = MailPriority.all 
+    @mail_statuses = MailStatus.all
+    @entities = Entity.all
+
+
+    role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+    @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
 
 
   end
@@ -144,6 +185,14 @@ class DepartureMailsController < ApplicationController
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
     @correspondents = Correspondent.all
+    @mail_types = MailType.all 
+    @mail_categories = MailCategory.all 
+    @mail_priorities = MailPriority.all 
+    @mail_statuses = MailStatus.all
+    @entities = Entity.all
+
+    role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+    @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
 
 
   end
@@ -153,7 +202,7 @@ class DepartureMailsController < ApplicationController
   def create
     files = params[:departure_mail][:files]
     @departure_mail = current_user.departure_mails.build(departure_mail_params)
-    @departure_mail.status = "Enable"
+    #@departure_mail.status = "Enable"
 
     @departure_mail.year = Time.now.year
 
@@ -163,7 +212,7 @@ class DepartureMailsController < ApplicationController
 
         #UploadFileService.upload(files, @departure_mail,  parent_id: Folder.find(@departure_mail.folder_id).google_drive_file_id)
 
-        format.html { redirect_to departure_mails_path, notice: 'Courrier enregistré avec succès.' }
+        format.html { redirect_to departure_mails_path, notice: 'Courrier départ enregistré avec succès.' }
         format.json { render :show, status: :created, location: @departure_mail }
       else
 
@@ -172,6 +221,14 @@ class DepartureMailsController < ApplicationController
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
+        @mail_types = MailType.all 
+        @mail_categories = MailCategory.all 
+        @mail_priorities = MailPriority.all 
+        @mail_statuses = MailStatus.all
+        @entities = Entity.all
+
+        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
 
         format.html { render :new }
         format.json { render json: @departure_mail.errors, status: :unprocessable_entity }
@@ -194,6 +251,15 @@ class DepartureMailsController < ApplicationController
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
         @correspondents = Correspondent.all
+        @mail_types = MailType.all 
+        @mail_categories = MailCategory.all 
+        @mail_priorities = MailPriority.all 
+        @mail_statuses = MailStatus.all
+        @entities = Entity.all
+
+
+        role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+        @recipients = User.where("role_id  IN (?)", role_ids).map {|user| user.profile}
 
         
         format.html { render :edit }
@@ -231,6 +297,6 @@ class DepartureMailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def departure_mail_params
-      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :description, :folder_id, files: [])
+      params.require(:departure_mail).permit(:register_id, :internal_reference,  :departure_date,  :linked_to_mail, :reference_linked_mail, :to_answer,  :response_limit_time, :response_date, :support_id, :nature_id, :correspondent_id, :object, :mail_type_id, :mail_status_id, :mail_category_id, :mail_priority_id, :initiating_entity_id, :initiator_id, :processing_entity_id, :processing_recipient_id, :processing_deadline, :folder_id, files: [])
     end
 end

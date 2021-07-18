@@ -59,16 +59,26 @@ class User < ApplicationRecord
 	#has_one  :storage_area_setting, dependent: :destroy
 
 	has_many :imputations, dependent: :destroy
+
+	has_many :tasks, dependent: :destroy
 	has_many :task_types, dependent: :destroy
 	has_many :task_statuses, dependent: :destroy
 
-	has_many :tasks, dependent: :destroy
+	
 	has_many :documents, dependent: :destroy
+	
 	has_many :ticket_types, dependent: :destroy
 	has_many :tickets, dependent: :destroy
+	has_many :ticket_statuses, dependent: :destroy
+
 	has_many :entity_types, dependent: :destroy
 	has_many :entities, dependent: :destroy
+	
 	has_many :priorities, dependent: :destroy
+	has_many :mail_priorities, dependent: :destroy
+	has_many :mail_categories, dependent: :destroy
+	has_many :mail_statuses, dependent: :destroy
+	has_many :mail_types, dependent: :destroy
 	has_many :register_types, dependent: :destroy
 	has_many :tenants, dependent: :destroy
 
@@ -80,6 +90,12 @@ class User < ApplicationRecord
 	has_many :recipient_imputations, :class_name => "Imputation", :foreign_key => :recipient_id
 	has_many :recipient_notifications, :class_name => "Notification", :foreign_key => :recipient_id
 	has_many :ticket_recipients, :class_name => "TicketUser", :foreign_key => :recipient_id
+	
+	has_many :processing_recipient_arrival_mails, :class_name => "ArrivalMail", :foreign_key => :processing_recipient_id
+	
+	has_many :processing_recipient_departure_mails, :class_name => "DepartureMail", :foreign_key => :processing_recipient_id
+	has_many :validator_depature_mails, :class_name => "DepartureMail", :foreign_key => :validator_id
+	has_many :initiator_depature_mails, :class_name => "DepartureMail", :foreign_key => :initiator_id
 
 	
 	#has_many :tenants, dependent: :destroy

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @priority.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @priority.name %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @priority.color %>
+</p>
+
+<p>
+  <strong>Processing time in days:</strong>
+  <%= @priority.processing_time_in_days %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @priority.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @priority.status %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @priority.user %>
+</p>
+
+<%= link_to 'Edit', edit_priority_path(@priority) %> |
+<%= link_to 'Back', priorities_path %>

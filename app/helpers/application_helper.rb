@@ -21,6 +21,15 @@ module ApplicationHelper
 	end
 
 
+	def unreaded_notification?(notification)
+		if notification.readed_at.present?
+			false
+		else
+			true
+		end
+	end
+
+
 	def get_tenant_status?(subdomain)
 		tenant = Tenant.find_by(name: subdomain)
 
@@ -31,6 +40,18 @@ module ApplicationHelper
 			true #for test
 		end
 	end
+
+
+
+	def snake_case(camel_case_string)
+	    #gsub(/::/, '/').
+	    camel_case_string.gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+	    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+	    tr('-', '_').
+	    gsub(/\s/, '_').
+	    gsub(/__+/, '_').
+	    downcase
+  	end
 
 
 	def devise_title(controller)
@@ -69,7 +90,7 @@ module ApplicationHelper
 	end
 	
 	def user_notifications
-		current_user.recipient_notifications.order(created_at: 'DESC').take(5)
+		current_user.recipient_notifications.where(readed_at: nil).order(created_at: 'DESC').take(5)
 	end
 
 	def imputable_type(imputation)
@@ -178,9 +199,7 @@ module ApplicationHelper
 	def smtp_config?
 		config = SmtpServerSetting.take
 
-		if config.present? && config.smtp_user_name.present? &&  config.smtp_user_password.present? && 
-			config.smtp_address.present? && config.smtp_port
-		
+		if config.present? 
 			true 
 		else
 			false

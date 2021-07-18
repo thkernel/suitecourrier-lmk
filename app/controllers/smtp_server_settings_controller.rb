@@ -1,4 +1,7 @@
 class SmtpServerSettingsController < ApplicationController
+  before_action :authenticate_user!
+    layout "dashboard"
+    
   before_action :set_smtp_server_setting, only: [:show, :edit, :update, :destroy]
 
   # GET /smtp_server_settings
@@ -17,6 +20,10 @@ class SmtpServerSettingsController < ApplicationController
     @smtp_server_setting = SmtpServerSetting.new
   end
 
+  def smtp_settings
+    @smtp_server_setting = SmtpServerSetting.take
+  end
+
   # GET /smtp_server_settings/1/edit
   def edit
   end
@@ -24,15 +31,17 @@ class SmtpServerSettingsController < ApplicationController
   # POST /smtp_server_settings
   # POST /smtp_server_settings.json
   def create
-    @smtp_server_setting = SmtpServerSetting.new(smtp_server_setting_params)
+    @smtp_server_setting = current_user.build_smtp_server_setting(smtp_server_setting_params)
 
     respond_to do |format|
       if @smtp_server_setting.save
         format.html { redirect_to configurations_path, notice: 'Smtp server setting was successfully created.' }
         format.json { render :show, status: :created, location: @smtp_server_setting }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @smtp_server_setting.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,9 +53,11 @@ class SmtpServerSettingsController < ApplicationController
       if @smtp_server_setting.update(smtp_server_setting_params)
         format.html { redirect_to configurations_path, notice: 'Smtp server setting was successfully updated.' }
         format.json { render :show, status: :ok, location: @smtp_server_setting }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @smtp_server_setting.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -69,6 +80,6 @@ class SmtpServerSettingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def smtp_server_setting_params
-      params.require(:smtp_server_setting).permit(:delivery_method, :authentication_method, :host, :port, :authentication, :user_name, :password, :sending_address, :domain, :enable_starttls_auto, :ssl, :user_id)
+      params.require(:smtp_server_setting).permit(:user_name, :user_password,  :address, :domain, :port, :authentification, :enable_starttls_auto, :ssl)
     end
 end

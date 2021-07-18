@@ -505,9 +505,7 @@ span.tag-item{
     width: 100% !important;
 }
 
-.page-wrapper{
-    background-color: white !important;
-}
+
 
 .features{
     background-color: #2d3a4b;
@@ -548,19 +546,37 @@ h2.section-title{
     color: #fff !important;
 }
 
+#arrival-mail fieldset, #departure-mail fieldset, #document fieldset{
+    border: 1px solid #ced4da;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+#arrival-mail fieldset legend, #departure-mail fieldset legend, #document fieldset legend {
+    border: 1px solid #ced4da;
+    margin-bottom: 5px !important;
+    font-size: 12pt !important;
+    font-weight: bold;
+    width: auto;
+    padding: 3px;
+    background-color: #2323c4e3;
+    color: white;
+}
 
 
 
+.notification-number{
+    color: #fff;
+    width: auto;
+    padding: 0px 5px 0px 5px;
+    /*position: absolute; */
+    top: 1px;
+}
 
-
-
-
-
-
-
-
-
-
+.unreaded-notification{
+    font-weight: bold;
+}
 
 
 

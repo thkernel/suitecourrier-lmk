@@ -10,7 +10,8 @@
       Salut <%= @user.profile.full_name %>,<br>
       Vous avez reçus une nouvelle imputation.<br>
       <p>
-      Réf: <strong><%= @imputation.uid %><br> 
+      Type: <strong><%= t("#{@imputation.imputable_type.underscore}") %></strong><br> 
+      Réf: <strong><%= @imputation.imputable_id %><strong><br> 
       
       </p>
     </p>

@@ -1,0 +1,47 @@
+<%= form_with(model: task_priority, local: true) do |form| %>
+  <% if task_priority.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task_priority.errors.count, "error") %> prohibited this task_priority from being saved:</h2>
+
+      <ul>
+      <% task_priority.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uid %>
+    <%= form.text_field :uid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :processing_time_in_days %>
+    <%= form.number_field :processing_time_in_days %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

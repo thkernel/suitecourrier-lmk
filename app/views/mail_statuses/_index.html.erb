@@ -1,0 +1,18 @@
+<% @mail_statuses.each do |mail_status| %>
+  <tr>
+    
+    <td><%= mail_status.name %></td>
+    <td>
+                    <div class="action-buttons">
+                    <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_mail_status_path(mail_status), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), mail_status_delete_path(mail_status), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+  </tr>
+<% end %>

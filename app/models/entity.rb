@@ -27,6 +27,10 @@ class Entity < ApplicationRecord
   # Self-relationship
   belongs_to :parent_entity, class_name: "Entity", optional: true
   
+  has_many :processing_arrival_mails, class_name: "ArrivalMail", foreign_key: "processing_entity_id"
+  has_many :processing_departure_mails, class_name: "DepartureMail", foreign_key: "processing_entity_id"
+  has_many :initiating_departure_mails, class_name: "DepartureMail", foreign_key: "initiating_entity_id"
+
   #This is option for the self relationship.
   has_many :entities, class_name: "Entity", foreign_key: "parent_entity_id"
 

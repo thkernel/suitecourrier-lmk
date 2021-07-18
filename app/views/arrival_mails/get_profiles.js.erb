@@ -1,0 +1,5 @@
+$('#arrival_mail_processing_recipient_id').empty();
+$('#arrival_mail_processing_recipient_id').append( $('<option value="">Sélectionner</option>'));
+<% @recipients.each do |recipient| %>
+  $('#arrival_mail_processing_recipient_id').append($('<option value="<%= recipient.user_id %>"><%= recipient.full_name %></option>'));
+<% end %>

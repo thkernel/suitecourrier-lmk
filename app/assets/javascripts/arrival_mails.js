@@ -59,6 +59,9 @@ $(document).on('turbolinks:load', function(){
         ajaxRefresh("#arrival_mail_correspondent_id", "/arrival_mails/get_correspondents", "GET");
         ajaxRefresh("#arrival_mail_folder_id", "/arrival_mails/get_folders", "GET");
 
+        ajaxFilterByID("#arrival_mail_processing_entity_id", "/arrival_mails/get_profiles", "GET");
+       
+
 });
 
 
@@ -123,6 +126,8 @@ $(document).on('turbolinks:load', function() {
 
 
 
+
+
 $(document).on('turbolinks:load', function() {
     $('#arrival-mail #nature-modal').on('hide.bs.modal', function() {
       
@@ -131,6 +136,8 @@ $(document).on('turbolinks:load', function() {
     });
 });
 
+
+
 $(document).on('turbolinks:load', function() {
     $('#arrival-mail #support-modal').on('hide.bs.modal', function() {
       
@@ -138,6 +145,8 @@ $(document).on('turbolinks:load', function() {
 
     });
 });
+
+
 
 $(document).on('turbolinks:load', function() {
     $('#arrival-mail #correspondent-modal').on('hide.bs.modal', function() {

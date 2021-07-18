@@ -1,15 +1,19 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+  layout "dashboard"
+  
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = current_user.recipient_notifications
   end
 
   # GET /notifications/1
   # GET /notifications/1.json
   def show
+    @notification.update_column(:readed_at, Time.now.strftime("%d/%m/%Y"))
   end
 
   # GET /notifications/new

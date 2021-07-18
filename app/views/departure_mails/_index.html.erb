@@ -1,12 +1,14 @@
 <% @departure_mails.each do |departure_mail| %>
       <tr>
-        <td><%= register(departure_mail.register_id).name %></td>
-          <td><%= departure_mail.internal_reference %></td>
-
+        <td><%= departure_mail.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= departure_mail.internal_reference %></td>
         <td><%= departure_mail.departure_date.strftime("%d/%m/%Y") %></td>
         <td><%= departure_mail.nature.name %></td>
+        <td><%= departure_mail.support.name %></td>
+        <td><%= departure_mail.mail_category.name %></td>
         <td><%= correspondent(departure_mail.correspondent_id).organization_name %></td>
-        <td><%= departure_mail.object %></td>
+        <td><%= departure_mail.initiating_entity.name %></td>
+        <td><%= departure_mail.mail_status.name %></td>
 
        
         <td>

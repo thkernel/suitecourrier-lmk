@@ -25,7 +25,7 @@ unless Role.all.present?
     roles = Role.create(
         [
             {name: "superuser"},
-            {name: "administrator"},
+            {anme: "administrator"},
             {name: "guest"},
             {name: "user"},
             {name: "demo"}
@@ -230,8 +230,9 @@ end
 unless Folder.all.present?
     folders = Folder.create(
         [
-            {name: "FACTURES", user_id: users.first.id},
-            {name: "LETTRRES", user_id: users.first.id}
+            {name: "Factures", user_id: users.first.id},
+            {name: "Lettres", user_id: users.first.id},
+            {name: "Devis", user_id: users.first.id},
         ])
 else    
     folders =  Folder.all
@@ -280,6 +281,80 @@ unless Priority.all.present?
         ])
 else    
     priorities =  Priority.all
+
+end
+
+unless TaskPriority.all.present?
+    task_priorities = TaskPriority.create(
+        [
+            {name: "Aucune", user_id: users.first.id},
+            {name: "Normale", user_id: users.first.id},
+            {name: "Basse", user_id: users.first.id},
+            {name: "Moyenne", user_id: users.first.id},
+            {name: "Haute", user_id: users.first.id},
+            {name: "Urgente", user_id: users.first.id}
+        ])
+else    
+    task_priorities =  TaskPriority.all
+
+end
+
+
+unless MailPriority.all.present?
+    mail_priorities = MailPriority.create(
+        [
+            {name: "Aucune", user_id: users.first.id},
+            {name: "Normale", user_id: users.first.id},
+            {name: "Basse", user_id: users.first.id},
+            {name: "Moyenne", user_id: users.first.id},
+            {name: "Haute", user_id: users.first.id},
+            {name: "Urgente", user_id: users.first.id}
+        ])
+else    
+    mail_priorities =  MailPriority.all
+
+end
+
+
+unless MailStatus.all.present?
+    mail_status = MailStatus.create(
+        [
+            {name: "A traiter", user_id: users.first.id},
+            {name: "A valider", user_id: users.first.id},
+            {name: "A archiver", user_id: users.first.id},
+            
+        ])
+else    
+    mail_status =  MailStatus.all
+
+end
+
+unless MailType.all.present?
+    mail_types = MailType.create(
+        [
+            {name: "Personnel", user_id: users.first.id},
+            {name: "Confidentiel", user_id: users.first.id},
+            {name: "Professionnel", user_id: users.first.id},
+            
+        ])
+else    
+    mail_type =  MailType.all
+
+end
+
+unless MailCategory.all.present?
+    mail_categories = MailCategory.create(
+        [
+            {name: "Education", user_id: users.first.id},
+            {name: "Juridique", user_id: users.first.id},
+            {name: "Social", user_id: users.first.id},
+            {name: "Association", user_id: users.first.id},
+            {name: "Autre", user_id: users.first.id},
+            {name: "Correspondance", user_id: users.first.id},
+            {name: "Finance", user_id: users.first.id}
+        ])
+else    
+    mail_categories =  MailCategory.all
 
 end
 
