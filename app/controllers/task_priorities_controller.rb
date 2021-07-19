@@ -1,4 +1,8 @@
 class TaskPrioritiesController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+  layout "dashboard"
+
   before_action :set_task_priority, only: %i[ show edit update destroy ]
 
   # GET /task_priorities or /task_priorities.json
@@ -21,15 +25,18 @@ class TaskPrioritiesController < ApplicationController
 
   # POST /task_priorities or /task_priorities.json
   def create
-    @task_priority = TaskPriority.new(task_priority_params)
+    @task_priority = current_user.task_priorities.build(task_priority_params)
 
     respond_to do |format|
       if @task_priority.save
+        @task_priorities = TaskPriority.all
         format.html { redirect_to @task_priority, notice: "Task priority was successfully created." }
         format.json { render :show, status: :created, location: @task_priority }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task_priority.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -38,14 +45,21 @@ class TaskPrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @task_priority.update(task_priority_params)
+        @task_priorities = TaskPriority.all
         format.html { redirect_to @task_priority, notice: "Task priority was successfully updated." }
         format.json { render :show, status: :ok, location: @task_priority }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task_priority.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
+
+  def delete
+      @task_priority = TaskPriority.find(params[:task_priority_id])
+    end
 
   # DELETE /task_priorities/1 or /task_priorities/1.json
   def destroy
@@ -64,6 +78,6 @@ class TaskPrioritiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_priority_params
-      params.require(:task_priority).permit(:uid, :name, :color, :processing_time_in_days, :description, :user_id)
+      params.require(:task_priority).permit(:uid, :name, :color, :processing_time_in_days)
     end
 end

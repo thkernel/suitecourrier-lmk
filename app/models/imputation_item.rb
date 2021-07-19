@@ -2,19 +2,20 @@
 #
 # Table name: imputation_items
 #
-#  id             :bigint           not null, primary key
-#  uid            :string
-#  task_type_id   :bigint
-#  title          :string
-#  priority_id    :bigint
-#  due_date       :datetime
-#  start_date     :datetime
-#  completed_date :datetime
-#  task_status_id :bigint
-#  description    :text
-#  imputation_id  :bigint
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id               :bigint           not null, primary key
+#  uid              :string
+#  task_type_id     :bigint
+#  title            :string
+#  task_priority_id :bigint
+#  due_date         :datetime
+#  start_date       :datetime
+#  completed_date   :datetime
+#  completed        :boolean
+#  task_status_id   :bigint
+#  description      :text
+#  imputation_id    :bigint
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class ImputationItem < ApplicationRecord
@@ -34,7 +35,7 @@ class ImputationItem < ApplicationRecord
   # Validations.
   #validates :title, presence: true
   validates :task_type_id, presence: true
-  validates :priority_id, presence: true
+  validates :task_priority_id, presence: true
   validates :task_status_id, presence: true
 
 end

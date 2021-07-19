@@ -26,6 +26,8 @@ module SuiteCourrier
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
+    #config.active_job.queue_adapter = :sidekiq
+
     
   end
 end

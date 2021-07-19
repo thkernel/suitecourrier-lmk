@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @user.profile.full_name %>,<br>
+      Vous avez une tâche non traitée.<br>
+      <p>
+      
+      ID: <strong><%= @task.id %></strong><br> 
+      Type: <strong><%= @task.task_type.name %></strong><br> 
+      Description: <strong><%= @task.description %></strong><br> 
+      Date limite de traitement: <strong><%= @task.due_date.strftime("%d/%m/%Y") %></strong><br> 
+      
+      </p>
+    </p>
+    <p>
+      Pour se connecter à l'application, suivez juste ce lien: <%= @url %>.<br>
+    </p>
+    <p>
+   
+    </p>
+  </body>
+</html>

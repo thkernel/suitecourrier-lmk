@@ -25,7 +25,7 @@ unless Role.all.present?
     roles = Role.create(
         [
             {name: "superuser"},
-            {anme: "administrator"},
+            {name: "administrator"},
             {name: "guest"},
             {name: "user"},
             {name: "demo"}

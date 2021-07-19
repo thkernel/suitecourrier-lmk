@@ -2,21 +2,20 @@
 #
 # Table name: profiles
 #
-#  id             :bigint           not null, primary key
-#  uid            :string
-#  civility       :string
-#  first_name     :string
-#  last_name      :string
-#  position       :string
-#  address        :string
-#  phone          :string
-#  description    :text
-#  status         :string
-#  entity_type_id :bigint
-#  entity_id      :bigint
-#  user_id        :bigint
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id          :bigint           not null, primary key
+#  uid         :string
+#  civility    :string
+#  first_name  :string
+#  last_name   :string
+#  position    :string
+#  address     :string
+#  phone       :string
+#  description :text
+#  status      :string
+#  entity_id   :bigint
+#  user_id     :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class Profile < ApplicationRecord

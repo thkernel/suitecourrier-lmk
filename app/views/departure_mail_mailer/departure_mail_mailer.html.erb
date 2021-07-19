@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @user.profile.full_name %>,<br>
+      Vous avez un courrier départ non traité.<br>
+      <p>
+      
+      ID: <strong><%= @departure_mail.id %></strong><br> 
+      Réf: <strong><%= @departure_mail.internal_reference %></strong><br> 
+      Date limite de traitement: <strong><%= @departure_mail.processing_deadline.strftime("%d/%m/%Y") %></strong><br> 
+      
+      </p>
+    </p>
+    <p>
+      Pour se connecter à l'application, suivez juste ce lien: <%= @url %>.<br>
+    </p>
+    <p>
+   
+    </p>
+  </body>
+</html>

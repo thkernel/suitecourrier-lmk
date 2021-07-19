@@ -6,14 +6,14 @@ class CreateDepartureMails < ActiveRecord::Migration[5.2]
       t.string :internal_reference, unique: true
      
       
-      t.datetime :departure_date
+      t.date :departure_date
       
       t.string :linked_to_mail
       t.string :reference_linked_mail
 
       t.string :to_answer
-      t.datetime :response_limit_time
-      t.datetime :response_date
+      t.date :response_limit_time
+      t.date :response_date
 
       
       t.references :support, foreign_key: true, index: true
@@ -27,10 +27,12 @@ class CreateDepartureMails < ActiveRecord::Migration[5.2]
       
       t.references :processing_entity, index: true
       t.references :processing_recipient, index: true
-      t.datetime :processing_deadline
+      t.date :processing_deadline
+      t.date :processing_date
+      t.boolean :processed
 
       t.references :validator, index: true
-      t.datetime :validate_deadline
+      t.date :validate_deadline
       
       t.string :object
       t.text :description

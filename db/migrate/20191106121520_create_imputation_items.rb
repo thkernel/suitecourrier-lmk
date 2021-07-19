@@ -6,9 +6,10 @@ class CreateImputationItems < ActiveRecord::Migration[5.2]
       #t.references :task, foreign_key: true
       t.string :title
       t.references :task_priority, foreign_key: true, index: true
-      t.datetime :due_date
-      t.datetime :start_date
-      t.datetime :completed_date
+      t.date :due_date
+      t.date :start_date
+      t.date :completed_date
+      t.boolean :completed
       t.references :task_status, foreign_key: true, index: true
       t.text :description
 

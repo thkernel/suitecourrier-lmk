@@ -1,1 +1,1 @@
-json.array! @task_priorities, partial: "task_priorities/task_priority", as: :task_priority
+json.array! @priorities, partial: "priorities/priority", as: :priority

@@ -20,6 +20,8 @@
 #  processing_entity_id    :bigint
 #  processing_recipient_id :bigint
 #  processing_deadline     :datetime
+#  processing_date         :datetime
+#  processed               :boolean
 #  validator_id            :bigint
 #  validate_deadline       :datetime
 #  object                  :string

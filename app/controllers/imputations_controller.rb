@@ -126,23 +126,26 @@ class ImputationsController < ApplicationController
     @imputation.imputable = resource
     #ImputationsService.imputable(resource)
     
-    notification_content = "Un #{t(snake_case(@imputation.imputable_type))} vous a été imputé. Réf: #{@imputation.imputable_id}"
    
 
     respond_to do |format|
       if @imputation.save
         record_activity("Créer une nouvelle imputation (ID: #{@imputation.id})")
 
+        imputable_type = t(snake_case(@imputation.imputable_type))
          #Notificable
-        NotificationsService.notificate(@imputation.recipient_id, @imputation, notification_content)
+        NotificationJob.perform_now(@imputation.recipient_id, @imputation, resource, imputable_type)
         
         # New thread to send mail
-        Thread.new do
-					Rails.application.executor.wrap do
-            ImputationMailer.new_imputation_mail(@imputation.recipient_id, @imputation).deliver_now
+        #Thread.new do
+					#Rails.application.executor.wrap do
+            #ImputationMailer.new_imputation_mail(@imputation.recipient_id, @imputation).deliver_now
 
-					end
-        end
+					#end
+        #end
+
+        SendImputationEmailJob.perform_now(@imputation.recipient_id, @imputation)
+
           
         if flash[:rtype].present? && flash[:rtype] == "ArrivalMail"
           @imputations = resource.imputations
@@ -166,6 +169,7 @@ class ImputationsController < ApplicationController
         
         format.html { render :new}
         format.json { render json: @imputation.errors, status: :unprocessable_entity }
+        
       
       end
     end

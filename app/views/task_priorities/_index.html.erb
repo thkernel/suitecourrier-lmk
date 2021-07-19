@@ -1,0 +1,22 @@
+<% @task_priorities.each do |task_priority| %>
+  <tr>
+    
+    <td><%= task_priority.name %></td>
+    <td><%= task_priority.color %></td>
+    <td><%= task_priority.processing_time_in_days %></td>
+    
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_task_priority_path(task_priority), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), task_priority_delete_path(task_priority), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+
+  </tr>
+<% end %>

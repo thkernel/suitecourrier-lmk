@@ -2,33 +2,38 @@
 
 <p>
   <strong>Uid:</strong>
-  <%= @task_priority.uid %>
+  <%= @priority.uid %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @task_priority.name %>
+  <%= @priority.name %>
 </p>
 
 <p>
   <strong>Color:</strong>
-  <%= @task_priority.color %>
+  <%= @priority.color %>
 </p>
 
 <p>
   <strong>Processing time in days:</strong>
-  <%= @task_priority.processing_time_in_days %>
+  <%= @priority.processing_time_in_days %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @task_priority.description %>
+  <%= @priority.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @priority.status %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @task_priority.user %>
+  <%= @priority.user %>
 </p>
 
-<%= link_to 'Edit', edit_task_priority_path(@task_priority) %> |
-<%= link_to 'Back', task_priorities_path %>
+<%= link_to 'Edit', edit_priority_path(@priority) %> |
+<%= link_to 'Back', priorities_path %>
