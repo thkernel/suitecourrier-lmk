@@ -1,11 +1,18 @@
 namespace :departure_mail do
-  desc "TODO"
+  desc "unprocessed departure mail job"
   task unprocessed_departure_mail: :environment do
-  	# Do
-  	cron_logger.info("======== BEFORE CRON: unprocessed arrival mail, at: #{Time.now} ===========")
+  	
   	UnprocessedDepartureMailJob.perform_now
   	
-  	cron_logger.info("======== AFTER CRON: unprocessed arrival mail, at: #{Time.now} ===========")
+  	cron_logger.info("======== AFTER CRON: unprocessed departure mail, at: #{Time.now} ===========")
+  end
+
+  desc "check departure mail processing_deadline job"
+  task check_departure_mail_processing_deadline: :environment do
+  	
+  	CheckDepartureMailProcessingDeadlineJob.perform_now
+  	
+  	cron_logger.info("======== AFTER CRON: check departure mail processing_deadline job, at: #{Time.now} ===========")
   end
 
 end

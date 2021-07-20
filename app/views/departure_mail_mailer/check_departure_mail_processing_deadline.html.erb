@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @user.profile.full_name %>,<br>
+      La date limite de traitement d'un courrier départ expirera bientôt.<br>
+      <p>
+      
+     
+      Réf: <strong><%= @departure_mail.internal_reference %></strong><br> 
+      Date limite de traitement: <strong><%= @departure_mail.processing_deadline.strftime("%d/%m/%Y") %></strong><br> 
+      
+      </p>
+    </p>
+    
+    <p>
+   
+    </p>
+  </body>
+</html>
