@@ -20,6 +20,7 @@ class UnprocessedDepartureMailJob < ApplicationJob
     departure_mails.each do |departure_mail|
     	
     	# Send notification by email
+      departure_mail.update_column(:processed, false)
     	DepartureMailMailer.unprocessed_departure_mail(departure_mail).deliver_now
 
     	# Add in the notification queue

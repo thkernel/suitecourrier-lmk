@@ -21,6 +21,7 @@ class UnprocessedArrivalMailJob < ApplicationJob
     arrival_mails.each do |arrival_mail|
     	
     	# Send notification by email
+      arrival_mail.update_column(:processed, false)
     	ArrivalMailMailer.unprocessed_arrival_mail(arrival_mail).deliver_now
 
     	# Add in the notification queue

@@ -20,6 +20,7 @@ class UncompletedTaskJob < ApplicationJob
     tasks.each do |task|
     	
     	# Send notification by email
+      task.update_column(:completed, false)
     	ImputationMailer.uncompleted_task_mail(task).deliver_now
 
     	# Add in the notification queue
