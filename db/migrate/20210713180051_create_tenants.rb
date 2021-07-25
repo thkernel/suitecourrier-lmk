@@ -5,8 +5,8 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.string :organization_name
       t.string :address
       t.string :phone
+      t.string :country
       t.string :city
-      t.string :phone
       t.string :email
       t.string :website
       t.string :subdomain

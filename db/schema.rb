@@ -714,6 +714,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "organization_name"
     t.string "address"
     t.string "phone"
+    t.string "country"
     t.string "city"
     t.string "email"
     t.string "website"

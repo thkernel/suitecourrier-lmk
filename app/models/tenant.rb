@@ -7,6 +7,7 @@
 #  organization_name    :string
 #  address              :string
 #  phone                :string
+#  country              :string
 #  city                 :string
 #  email                :string
 #  website              :string
@@ -33,15 +34,27 @@ class Tenant < ApplicationRecord
 
     
 
+
+    private 
     def tenant_name
       self.subdomain
     end
 
+
+
     # Create tenant db
 	def create_tenant 
-		Apartment::Tenant.create(self.tenant_name) 
+		Apartment::Tenant.create(self.tenant_name) # Create tenant db
+        default_data(self.tenant_name) # Load default data
+        create_administrator(self.tenant_name) # Create default admin
 		
 	end
+
+    def default_data(tenant)
+        Apartment::Tenant.switch(tenant) do
+            rake "data:default_data"
+        end
+    end
 
 
 	#Create the subdomain on the server
@@ -68,6 +81,10 @@ class Tenant < ApplicationRecord
 	            profile = Profile.new
 	            profile.user_id = admin_user.id
 	            profile.save
+
+                if profile.present?
+                    TenantMailJob.perform_now(self)
+                end
             end
         end
 	end

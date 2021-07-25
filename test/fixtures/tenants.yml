@@ -7,6 +7,7 @@
 #  organization_name    :string
 #  address              :string
 #  phone                :string
+#  country              :string
 #  city                 :string
 #  email                :string
 #  website              :string

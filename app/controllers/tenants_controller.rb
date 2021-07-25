@@ -1,4 +1,8 @@
 class TenantsController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!
+  layout "dashboard"
+
   before_action :set_tenant, only: %i[ show edit update destroy ]
 
   # GET /tenants or /tenants.json
@@ -12,24 +16,30 @@ class TenantsController < ApplicationController
 
   # GET /tenants/new
   def new
+    @organization_types = OrganizationType.all
     @tenant = Tenant.new
   end
 
   # GET /tenants/1/edit
   def edit
+    @organization_types = OrganizationType.all
   end
 
   # POST /tenants or /tenants.json
   def create
-    @tenant = Tenant.new(tenant_params)
+    @tenant = current_user.tenants.build(tenant_params)
 
     respond_to do |format|
       if @tenant.save
+        @tenants = Tenant.all
         format.html { redirect_to @tenant, notice: "Tenant was successfully created." }
         format.json { render :show, status: :created, location: @tenant }
+        format.js
       else
+        @organization_types = OrganizationType.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -38,6 +48,7 @@ class TenantsController < ApplicationController
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
+        @tenants = Tenant.all
         format.html { redirect_to @tenant, notice: "Tenant was successfully updated." }
         format.json { render :show, status: :ok, location: @tenant }
       else
@@ -45,6 +56,10 @@ class TenantsController < ApplicationController
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete
+    @tenant = Tenant.find(params[:tenant_id])
   end
 
   # DELETE /tenants/1 or /tenants/1.json
@@ -64,6 +79,6 @@ class TenantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tenant_params
-      params.require(:tenant).permit(:organization_type_id, :organization_name, :address, :phone, :city, :phone, :email, :website, :subdomain, :status)
+      params.require(:tenant).permit(:organization_type_id, :organization_name, :address, :phone, :country, :city, :email, :website, :subdomain, :status)
     end
 end

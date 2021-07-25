@@ -1,8 +1,14 @@
 <% @tenants.each do |tenant| %>
-      <tr>
-        <td><%= tenant.name %></td>
-        <td><%= tenant.domain %></td>
-        <td><%= tenant.status %></td>
+    <tr>
+        <td><%= tenant.organization_type.name %></td>
+        <td><%= tenant.organization_name %></td>
+        <td><%= tenant.address %></td>
+        <td><%= tenant.phone %></td>
+        <td><%= tenant.country %></td>
+        <td><%= tenant.city %></td>
+        <td><%= tenant.email %></td>
+        <td><%= tenant.website %></td>
+       
         
        
        <td>

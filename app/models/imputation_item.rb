@@ -7,9 +7,9 @@
 #  task_type_id     :bigint
 #  title            :string
 #  task_priority_id :bigint
-#  due_date         :datetime
-#  start_date       :datetime
-#  completed_date   :datetime
+#  due_date         :date
+#  start_date       :date
+#  completed_date   :date
 #  completed        :boolean
 #  task_status_id   :bigint
 #  description      :text
