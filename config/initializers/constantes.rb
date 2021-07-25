@@ -1,6 +1,6 @@
 APPLICATION_NAME = "SuiteCourrier"
 APPLICATION_VERSION= "1.0.0"
-APPLICATION_SLOGAN = "Easy and fastly"
+APPLICATION_SLOGAN = "Easy and efficient!"
 APPLICATION_DESCRIPTION = "Embarquez votre entreprise"
 APPLICATION_KEYWORDS = [""]
 
