@@ -223,7 +223,7 @@
         
 
             <li class="sub-item">
-                <%= link_to  "Serveur SMTP", show_backup_path,  data: { turbolinks: false }, class: "sub-link" %>
+                <%= link_to  "Serveur SMTP", smtp_settings_path, class: "sub-link #{current? "active", smtp_settings_path}" %>
             </li>
 
             

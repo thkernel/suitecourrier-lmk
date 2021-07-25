@@ -16,7 +16,7 @@ Apartment.configure do |config|
   # Add any models that you do not want to be multi-tenanted, but remain in the global (public) namespace.
   # A typical example would be a Customer or Tenant model that stores each Tenant's information.
   #
-  config.excluded_models = %w{ Tenant }
+  config.excluded_models = %w{ Tenant SmtpServerSetting }
   #config.excluded_models = %w{ Account }
   
 

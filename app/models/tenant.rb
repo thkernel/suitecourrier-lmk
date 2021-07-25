@@ -1,3 +1,6 @@
+require 'rake'
+SuiteCourrier::Application.load_tasks
+
 # == Schema Information
 #
 # Table name: public.tenants
@@ -35,9 +38,9 @@ class Tenant < ApplicationRecord
     
 
 
-    private 
+    
     def tenant_name
-      self.subdomain
+      self.subdomain.downcase
     end
 
 
@@ -47,12 +50,14 @@ class Tenant < ApplicationRecord
 		Apartment::Tenant.create(self.tenant_name) # Create tenant db
         default_data(self.tenant_name) # Load default data
         create_administrator(self.tenant_name) # Create default admin
+        
 		
 	end
 
     def default_data(tenant)
         Apartment::Tenant.switch(tenant) do
-            rake "data:default_data"
+            #rake "data:default_data"
+            Rake::Task['data:default_data'].execute
         end
     end
 
@@ -83,10 +88,32 @@ class Tenant < ApplicationRecord
 	            profile.save
 
                 if profile.present?
+                    create_organization(tenant, admin_user.id)
                     TenantEmailJob.perform_now(self, random_password)
                 end
             end
         end
 	end
+
+
+    def create_organization(tenant, user_id)
+        #Switch to the current tenant
+        Apartment::Tenant.switch(tenant) do
+            
+            organization = Organization.create({
+                organization_type_id: self.organization_type_id,
+                name: self.organization_name,
+                country: self.country,
+                city: self.city,
+                phone: self.phone,
+                web_site: self.website,
+                address: self.address,
+                user_id: user_id
+                
+            })
+
+            
+        end
+    end
 
 end

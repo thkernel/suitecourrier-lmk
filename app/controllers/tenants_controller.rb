@@ -66,6 +66,7 @@ class TenantsController < ApplicationController
   def destroy
     @tenant.destroy
     respond_to do |format|
+      delete_tenant(@tenant.subdomain.downcase)
       format.html { redirect_to tenants_url, notice: "Tenant was successfully destroyed." }
       format.json { head :no_content }
     end
@@ -76,6 +77,12 @@ class TenantsController < ApplicationController
     def set_tenant
       @tenant = Tenant.find(params[:id])
     end
+
+    def delete_tenant(tenant_name)
+      Apartment::Tenant.drop(tenant_name)
+
+    end
+
 
     # Only allow a list of trusted parameters through.
     def tenant_params

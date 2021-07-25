@@ -5,7 +5,7 @@ $("ul.errors").html("");
     $("ul.errors").append($('<div class="c-alert c-alert--danger" > ').html("<%= message.html_safe %> "));
   <% end %>
 <% else %>
-  $(".tenants-index").html("<%= escape_javascript(render 'index') %>");
+  $(".tenants").html("<%= escape_javascript(render 'index') %>");
   $("#tenant-modal").modal("hide");
  
 <% end %>

@@ -63,8 +63,9 @@ class CustomUsersController < ApplicationController
 
 	# Index
     def index
-    	
-			@users = User.where.not(id: current_user.id)
+    	role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
+     	@users = User.where("role_id  IN (?)", role_ids).where.not(id: current_user.id)#.map {|user| user.id}
+		#@users = User.where.not(id: current_user.id)
 		
 			record_activity("Afficher la liste des utilisateurs.")
 

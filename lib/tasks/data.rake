@@ -159,8 +159,8 @@ namespace :data do
 	    registers = Register.create(
 	        [
 
-	            {register_type_id: RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id , name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
-	            {register_type_id: RegisterType.find_by(name: "COURRIER DÉPART").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
+	            {register_type_id: RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id , name: "COURRIER D'ARRIVÉE 2021",  user_id: users.first.id},
+	            {register_type_id: RegisterType.find_by(name: "COURRIER DÉPART").id, name: "COURRIER DEPART 2021", user_id: users.first.id}
 	        ])
 	else    
 	    registers =  Register.all
