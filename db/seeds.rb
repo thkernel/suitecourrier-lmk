@@ -121,10 +121,15 @@ end
 unless OrganizationType.all.present?
     organization_types = OrganizationType.create(
         [
-            {name: "Service en informatique", user_id: users.first.id},
-            {name: "ONG", user_id: users.first.id},
-            {name: "Université", user_id: users.first.id}
-            
+            {name: "Entreprise", user_id: users.first.id},
+            {name: "Banque", user_id: users.first.id},
+            {name: "Université", user_id: users.first.id},
+            {name: "Collectivité", user_id: users.first.id},
+            {name: "Huissier", user_id: users.first.id},
+            {name: "Avocat", user_id: users.first.id},
+            {name: "Assurance", user_id: users.first.id},
+            {name: "Administration", user_id: users.first.id},
+   
 
         ])
 else 
@@ -162,8 +167,15 @@ unless CorrespondentType.all.present?
     correspondent_types = CorrespondentType.create(
         [
             {name: "Entreprise", user_id: users.first.id},
-            {name: "ONG", user_id: users.first.id},
-            {name: "Particulier", user_id: users.first.id}
+            {name: "Banque", user_id: users.first.id},
+            {name: "Université", user_id: users.first.id},
+            {name: "Collectivité", user_id: users.first.id},
+            {name: "Fournisseur", user_id: users.first.id},
+            {name: "Client", user_id: users.first.id},
+            {name: "Huissier", user_id: users.first.id},
+            {name: "Avocat", user_id: users.first.id},
+            {name: "Assurance", user_id: users.first.id},
+            {name: "Administration", user_id: users.first.id},
 
         ])
 else    

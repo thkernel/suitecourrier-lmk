@@ -54,10 +54,10 @@ function displayArrivalMailAnswerDates(){
 $(document).on('turbolinks:load', function(){
 
 
-        ajaxRefresh("#arrival_mail_nature_id", "/arrival_mails/get_natures", "GET");
-        ajaxRefresh("#arrival_mail_support_id", "/arrival_mails/get_supports", "GET");
-        ajaxRefresh("#arrival_mail_correspondent_id", "/arrival_mails/get_correspondents", "GET");
-        ajaxRefresh("#arrival_mail_folder_id", "/arrival_mails/get_folders", "GET");
+        //ajaxRefresh("#arrival_mail_nature_id", "/arrival_mails/get_natures", "GET");
+        //ajaxRefresh("#arrival_mail_support_id", "/arrival_mails/get_supports", "GET");
+        //ajaxRefresh("#arrival_mail_correspondent_id", "/arrival_mails/get_correspondents", "GET");
+        //ajaxRefresh("#arrival_mail_folder_id", "/arrival_mails/get_folders", "GET");
 
         ajaxFilterByID("#arrival_mail_processing_entity_id", "/arrival_mails/get_profiles", "GET");
        
@@ -101,7 +101,7 @@ $(document).on('turbolinks:load', function() {
         escapeMarkup: function (markup) { return markup; },
         language: {
             noResults: function () {
-                return "<a data-remote='true' href='/correspondents/new'>+ Ajouter</a>";
+                return "<a data-remote='true' href='/correspondents/new'>+ Créer un correspondant</a>";
             }
         }
     });
@@ -116,7 +116,7 @@ $(document).on('turbolinks:load', function() {
         escapeMarkup: function (markup) { return markup; },
         language: {
             noResults: function () {
-                return "<a data-remote='true' href='/folders/new'>+ Ajouter</a>";
+                return "<a data-remote='true' href='/folders/new'>+ Créer un dossier</a>";
             }
         }
     });
@@ -150,8 +150,9 @@ $(document).on('turbolinks:load', function() {
 
 $(document).on('turbolinks:load', function() {
     $('#arrival-mail #correspondent-modal').on('hide.bs.modal', function() {
-      
+      console.log("BEFORE ARRIVAL MAIL CORRESPONDENT");
     ajaxGetLastRecord('select[name="arrival_mail[correspondent_id]"]', "/get/last_correspondent", "GET");
+    console.log("AFTER ARRIVAL MAIL CORRESPONDENT");
 
     });
 });
@@ -170,66 +171,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-function ajaxGetLastRecord(target, route, verb){
-    console.log("Source: ", route);
-  
-      $.ajax({
-            type: verb,
-            headers: {
-                'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
-                },
-            dataType: 'json',
-            url: route,
-            cache:true,
-            
-          
-            success: function(response) {
-                last_record_id = response.last_record.id;
-                last_record_name = getName(response.last_record);
-                all_records = response.all_records;
 
-
-                $(target).empty();
-                $(target).append('<option value="">Sélectionner</option>');
-                
-
-                // For each record
-
-                $.each(all_records, function(key, value){
-
-                    if (last_record_name === getName(value)){
-                        $(target).append('<option value="'+ key +'" selected>' + getName(value) + '</option>');
-
-                    }else{
-                        $(target).append('<option value="'+ key +'">' + getName(value) + '</option>');
-
-
-                    }
-
-                });
-
-
-            }
-      });
- 
-};
-
-function getName(record){
-    var name = null;
-
-    if (record.organization_name !== null && record.organization_name !== "" && record.organization_name !== undefined ){
-      name = record.organization_name;
-    }
-    else if ((record.contact_last_name !== "" && record.contact_last_name !== null && record.contact_last_name !== undefined) || (record.contact_first_name !== "" && record.contact_first_name !== null && record.contact_first_name !== undefined)){
-        name = record.contact_last_name + " " + record.contact_first_name ;
-    }
-    else if (record.name){
-        name = record.name;
-    }
-
-    return name;
-
-}
 
 
 

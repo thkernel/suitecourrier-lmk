@@ -122,18 +122,20 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
+            <%= form.label :receipt_date, "Date réception", class: "required" %>
+            <%= form.date_field :receipt_date,  value: Date.today, class: "form-control" %>
+          </div>
+ 
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
             <%= form.label :departure_date , "Date du courrier" , class: "required"%>
             <%= form.date_field :departure_date, id: :arrival_mail_departure_date, class: "form-control" %>
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= form.label :receipt_date, "Date réception", class: "required" %>
-            <%= form.date_field :receipt_date, id: :arrival_mail_receipt_date, class: "form-control" %>
-          </div>
- 
-        </div>
+        
 
         <div class="col-md-4">
           <div class="form-group customSelect">

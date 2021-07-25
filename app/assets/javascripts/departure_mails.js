@@ -55,10 +55,10 @@ $(document).on('turbolinks:load', function(){
 
    
         // Get doctor by service
-        ajaxRefresh("#departure_mail_nature_id", "/departure_mails/get_natures", "GET");
-        ajaxRefresh("#departure_mail_support_id", "/departure_mails/get_supports", "GET");
-        ajaxRefresh("#departure_mail_correspondent_id", "/departure_mails/get_correspondents", "GET");
-        ajaxRefresh("#departure_mail_folder_id", "/departure_mails/get_folders", "GET");
+        //ajaxRefresh("#departure_mail_nature_id", "/departure_mails/get_natures", "GET");
+        //ajaxRefresh("#departure_mail_support_id", "/departure_mails/get_supports", "GET");
+        //ajaxRefresh("#departure_mail_correspondent_id", "/departure_mails/get_correspondents", "GET");
+        //ajaxRefresh("#departure_mail_folder_id", "/departure_mails/get_folders", "GET");
 
         ajaxFilterByID("#departure_mail_processing_entity_id", "/departure_mails/get_processing_recipients", "GET");
         ajaxFilterByID("#departure_mail_initiating_entity_id", "/departure_mails/get_initiators", "GET");
@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function() {
         escapeMarkup: function (markup) { return markup; },
         language: {
             noResults: function () {
-                return "<a data-remote='true' href='/correspondents/new'>+ Ajouter</a>";
+                return "<a data-remote='true' href='/correspondents/new'>+ Créer un correspondant</a>";
             }
         }
     });
@@ -119,7 +119,7 @@ $(document).on('turbolinks:load', function() {
         escapeMarkup: function (markup) { return markup; },
         language: {
             noResults: function () {
-                return "<a data-remote='true' href='/folders/new'>+ Ajouter</a>";
+                return "<a data-remote='true' href='/folders/new'>+ Créer un dossier</a>";
             }
         }
     });
@@ -160,7 +160,7 @@ $(document).on('turbolinks:load', function() {
 });
 
 
-
+/*
 
 function ajaxGetLastRecord(target, route, verb){
     console.log("Source: ", route);
@@ -185,7 +185,7 @@ function ajaxGetLastRecord(target, route, verb){
                 $(target).append('<option value="">Sélectionner</option>');
                 
 
-                // For each record
+                
 
                 $.each(all_records, function(key, value){
 
@@ -222,3 +222,4 @@ function getName(record){
     return name;
 
 }
+*/

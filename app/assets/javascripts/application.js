@@ -209,3 +209,79 @@ $(document).on('turbolinks:load', function(){
         }
   });
 });
+
+
+function ajaxGetLastRecord(target, route, verb){
+    console.log("Source: ", route);
+       console.log("IN ARRIVAL MAIL CORRESPONDENT");
+    $.ajax({
+            type: verb,
+            headers: {
+                'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+                },
+            dataType: 'json',
+            url: route,
+            cache:true,
+            
+          
+            success: function(response) {
+                
+                
+                last_record_id = response.last_record.id;
+                last_record_name = getOrganizationName(response.last_record);
+                all_records = response.all_records;
+
+
+                $(target).empty();
+                $(target).append('<option value="">Sélectionner</option>');
+                
+
+                
+
+                $.each(all_records, function(key,value){
+
+                    if (last_record_name === getOrganizationName(value)){
+                        $(target).append('<option value="'+ value.id +'" selected>' + getOrganizationName(value) + '</option>');
+
+                    }else{
+                        $(target).append('<option value="'+ value.id +'">' + getOrganizationName(value) + '</option>');
+
+
+                    }
+
+                });
+                
+                
+
+            },
+            error: function(xhr, textStatus, error) {
+                console.log(xhr.responseText);
+       
+            }
+
+            
+    });
+    console.log("AFTER ARRIVAL MAIL CORRESPONDENT IN AJAX");
+ 
+};
+
+function getOrganizationName(record){
+    var name = null;
+
+    if (record.organization_name !== null && record.organization_name !== "" && record.organization_name !== undefined ){
+      name = record.organization_name;
+      
+    }
+    else if ((record.contact_last_name !== "" && record.contact_last_name !== null && record.contact_last_name !== undefined) || (record.contact_first_name !== "" && record.contact_first_name !== null && record.contact_first_name !== undefined)){
+        name = record.contact_last_name + " " + record.contact_first_name ;
+        
+    }
+    else if (record.name){
+        // For others resources differents to correspondents.
+        name = record.name;
+        
+    }
+
+    return name;
+
+}

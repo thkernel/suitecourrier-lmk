@@ -93,7 +93,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-
+/*
 
 function ajaxGetLastRecord(target, route, verb){
     console.log("Source: ", route);
@@ -118,7 +118,7 @@ function ajaxGetLastRecord(target, route, verb){
                 $(target).append('<option value="">Sélectionner</option>');
                 
 
-                // For each record
+             
 
                 $.each(all_records, function(key, value){
 
@@ -138,3 +138,5 @@ function ajaxGetLastRecord(target, route, verb){
       });
  
 };
+
+*/

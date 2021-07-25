@@ -9,7 +9,7 @@ class ArrivalMailsController < ApplicationController
   # GET /arrival_mails.json
   def index
 
-    @current_user_arrival_mails = current_user.arrival_mails
+    @current_user_arrival_mails = current_user.arrival_mails.order(id: :desc)
     @imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id)
 
 

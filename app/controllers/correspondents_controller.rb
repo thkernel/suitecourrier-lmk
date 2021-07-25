@@ -30,6 +30,8 @@ class CorrespondentsController < ApplicationController
 
   def last_correspondent
     last_correspondent = Correspondent.last
+
+    puts "LAST CORRESPONDENT: #{last_correspondent.inspect}"
     correspondents = Correspondent.all
     data = {:last_record => last_correspondent, :all_records => correspondents}
     render :json => data
@@ -43,6 +45,7 @@ class CorrespondentsController < ApplicationController
 
     respond_to do |format|
       if @correspondent.save
+        puts "CREATE CORRESPNDANT"
         @correspondents = Correspondent.all
         format.html { redirect_to @correspondent, notice: 'Correspondant enregistré avec succès.' }
         format.json { render :show, status: :created, location: @correspondent }

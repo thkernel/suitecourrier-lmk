@@ -7,7 +7,7 @@
         <td><%= arrival_mail.support.name %></td>
     <td><%= arrival_mail.departure_date.strftime("%d/%m/%Y") %></td>
     <td><%= arrival_mail.receipt_date.strftime("%d/%m/%Y") %></td>
-    <td><%= correspondent(arrival_mail.correspondent_id).organization_name %></td>
+    <td><%= correspondent_name(arrival_mail.correspondent_id) %></td>
     <td><%= arrival_mail.mail_status.name %></td>
     <td>
 
