@@ -83,7 +83,7 @@ class Tenant < ApplicationRecord
 	            profile.save
 
                 if profile.present?
-                    TenantMailJob.perform_now(self)
+                    TenantEmailJob.perform_now(self, random_password)
                 end
             end
         end

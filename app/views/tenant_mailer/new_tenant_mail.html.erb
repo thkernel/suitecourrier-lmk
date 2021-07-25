@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @tenant.organization_name %>,<br>
+      Votre espace SuiteCourrier a été créee avec succès.<br>
+      <p>
+      
+        Pour acceder à votre espace, veuillez vous rendre sur lien suivant: <br> 
+        <a href='<% "#{@tenant.subdomain}.suitecourrier.com" %>' target="_blank"><%= "#{@tenant.subdomain}.suitecourrier.com" %></a>
+
+        <br> 
+        <br> 
+        Vos identifiants sont: <br>
+          Login/Email: <%= @tenant.email %><br> 
+          Mot de passe: <%= @admin_password %><br> 
+        
+      
+      </p>
+    </p>
+    
+    <p>
+    L'équipe de SuiteCourrier
+    </p>
+  </body>
+</html>
