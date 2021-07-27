@@ -12,7 +12,7 @@ class UncompletedTicketEmailJob < ApplicationJob
   	current_date = Time.now.strftime("%d/%m/%Y").to_date
 
     compare_date = current_date + 1.day
-    tickets = Ticket.where(completed_date: nil).id).where("due_date < ? ", compare_date)
+    tickets = Ticket.where(completed_date: nil).where("due_date < ? ", compare_date)
 
 
   	tickets.each do |ticket|
