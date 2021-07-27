@@ -227,6 +227,22 @@ namespace :data do
 
 	end
 
+
+	unless TicketPriority.all.present?
+	    ticket_priorities = TicketPriority.create(
+	        [
+	            {name: "Aucune", user_id: users.first.id},
+	            {name: "Normale", user_id: users.first.id},
+	            {name: "Basse", user_id: users.first.id},
+	            {name: "Moyenne", user_id: users.first.id},
+	            {name: "Haute", user_id: users.first.id},
+	            {name: "Urgente", user_id: users.first.id}
+	        ])
+	else    
+	    ticket_priorities =  TicketPriority.all
+
+	end
+
 	unless TaskPriority.all.present?
 	    task_priorities = TaskPriority.create(
 	        [

@@ -28,17 +28,26 @@
 
 
 # For capistrano on the server
- every 5.minutes, :roles =>[:db, :app, :web] do
-    rake "arrival_mail:check_arrival_mail_processing_deadline"
-    rake "departure_mail:check_departure_mail_processing_deadline"
-    rake "imputation:check_task_due_date"
-    rake "arrival_mail:unprocessed_arrival_mail"
-    rake "departure_mail:unprocessed_departure_mail"
-    rake "imputation:uncompleted_task"
-    rake "ticket:overdue_ticket"
-    #rake "tasks:calculate_bank_commission_rate_evolution"
-    #rake "tasks:check_first_installment_payment_delay_expired"
-    #rake "tasks:check_monthly_installment_payment_delay_expired"
+ every 30.minutes, :roles =>[:db, :app, :web] do
+
+    # Arrival mail
+    rake "arrival_mail:arrival_mail_processing_warning_email"
+    rake "arrival_mail:unprocessed_arrival_mail_email"
+    
+
+    # Departure mail
+    rake "departure_mail:departure_mail_processing_warning_email"
+    rake "departure_mail:unprocessed_departure_mail_email"
+
+    # Imputations
+    rake "imputation:uncompleted_task_warning_email"
+    rake "imputation:uncompleted_task_email"
+    
+    
+    # Tickets
+    rake "ticket:uncompleted_ticket_warning_email"
+    rake "ticket:uncompleted_ticket_email"
+    
 end
 
 

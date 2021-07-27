@@ -144,7 +144,7 @@ class ImputationsController < ApplicationController
 					#end
         #end
 
-        SendImputationEmailJob.perform_now(@imputation.recipient_id, @imputation)
+        ImputationEmailJob.perform_now(@imputation.recipient_id, @imputation)
 
           
         if flash[:rtype].present? && flash[:rtype] == "ArrivalMail"

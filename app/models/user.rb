@@ -76,6 +76,7 @@ class User < ApplicationRecord
 	
 	has_many :priorities, dependent: :destroy
 	has_many :task_priorities, dependent: :destroy
+	has_many :ticket_priorities, dependent: :destroy
 	has_many :mail_priorities, dependent: :destroy
 	has_many :mail_categories, dependent: :destroy
 	has_many :mail_statuses, dependent: :destroy

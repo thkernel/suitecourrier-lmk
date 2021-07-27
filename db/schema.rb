@@ -727,6 +727,18 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.index ["user_id"], name: "index_tenants_on_user_id"
   end
 
+  create_table "ticket_priorities", force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "color"
+    t.integer "processing_time_in_days"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ticket_priorities_on_user_id"
+  end
+
   create_table "ticket_statuses", force: :cascade do |t|
     t.string "uid"
     t.string "name"
@@ -764,17 +776,17 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "reference"
     t.bigint "ticket_type_id"
     t.string "title"
-    t.bigint "priority_id"
+    t.bigint "ticket_priority_id"
     t.text "content"
-    t.datetime "due_date"
-    t.datetime "start_date"
-    t.datetime "completed_date"
+    t.date "due_date"
+    t.date "start_date"
+    t.date "completed_date"
     t.bigint "ticket_status_id"
     t.integer "year"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["priority_id"], name: "index_tickets_on_priority_id"
+    t.index ["ticket_priority_id"], name: "index_tickets_on_ticket_priority_id"
     t.index ["ticket_status_id"], name: "index_tickets_on_ticket_status_id"
     t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
@@ -891,10 +903,11 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   add_foreign_key "tasks", "users"
   add_foreign_key "tenants", "organization_types"
   add_foreign_key "tenants", "users"
+  add_foreign_key "ticket_priorities", "users"
   add_foreign_key "ticket_statuses", "users"
   add_foreign_key "ticket_types", "users"
   add_foreign_key "ticket_users", "tickets"
-  add_foreign_key "tickets", "priorities"
+  add_foreign_key "tickets", "ticket_priorities"
   add_foreign_key "tickets", "ticket_statuses"
   add_foreign_key "tickets", "ticket_types"
   add_foreign_key "tickets", "users"

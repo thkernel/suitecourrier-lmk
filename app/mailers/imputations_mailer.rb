@@ -11,7 +11,7 @@ class ImputationsMailer < ActionMailer::Base
     #default from: "<salut.amos@gmail.com>"
     default from: "SuiteCourrier<#{SmtpServerSetting.take.user_name}>" if SmtpServerSetting.take.present?
 
-    def new_imputation_mail(user_id, imputation)
+    def imputation_email(user_id, imputation)
         @user = User.find(user_id)
         @imputation = imputation
         
@@ -21,7 +21,7 @@ class ImputationsMailer < ActionMailer::Base
     end
 
 
-    def uncompleted_task_mail(task)
+    def uncompleted_task_email(task)
 
         imputation = Imputation.find(task.imputation_id)
         @user = User.find(imputation.recipient_id)
@@ -32,7 +32,7 @@ class ImputationsMailer < ActionMailer::Base
         mail(to: @user.email, subject: "Tâche non traitée!")
     end
 
-    def check_task_due_date_mail(task)
+    def uncompleted_task_warning_email(task)
 
         imputation = Imputation.find(task.imputation_id)
         @user = User.find(imputation.recipient_id)

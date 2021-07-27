@@ -1,8 +1,15 @@
 namespace :ticket do
   desc "Overdue ticket"
-  task overdue_ticket: :environment do
+  task uncompleted_ticket_warning_email: :environment do
   	
-  	OverdueTicketJob.perform_now
+  	UncompletedTicketWarningEmailJob.perform_now
+  	
+  	cron_logger.info("======== AFTER CRON: overdue ticket due date, at: #{Time.now} ===========")
+  end
+
+  task uncompleted_ticket_email: :environment do
+  	
+  	UncompletedTicketEmailJob.perform_now
   	
   	cron_logger.info("======== AFTER CRON: overdue ticket due date, at: #{Time.now} ===========")
   end

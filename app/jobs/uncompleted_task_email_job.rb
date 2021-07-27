@@ -1,14 +1,14 @@
-class UncompletedTaskJob < ApplicationJob
+class UncompletedTaskEmailJob < ApplicationJob
   #queue_as :default
-  queue_as :uncompleted_task_job
+  queue_as :uncompleted_task_email_job
 
-  def perform(*args)
-  	uncompleted_task
+  def perform
+  	uncompleted_task_email
   end
 
   private
 
-  def uncompleted_task
+  def uncompleted_task_email
 
   	
     current_date = Time.now.strftime("%d/%m/%Y").to_date
@@ -21,7 +21,7 @@ class UncompletedTaskJob < ApplicationJob
     	
     	# Send notification by email
       task.update_column(:completed, false)
-    	ImputationsMailer.uncompleted_task_mail(task).deliver_now
+    	ImputationsMailer.uncompleted_task_email(task).deliver_now
 
     	# Add in the notification queue
     end

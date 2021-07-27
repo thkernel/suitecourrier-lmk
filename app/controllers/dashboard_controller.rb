@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
 		
 		@total_arrival_mails = current_user.arrival_mails.count
 		@total_departure_mails = current_user.departure_mails.count
-		#@total_requests = current_user.requests.count
+		@total_tickets = current_user.tickets.count
 		@total_documents = current_user.documents.count
 
 		#@current_user_arrival_mails = current_user.arrival_mails.take(5)

@@ -1,19 +1,19 @@
 namespace :imputation do
   desc "TODO"
-  task uncompleted_task: :environment do
+  task uncompleted_task_email: :environment do
   	
-  	UncompletedTaskJob.perform_now
+  	UncompletedTaskEmailJob.perform_now
   	
   	cron_logger.info("======== AFTER CRON: unprocessed uncompleted task, at: #{Time.now} ===========")
   end
 
 
-  desc "check task due date"
-  task check_task_due: :environment do
+  desc "overdue task"
+  task uncompleted_task_warning_email: :environment do
   	
-  	CheckTaskDueDateJob.perform_now
+  	UncompletedTaskWarningEmailJob.perform_now
   	
-  	cron_logger.info("======== AFTER CRON: check task due date, at: #{Time.now} ===========")
+  	cron_logger.info("======== AFTER CRON: overdue task, at: #{Time.now} ===========")
   end
 
 end

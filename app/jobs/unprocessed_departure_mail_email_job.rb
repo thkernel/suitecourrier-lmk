@@ -1,14 +1,14 @@
-class UnprocessedDepartureMailJob < ApplicationJob
+class UnprocessedDepartureMailEmailJob < ApplicationJob
   #queue_as :default
-  queue_as :unprocessed_departure_mail_job
+  queue_as :unprocessed_departure_mail_email_job
 
-  def perform(*args)
-  	unprocessed_arrival_mail
+  def perform
+  	unprocessed_departure_mail_email
   end
 
-  private
+  
 
-  def unprocessed_departure_mail
+  def unprocessed_departure_mail_email
 
   	
     current_date = Time.now.strftime("%d/%m/%Y").to_date
@@ -21,7 +21,7 @@ class UnprocessedDepartureMailJob < ApplicationJob
     	
     	# Send notification by email
       departure_mail.update_column(:processed, false)
-    	DepartureMailsMailer.unprocessed_departure_mail(departure_mail).deliver_now
+    	DepartureMailsMailer.unprocessed_departure_mail_email(departure_mail).deliver_now
 
     	# Add in the notification queue
     end

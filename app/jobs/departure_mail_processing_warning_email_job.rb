@@ -1,14 +1,14 @@
-class CheckDepartureMailProcessingDeadlineJob < ApplicationJob
-  queue_as :check_departure_mail_processing_deadline_job
+class DepartureMailProcessingWarningEmailJob < ApplicationJob
+  queue_as :departure_mail_processing_warning_email_job
 
   def perform
-  	check_departure_mail_processing_deadline
+  	departure_mail_processing_warning_email
 
   end
 
-  private 
+  
 
-  def check_departure_mail_processing_deadline
+  def departure_mail_processing_warning_email
   	current_date = Time.now.strftime("%d/%m/%Y").to_date
   	
   	#(Time.now - self.created_at) / 86400 (nombre de seconde par jour)
@@ -25,7 +25,7 @@ class CheckDepartureMailProcessingDeadlineJob < ApplicationJob
 
     	if date_diff >= 1
 	    	# Send notification by email
-	    	DepartureMailsMailer.check_departure_mail_processing_deadline_mail(departure_mail).deliver_now
+	    	DepartureMailsMailer.departure_mail_processing_warning_email(departure_mail).deliver_now
 
     	end
     end

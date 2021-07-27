@@ -1,14 +1,14 @@
-class CheckArrivalMailProcessingDeadlineJob < ApplicationJob
-  queue_as :check_arrival_mail_processing_deadline_job
+class ArrivalMailProcessingWarningEmailJob < ApplicationJob
+  queue_as :arrival_mail_processing_warning_email_job
 
   def perform
-    check_arrival_mail_processing_deadline
+    arrival_mail_processing_warning_email
   end
 
 
-  private
+  
 
-  def check_arrival_mail_processing_deadline
+  def arrival_mail_processing_warning_email
 
   	current_date = Time.now.strftime("%d/%m/%Y").to_date
   	
@@ -26,7 +26,7 @@ class CheckArrivalMailProcessingDeadlineJob < ApplicationJob
 
     	if date_diff >= 1
 	    	# Send notification by email
-	    	ArrivalMailsMailer.check_arrival_mail_processing_deadline_mail(arrival_mail).deliver_now
+	    	ArrivalMailsMailer.arrival_mail_processing_warning_email(arrival_mail).deliver_now
 
     	end
     end

@@ -47,15 +47,20 @@ class TicketsController < ApplicationController
 
     @ticket.ticket_status_id = TicketStatus.find_by(name: "En attente").id
 
-
-    params[:recipients][:id].each do |ticket_user|
-      unless ticket_user.empty?
-        @ticket.ticket_users.build(recipient_id: ticket_user)
-      end
-    end
+    ticket_users = params[:recipients][:id]
+    
 
     respond_to do |format|
       if @ticket.save
+
+        ticket_users.each do |ticket_user|
+          unless ticket_user.empty?
+            @ticket.ticket_users.build(recipient_id: ticket_user)
+            TicketAttributionEmailJob.perform_now(ticket_user, @ticket)
+
+          end
+        end
+        
         record_activity("Créer un ticket (ID: #{@ticket.id})")
 
         @tickets = Ticket.all

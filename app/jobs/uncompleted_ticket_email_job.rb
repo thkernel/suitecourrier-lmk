@@ -1,13 +1,13 @@
-class OverdueTicketJob < ApplicationJob
-  queue_as :overdue_ticket_job
+class UncompletedTicketEmailJob < ApplicationJob
+  queue_as :uncompleted_ticket_email_job
 
   def perform
-    send_overdue_ticket_email
+    uncompleted_ticket_email
   end
 
   private
 
-  def send_overdue_ticket_email
+  def uncompleted_ticket_email
 
   	current_date = Time.now.strftime("%d/%m/%Y").to_date
 
@@ -22,7 +22,7 @@ class OverdueTicketJob < ApplicationJob
 	  		user = User.find(ticket_user.recipient_id)
 	  		#ticket = Ticket.find(ticket_user.ticket_id)
 
-	  		TicketsMailer.overdue_ticket_email(user, ticket).deliver_later
+	  		TicketsMailer.uncompleted_ticket_email(user, ticket).deliver_later
 	  	end
   	end
   	

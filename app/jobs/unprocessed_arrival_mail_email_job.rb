@@ -1,15 +1,15 @@
-class UnprocessedArrivalMailJob < ApplicationJob
+class UnprocessedArrivalMailEmailJob < ApplicationJob
 	include SharedUtils::AppLogger
   #queue_as :default
-  queue_as :unprocessed_arrival_mail_job
+  queue_as :unprocessed_arrival_mail_email_job
 
-  def perform(*args)
-  	unprocessed_arrival_mail
+  def perform
+  	unprocessed_arrival_mail_email
   end
 
-  private
+  
 
-  def unprocessed_arrival_mail
+  def unprocessed_arrival_mail_email
 
   	
     current_date = Time.now.strftime("%d/%m/%Y").to_date
@@ -22,7 +22,7 @@ class UnprocessedArrivalMailJob < ApplicationJob
     	
     	# Send notification by email
       arrival_mail.update_column(:processed, false)
-    	ArrivalMailsMailer.unprocessed_arrival_mail(arrival_mail).deliver_now
+    	ArrivalMailsMailer.unprocessed_arrival_mail_email(arrival_mail).deliver_now
 
     	# Add in the notification queue
     end

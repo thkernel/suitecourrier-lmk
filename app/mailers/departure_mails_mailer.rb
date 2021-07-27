@@ -12,7 +12,7 @@ class DepartureMailsMailer < ActionMailer::Base
     #default from: "<salut.amos@gmail.com>"
     default from: "SuiteCourrier<#{SmtpServerSetting.take.user_name}>" if SmtpServerSetting.take.present?
 
-    def unprocessed_deparure_mail(departure_mail)
+    def unprocessed_departure_mail_email(departure_mail)
         @user = User.find(departure_mail.processing_recipient_id)
         @departure_mail = departure_mail
         
@@ -21,7 +21,7 @@ class DepartureMailsMailer < ActionMailer::Base
         mail(to: @user.email, subject: "Courrier arrivé non traité")
     end
 
-    def check_departure_mail_processing_deadline_mail(departure_mail)
+    def departure_mail_processing_warning_email(departure_mail)
         @user = User.find(departure_mail.processing_recipient_id)
         @departure_mail = departure_mail
         

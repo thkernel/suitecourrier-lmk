@@ -1,0 +1,22 @@
+<% @ticket_priorities.each do |ticket_priority| %>
+  <tr>
+    
+    <td><%= ticket_priority.name %></td>
+    <td><%= ticket_priority.color %></td>
+    <td><%= ticket_priority.processing_time_in_days %></td>
+    
+    <td>
+        <div class="action-buttons">
+            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
+'),  edit_ticket_priority_path(ticket_priority), title: "Modifier", remote: true %>
+
+
+
+
+<%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
+'), ticket_priority_delete_path(ticket_priority), remote: true, title: "Supprimer", class: "delete" %>
+</div>
+</td>
+
+  </tr>
+<% end %>

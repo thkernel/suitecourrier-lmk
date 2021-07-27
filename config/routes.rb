@@ -9,7 +9,12 @@ end
 Rails.application.routes.draw do
 
 
-  resources :task_priorities
+  resources :ticket_priorities do   
+    get "delete"
+  end
+  resources :task_priorities do   
+    get "delete"
+  end
   resources :mail_categories do   
     get "delete"
   end

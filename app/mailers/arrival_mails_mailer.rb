@@ -1,4 +1,4 @@
-class ArrivalMailMailer < ActionMailer::Base
+class ArrivalMailsMailer < ActionMailer::Base
     include SharedUtils::SmtpSettings
 
     before_action :set_mailer_settings
@@ -11,7 +11,7 @@ class ArrivalMailMailer < ActionMailer::Base
     #default from: "<salut.amos@gmail.com>"
     default from: "SuiteCourrier<#{SmtpServerSetting.take.user_name}>" if SmtpServerSetting.take.present?
 
-    def unprocessed_arrival_mail(arrival_mail)
+    def unprocessed_arrival_mail_email(arrival_mail)
         @user = User.find(arrival_mail.processing_recipient_id)
         @arrival_mail = arrival_mail
         
@@ -20,7 +20,7 @@ class ArrivalMailMailer < ActionMailer::Base
         mail(to: @user.email, subject: "Courrier arrivé non traité")
     end
 
-    def check_arrival_mail_processing_deadline_mail(arrival_mail)
+    def arrival_mail_processing_warning_email(arrival_mail)
         @user = User.find(arrival_mail.processing_recipient_id)
         @arrival_mail = arrival_mail
         

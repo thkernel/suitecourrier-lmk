@@ -8,12 +8,12 @@
 
     <p>
       Salut <%= @user.profile.full_name %>,<br>
-      Un ticket est en retard de traitement.<br>
+      Un ticket non traité.<br>
       <p>
       
         ID: <strong><%= @ticket.id %></strong><br> 
         Titre: <strong><%= @ticket.title %></strong><br> 
-        Description: <strong><%= @ticket.description %></strong><br> 
+        Description: <strong><%= @ticket.content.html_safe %></strong><br> 
         Date limite de traitement: <strong><%= @ticket.due_date.strftime("%d/%m/%Y") %></strong><br> 
         
       

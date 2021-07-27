@@ -1,14 +1,14 @@
-class CheckTaskDueDateJob < ApplicationJob
-  queue_as :check_task_due_date_job
+class UncompletedTaskWarningEmailJob < ApplicationJob
+  queue_as :uncompleted_task_warning_email_job
 
   def perform
-  	check_task_due_date
+  	uncompleted_task_warning_email
 
   end
 
   private 
 
-  def check_task_due_date
+  def uncompleted_task_warning_email
   	current_date = Time.now.strftime("%d/%m/%Y").to_date
   	
   	#(Time.now - self.created_at) / 86400 (nombre de seconde par jour)
@@ -25,7 +25,7 @@ class CheckTaskDueDateJob < ApplicationJob
 
     	if date_diff >= 1
 	    	# Send notification by email
-	    	ImputationsMailer.check_task_due_date_mail(task).deliver_now
+	    	ImputationsMailer.uncompleted_task_warning_email(task).deliver_now
 
     	end
     end
