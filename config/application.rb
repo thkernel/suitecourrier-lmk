@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'apartment/elevators/subdomain' # or 'domain', 'first_subdomain', 'host'
+
 require './lib/shared_utils/utils'
 #require './lib/outin_storage/outin_storage'
 #require './lib/shared_utils/google_drive_client'
