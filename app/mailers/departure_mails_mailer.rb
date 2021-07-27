@@ -1,4 +1,4 @@
-class DepartureMailMailer < ActionMailer::Base
+class DepartureMailsMailer < ActionMailer::Base
 
     include SharedUtils::SmtpSettings
 

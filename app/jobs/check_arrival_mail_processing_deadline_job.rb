@@ -26,7 +26,7 @@ class CheckArrivalMailProcessingDeadlineJob < ApplicationJob
 
     	if date_diff >= 1
 	    	# Send notification by email
-	    	ArrivalMailMailer.check_arrival_mail_processing_deadline_mail(arrival_mail).deliver_now
+	    	ArrivalMailsMailer.check_arrival_mail_processing_deadline_mail(arrival_mail).deliver_now
 
     	end
     end

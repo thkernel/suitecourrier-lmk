@@ -21,7 +21,7 @@ class UnprocessedDepartureMailJob < ApplicationJob
     	
     	# Send notification by email
       departure_mail.update_column(:processed, false)
-    	DepartureMailMailer.unprocessed_departure_mail(departure_mail).deliver_now
+    	DepartureMailsMailer.unprocessed_departure_mail(departure_mail).deliver_now
 
     	# Add in the notification queue
     end

@@ -22,7 +22,7 @@ class UnprocessedArrivalMailJob < ApplicationJob
     	
     	# Send notification by email
       arrival_mail.update_column(:processed, false)
-    	ArrivalMailMailer.unprocessed_arrival_mail(arrival_mail).deliver_now
+    	ArrivalMailsMailer.unprocessed_arrival_mail(arrival_mail).deliver_now
 
     	# Add in the notification queue
     end

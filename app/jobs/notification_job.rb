@@ -6,7 +6,7 @@ class NotificationJob < ApplicationJob
     notification(user_id, imputation, resource, imputable_type)
   end
 
-  private
+ 
 
   def notification(user_id, imputation, resource, imputable_type)
   	  	message = "Un #{imputable_type} vous a été imputé. Réf: #{imputation.imputable_id}"

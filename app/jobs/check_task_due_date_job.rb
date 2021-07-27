@@ -25,7 +25,7 @@ class CheckTaskDueDateJob < ApplicationJob
 
     	if date_diff >= 1
 	    	# Send notification by email
-	    	ImputationMailer.check_task_due_date_mail(task).deliver_now
+	    	ImputationsMailer.check_task_due_date_mail(task).deliver_now
 
     	end
     end

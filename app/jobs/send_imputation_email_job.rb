@@ -9,6 +9,6 @@ class SendImputationEmailJob < ApplicationJob
 
   def send_imputation_email(user_id, imputation)
 
-  	ImputationMailer.new_imputation_mail(user_id, imputation).deliver_later
+  	ImputationsMailer.new_imputation_mail(user_id, imputation).deliver_later
   end
 end

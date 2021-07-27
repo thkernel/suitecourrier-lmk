@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Salut <%= @user.profile.full_name %>,<br>
+      Un ticket est en retard de traitement.<br>
+      <p>
+      
+        ID: <strong><%= @ticket.id %></strong><br> 
+        Titre: <strong><%= @ticket.title %></strong><br> 
+        Description: <strong><%= @ticket.description %></strong><br> 
+        Date limite de traitement: <strong><%= @ticket.due_date.strftime("%d/%m/%Y") %></strong><br> 
+        
+      
+      </p>
+    </p>
+    
+    <p>
+    L'équipe de SuiteCourrier
+    </p>
+  </body>
+</html>

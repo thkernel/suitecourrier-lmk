@@ -1,4 +1,4 @@
-class TenantMailer < ApplicationMailer
+class TicketsMailer < ApplicationMailer
 	include SharedUtils::SmtpSettings
 
     before_action :set_mailer_settings
@@ -11,16 +11,12 @@ class TenantMailer < ApplicationMailer
     #default from: "<salut.amos@gmail.com>"
     default from: "SuiteCourrier<#{SmtpServerSetting.take.user_name}>" if SmtpServerSetting.take.present?
 
-    def new_tenant_mail(tenant, admin_password)
+    def overdue_ticket_email(user, ticket)
         
-        @tenant = tenant
-        @admin_password = admin_password
+        @user = user
+        @ticket = ticket
         
         @url  = Rails.env.production? ? Rails.application.credentials.dig(:email, :production, :host) : Rails.application.credentials.dig(:email, :development, :host)
-        mail(to: @tenant.email, subject: "Création de votre espace SuiteCourrier")
+        mail(to: @user.email, subject: "Ticket en retard de traitement")
     end
-
-
-    
-
 end

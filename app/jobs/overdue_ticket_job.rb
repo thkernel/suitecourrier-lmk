@@ -22,7 +22,7 @@ class OverdueTicketJob < ApplicationJob
 	  		user = User.find(ticket_user.recipient_id)
 	  		#ticket = Ticket.find(ticket_user.ticket_id)
 
-	  		TicketMailer.overdue_ticket_mail(user, ticket).deliver_later
+	  		TicketsMailer.overdue_ticket_email(user, ticket).deliver_later
 	  	end
   	end
   	

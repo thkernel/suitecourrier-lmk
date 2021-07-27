@@ -1,4 +1,4 @@
-class ImputationMailer < ActionMailer::Base
+class ImputationsMailer < ActionMailer::Base
     include SharedUtils::SmtpSettings
 
     before_action :set_mailer_settings

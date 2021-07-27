@@ -9,6 +9,6 @@ class TenantEmailJob < ApplicationJob
 
   def send_tenant_email(tenant, admin_password)
 
-  	TenantMailer.new_tenant_mail(tenant, admin_password).deliver_later
+  	TenantsMailer.new_tenant_mail(tenant, admin_password).deliver_later
   end
 end

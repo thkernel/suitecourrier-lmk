@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UsersMailer < ActionMailer::Base
 #include SmtpHelper
 helper :application
 	
