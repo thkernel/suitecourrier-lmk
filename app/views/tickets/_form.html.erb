@@ -16,8 +16,8 @@
       </div>
 
       <div class="form-group col-md-6 customSelect">
-        <%= form.label :priority_id, "Priorité", class: "required" %>
-        <%= form.collection_select :priority_id, @priorities,:id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
+        <%= form.label :ticket_priority_id, "Priorité", class: "required" %>
+        <%= form.collection_select :ticket_priority_id, @ticket_priorities,:id, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%", required: true %>
       </div>
     </div>
 

@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                   <%if  @overdue_tasks.present? %>
-                    <% @overdue_tasks.take(5).each do |imputation_item| %>
+                    <% @overdue_tasks.each do |imputation_item| %>
                         <tr>
                         
                           <td class="valign-middle"><%= imputation_item.created_at.strftime("%d/%m/%Y") %></td>
@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                   <% if @overdue_tickets.present? %>
-                    <% @overdue_tikets.take(5).each do |tiket| %>
+                    <% @overdue_tickets.each do |ticket| %>
                       <tr>
                       
                         <td class="valign-middle"><%= ticket.created_at.strftime("%d/%m/%Y") %></td>

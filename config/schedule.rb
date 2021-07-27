@@ -35,6 +35,7 @@
     rake "arrival_mail:unprocessed_arrival_mail"
     rake "departure_mail:unprocessed_departure_mail"
     rake "imputation:uncompleted_task"
+    rake "ticket:overdue_ticket"
     #rake "tasks:calculate_bank_commission_rate_evolution"
     #rake "tasks:check_first_installment_payment_delay_expired"
     #rake "tasks:check_monthly_installment_payment_delay_expired"
