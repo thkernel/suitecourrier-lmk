@@ -7,9 +7,9 @@ class CreateTickets < ActiveRecord::Migration[5.2]
       t.string :title
       t.references :ticket_priority, foreign_key: true
       t.text :content
-      t.datetime :due_date
-      t.datetime :start_date
-      t.datetime :completed_date
+      t.date :due_date
+      t.date :start_date
+      t.date :completed_date
       t.references :ticket_status , foreign_key: true
       t.integer :year
       t.references :user, foreign_key: true
