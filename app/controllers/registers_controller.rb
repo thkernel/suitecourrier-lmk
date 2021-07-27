@@ -104,7 +104,7 @@ class RegistersController < ApplicationController
     @registers = Register.all
 
     respond_to do |format|
-      record_activity("Supprimer un registre (ID: #{@ticket.id})")
+      record_activity("Supprimer un registre (ID: #{@register.id})")
 
       format.html { redirect_to registers_url, notice: 'Registre supprimé avec succès.' }
       format.json { head :no_content }
