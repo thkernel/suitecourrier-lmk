@@ -5,26 +5,7 @@
           <%= link_to  raw('<i class="fa fa-home tx-20"></i> <span class="menu-item-label">Tableau de bord</span>'), dashboard_path, class: "br-menu-link #{current? "active", dashboard_path}" %>
         </li><!-- br-menu-item -->
 
-       <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-inbox tx-20"></i>
-            <span class="menu-item-label">Bannette</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-            <li class="sub-item">
-                <%= link_to  "Courrier arrivée", arrival_mails_path, class: "sub-link #{current? "active", arrival_mails_path}" %>
-            </li>
-
-            <li class="sub-item">
-                <%= link_to  "Courrier départ", departure_mails_path, class: "sub-link #{current? "active", departure_mails_path}" %>
-            </li>
-
-      
-
-
-          </ul>
-        </li>
+       
 
 
         <li class="br-menu-item">
