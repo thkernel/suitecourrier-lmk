@@ -102,6 +102,22 @@ module ApplicationHelper
 		end
 	end
 
+	def arrival_mail_register_type?(selected_register_type)
+		if selected_register_type === "Registre arrivée"
+			true
+		else
+			false
+		end
+	end
+
+	def departure_mail_register_type?(selected_register_type)
+		if selected_register_type === "Registre départ"
+			true
+		else
+			false
+		end
+	end
+
 	def arrival_mail_total_task(id)
 		arrival_mail = ArrivalMail.find(id)
 		total_task = 0

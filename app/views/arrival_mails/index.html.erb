@@ -32,18 +32,15 @@
             <tr>
               <th>Date</th>
               <th>Réf. interne</th>
-              <th>Réf. externe</th>
               <th>Nature</th>
               <th>Support</th>
-              <th>Date courrier</th>
               <th>Date reception</th>
               <th>Correspondant</th>
-              <th>Statut</th>
               <th>Actions</th>
             </tr>
           </thead>
 
-          <tbody class="arrival-mails-index">
+          <tbody class="arrival-mails">
             <%= render "index", arrival_mails: @current_user_arrival_mails %>
           </tbody>
         </table>

@@ -215,8 +215,8 @@ unless RegisterType.all.present?
     register_types = RegisterType.create(
         [
 
-            { name: "COURRIER D'ARRIVÉE",  user_id: users.first.id},
-            { name: "COURRIER DÉPART", user_id: users.first.id}
+            { name: "Registre arrivée",  user_id: users.first.id},
+            { name: "Registre départ", user_id: users.first.id}
         ])
 else    
     registers =  Register.all
@@ -228,8 +228,8 @@ unless Register.all.present?
     registers = Register.create(
         [
 
-            {register_type_id: RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id , name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
-            {register_type_id: RegisterType.find_by(name: "COURRIER DÉPART").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
+            {register_type_id: RegisterType.find_by(name: "Registre arrivée").id , name: "COURRIER D'ARRIVÉE 2020",  user_id: users.first.id},
+            {register_type_id: RegisterType.find_by(name: "Registre départ").id, name: "COURRIER DEPART 2020", user_id: users.first.id}
         ])
 else    
     registers =  Register.all

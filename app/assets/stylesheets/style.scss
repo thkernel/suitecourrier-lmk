@@ -546,14 +546,14 @@ h2.section-title{
     color: #fff !important;
 }
 
-#arrival-mail fieldset, #departure-mail fieldset, #document fieldset{
+#arrival-mail fieldset, #departure-mail fieldset, #document fieldset,  #search-mails fieldset{
     border: 1px solid #ced4da;
     padding: 15px;
     margin-bottom: 10px;
 }
 
 
-#arrival-mail fieldset legend, #departure-mail fieldset legend, #document fieldset legend {
+#arrival-mail fieldset legend, #departure-mail fieldset legend, #document fieldset legend,  #search-mails fieldset legend {
     border: 1px solid #ced4da;
     margin-bottom: 5px !important;
     font-size: 12pt !important;

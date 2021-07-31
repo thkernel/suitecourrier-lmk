@@ -1,0 +1,90 @@
+
+    <%= form_with(url: search_mails_path, method: "get", class: "", local: true) do |f| %>
+
+  
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :register_type, "Registre", class: "required" %>
+                    <%= f.collection_select(:register_type,  @register_types, :name, :name, {prompt: "Sélectionner", selected: (@selected_register_type if @selected_register_type.present?)},  class: "form-control", style: "width: 100%;", required: true ) %>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :nature, "Nature" %>
+                    <%= f.collection_select(:nature,  @natures, :name, :name, {prompt: "Sélectionner", selected: (@selected_nature if @selected_nature.present?)},  class: "form-control", style: "width: 100%;" ) %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :support, "Support" %>
+                    <%= f.collection_select(:support,  @supports, :name, :name, {prompt: "Sélectionner", selected: (@selected_support if @selected_support.present?)},  class: "form-control", style: "width: 100%;" ) %>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <%= f.label :correspondent_id, "Correspondant" %>
+                    <%= f.collection_select(:correspondent_id,  @correspondents, :id, :correspondent_name, {prompt: "Sélectionner", selected: (@selected_correspondent if @selected_correspondent.present?)},  class: "form-control", style: "width: 100%;" ) %>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Fieldset -->
+                <fieldset>
+                    <legend>Date du courrier</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.label :departure_date_start, "Début" %>
+                                <%= f.date_field :departure_date_start,  class: "form-control", value: (@selected_departure_date_start if @selected_departure_date_start.present?) %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.label :departure_date_end, "Fin" %>
+                                <%= f.date_field :departure_date_end,  class: "form-control", value: (@selected_departure_date_end if @selected_departure_date_end.present?) %>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div class="col-md-6">
+                <!-- Fieldset -->
+                <fieldset>
+                    <legend>Date arrivée</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.label :receipt_date_start, "Début" %>
+                                <%= f.date_field :receipt_date_start,  class: "form-control", value: (@selected_receipt_date_start if @selected_receipt_date_start.present?) %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <%= f.label :receipt_date_end, "Fin" %>
+                                <%= f.date_field :receipt_date_end,  class: "form-control", value: (@selected_receipt_date_end if @selected_receipt_date_end.present?) %>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+
+       <div class="row">
+           <div class="col-md-12 ">
+                <div class="form-group pull-right">
+                    <%= link_to "Vider le formulaire", search_mails_path, class: "btn btn-link" %>
+                    <%= f.submit("RECHERCHER", class: "btn btn-primary ") %>
+                </div>
+               
+            </div>
+        </div>
+    <% end %>
+    

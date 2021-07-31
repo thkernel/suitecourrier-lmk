@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   resources :tenants do   
     get "delete"
   end
+
+  get 'search/mails' => 'searchs#search_mails', as: :search_mails
   get 'quote-request' => 'quote_requests#new', :as => "new_quote_request"
   post 'quote-request' => 'quote_requests#create', :as => "create_quote_request"
 

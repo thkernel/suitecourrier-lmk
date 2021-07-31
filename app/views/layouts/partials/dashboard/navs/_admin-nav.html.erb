@@ -22,6 +22,10 @@
                 <%= link_to  "Courriers départ", departure_mails_path, class: "sub-link #{current? "active", departure_mails_path}" %>
             </li>
 
+            <li class="sub-item">
+                <%= link_to  "Recherche courriers ", search_mails_path, class: "sub-link #{current? "active", search_mails_path}" %>
+            </li>
+
       
 
 
@@ -108,26 +112,8 @@
         </li>
 
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
-            <i class="fa fa-book tx-20"></i>
-            <span class="menu-item-label">Registres</span>
-          </a><!-- br-menu-link -->
-          <ul class="br-menu-sub">
-            
-
-           <li class="sub-item">
-                <%= link_to  "Types de registre", register_types_path, class: "sub-link #{current? "active", register_types_path}" %>
-            </li>
-
-            <li class="sub-item">
-                <%= link_to  "Registres", registers_path, class: "sub-link #{current? "active", registers_path}" %>
-            </li>
-          
-            
- 
-
-          </ul>
-        </li>
+          <%= link_to  raw('<i class="fa fa-book tx-20" aria-hidden="true"></i> <span class="menu-item-label">Registres </span>'), registers_path, class: "br-menu-link #{current? "active", registers_path}" %>
+        </li> 
 
         
         <li class="br-menu-item">
