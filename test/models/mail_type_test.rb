@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  name        :string
+#  uid         :string
 #  description :text
 #  status      :string
 #  user_id     :bigint

@@ -159,7 +159,7 @@ class DepartureMailsController < ApplicationController
    
     
    
-    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre départ").id)
     
     @natures = Nature.all 
     @supports = Support.all
@@ -180,7 +180,7 @@ class DepartureMailsController < ApplicationController
 
   # GET /departure_mails/1/edit
   def edit
-    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre départ").id)
     @natures = Nature.all 
     @supports = Support.all
     @folders = Folder.where.not(parent_id: nil)
@@ -216,7 +216,7 @@ class DepartureMailsController < ApplicationController
         format.json { render :show, status: :created, location: @departure_mail }
       else
 
-        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre départ").id)
         @natures = Nature.all 
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
@@ -246,7 +246,7 @@ class DepartureMailsController < ApplicationController
         format.html { redirect_to departure_mails_path, notice: 'Courrier modifié avec succès.' }
         format.json { render :show, status: :ok, location: @departure_mail }
       else
-        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER DÉPART").id)
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre départ").id)
         @natures = Nature.all 
         @supports = Support.all
         @folders = Folder.where.not(parent_id: nil)
@@ -270,7 +270,7 @@ class DepartureMailsController < ApplicationController
 
 
   def delete
-    @departure_mail = DepartureMail.find(params[:departure_mail_id])
+    @departure_mail = DepartureMail.find_by(uid: params[:departure_mail_id])
   end
 
   # DELETE /departure_mails/1
@@ -288,11 +288,9 @@ class DepartureMailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_departure_mail
-      if params[:id]
-        @departure_mail = DepartureMail.find(params[:id])
-      elsif params[:uid]
-        @departure_mail = DepartureMail.find_by(uid: params[:uid])
-      end
+      
+        @departure_mail = DepartureMail.find_by(uid: params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -19,7 +19,11 @@
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mes courriers</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Mes imputations</a>
+        
+        <a class="nav-item nav-link" id="nav-imputations-tab" data-toggle="tab" href="#nav-imputations" role="tab" aria-controls="nav-imputations" aria-selected="false">Mes imputations</a>
+
+        <a class="nav-item nav-link" id="nav-tasks-tab" data-toggle="tab" href="#nav-tasks" role="tab" aria-controls="nav-tasks" aria-selected="false">Mes tâches</a>
+
       </div>
     </nav>
     <div class="tab-content  mg-t-30" id="nav-tabContent">
@@ -47,7 +51,7 @@
 
       </div>
 
-      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="tab-pane fade" id="nav-imputations" role="tabpanel" aria-labelledby="nav-imputations-tab">
         
         <table id="imputations-table" class="table display responsive nowrap">
 
@@ -70,6 +74,28 @@
           </tbody>
         </table>
       </div>
+
+      <div class="tab-pane fade" id="nav-tasks" role="tabpanel" aria-labelledby="nav-tasks-tab">
+        
+        <table id="tasks-table" class="table display responsive nowrap">
+
+          <thead>
+            <tr>
+            
+              <th>Date</th>
+              <th>Titre</th>
+              <th>Priorité</th>
+              <th>Date d'échéance</th>
+              <th>Progression</th>
+           
+            </tr>
+          </thead>
+
+          <tbody class="imputation-items">
+            <%= render "arrival_mails/partials/tasks/index", tasks: @tasks %>
+          </tbody>
+        </table>
+      </div>
      
     </div>
 
@@ -78,4 +104,5 @@
   </div>
 </div>
 <div id="arrival-mail-modal" class="c-modal modal fade" data-backdrop="static"></div>
+<div id="imputation-item-modal" class="c-modal modal fade" data-backdrop="static"></div>
 

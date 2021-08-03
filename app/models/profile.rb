@@ -34,4 +34,11 @@ class Profile < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+
+  
 end

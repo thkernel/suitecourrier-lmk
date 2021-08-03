@@ -91,17 +91,15 @@ class CustomUsersController < ApplicationController
 			@user.profile || @user.build_profile 
     end
 
-    def delete
-    	@user = User.find(params[:id])
-    end
+    
 
     def get_disable
-        @user = User.find(params[:id]) if params[:id].present?
+        @user = User.find_by(uid: params[:id]) if params[:id].present?
      
 	end
 	
     def post_disable
-	  	@user = User.find(params[:id]) if params[:id].present?
+	  	@user = User.find_by(uid: params[:id]) if params[:id].present?
 	  
       	respond_to do |format|
         	if @user.update_attributes(status: 'disable')
@@ -125,13 +123,13 @@ class CustomUsersController < ApplicationController
     end
 
     def get_enable
-    	@user = User.find(params[:id]) if params[:id].present?
+    	@user = User.find_by(uid: params[:id]) if params[:id].present?
    
 	end
 	
 	# Enable user account.
   	def post_enable
-		@user = User.find(params[:id]) if params[:id].present?
+		@user = User.find_by(uid: params[:id]) if params[:id].present?
 		respond_to do |format|
       		if @user.update_attributes(status: 'enable')
 						@users = User.where.not(id: current_user.id)
@@ -158,7 +156,9 @@ class CustomUsersController < ApplicationController
  
   	end
 
-    
+    def delete
+    	@user = User.find_by(uid: params[:id])
+    end
 
 	def destroy
     	@users = User.all
@@ -214,7 +214,7 @@ class CustomUsersController < ApplicationController
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(uid: params[:id])
       if !@user.nil?
         return @user
         

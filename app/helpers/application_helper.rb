@@ -21,6 +21,13 @@ module ApplicationHelper
 	end
 
 
+	def task_completed?(task_status_id)
+		if task_status_id == TaskStatus.find_by(name: "Terminée").id
+			true
+		end
+	end
+
+
 	def unreaded_notification?(notification)
 		if notification.readed_at.present?
 			false
@@ -95,9 +102,9 @@ module ApplicationHelper
 
 	def imputable_type(imputation)
 		if imputation.imputable_type == "ArrivalMail"
-			"Réf. courrier: #{ArrivalMail.find(imputation.imputable_id).internal_reference}"
+			ArrivalMail.find(imputation.imputable_id).internal_reference
 		elsif imputation.imputable_type == "Request"
-			"Réf. demande: #{Request.find(imputation.imputable_id).uid}"
+			Request.find(imputation.imputable_id).uid
 
 		end
 	end

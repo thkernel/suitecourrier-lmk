@@ -1,0 +1,21 @@
+<% @tasks.each do |task| %>
+    <tr>
+    
+      <td><%= task.created_at.strftime("%d/%m/%Y") %></td>
+      <td><%= task.description %></td>
+      <td><%= task.task_priority.name %></td>
+      <td><%= task.due_date.strftime("%d/%m/%Y") %></td>
+      <td><%= task.task_status.name %></td>
+      <td>
+      	<td>
+           <span class="action-buttons">
+            <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>'), imputation_item_path(task), title: "Voir", remote: false  %>
+
+       
+
+
+
+                    </td>
+
+    </tr>
+  <% end %>

@@ -180,7 +180,7 @@ end
 
 
   def delete
-    @folder = Folder.find_by(uid: params[:uid])
+    @folder = Folder.find_by(uid: params[:folder_id])
   end
 
 
@@ -188,7 +188,7 @@ end
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
-    @folder = current_user.folders.find(params[:id]) 
+    #@folder = current_user.folders.find_by(uid: params[:id]) 
     #@parent_folder = @folder.parent #grabbing the parent folder 
   
    @folder.destroy 
@@ -214,11 +214,9 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_folder
-      if params[:id].present?
-        @folder = Folder.find(params[:id])
-      else  
-        @folder = Folder.find_by(uid: params[:uid])
-      end
+      
+        @folder = Folder.find_by(uid: params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

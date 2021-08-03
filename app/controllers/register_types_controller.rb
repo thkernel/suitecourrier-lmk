@@ -64,7 +64,7 @@ class RegisterTypesController < ApplicationController
   end
 
   def delete
-    @register_type = RegisterType.find(params[:register_type_id])
+    @register_type = RegisterType.find_by(uid: params[:register_type_id])
   end
 
   # DELETE /register_types/1
@@ -80,7 +80,7 @@ class RegisterTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_register_type
-      @register_type = RegisterType.find(params[:id])
+      @register_type = RegisterType.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

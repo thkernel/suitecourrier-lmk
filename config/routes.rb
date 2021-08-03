@@ -9,24 +9,31 @@ end
 Rails.application.routes.draw do
 
 
-  resources :ticket_priorities do   
+  resources :ticket_priorities, path: "ticket-priorities" do   
     get "delete"
   end
-  resources :task_priorities do   
+
+  resources :task_priorities, path: "task-priorities" do   
     get "delete"
   end
-  resources :mail_categories do   
+
+  resources :mail_categories, path: "mail-categories" do   
     get "delete"
   end
-  resources :mail_types do   
+
+  resources :mail_types, path: "mail-types" do   
     get "delete"
   end
-  resources :mail_priorities do   
+
+  resources :mail_priorities, path: "mail-priorities" do   
     get "delete"
   end
-  resources :mail_statuses do   
+
+
+  resources :mail_statuses, path: "mail-statuses" do   
     get "delete"
   end
+
   resources :tenants do   
     get "delete"
   end
@@ -39,30 +46,30 @@ Rails.application.routes.draw do
   post 'demo-request' => 'demo_requests#create', :as => "create_demo_request"
 
 
-  resources :ticket_statuses do   
+  resources :ticket_statuses, path: "ticket-statuses" do   
     get "delete"
   end
   resources :storage_services
   resources :storage_service_settings
-  resources :ticket_types do   
+  resources :ticket_types, path: "ticket-types" do   
     get "delete"
   end
-  resources :task_statuses do   
+
+  resources :task_statuses, path: "task-statuses" do   
     get "delete"
   end
-  resources :task_types do   
+
+  resources :task_types, path: "task-types" do   
     get "delete"
   end
+
   resources :internal_memos do   
     get "delete"
   end
-  resources :register_types do   
+  resources :register_types, path: "register-types" do   
     get "delete"
   end
-  resources :user_entity_items
-  resources :user_entities do   
-    get "delete"
-  end
+  
   resources :general_settings
   resources :storage_areas
 
@@ -72,6 +79,7 @@ Rails.application.routes.draw do
   resources :priorities do   
     get "delete"
   end
+
   resources :statuses do   
     get "delete"
   end
@@ -79,11 +87,13 @@ Rails.application.routes.draw do
   resources :entities do   
     get "delete"
   end
-  resources :entity_types do   
+
+  resources :entity_types, path: "entity-types" do   
     get "delete"
   end
-  resources :ticket_users
-  resources :activity_logs
+
+  resources :ticket_users, path: "ticket-users"
+  resources :activity_logs, path: "logs"
 
   get 'oauth2callback' => 'static_pages#set_google_drive_token'
   get 'static_pages/files' => 'static_pages#files'
@@ -92,17 +102,17 @@ Rails.application.routes.draw do
   get "browse/:uid/new" => "folders#new", :as => "new_sub_folder"
   get "create_file" => "folders#create_file", as: :create_file
   
-  get "folder/:uid/edit" => "folders#edit", as: :edit_folder
-  get "folder/:uid/delete" => "folders#delete", as: :folder_delete
+  #get "folder/:uid/edit" => "folders#edit", as: :edit_folder
+  #get "folder/:uid/delete" => "folders#delete", as: :folder_delete
   get "/downloadfile/:key" => "folders#download_drive_file", as: :download_file
   
 
   get "configurations" => "configurations#show", as: :configurations
 
   get "/get/last_folder" => "folders#last_folder"
-  resources :folders , except: [:edit] do
+  resources :folders  do
 
-
+    get "delete"
   end
 
   
@@ -155,11 +165,11 @@ Rails.application.routes.draw do
   resources :directions do   
     get "delete"
   end
-  resources :imputation_items do   
+  resources :imputation_items, path: :tasks do   
     get "delete"
   end
 
-  resources :imputations, except: [:edit] do   
+  resources :imputations do   
     get "delete"
     
   end
@@ -170,12 +180,12 @@ Rails.application.routes.draw do
 
 
 
-  get "imputation/show/:uid" => "imputations#show", as: :show_imputation
-  get "imputation/edit/:uid" => "imputations#edit", as: :edit_imputation
-  get "arrival-mail/show/:uid" => "arrival_mails#show", as: :show_arrival_mail
-  get "departure-mail/show/:uid" => "departure_mails#show", as: :show_departure_mail
-  get "document/show/:uid" => "documents#show", as: :show_document
-  get "request/show/:uid" => "requests#show", as: :show_request
+  #get "imputation/show/:uid" => "imputations#show", as: :show_imputation
+  #get "imputation/edit/:uid" => "imputations#edit", as: :edit_imputation
+  #get "arrival-mail/show/:uid" => "arrival_mails#show", as: :show_arrival_mail
+  #get "departure-mail/show/:uid" => "departure_mails#show", as: :show_departure_mail
+  #get "document/show/:uid" => "documents#show", as: :show_document
+  #get "request/show/:uid" => "requests#show", as: :show_request
   #get "/settings/smtp" => "smtp_configurations#settings", as: :smtp_settings
   get "setup/organization" => "organizations#setup", as: :setup_organization
 
@@ -201,14 +211,14 @@ Rails.application.routes.draw do
 
  
 
-  resources :task_statuses do    
+  resources :task_statuses, path: "task-statuses" do    
     get "delete"
   end
 
   
   
   
-  resources :departure_mails do     
+  resources :departure_mails, path: "departure-mails" do     
     get "delete"
     get "archive" 
     get "archives"
@@ -221,7 +231,7 @@ Rails.application.routes.draw do
   end
 
   resources :attachments
-  resources :arrival_mails , except: [:show] do   
+  resources :arrival_mails, path: "arrival-mails" do   
     get "delete"
     get "archive"
     get "archives"
@@ -248,13 +258,9 @@ Rails.application.routes.draw do
     get "delete"
   end
   
-  resources :correspondent_types do   
+  resources :correspondent_types, path: "correspondent-types" do   
     get "delete"
   end
-  
-
- 
-  
   
 
   resources :features do   
@@ -275,13 +281,11 @@ Rails.application.routes.draw do
     get "delete"
   end
 
-  resources :binders do   
-    get "delete"
-  end
+  
 
   
   
-  resources :organization_types do     
+  resources :organization_types, path: "organization-types" do     
     get "delete"
   end
 
@@ -327,21 +331,21 @@ Rails.application.routes.draw do
 
   #get "/register" => "registrations#register", as: :registration
 
-  get "arrival_mails/bulk_archive/modal/" => "arrival_mails#bulk_archive_modal", as: :arrival_mails_bulk_archive_modal
-  post "arrival_mails/bulk_archive" => "arrival_mails#bulk_archive", as: :arrival_mails_bulk_archive
+  get "arrival-mails/bulk_archive/modal/" => "arrival_mails#bulk_archive_modal", as: :arrival_mails_bulk_archive_modal
+  post "arrival-mails/bulk_archive" => "arrival_mails#bulk_archive", as: :arrival_mails_bulk_archive
 
 
-  get "/departure_mails/bulk_archive/modal/" => "departure_mails#bulk_archive_modal", as: :departure_mails_bulk_archive_modal
-  post "/departure_mails/bulk_archive" => "departure_mails#bulk_archive", as: :departure_mails_bulk_archive
+  get "/departure-mails/bulk_archive/modal/" => "departure_mails#bulk_archive_modal", as: :departure_mails_bulk_archive_modal
+  post "/departure-mails/bulk_archive" => "departure_mails#bulk_archive", as: :departure_mails_bulk_archive
 
-  get "archives/arrival_mails" => "arrival_mails#archives", as: :arrival_mails_archives
-  get "archives/departure_mails" => "departure_mails#archives", as: :departure_mails_archives
+  get "archives/arrival-mails" => "arrival_mails#archives", as: :arrival_mails_archives
+  get "archives/departure-mails" => "departure_mails#archives", as: :departure_mails_archives
 
-  get "arrival_mail/to_archive/:id" => "arrival_mails#to_archive", as: :arrival_mail_to_archive
-  get "departure_mail/to_archive/:id" => "departure_mails#to_archive", as: :departure_mail_to_archive
+  get "arrival-mail/to-archive/:id" => "arrival_mails#to_archive", as: :arrival_mail_to_archive
+  get "departure-mail/to-archive/:id" => "departure_mails#to_archive", as: :departure_mail_to_archive
 
   #get "arrival/mail/:id/imputations" => "imputations#index" , as: :arrival_mail_imputations
-  get "arrival/mail/:id/tasks" => "tasks#index" , as: :arrival_mail_tasks
+  get "arrival/mail/:uid/tasks" => "tasks#index" , as: :arrival_mail_tasks
   #get "imputation/:id/tasks" => "tasks#index" , as: :imputation_tasks
   get "taks/all" => "tasks#search_tasks", as: :search_tasks
 

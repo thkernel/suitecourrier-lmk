@@ -60,7 +60,7 @@ class RolesController < ApplicationController
 
 
   def delete
-    @role = Role.find(params[:role_id])
+    @role = Role.find_by(uid: params[:role_id])
   end
 
   # DELETE /roles/1
@@ -76,7 +76,7 @@ class RolesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
-      @role = Role.find(params[:id])
+      @role = Role.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

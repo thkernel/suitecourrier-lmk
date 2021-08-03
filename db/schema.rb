@@ -364,6 +364,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   create_table "mail_categories", force: :cascade do |t|
     t.string "name"
+    t.string "uid"
     t.text "description"
     t.string "status"
     t.bigint "user_id"
@@ -374,6 +375,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   create_table "mail_priorities", force: :cascade do |t|
     t.string "name"
+    t.string "uid"
     t.string "color"
     t.integer "processing_time_in_days"
     t.text "description"
@@ -386,6 +388,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   create_table "mail_statuses", force: :cascade do |t|
     t.string "name"
+    t.string "uid"
     t.text "description"
     t.string "status"
     t.bigint "user_id"
@@ -396,6 +399,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
 
   create_table "mail_types", force: :cascade do |t|
     t.string "name"
+    t.string "uid"
     t.text "description"
     t.string "status"
     t.bigint "user_id"
@@ -710,6 +714,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
   end
 
   create_table "tenants", force: :cascade do |t|
+    t.string "uid"
     t.bigint "organization_type_id"
     t.string "organization_name"
     t.string "address"

@@ -115,6 +115,12 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def delete
+      
+        @document = Document.find_by(uid: params[:document_id])
+     
+    end
+
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
@@ -130,11 +136,9 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      if params[:id]
-      @document = Document.find(params[:id])
-      elsif params[:uid]
-        @document = Document.find_by(uid: params[:uid])
-      end
+      
+        @document = Document.find_by(uid: params[:id])
+     
     end
 
     # Only allow a list of trusted parameters through.

@@ -37,5 +37,11 @@ class Document < ApplicationRecord
 
   # Validations.
   validates :name, presence: true
+
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
   
 end

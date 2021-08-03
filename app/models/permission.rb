@@ -26,4 +26,10 @@ class Permission < ApplicationRecord
 
   accepts_nested_attributes_for :permission_items ,  allow_destroy: true
 
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+  
+
 end

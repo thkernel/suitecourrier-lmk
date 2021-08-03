@@ -67,7 +67,7 @@ class ImputationItemsController < ApplicationController
      
       @imputation_item.start_date = Time.now.strftime("%d/%m/%Y")
     elsif imputation_item_params[:task_status_id].to_i == TaskStatus.find_by(name: "Terminée").id
-      p
+      
       @imputation_item.completed_date = Time.now.strftime("%d/%m/%Y")
       unless imputation_item_params[:start_date].nil?
         @imputation_item.start_date = Time.now.strftime("%d/%m/%Y")
@@ -79,10 +79,13 @@ class ImputationItemsController < ApplicationController
     respond_to do |format|
       
       if @imputation_item.update(imputation_item_params)
-        #@imputation_items = ImputationItem.where(imputation_id: @imputation_item.imputation_id)
-        @imputation = Imputation.find(@imputation_item.imputation_id)
+        #imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id)
 
-        format.html { redirect_to show_imputation_path(@imputation.uid), notice: 'Statut modifié avec succès.' }
+        #@imputation_items = imputations.map { |imputation| imputation.imputation_items}.flatten
+        #@imputation_items = ImputationItem.where(imputation_id: @imputation_item.imputation_id)
+        #@imputation = Imputation.find(@imputation_item.imputation_id)
+
+        format.html { redirect_to imputation_item_path(@imputation_item), notice: 'Statut modifié avec succès.' }
         format.json { render :show, status: :ok, location: @imputation_item }
         format.js
       else
@@ -95,7 +98,7 @@ class ImputationItemsController < ApplicationController
 
 
   def delete
-    @imputation_item = ImputationItem.find(params[:task_id])
+    @imputation_item = ImputationItem.find_by(uid: params[:imputation_item_id])
   end
 
 
@@ -117,14 +120,14 @@ class ImputationItemsController < ApplicationController
   private
 
   def set_imputation
-    @imputation ||= Imputation.find(params[:id])
-    @@imputation = @imputation
+    #@imputation ||= Imputation.find(params[:id])
+    #@@imputation = @imputation
   end
 
 
     # Use callbacks to share common setup or constraints between actions.
     def set_imputation_item
-      @imputation_item = ImputationItem.find(params[:id])
+      @imputation_item = ImputationItem.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

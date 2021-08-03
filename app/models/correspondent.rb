@@ -42,4 +42,11 @@ class Correspondent < ApplicationRecord
       "#{contact_last_name} #{contact_first_name}"
     end
   end
+
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+  
 end

@@ -109,6 +109,13 @@ class User < ApplicationRecord
 
 	#validates :login, presence: true, uniqueness: true
 
+	# Change default params ID to uid
+  def to_param
+    uid
+  end
+
+  
+
 	def superuser?
 		if self.role.name == "superuser"
 		  true 

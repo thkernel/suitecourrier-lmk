@@ -58,7 +58,7 @@ class MailTypesController < ApplicationController
   end
 
   def delete
-      @mail_type = MailType.find(params[:mail_type_id])
+      @mail_type = MailType.find_by(uid: params[:mail_type_id])
     end
 
   # DELETE /mail_types/1 or /mail_types/1.json
@@ -73,7 +73,7 @@ class MailTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mail_type
-      @mail_type = MailType.find(params[:id])
+      @mail_type = MailType.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

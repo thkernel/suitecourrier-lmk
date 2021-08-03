@@ -65,5 +65,10 @@ class ArrivalMail < ApplicationRecord
 
   has_many_attached :files
 
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
   
 end

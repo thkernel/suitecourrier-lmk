@@ -8,18 +8,18 @@
         <td><%= imputation_viewed?(imputation) %></td>
         <td>
            <span class="action-buttons">
-            <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>'), show_imputation_path(imputation.uid), title: "Voir", remote: false  %>
+            <%= link_to raw('<i class="fa fa-eye" aria-hidden="true"></i>'), imputation_path(imputation), title: "Voir", remote: false  %>
           
 
        
 			<%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i>
-'),  edit_imputation_path(imputation.uid), title: "Modifier", remote: false %>
+'),  edit_imputation_path(imputation), title: "Modifier", remote: false %>
 
 
 
 
 <%= link_to raw('<i class="fa fa-trash-o" aria-hidden="true"></i>
-'), imputation_delete_path(imputation.id), remote: true, title: "Supprimer", class: "delete" %>
+'), imputation_delete_path(imputation), remote: true, title: "Supprimer", class: "delete" %>
 </span>
 </td>
 

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: smtp_server_settings
+# Table name: public.smtp_server_settings
 #
 #  id                   :bigint           not null, primary key
 #  uid                  :string

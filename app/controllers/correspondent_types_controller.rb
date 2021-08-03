@@ -70,7 +70,7 @@ class CorrespondentTypesController < ApplicationController
   end
 
   def delete
-    @correspondent_type = CorrespondentType.find(params[:correspondent_type_id])
+    @correspondent_type = CorrespondentType.find_by(uid: params[:correspondent_type_id])
   end
 
   # DELETE /correspondent_types/1
@@ -90,7 +90,7 @@ class CorrespondentTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_correspondent_type
-      @correspondent_type = CorrespondentType.find(params[:id])
+      @correspondent_type = CorrespondentType.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

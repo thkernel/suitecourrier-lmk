@@ -60,7 +60,7 @@ class MailCategoriesController < ApplicationController
 
 
   def delete
-      @mail_category = MailCategory.find(params[:mail_category_id])
+      @mail_category = MailCategory.find_by(uid: params[:mail_category_id])
     end
 
   # DELETE /mail_categories/1 or /mail_categories/1.json
@@ -75,7 +75,7 @@ class MailCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mail_category
-      @mail_category = MailCategory.find(params[:id])
+      @mail_category = MailCategory.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

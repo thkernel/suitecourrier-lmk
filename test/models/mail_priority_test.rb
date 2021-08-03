@@ -4,6 +4,7 @@
 #
 #  id                      :bigint           not null, primary key
 #  name                    :string
+#  uid                     :string
 #  color                   :string
 #  processing_time_in_days :integer
 #  description             :text

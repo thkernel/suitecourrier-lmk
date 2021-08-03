@@ -29,4 +29,11 @@ class Organization < ApplicationRecord
 
    # For active storage
    has_one_attached :logo
+
+
+   # Change default params ID to uid
+  def to_param
+    uid
+  end
+  
 end

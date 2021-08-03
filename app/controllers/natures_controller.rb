@@ -81,7 +81,7 @@ class NaturesController < ApplicationController
 
 
   def delete
-    @nature = Nature.find(params[:nature_id])
+    @nature = Nature.find_by(uid: params[:nature_id])
   end
 
   # DELETE /natures/1
@@ -103,7 +103,7 @@ class NaturesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_nature
-      @nature = Nature.find(params[:id])
+      @nature = Nature.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

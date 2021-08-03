@@ -81,7 +81,7 @@ class SupportsController < ApplicationController
 
 
   def delete
-    @support = Support.find(params[:support_id])
+    @support = Support.find_by(uid: params[:support_id])
   end
 
   # DELETE /supports/1
@@ -102,7 +102,7 @@ class SupportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_support
-      @support = Support.find(params[:id])
+      @support = Support.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

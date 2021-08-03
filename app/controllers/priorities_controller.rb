@@ -65,7 +65,7 @@ class PrioritiesController < ApplicationController
   end
 
   def delete
-    @priority = Priority.find(params[:priority_id])
+    @priority = Priority.find_by(uid: params[:priority_id])
   end
 
 
@@ -82,7 +82,7 @@ class PrioritiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_priority
-      @priority = Priority.find(params[:id])
+      @priority = Priority.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

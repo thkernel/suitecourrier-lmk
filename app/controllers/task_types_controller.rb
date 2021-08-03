@@ -64,7 +64,7 @@ class TaskTypesController < ApplicationController
   end
 
   def delete
-    @task_type = TaskType.find(params[:task_type_id])
+    @task_type = TaskType.find_by(uid: params[:task_type_id])
   end
 
   # DELETE /task_types/1
@@ -80,7 +80,7 @@ class TaskTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_type
-      @task_type = TaskType.find(params[:id])
+      @task_type = TaskType.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

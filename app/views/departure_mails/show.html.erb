@@ -57,7 +57,7 @@
               </li>
               <li class="detail-city">
                 <strong>Destinataire: </strong> 
-                <span><%= correspondent(@departure_mail.correspondent_id).correspondent_name %></span>
+                <span><%= correspondent_name(@departure_mail.correspondent_id) %></span>
               </li>
               <li class="detail-city">
                 <strong>Objet: </strong> 
@@ -73,7 +73,7 @@
               </li>
               <li class="detail-city">
                 <strong>Statut: </strong> 
-                <span><%= @departure_mail.status %></span>
+                <span><%= @departure_mail.mail_status.name %></span>
               </li>
                 
             </ul>

@@ -12,24 +12,24 @@
            
               <ul class="list-1-col list-unstyled">
               <li class="detail-address">
-                  <i class="fa fa-key" aria-hidden="true"></i>
-									<strong><%= imputable_type(@imputation) %></strong> 
+                  <strong><%= "Réf. #{t("#{@imputation.imputable_type.underscore}")}:" %></strong> 
+									<%= imputable_type(@imputation) %> 
 									
 								</li>
 								<li class="detail-address">
-                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  
 
 									<strong>Entité: </strong> 
 									<span><%= @imputation.entity.name %></span>
 								</li>
 								<li class="detail-city">
-                  <i class="fa fa-user" aria-hidden="true"></i>
+                  
 
 									<strong>Imputé à: </strong> 
 									<span><%= user(@imputation.recipient_id).profile.full_name %></span>
 								</li>
 								<li class="detail-state">
-                <i class="fa fa-user-secret" aria-hidden="true"></i>
+                
 
 									<strong>Imputé par: </strong> 
 									<span><%= user(@imputation.user_id).profile.full_name if user(@imputation.user_id).profile.present? %></span>

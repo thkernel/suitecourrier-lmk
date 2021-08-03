@@ -60,7 +60,7 @@ class MailPrioritiesController < ApplicationController
 
 # Use callbacks to share common setup or constraints between actions.
     def delete
-      @mail_priority = MailPriority.find(params[:mail_priority_id])
+      @mail_priority = MailPriority.find_by(uid: params[:mail_priority_id])
     end
 
 
@@ -76,7 +76,7 @@ class MailPrioritiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mail_priority
-      @mail_priority = MailPriority.find(params[:id])
+      @mail_priority = MailPriority.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

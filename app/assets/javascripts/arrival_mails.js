@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function(){
         //ajaxRefresh("#arrival_mail_correspondent_id", "/arrival_mails/get_correspondents", "GET");
         //ajaxRefresh("#arrival_mail_folder_id", "/arrival_mails/get_folders", "GET");
 
-        ajaxFilterByID("#arrival_mail_processing_entity_id", "/arrival_mails/get_profiles", "GET");
+        ajaxFilterByID("#arrival_mail_processing_entity_id", "/arrival-mails/get_profiles", "GET");
        
 
 });

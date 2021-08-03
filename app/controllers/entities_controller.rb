@@ -69,7 +69,7 @@ class EntitiesController < ApplicationController
   end
 
   def delete
-    @entity = Entity.find(params[:entity_id])
+    @entity = Entity.find_by(uid: params[:entity_id])
   end
 
   # DELETE /entities/1
@@ -85,7 +85,7 @@ class EntitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entity
-      @entity = Entity.find(params[:id])
+      @entity = Entity.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

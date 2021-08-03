@@ -59,7 +59,7 @@ class MailStatusesController < ApplicationController
 
 
   def delete
-    @mail_status = MailStatus.find(params[:mail_status_id])
+    @mail_status = MailStatus.find_by(uid: params[:mail_status_id])
   end
   # DELETE /mail_statuses/1 or /mail_statuses/1.json
   def destroy
@@ -73,7 +73,7 @@ class MailStatusesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mail_status
-      @mail_status = MailStatus.find(params[:id])
+      @mail_status = MailStatus.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

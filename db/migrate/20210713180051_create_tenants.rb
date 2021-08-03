@@ -1,6 +1,7 @@
 class CreateTenants < ActiveRecord::Migration[5.2]
   def change
     create_table :tenants do |t|
+      t.string :uid
       t.references :organization_type, foreign_key: true
       t.string :organization_name
       t.string :address

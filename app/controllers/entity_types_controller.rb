@@ -63,7 +63,7 @@ class EntityTypesController < ApplicationController
 
 
   def delete
-    @entity_type = EntityType.find(params[:entity_type_id])
+    @entity_type = EntityType.find_by(uid: params[:entity_type_id])
   end
 
 
@@ -80,7 +80,7 @@ class EntityTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_entity_type
-      @entity_type = EntityType.find(params[:id])
+      @entity_type = EntityType.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

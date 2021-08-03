@@ -61,7 +61,7 @@ class OrganizationTypesController < ApplicationController
   end
 
   def delete
-      @organization_type = OrganizationType.find(params[:organization_type_id])
+      @organization_type = OrganizationType.find_by(uid: params[:organization_type_id])
     end
 
   # DELETE /organization_types/1
@@ -77,7 +77,7 @@ class OrganizationTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization_type
-      @organization_type = OrganizationType.find(params[:id])
+      @organization_type = OrganizationType.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

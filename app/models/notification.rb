@@ -16,9 +16,20 @@
 #
 
 class Notification < ApplicationRecord
+	include SharedUtils::Generate
+
+  before_save :generate_random_number_uid
+  
   
   belongs_to :notificable, polymorphic: true
 
   belongs_to :user, :foreign_key => "recipient_id", :class_name => "User"
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+
+  
 
 end

@@ -26,7 +26,7 @@ class TicketStatusesController < ApplicationController
 
   # POST /ticket_statuses or /ticket_statuses.json
   def create
-    @ticket_status = TicketStatus.new(ticket_status_params)
+    @ticket_status = current_user.ticket_statuses.build(ticket_status_params)
 
     respond_to do |format|
       if @ticket_status.save
@@ -52,13 +52,14 @@ class TicketStatusesController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @ticket_status.errors, status: :unprocessable_entity }
+
       end
     end
   end
 
 
   def delete
-    @ticket_status = TicketStatus.find(params[:ticket_status_id])
+    @ticket_status = TicketStatus.find_by(uid: params[:ticket_status_id])
   end
 
   # DELETE /ticket_statuses/1 or /ticket_statuses/1.json
@@ -73,7 +74,7 @@ class TicketStatusesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket_status
-      @ticket_status = TicketStatus.find(params[:id])
+      @ticket_status = TicketStatus.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

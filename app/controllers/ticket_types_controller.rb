@@ -65,7 +65,7 @@ class TicketTypesController < ApplicationController
 
 
   def delete
-    @ticket_type = TicketType.find(params[:ticket_type_id])
+    @ticket_type = TicketType.find_by(uid: params[:ticket_type_id])
   end
 
 
@@ -82,7 +82,7 @@ class TicketTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket_type
-      @ticket_type = TicketType.find(params[:id])
+      @ticket_type = TicketType.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

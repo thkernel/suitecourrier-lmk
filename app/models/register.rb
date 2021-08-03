@@ -28,5 +28,12 @@ class Register < ApplicationRecord
 
   # Validations
   validates :name, presence: true, uniqueness: true
+
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+  
   
 end

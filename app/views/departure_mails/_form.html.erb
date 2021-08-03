@@ -197,7 +197,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <%= form.label :correspondent_id, "Correspondant", class: "required" %>
-              <%= form.collection_select(:correspondent_id, @correspondents, :id, :organization_name, {prompt: "Correspondant"}, :id => "correspondent_id", class: "form-control", style: "width: 100%;",  required: true) %> 
+              <%= form.collection_select(:correspondent_id, @correspondents, :id, :organization_name, {prompt: "Sélectionner"}, :id => "correspondent_id", class: "form-control", style: "width: 100%;",  required: true) %> 
 
             </div>
           </div>

@@ -88,7 +88,7 @@ class PermissionsController < ApplicationController
 
 
   def delete
-    @permission = Permission.find(params[:permission_id])
+    @permission = Permission.find_by(uid: params[:permission_id])
   end
 
   # DELETE /permissions/1
@@ -104,7 +104,7 @@ class PermissionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_permission
-      @permission = Permission.find(params[:id])
+      @permission = Permission.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

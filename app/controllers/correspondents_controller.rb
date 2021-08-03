@@ -77,7 +77,7 @@ class CorrespondentsController < ApplicationController
 
 
   def delete
-    @correspondent = Correspondent.find(params[:correspondent_id])
+    @correspondent = Correspondent.find_by(uid: params[:correspondent_id])
   end
 
   # DELETE /correspondents/1
@@ -95,7 +95,7 @@ class CorrespondentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_correspondent
-      @correspondent = Correspondent.find(params[:id])
+      @correspondent = Correspondent.find_by(uid: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

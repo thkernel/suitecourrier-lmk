@@ -64,7 +64,7 @@ class TaskStatusesController < ApplicationController
   end
 
   def delete
-    @task_status = TaskStatus.find(params[:task_status_id])
+    @task_status = TaskStatus.find_by(uid: params[:task_status_id])
   end
 
   # DELETE /task_statuses/1
@@ -80,7 +80,7 @@ class TaskStatusesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_status
-      @task_status = TaskStatus.find(params[:id])
+      @task_status = TaskStatus.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

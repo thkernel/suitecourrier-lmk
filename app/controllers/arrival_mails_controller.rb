@@ -11,8 +11,12 @@ class ArrivalMailsController < ApplicationController
 
     @current_user_arrival_mails = current_user.arrival_mails.order(id: :desc)
     @imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id)
+    
+    imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? ",  current_user.id)
 
+    @tasks = imputations.map { |imputation| imputation.imputation_items}.flatten
 
+    puts "TASKS: #{@tasks.inspect}"
     #@arrival_mails = ArrivalMail.where.not(status: "Archived")
     record_activity("Afficher la liste des courriers arrivées")
 
@@ -126,7 +130,7 @@ class ArrivalMailsController < ApplicationController
     
     @arrival_mail = ArrivalMail.new
     
-    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre arrivée").id)
     
     @natures = Nature.all 
     @supports = Support.all
@@ -148,7 +152,7 @@ class ArrivalMailsController < ApplicationController
   # GET /arrival_mails/1/edit
   def edit
     
-    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
+    @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre arrivée").id)
     
     @natures = Nature.all 
     @supports = Support.all
@@ -193,7 +197,7 @@ class ArrivalMailsController < ApplicationController
         format.json { render :show, status: :created, location: @arrival_mail }
         format.js
       else
-        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "COURRIER D'ARRIVÉE").id)
+        @registers = Register.where("status = ? AND register_type_id = ?", "Ouvert", RegisterType.find_by(name: "Registre arrivée").id)
 
     
         @natures = Nature.all 
@@ -259,7 +263,7 @@ class ArrivalMailsController < ApplicationController
 
 
   def delete
-    @arrival_mail = ArrivalMail.find(params[:arrival_mail_id])
+    @arrival_mail = ArrivalMail.find_by(uid: params[:arrival_mail_id])
   end
 
 
@@ -281,11 +285,9 @@ class ArrivalMailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_arrival_mail
-      if params[:id]
-        @arrival_mail = ArrivalMail.find(params[:id])
-      elsif params[:uid]
-        @arrival_mail = ArrivalMail.find_by(uid: params[:uid])
-      end
+      
+        @arrival_mail = ArrivalMail.find_by(uid: params[:id])
+      
     end
 
    

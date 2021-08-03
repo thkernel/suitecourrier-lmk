@@ -20,6 +20,7 @@ class TicketsController < ApplicationController
   def new
     @ticket_priorities = TicketPriority.all
     @ticket_types = TicketType.all
+    @ticket_statuses = TicketStatus.all
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
     @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
     @ticket = Ticket.new
@@ -29,11 +30,14 @@ class TicketsController < ApplicationController
   def edit
     @ticket_priorities = TicketPriority.all
     @ticket_types = TicketType.all
+    @ticket_statuses = TicketStatus.all
 
     role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
     @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
 
     ticket_users = @ticket.ticket_users
+
+    puts "EDIT TICKET: #{ticket_users.inspect}"
 
     @selected_ticket_users = ticket_users unless ticket_users.blank?
 
@@ -45,21 +49,28 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.build(ticket_params)
 
-    @ticket.ticket_status_id = TicketStatus.find_by(name: "En attente").id
+    #@ticket.ticket_status_id = TicketStatus.find_by(name: "En attente").id
 
     ticket_users = params[:recipients][:id]
     
+    ticket_users.each do |ticket_user|
+      unless ticket_user.empty?
+        @ticket.ticket_users.build(recipient_id: ticket_user)
+       
+
+      end
+    end
 
     respond_to do |format|
       if @ticket.save
 
         ticket_users.each do |ticket_user|
           unless ticket_user.empty?
-            @ticket.ticket_users.build(recipient_id: ticket_user)
             TicketAttributionEmailJob.perform_now(ticket_user, @ticket)
-
           end
         end
+
+        puts "AFTER SAVE: #{@ticket.ticket_users.inspect}"
         
         record_activity("Créer un ticket (ID: #{@ticket.id})")
 
@@ -71,6 +82,7 @@ class TicketsController < ApplicationController
 
         @ticket_priorities = TicketPriority.all
         @ticket_types = TicketType.all
+        @ticket_statuses = TicketStatus.all
 
         role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
         @recipients = User.where("role_id IN (?)", role_ids).map {|user| user.profile }
@@ -110,7 +122,7 @@ class TicketsController < ApplicationController
 
 
   def delete
-    @ticket = Ticket.find(params[:ticket_id])
+    @ticket = Ticket.find_by(uid: params[:ticket_id])
   end
 
 
@@ -129,7 +141,7 @@ class TicketsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket = Ticket.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

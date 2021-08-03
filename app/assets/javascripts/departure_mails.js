@@ -60,8 +60,8 @@ $(document).on('turbolinks:load', function(){
         //ajaxRefresh("#departure_mail_correspondent_id", "/departure_mails/get_correspondents", "GET");
         //ajaxRefresh("#departure_mail_folder_id", "/departure_mails/get_folders", "GET");
 
-        ajaxFilterByID("#departure_mail_processing_entity_id", "/departure_mails/get_processing_recipients", "GET");
-        ajaxFilterByID("#departure_mail_initiating_entity_id", "/departure_mails/get_initiators", "GET");
+        ajaxFilterByID("#departure_mail_processing_entity_id", "/departure-mails/get_processing_recipients", "GET");
+        ajaxFilterByID("#departure_mail_initiating_entity_id", "/departure-mails/get_initiators", "GET");
 
 
 });

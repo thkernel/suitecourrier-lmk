@@ -21,4 +21,11 @@ class Feature < ApplicationRecord
   has_many :permissions, dependent: :destroy
   # Validations.
   validates :name, presence: true, uniqueness: true
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+
+  
 end

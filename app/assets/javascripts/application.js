@@ -101,6 +101,7 @@ $(document).on('turbolinks:load', function() {
       $('#datatable1').DataTable(datatable);
       $('#imputations-table').DataTable(datatable);
       $('#requests-table').DataTable(datatable);
+      $('#tasks-table').DataTable(datatable);
 });
 
 

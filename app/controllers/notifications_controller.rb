@@ -55,6 +55,10 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def delete
+    @notification = Notification.find_by(uid: params[:notification_id])
+  end
+
   # DELETE /notifications/1
   # DELETE /notifications/1.json
   def destroy
@@ -68,7 +72,7 @@ class NotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
-      @notification = Notification.find(params[:id])
+      @notification = Notification.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

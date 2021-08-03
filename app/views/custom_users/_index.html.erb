@@ -11,10 +11,10 @@
 
 <% if is_account_locked?(user) %>
 	<%= link_to raw('<i class="fa fa-ban" aria-hidden="true"></i>
-	'), get_enable_user_account_path(user.id), remote: true, title: "Compte inactif. Cliquez pour l'activé", class: "delete" %>
+	'), get_enable_user_account_path(user.uid), remote: true, title: "Compte inactif. Cliquez pour l'activé", class: "delete" %>
 <% else %>
 <%= link_to raw('<i class="fa fa-check-circle" aria-hidden="true"></i>
-	'),  get_disable_user_account_path(user.id), remote: true, title: "Compte actif. Cliquez pour le désactivé", class: "delete" %>
+	'),  get_disable_user_account_path(user.uid), remote: true, title: "Compte actif. Cliquez pour le désactivé", class: "delete" %>
 <% end %>
 
 

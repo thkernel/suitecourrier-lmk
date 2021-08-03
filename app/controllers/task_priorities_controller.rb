@@ -58,7 +58,7 @@ class TaskPrioritiesController < ApplicationController
   end
 
   def delete
-      @task_priority = TaskPriority.find(params[:task_priority_id])
+      @task_priority = TaskPriority.find_by(uid: params[:task_priority_id])
     end
 
   # DELETE /task_priorities/1 or /task_priorities/1.json
@@ -73,7 +73,7 @@ class TaskPrioritiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_priority
-      @task_priority = TaskPriority.find(params[:id])
+      @task_priority = TaskPriority.find_by(uid: params[:id])
     end
 
     # Only allow a list of trusted parameters through.

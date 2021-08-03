@@ -38,4 +38,12 @@ class ImputationItem < ApplicationRecord
   validates :task_priority_id, presence: true
   validates :task_status_id, presence: true
 
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
+  
+  
+
 end

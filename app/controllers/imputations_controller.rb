@@ -16,8 +16,7 @@ class ImputationsController < ApplicationController
 
     if params[:rtype].present? && params[:rtype] == "ArrivalMail"
       @imputations = @arrival_mail.imputations
-    elsif params[:rtype].present? && params[:rtype] == "Request"
-      @imputations = @request.imputations
+    
     elsif params[:rtype].present? && params[:rtype] == "Document"
       @imputations = @document.imputations
 
@@ -210,7 +209,7 @@ class ImputationsController < ApplicationController
 
 
   def delete
-    @imputation = Imputation.find(params[:imputation_id])
+    @imputation = Imputation.find_by(uid: params[:imputation_id])
   end
 
 
@@ -229,11 +228,9 @@ class ImputationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_imputation
-        if params[:uid]
-        @imputation = Imputation.find_by(uid: params[:uid])
-        else 
-          @imputation = Imputation.find(params[:id])
-        end
+        
+        @imputation = Imputation.find_by(uid: params[:id])
+        
     end
 
     def get_resource

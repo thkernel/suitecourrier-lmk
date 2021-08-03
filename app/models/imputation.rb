@@ -31,6 +31,12 @@ class Imputation < ApplicationRecord
 
   validates_with ImputationValidator::ImputationUnicityValidator
   validates_with ImputationValidator::ImputationItemValidator
+
+
+  # Change default params ID to uid
+  def to_param
+    uid
+  end
   
   private 
 

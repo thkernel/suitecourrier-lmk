@@ -59,7 +59,7 @@ class TenantsController < ApplicationController
   end
 
   def delete
-    @tenant = Tenant.find(params[:tenant_id])
+    @tenant = Tenant.find_by(uid: params[:tenant_id])
   end
 
   # DELETE /tenants/1 or /tenants/1.json
@@ -75,7 +75,7 @@ class TenantsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tenant
-      @tenant = Tenant.find(params[:id])
+      @tenant = Tenant.find_by(uid: params[:id])
     end
 
     def delete_tenant(tenant_name)

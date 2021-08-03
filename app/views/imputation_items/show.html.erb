@@ -1,49 +1,63 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Task type:</strong>
-  <%= @request_imputation_task.task_type %>
-</p>
+  <div class="container page-wrapper mg-t-80">
+ 
+    <div class="row">
+      <div class="col-md-9">
+        <!-- -->
+        <div class="card shadow-base bd-0">
+          <div class="card-header bg-transparent pd-20">
+            <h6 class="card-title tx-uppercase tx-12 mg-b-0">Tâche</h6>
+          </div><!-- card-header -->
+          <div class="card-body">
 
-<p>
-  <strong>Title:</strong>
-  <%= @request_imputation_task.title %>
-</p>
+            <p>
+              <strong>Type:</strong>
+              <%= @imputation_item.task_type.name %>
+            </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @request_imputation_task.description %>
-</p>
+            
 
-<p>
-  <strong>Start date:</strong>
-  <%= @request_imputation_task.start_date %>
-</p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @request_imputation_task.end_date %>
-</p>
+            <p>
+              <strong>Description:</strong>
+              <%= @imputation_item.description %>
+            </p>
 
-<p>
-  <strong>Closing date:</strong>
-  <%= @request_imputation_task.closing_date %>
-</p>
+            <p>
+              <strong>Date d'écheance:</strong>
+              <%= @imputation_item.due_date.strftime("%d/%m/%Y") %>
+            </p>
 
-<p>
-  <strong>Task status:</strong>
-  <%= @request_imputation_task.task_status %>
-</p>
 
-<p>
-  <strong>Request imputation:</strong>
-  <%= @request_imputation_task.request_imputation %>
-</p>
+            <p>
+              <strong>Date début:</strong>
+              <%= @imputation_item.start_date.strftime("%d/%m/%Y") if @imputation_item.start_date %>
+            </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @request_imputation_task.user %>
-</p>
+            <p>
+              <strong>Date fin:</strong>
+              <%= @imputation_item.completed_date.strftime("%d/%m/%Y") if @imputation_item.completed_date %>
+            </p>
 
-<%= link_to 'Edit', edit_request_imputation_task_path(@request_imputation_task) %> |
-<%= link_to 'Back', request_imputation_tasks_path %>
+            <p>
+              <strong>Priotité:</strong>
+              <%= @imputation_item.task_priority.name %>
+            </p>
+
+            <p>
+              <strong>Statut:</strong>
+              <%= @imputation_item.task_status.name %>
+            </p>
+
+
+
+
+<% unless task_completed?(@imputation_item.task_status_id) %> 
+  <%= link_to 'Modifier', edit_imputation_item_path(@imputation_item), class: "pull-right", remote: true %> 
+  <% end  %>
+</div>
+           
+          
+        </div>
+
+        <div id="imputation-item-modal" class="c-modal modal fade" data-backdrop="static"></div>

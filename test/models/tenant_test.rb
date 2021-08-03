@@ -3,6 +3,7 @@
 # Table name: public.tenants
 #
 #  id                   :bigint           not null, primary key
+#  uid                  :string
 #  organization_type_id :bigint
 #  organization_name    :string
 #  address              :string
