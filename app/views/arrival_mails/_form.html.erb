@@ -258,9 +258,34 @@
           </div>
 
           <div class="form-group">
-            <%= form.label :files, "Pièces-jointes", class: "required" %>
-            <%= form.file_field :files,  class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true, required: true %>
+            <%= form.label :files, "Pièces-jointes", class:  "#{ 'required' unless @arrival_mail.files.attached? }" %>
+            <%= form.file_field :files,  class: "form-control", placeholder: "Pièces-jointes", multiple: true, direct_upload: true, required: (true unless @arrival_mail.files.attached?) %>
           </div>
+
+          <div class="form-group">
+            <ul class="list-group">
+              <% if @arrival_mail.files.attached? %>
+                <% @arrival_mail.files.attachments.each do |file| %>
+                  <li class="list-group-item rounded-top-0">
+                    <p class="mg-b-0">
+                      <i class="fa fa-file-text-o tx-info mg-r-8"></i>
+                      <strong class="tx-inverse tx-medium">
+                        <%= link_to file.blob.filename, rails_blob_path(file.blob, disposition: 'attachment') %>
+                      </strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">
+                        
+                          <%= link_to raw('&times;'), delete_attachment_path(id: file.id), method: :delete, data: { confirm:'Êtes-vous sûr de vouloir supprimer ce fichier?' }, :remote => true, :class => 'delete_attachment', title: "Supprimer" %>
+                      </span>
+                      </button> 
+                    </p>
+                  </li>
+                <% end %>
+              <% end %>
+              <!-- add more here -->
+            </ul>
+          </div>
+
         </div>
       </div>
     </fieldset>

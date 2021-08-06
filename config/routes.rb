@@ -9,6 +9,7 @@ end
 Rails.application.routes.draw do
 
 
+  delete "delete-attachment" => 'attachments#delete', as: :delete_attachment
   resources :ticket_priorities, path: "ticket-priorities" do   
     get "delete"
   end

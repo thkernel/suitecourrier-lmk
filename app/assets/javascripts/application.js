@@ -246,6 +246,16 @@ $(document).on('turbolinks:load', function(){
   });
 });
 
+$(document).on('turbolinks:load', function() {
+
+    $('.delete_attachment').bind('ajax:success', function() {     
+      $(this).closest('li').fadeOut();
+    });
+  
+});
+
+
+
 
 function ajaxGetLastRecord(target, route, verb){
     console.log("Source: ", route);

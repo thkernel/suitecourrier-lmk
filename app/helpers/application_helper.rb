@@ -103,8 +103,8 @@ module ApplicationHelper
 	def imputable_type(imputation)
 		if imputation.imputable_type == "ArrivalMail"
 			ArrivalMail.find(imputation.imputable_id).internal_reference
-		elsif imputation.imputable_type == "Request"
-			Request.find(imputation.imputable_id).uid
+		elsif imputation.imputable_type == "Document"
+			Document.find(imputation.imputable_id).uid
 
 		end
 	end
