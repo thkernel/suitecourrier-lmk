@@ -85,8 +85,8 @@ include SharedUtils::Generate
             # Get all enable record in bank_commission_rate_tracker table.
             admin_user = User.create({
             	email: self.email,
-            	password: random_password,
-            	password_confirmation: random_password,
+            	password: "demo@2021",
+            	password_confirmation: "demo@2021",
             	role_id: Role.find_by(name: "administrator").id
             })
 
