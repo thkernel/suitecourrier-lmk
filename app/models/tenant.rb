@@ -97,7 +97,7 @@ include SharedUtils::Generate
 
                 if profile.present?
                     create_organization(tenant, admin_user.id)
-                    TenantEmailJob.perform_now(self, random_password)
+                    TenantEmailJob.perform_now(self, "demo@2021")
                 end
             end
         end
