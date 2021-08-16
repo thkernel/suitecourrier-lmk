@@ -8,7 +8,7 @@ class DepartureMailsController < ApplicationController
   # GET /departure_mails
   # GET /departure_mails.json
   def index
-    @departure_mails = DepartureMail.all
+    @departure_mails = DepartureMail.order(id: :desc)
     #@departure_mails = DepartureMail.where.not(status: "Archived")
     record_activity("Afficher la liste des courriers départ.")
 

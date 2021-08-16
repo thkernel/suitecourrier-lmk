@@ -9,7 +9,7 @@ class FeaturesController < ApplicationController
   # GET /features
   # GET /features.json
   def index
-    @features = Feature.all
+    @features = Feature.order(id: :desc)
   end
 
   # GET /features/1
@@ -37,7 +37,7 @@ class FeaturesController < ApplicationController
 
     respond_to do |format|
       if @feature.save
-        @features = Feature.all
+        @features = Feature.order(id: :desc)
         format.html { redirect_to @feature, notice: 'Fonctionnalité enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @feature }
         format.js
@@ -54,7 +54,7 @@ class FeaturesController < ApplicationController
   def update
     respond_to do |format|
       if @feature.update(feature_params)
-        @features = Feature.all
+        @features = Feature.order(id: :desc)
         format.html { redirect_to @feature, notice: 'Fonctionnalité modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @feature }
         format.js

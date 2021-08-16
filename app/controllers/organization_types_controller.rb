@@ -6,7 +6,7 @@ class OrganizationTypesController < ApplicationController
   # GET /organization_types
   # GET /organization_types.json
   def index
-    @organization_types = OrganizationType.all
+    @organization_types = OrganizationType.order(id: :desc)
   end
 
   # GET /organization_types/1
@@ -30,7 +30,7 @@ class OrganizationTypesController < ApplicationController
 
     respond_to do |format|
       if @organization_type.save
-        @organization_types = OrganizationType.all
+        @organization_types = OrganizationType.order(id: :desc)
         format.html { redirect_to @organization_type, notice: "Type d'organisation enregistré avec succès." }
         format.json { render :show, status: :created, location: @organization_type }
         format.js
@@ -47,7 +47,7 @@ class OrganizationTypesController < ApplicationController
   def update
     respond_to do |format|
       if @organization_type.update(organization_type_params)
-        @organization_types = OrganizationType.all
+        @organization_types = OrganizationType.order(id: :desc)
 
         format.html { redirect_to @organization_type, notice: "Type d'organisation modifié avec succès." }
         format.json { render :show, status: :ok, location: @organization_type }

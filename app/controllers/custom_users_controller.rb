@@ -40,7 +40,7 @@ class CustomUsersController < ApplicationController
 			respond_to do |format|
 				if @user.save
 					#@user.build_profile
-					@users = User.where.not(id: current_user.id)
+					@users = User.where.not(id: current_user.id).order(id: :desc)
 					record_activity("Créer un nouvel utilisateur (ID: #{@user.id})")
 
 					format.html { redirect_to all_users_path, notice: "Compte d'utilisateur crée avec succès" }
@@ -64,7 +64,7 @@ class CustomUsersController < ApplicationController
 	# Index
     def index
     	role_ids = Role.where("name NOT IN (?)", ["superuser"]).map {|role| role.id}
-     	@users = User.where("role_id  IN (?)", role_ids).where.not(id: current_user.id)#.map {|user| user.id}
+     	@users = User.where("role_id  IN (?)", role_ids).where.not(id: current_user.id).order(id: :desc)#.map {|user| user.id}
 		#@users = User.where.not(id: current_user.id)
 		
 			record_activity("Afficher la liste des utilisateurs.")
@@ -103,7 +103,7 @@ class CustomUsersController < ApplicationController
 	  
       	respond_to do |format|
         	if @user.update_attributes(status: 'disable')
-						@users = User.where.not(id: current_user.id)
+						@users = User.where.not(id: current_user.id).order(id: :desc)
 						record_activity("Désactiver le compte d'un utilisateur (ID: #{@user.id})")
 
 				format.html { redirect_to @user, notice: "Compte d'utilisateur désactiver avec succès." }
@@ -164,7 +164,7 @@ class CustomUsersController < ApplicationController
     	@users = User.all
     
     	if @user.destroy
-				@users = User.where.not(id: current_user.id)
+				@users = User.where.not(id: current_user.id).order(id: :desc)
         record_activity("Supprimer un utilisateur (ID: #{@user.id})")
 
 				respond_to do |format|
@@ -192,7 +192,7 @@ class CustomUsersController < ApplicationController
 			end
 
 			if @user.update(user_params)
-				@users = User.where.not(id: current_user.id)
+				@users = User.where.not(id: current_user.id).order(id: :desc)
         record_activity("Modifier un utilisateur (ID: #{@user.id})")
 
 				format.html { redirect_to all_users_path, notice: "Compte d'utilisateur modifié avec succès." }

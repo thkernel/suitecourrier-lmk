@@ -8,7 +8,7 @@ class EntityTypesController < ApplicationController
   # GET /entity_types
   # GET /entity_types.json
   def index
-    @entity_types = EntityType.all
+    @entity_types = EntityType.order(id: :desc)
   end
 
   # GET /entity_types/1
@@ -32,7 +32,7 @@ class EntityTypesController < ApplicationController
 
     respond_to do |format|
       if @entity_type.save
-        @entity_types = EntityType.all
+        @entity_types = EntityType.order(id: :desc)
         format.html { redirect_to @entity_type, notice: 'Type entité enregistré avec succès.' }
         format.json { render :show, status: :created, location: @entity_type }
         format.js
@@ -49,7 +49,7 @@ class EntityTypesController < ApplicationController
   def update
     respond_to do |format|
       if @entity_type.update(entity_type_params)
-        @entity_types = EntityType.all
+        @entity_types = EntityType.order(id: :desc)
         format.html { redirect_to @entity_type, notice: 'Type entité modifié avec succès.' }
         format.json { render :show, status: :ok, location: @entity_type }
         format.js

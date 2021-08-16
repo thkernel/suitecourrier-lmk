@@ -15,13 +15,13 @@ class ImputationsController < ApplicationController
     
 
     if params[:rtype].present? && params[:rtype] == "ArrivalMail"
-      @imputations = @arrival_mail.imputations
+      @imputations = @arrival_mail.imputations.order(id: :desc)
     
     elsif params[:rtype].present? && params[:rtype] == "Document"
-      @imputations = @document.imputations
+      @imputations = @document.imputations.order(id: :desc)
 
     elsif !params[:rtype].present? && !params[:rtype]
-      @imputations = Imputation.where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id)
+      @imputations = Imputation.where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id).order(id: :desc)
 
     end
 

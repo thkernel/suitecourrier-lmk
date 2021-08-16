@@ -9,7 +9,7 @@ class PrioritiesController < ApplicationController
   # GET /priorities
   # GET /priorities.json
   def index
-    @priorities = Priority.all
+    @priorities = Priority.order(id: :desc)
   end
 
   # GET /priorities/1
@@ -33,7 +33,7 @@ class PrioritiesController < ApplicationController
 
     respond_to do |format|
       if @priority.save
-        @priorities = Priority.all
+        @priorities = Priority.order(id: :desc)
 
         format.html { redirect_to @priority, notice: 'Priorité enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @priority }
@@ -51,7 +51,7 @@ class PrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @priority.update(priority_params)
-        @priorities = Priority.all
+        @priorities = Priority.order(id: :desc)
 
         format.html { redirect_to @priority, notice: 'Priorité modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @priority }

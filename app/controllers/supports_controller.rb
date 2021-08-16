@@ -7,7 +7,7 @@ class SupportsController < ApplicationController
   # GET /supports
   # GET /supports.json
   def index
-    @supports = Support.all
+    @supports = Support.order(id: :desc)
     record_activity("Afficher la liste des supports.")
 
   end
@@ -46,7 +46,7 @@ class SupportsController < ApplicationController
       if @support.save
         record_activity("Créer un support (ID: #{@support.id})")
 
-        @supports = Support.all
+        @supports = Support.order(id: :desc)
 
         format.html { redirect_to @support, notice: 'Support enregistré avec succès.' }
         format.json { render :show, status: :created, location: @support }
@@ -66,7 +66,7 @@ class SupportsController < ApplicationController
       if @support.update(support_params)
         record_activity("Modifier un support (ID: #{@support.id})")
 
-        @supports = Support.all
+        @supports = Support.order(id: :desc)
 
         format.html { redirect_to @support, notice: 'Support modifié avec succès.' }
         format.json { render :show, status: :ok, location: @support }

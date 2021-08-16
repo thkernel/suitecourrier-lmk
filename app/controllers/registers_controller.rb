@@ -7,7 +7,7 @@ class RegistersController < ApplicationController
   # GET /registers
   # GET /registers.json
   def index
-    @registers = Register.all
+    @registers = Register.order(id: :desc)
     record_activity("Afficher la liste des registres.")
 
   end
@@ -48,7 +48,7 @@ class RegistersController < ApplicationController
       if @register.save
         record_activity("Créer un nouveau registre (ID: #{@register.id})")
 
-        @registers = Register.all
+        @registers = Register.order(id: :desc)
 
         format.html { redirect_to @register, notice: 'Registre enregistré avec succès.' }
         format.json { render :show, status: :created, location: @register }
@@ -79,7 +79,7 @@ class RegistersController < ApplicationController
      
         record_activity("Modifier un registre (ID: #{@register.id})")
 
-        @registers = Register.all
+        @registers = Register.order(id: :desc)
 
         format.html { redirect_to @register, notice: 'Registre modifié avec succès.' }
         format.json { render :show, status: :ok, location: @register }
@@ -101,7 +101,7 @@ class RegistersController < ApplicationController
   # DELETE /registers/1.json
   def destroy
     @register.destroy
-    @registers = Register.all
+    @registers = Register.order(id: :desc)
 
     respond_to do |format|
       record_activity("Supprimer un registre (ID: #{@register.id})")

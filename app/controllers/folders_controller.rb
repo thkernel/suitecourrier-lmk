@@ -15,7 +15,7 @@ class FoldersController < ApplicationController
   # GET /folders.json
   def index
     #@folders = Folder.all
-    @folders = Folder.where(parent_id: nil)
+    @folders = Folder.where(parent_id: nil).order(id: :desc)
     record_activity("Afficher la liste des dossiers.")
 
   end
@@ -118,15 +118,15 @@ end
         
         record_activity("Créer un nouveau dossier (ID: #{@folder.id})")
 
-        if @folder.parent_id #checking if we have a parent folder on this one 
+        #if @folder.parent_id #checking if we have a parent folder on this one 
           
-          Thread.new do
-            Rails.application.executor.wrap do
-              file_id = $drive.create_folder(@folder.name.upcase, parent_id: @folder.parent.google_drive_file_id)
+          #Thread.new do
+            #Rails.application.executor.wrap do
+              #file_id = $drive.create_folder(@folder.name.upcase, parent_id: @folder.parent.google_drive_file_id)
               # Update google drive file ID
-              @folder.update_column(:google_drive_file_id, file_id.id)
-            end
-          end
+              #@folder.update_column(:google_drive_file_id, file_id.id)
+           # end
+          #end
 
            
             
@@ -136,13 +136,13 @@ end
           
         else
 
-          Thread.new do
-            Rails.application.executor.wrap do
-              file_id = $drive.create_folder(@folder.name.upcase)
+          #Thread.new do
+           # Rails.application.executor.wrap do
+              #file_id = $drive.create_folder(@folder.name.upcase)
               # Update google drive file ID
-              @folder.update_column(:google_drive_file_id, file_id.id)
-            end
-          end
+              #@folder.update_column(:google_drive_file_id, file_id.id)
+            #end
+          #end
           
 
 
@@ -159,7 +159,7 @@ end
       end
     end
 
-    @folders = Folder.where(parent_id: nil)
+    @folders = Folder.where(parent_id: nil).order(id: :desc)
   end
 
   # PATCH/PUT /folders/1
@@ -169,7 +169,7 @@ end
     respond_to do |format|
       if @folder.update(folder_params)
         record_activity("Modifier un dossier (ID: #{@folder.id})")
-
+          @folders = Folder.order(id: :desc)
         
           format.html { redirect_to folders_path, notice: 'Dossier modifié avec succès.' }
           format.json { head :no_content }
@@ -197,11 +197,11 @@ end
     respond_to do |format|
       record_activity("Supprimer un dossier (ID: #{@folder.id})")
 
-      Thread.new do
-          Rails.application.executor.wrap do
-            $drive.delete(@folder.google_drive_file_id) 
-          end
-        end
+      #Thread.new do
+          #Rails.application.executor.wrap do
+            #$drive.delete(@folder.google_drive_file_id) 
+          #end
+        #end
       
 
       

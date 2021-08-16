@@ -9,7 +9,7 @@ class CorrespondentsController < ApplicationController
   # GET /correspondents
   # GET /correspondents.json
   def index
-    @correspondents = Correspondent.all
+    @correspondents = Correspondent.order(id: :desc)
   end
 
   # GET /correspondents/1
@@ -46,7 +46,7 @@ class CorrespondentsController < ApplicationController
     respond_to do |format|
       if @correspondent.save
         puts "CREATE CORRESPNDANT"
-        @correspondents = Correspondent.all
+        @correspondents = Correspondent.order(id: :desc)
         format.html { redirect_to @correspondent, notice: 'Correspondant enregistré avec succès.' }
         format.json { render :show, status: :created, location: @correspondent }
         format.js
@@ -63,7 +63,7 @@ class CorrespondentsController < ApplicationController
   def update
     respond_to do |format|
       if @correspondent.update(correspondent_params)
-        @correspondents = Correspondent.all
+        @correspondents = Correspondent.order(id: :desc)
         format.html { redirect_to @correspondent, notice: 'Correspondant modifié avec succès.' }
         format.json { render :show, status: :ok, location: @correspondent }
         format.js
@@ -84,7 +84,7 @@ class CorrespondentsController < ApplicationController
   # DELETE /correspondents/1.json
   def destroy
     @correspondent.destroy
-    @correspondents = Correspondent.all
+    @correspondents = Correspondent.order(id: :desc)
     respond_to do |format|
       format.html { redirect_to correspondents_url, notice: 'Correspondant supprimé avec succès.' }
       format.json { head :no_content }

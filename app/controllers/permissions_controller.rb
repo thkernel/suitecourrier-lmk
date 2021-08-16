@@ -8,7 +8,7 @@ class PermissionsController < ApplicationController
   # GET /permissions
   # GET /permissions.json
   def index
-    @permissions = Permission.all
+    @permissions = Permission.order(id: :desc)
   end
 
   # GET /permissions/1
@@ -49,7 +49,7 @@ class PermissionsController < ApplicationController
 
     respond_to do |format|
       if @permission.save
-        @permissions = Permission.all
+        @permissions = Permission.order(id: :desc)
         format.html { redirect_to permissions_path, notice: 'Permission enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @permission }
         format.js
@@ -74,7 +74,7 @@ class PermissionsController < ApplicationController
 
     respond_to do |format|
       if @permission.update(permission_params)
-        @permissions = Permission.all
+        @permissions = Permission.order(id: :desc)
         format.html { redirect_to @permission, notice: 'Permission modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @permission }
         format.js

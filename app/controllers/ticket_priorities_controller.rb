@@ -7,7 +7,7 @@ class TicketPrioritiesController < ApplicationController
 
   # GET /task_priorities or /task_priorities.json
   def index
-    @ticket_priorities = TicketPriority.all
+    @ticket_priorities = TicketPriority.order(id: :desc)
   end
 
   # GET /task_priorities/1 or /task_priorities/1.json
@@ -29,7 +29,7 @@ class TicketPrioritiesController < ApplicationController
 
     respond_to do |format|
       if @ticket_priority.save
-        @ticket_priorities = TicketPriority.all
+        @ticket_priorities = TicketPriority.order(id: :desc)
         format.html { redirect_to @ticket_priority, notice: "Ticket priority was successfully created." }
         format.json { render :show, status: :created, location: @ticket_priority }
         format.js
@@ -45,7 +45,7 @@ class TicketPrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_priority.update(ticket_priority_params)
-        @ticket_priorities = TicketPriority.all
+        @ticket_priorities = TicketPriority.order(id: :desc)
         format.html { redirect_to @ticket_priority, notice: "Ticket priority was successfully updated." }
         format.json { render :show, status: :ok, location: @ticket_priority }
         format.js

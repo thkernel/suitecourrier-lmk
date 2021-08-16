@@ -10,7 +10,7 @@ class EntitiesController < ApplicationController
   # GET /entities
   # GET /entities.json
   def index
-    @entities = Entity.all
+    @entities = Entity.order(id: :desc)
   end
 
   # GET /entities/1
@@ -39,7 +39,7 @@ class EntitiesController < ApplicationController
 
     respond_to do |format|
       if @entity.save
-        @entities = Entity.all
+        @entities = Entity.order(id: :desc)
         format.html { redirect_to @entity, notice: 'Entité enregistrée avec succès.' }
         format.json { render :show, status: :created, location: @entity }
         format.js
@@ -56,7 +56,7 @@ class EntitiesController < ApplicationController
   def update
     respond_to do |format|
       if @entity.update(entity_params)
-        @entities = Entity.all
+        @entities = Entity.order(id: :desc)
         format.html { redirect_to @entity, notice: 'Entité modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @entity }
         format.js

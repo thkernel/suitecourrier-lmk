@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.order(id: :desc)
     record_activity("Afficher la liste des tickets")
 
   end
@@ -74,7 +74,7 @@ class TicketsController < ApplicationController
         
         record_activity("Créer un ticket (ID: #{@ticket.id})")
 
-        @tickets = Ticket.all
+        @tickets = Ticket.order(id: :desc)
         format.html { redirect_to @ticket, notice: 'Ticket enregistré avec succès.' }
         format.json { render :show, status: :created, location: @ticket }
         format.js
@@ -108,7 +108,7 @@ class TicketsController < ApplicationController
       if @ticket.update(ticket_params)
         record_activity("Modifier un ticket (ID: #{@ticket.id})")
 
-        @tickets = Ticket.all
+        @tickets = Ticket.order(id: :desc)
         format.html { redirect_to @ticket, notice: 'Ticket modifié avec succès.' }
         format.json { render :show, status: :ok, location: @ticket }
         format.js

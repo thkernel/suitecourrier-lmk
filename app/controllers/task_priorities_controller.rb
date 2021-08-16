@@ -7,7 +7,7 @@ class TaskPrioritiesController < ApplicationController
 
   # GET /task_priorities or /task_priorities.json
   def index
-    @task_priorities = TaskPriority.all
+    @task_priorities = TaskPriority.order(id: :desc)
   end
 
   # GET /task_priorities/1 or /task_priorities/1.json
@@ -29,7 +29,7 @@ class TaskPrioritiesController < ApplicationController
 
     respond_to do |format|
       if @task_priority.save
-        @task_priorities = TaskPriority.all
+        @task_priorities = TaskPriority.order(id: :desc)
         format.html { redirect_to @task_priority, notice: "Task priority was successfully created." }
         format.json { render :show, status: :created, location: @task_priority }
         format.js
@@ -45,7 +45,7 @@ class TaskPrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @task_priority.update(task_priority_params)
-        @task_priorities = TaskPriority.all
+        @task_priorities = TaskPriority.order(id: :desc)
         format.html { redirect_to @task_priority, notice: "Task priority was successfully updated." }
         format.json { render :show, status: :ok, location: @task_priority }
         format.js

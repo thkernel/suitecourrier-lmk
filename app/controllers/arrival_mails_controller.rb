@@ -10,9 +10,9 @@ class ArrivalMailsController < ApplicationController
   def index
 
     @current_user_arrival_mails = current_user.arrival_mails.order(id: :desc)
-    @imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id)
+    @imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? OR user_id = ?", current_user.id, current_user.id).order(id: :desc)
     
-    imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? ",  current_user.id)
+    imputations = Imputation.where(imputable_type: "ArrivalMail").where("recipient_id = ? ",  current_user.id).order(id: :desc)
 
     @tasks = imputations.map { |imputation| imputation.imputation_items}.flatten
 
@@ -52,7 +52,7 @@ class ArrivalMailsController < ApplicationController
   end
 
   def archive
-    @arrival_mail = ArrivalMail.find(params[:arrival_mail_id])
+    @arrival_mail = ArrivalMail.find(params[:arrival_mail_id]).order(id: :desc)
   end
 
 
@@ -78,7 +78,7 @@ class ArrivalMailsController < ApplicationController
     respond_to do |format|
       if @arrival_mail.update_column(:status, "Archived")
   
-        @arrival_mails = ArrivalMail.where.not(status: "Archived")
+        @arrival_mails = ArrivalMail.where.not(status: "Archived").order(id: :desc)
 
         format.html { redirect_to arrival_mails_path, notice: 'Arrival mail was successfully created.' }
         format.json { render :show, status: :created, location: @arrival_mail }
@@ -92,7 +92,7 @@ class ArrivalMailsController < ApplicationController
   end
 
   def archives
-    @arrival_mails = ArrivalMail.where(status: "Archived")
+    @arrival_mails = ArrivalMail.where(status: "Archived").order(id: :desc)
   end
 
   def bulk_archive_modal
@@ -233,7 +233,7 @@ class ArrivalMailsController < ApplicationController
 
         #UploadFileService.upload(files, @arrival_mail,  parent_id: Folder.find(@arrival_mail.folder_id).google_drive_file_id)
 
-        @arrival_mails = ArrivalMail.where.not(status: "Archived")
+        @arrival_mails = ArrivalMail.where.not(status: "Archived").order(id: :desc)
 
         format.html { redirect_to arrival_mails_path, notice: 'Courrier modifié avec succès.' }
         format.json { render :show, status: :ok, location: @arrival_mail }

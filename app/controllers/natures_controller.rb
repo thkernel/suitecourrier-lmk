@@ -8,7 +8,7 @@ class NaturesController < ApplicationController
   # GET /natures
   # GET /natures.json
   def index
-    @natures = Nature.all
+    @natures = Nature.order(id: :desc)
     #record_activity("Afficher la liste des nature de courrier.")
 
   end
@@ -46,7 +46,7 @@ class NaturesController < ApplicationController
       if @nature.save
         record_activity("Créer une nature de courrier (ID: #{@nature.id})")
 
-        @natures = Nature.all
+        @natures = Nature.order(id: :desc)
 
         format.html { redirect_to @nature, notice: 'Nature crée avec succès.' }
         format.json { render :show, status: :created, location: @nature }
@@ -66,8 +66,8 @@ class NaturesController < ApplicationController
       if @nature.update(nature_params)
         record_activity("Modifier une nature de courrier (ID: #{@nature.id})")
 
-        @natures = Nature.all
-
+        @natures = Nature.order(id: :desc)
+        
         format.html { redirect_to @nature, notice: 'Nature modifiée avec succès.' }
         format.json { render :show, status: :ok, location: @nature }
         format.js
@@ -91,7 +91,7 @@ class NaturesController < ApplicationController
     
 
     respond_to do |format|
-      @natures = Nature.all
+      @natures = Nature.order(id: :desc)
       record_activity("Supprimer un type de courrier (ID: #{@nature.id})")
 
       format.html { redirect_to nature_url, notice: 'Nature supprimée avec succès.' }

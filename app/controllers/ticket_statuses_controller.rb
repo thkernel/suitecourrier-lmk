@@ -8,7 +8,7 @@ class TicketStatusesController < ApplicationController
 
   # GET /ticket_statuses or /ticket_statuses.json
   def index
-    @ticket_statuses = TicketStatus.all
+    @ticket_statuses = TicketStatus.order(id: :desc)
   end
 
   # GET /ticket_statuses/1 or /ticket_statuses/1.json
@@ -30,7 +30,7 @@ class TicketStatusesController < ApplicationController
 
     respond_to do |format|
       if @ticket_status.save
-        @ticket_statuses = TicketStatus.all
+        @ticket_statuses = TicketStatus.order(id: :desc)
         format.html { redirect_to @ticket_status, notice: "Statut enregistré avec succès." }
         format.json { render :show, status: :created, location: @ticket_status }
         format.js
@@ -45,7 +45,7 @@ class TicketStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_status.update(ticket_status_params)
-        @ticket_statuses = TicketStatus.all
+        @ticket_statuses = TicketStatus.order(id: :desc)
         format.html { redirect_to @ticket_status, notice: "Statut modifié avec succès." }
         format.json { render :show, status: :ok, location: @ticket_status }
         format.js

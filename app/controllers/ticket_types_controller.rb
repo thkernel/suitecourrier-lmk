@@ -9,7 +9,7 @@ class TicketTypesController < ApplicationController
   # GET /ticket_types
   # GET /ticket_types.json
   def index
-    @ticket_types = TicketType.all
+    @ticket_types = TicketType.order(id: :desc)
   end
 
   # GET /ticket_types/1
@@ -33,7 +33,7 @@ class TicketTypesController < ApplicationController
 
     respond_to do |format|
       if @ticket_type.save
-        @ticket_types = TicketType.all
+        @ticket_types = TicketType.order(id: :desc)
         format.html { redirect_to @ticket_type, notice: 'Type de ticket  enregistré avec succès.' }
         format.json { render :show, status: :created, location: @ticket_type }
         format.js
@@ -50,7 +50,7 @@ class TicketTypesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_type.update(ticket_type_params)
-        @ticket_types = TicketType.all
+        @ticket_types = TicketType.order(id: :desc)
 
         format.html { redirect_to @ticket_type, notice: 'Type de ticket modifié avec succès' }
         format.json { render :show, status: :ok, location: @ticket_type }

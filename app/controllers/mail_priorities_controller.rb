@@ -7,7 +7,7 @@ class MailPrioritiesController < ApplicationController
 
   # GET /mail_priorities or /mail_priorities.json
   def index
-    @mail_priorities = MailPriority.all
+    @mail_priorities = MailPriority.order(id: :desc)
   end
 
   # GET /mail_priorities/1 or /mail_priorities/1.json
@@ -29,7 +29,7 @@ class MailPrioritiesController < ApplicationController
 
     respond_to do |format|
       if @mail_priority.save
-        @mail_priorities = MailPriority.all
+        @mail_priorities = MailPriority.order(id: :desc)
         format.html { redirect_to @mail_priority, notice: "Mail priority was successfully created." }
         format.json { render :show, status: :created, location: @mail_priority }
         format.js
@@ -45,7 +45,7 @@ class MailPrioritiesController < ApplicationController
   def update
     respond_to do |format|
       if @mail_priority.update(mail_priority_params)
-        @mail_priorities = MailPriority.all
+        @mail_priorities = MailPriority.order(id: :desc)
         format.html { redirect_to @mail_priority, notice: "Mail priority was successfully updated." }
         format.json { render :show, status: :ok, location: @mail_priority }
         format.js

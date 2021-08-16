@@ -7,7 +7,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = Document.order(id: :desc)
     record_activity("Afficher la liste des documents archivés.")
 
   end

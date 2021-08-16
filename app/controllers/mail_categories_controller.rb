@@ -7,7 +7,7 @@ class MailCategoriesController < ApplicationController
 
   # GET /mail_categories or /mail_categories.json
   def index
-    @mail_categories = MailCategory.all
+    @mail_categories = MailCategory.order(id: :desc)
   end
 
   # GET /mail_categories/1 or /mail_categories/1.json
@@ -29,7 +29,7 @@ class MailCategoriesController < ApplicationController
 
     respond_to do |format|
       if @mail_category.save
-        @mail_categories = MailCategory.all
+        @mail_categories = MailCategory.order(id: :desc)
         format.html { redirect_to @mail_category, notice: "Mail category was successfully created." }
         format.json { render :show, status: :created, location: @mail_category }
         format.js
@@ -45,7 +45,7 @@ class MailCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @mail_category.update(mail_category_params)
-        @mail_categories = MailCategory.all
+        @mail_categories = MailCategory.order(id: :desc)
         format.html { redirect_to @mail_category, notice: "Mail category was successfully updated." }
         format.json { render :show, status: :ok, location: @mail_category }
         format.js

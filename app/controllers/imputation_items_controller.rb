@@ -8,7 +8,7 @@ class ImputationItemsController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @imputation_items = @imputation.imputation_items
+    @imputation_items = @imputation.imputation_items.order(id: :desc)
   end
 
   # GET /tasks/1
@@ -46,7 +46,7 @@ class ImputationItemsController < ApplicationController
 
     respond_to do |format|
       if @imputation_item.save
-        @imputation_items = ImputationItem.where(imputation_id: @imputation_item.imputation_id)
+        @imputation_items = ImputationItem.where(imputation_id: @imputation_item.imputation_id).order(id: :desc)
 
         format.html { redirect_to imputation_tasks_path(@imputation_item.imputation_id), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @imputation_item }

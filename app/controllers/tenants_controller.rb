@@ -7,7 +7,7 @@ class TenantsController < ApplicationController
 
   # GET /tenants or /tenants.json
   def index
-    @tenants = Tenant.all
+    @tenants = Tenant.order(id: :desc)
   end
 
   # GET /tenants/1 or /tenants/1.json
@@ -31,7 +31,7 @@ class TenantsController < ApplicationController
 
     respond_to do |format|
       if @tenant.save
-        @tenants = Tenant.all
+        @tenants = Tenant.order(id: :desc)
         format.html { redirect_to @tenant, notice: "Tenant was successfully created." }
         format.json { render :show, status: :created, location: @tenant }
         format.js
@@ -48,7 +48,7 @@ class TenantsController < ApplicationController
   def update
     respond_to do |format|
       if @tenant.update(tenant_params)
-        @tenants = Tenant.all
+        @tenants = Tenant.order(id: :desc)
         format.html { redirect_to @tenant, notice: "Tenant was successfully updated." }
         format.json { render :show, status: :ok, location: @tenant }
       else

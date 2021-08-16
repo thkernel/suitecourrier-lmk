@@ -7,7 +7,7 @@ class MailStatusesController < ApplicationController
 
   # GET /mail_statuses or /mail_statuses.json
   def index
-    @mail_statuses = MailStatus.all
+    @mail_statuses = MailStatus.order(id: :desc)
   end
 
   # GET /mail_statuses/1 or /mail_statuses/1.json
@@ -29,7 +29,7 @@ class MailStatusesController < ApplicationController
 
     respond_to do |format|
       if @mail_status.save
-        @mail_statuses = MailStatus.all
+        @mail_statuses = MailStatus.order(id: :desc)
         format.html { redirect_to @mail_status, notice: "Mail status was successfully created." }
         format.json { render :show, status: :created, location: @mail_status }
         format.js
@@ -45,7 +45,7 @@ class MailStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @mail_status.update(mail_status_params)
-        @mail_statuses = MailStatus.all
+        @mail_statuses = MailStatus.order(id: :desc)
         format.html { redirect_to @mail_status, notice: "Mail status was successfully updated." }
         format.json { render :show, status: :ok, location: @mail_status }
         format.js

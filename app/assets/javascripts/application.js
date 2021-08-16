@@ -72,7 +72,8 @@ $(document).on('turbolinks:load', function() {
  var datatable = {
       
     "searching": true,
-    "ordering": true,
+    /*"ordering": true,*/
+    "order": [],
     language: {
         processing: "Traitement en cours...",
         search: "Rechercher&nbsp;:",
@@ -108,8 +109,8 @@ $(document).on('turbolinks:load', function() {
 $(document).on('turbolinks:load', function() {
  var datatable_without_search = {
       
-    
-    "ordering": true,
+    "order": [],
+    /*"ordering": true,*/
     language: {
         processing: "Traitement en cours...",
         search: "Rechercher&nbsp;:",

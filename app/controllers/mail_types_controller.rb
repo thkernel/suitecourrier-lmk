@@ -7,7 +7,7 @@ class MailTypesController < ApplicationController
 
   # GET /mail_types or /mail_types.json
   def index
-    @mail_types = MailType.all
+    @mail_types = MailType.order(id: :desc)
   end
 
   # GET /mail_types/1 or /mail_types/1.json
@@ -45,7 +45,7 @@ class MailTypesController < ApplicationController
   def update
     respond_to do |format|
       if @mail_type.update(mail_type_params)
-        @mail_types = MailType.all
+        @mail_types = MailType.order(id: :desc)
         format.html { redirect_to @mail_type, notice: "Mail type was successfully updated." }
         format.json { render :show, status: :ok, location: @mail_type }
         format.js

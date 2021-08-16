@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     # GET /task_types
     # GET /task_types.json
     def index
-      @tasks = Task.all
+      @tasks = Task.order(id: :desc)
       record_activity("Afficher la liste des tâches.")
 
     end
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
         if @task.save
           record_activity("Créer une tâche (ID: #{@task.id})")
 
-          @tasks = TaskType.all
+          @tasks = TaskType.order(id: :desc)
           format.html { redirect_to @task, notice: 'Task type was successfully created.' }
           format.json { render :show, status: :created, location: @task_type }
           format.js
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
     def update
       respond_to do |format|
         if @task.update(task_params)
-          @tasks = Task.all
+          @tasks = Task.order(id: :desc)
           record_activity("Modifier une tâche (ID: #{@task.id})")
 
           format.html { redirect_to @task, notice: 'Task type was successfully updated.' }

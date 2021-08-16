@@ -6,7 +6,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Role.all
+    @roles = Role.order(id: :desc)
   end
 
   # GET /roles/1
@@ -30,7 +30,7 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
-        @roles = Role.all
+        @roles = Role.order(id: :desc)
         format.html { redirect_to @role, notice: 'Rôle enregistré avec succès.' }
         format.json { render :show, status: :created, location: @role }
         format.js
@@ -47,7 +47,7 @@ class RolesController < ApplicationController
   def update
     respond_to do |format|
       if @role.update(role_params)
-        @roles = Role.all
+        @roles = Role.order(id: :desc)
         format.html { redirect_to @role, notice: 'Rôle modifié avec succès.' }
         format.json { render :show, status: :ok, location: @role }
         format.js

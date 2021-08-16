@@ -9,7 +9,7 @@ class TaskTypesController < ApplicationController
   # GET /task_types
   # GET /task_types.json
   def index
-    @task_types = TaskType.all
+    @task_types = TaskType.order(id: :desc)
   end
 
   # GET /task_types/1
@@ -33,7 +33,7 @@ class TaskTypesController < ApplicationController
 
     respond_to do |format|
       if @task_type.save
-        @task_types = TaskType.all
+        @task_types = TaskType.order(id: :desc)
         format.html { redirect_to @task_type, notice: 'Type de tâche enregistré avec succès.' }
         format.json { render :show, status: :created, location: @task_type }
         format.js
@@ -50,7 +50,7 @@ class TaskTypesController < ApplicationController
   def update
     respond_to do |format|
       if @task_type.update(task_type_params)
-        @task_types = TaskType.all
+        @task_types = TaskType.order(id: :desc)
         
         format.html { redirect_to @task_type, notice: 'Type de tâche modifié avec succès.' }
         format.json { render :show, status: :ok, location: @task_type }

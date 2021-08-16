@@ -8,7 +8,7 @@ class TaskStatusesController < ApplicationController
   # GET /task_statuses
   # GET /task_statuses.json
   def index
-    @task_statuses = TaskStatus.all
+    @task_statuses = TaskStatus.order(id: :desc)
   end
 
   # GET /task_statuses/1
@@ -32,7 +32,7 @@ class TaskStatusesController < ApplicationController
 
     respond_to do |format|
       if @task_status.save
-        @task_statuses = TaskStatus.all
+        @task_statuses = TaskStatus.order(id: :desc)
         
         format.html { redirect_to @task_status, notice: 'Statut enregistré avec succès.' }
         format.json { render :show, status: :created, location: @task_status }
@@ -50,7 +50,7 @@ class TaskStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @task_status.update(task_status_params)
-        @task_statuses = TaskStatus.all
+        @task_statuses = TaskStatus.order(id: :desc)
 
         format.html { redirect_to @task_status, notice: 'Statut modifié avec succès.' }
         format.json { render :show, status: :ok, location: @task_status }

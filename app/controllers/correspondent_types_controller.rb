@@ -8,7 +8,7 @@ class CorrespondentTypesController < ApplicationController
   # GET /correspondent_types
   # GET /correspondent_types.json
   def index
-    @correspondent_types = CorrespondentType.all
+    @correspondent_types = CorrespondentType.order(id: :desc)
     #record_activity("Afficher la liste des types correspondant (ID: #{@correspondent_type.id})")
 
   end
@@ -36,7 +36,7 @@ class CorrespondentTypesController < ApplicationController
       if @correspondent_type.save
         record_activity("Créer un nouveau type de correspondant (ID: #{@correspondent_type.id})")
 
-        @correspondent_types = CorrespondentType.all
+        @correspondent_types = CorrespondentType.order(id: :desc)
 
         format.html { redirect_to @correspondent_type, notice: 'Type de correspondant enregistré avec succès.' }
         format.json { render :show, status: :created, location: @correspondent_type }
@@ -56,8 +56,7 @@ class CorrespondentTypesController < ApplicationController
       if @correspondent_type.update(correspondent_type_params)
         record_activity("Modifier un type de correspondant (ID: #{@correspondent_type.id})")
 
-        @correspondent_types = CorrespondentType.all
-
+        @correspondent_types = CorrespondentType.order(id: :desc)
         format.html { redirect_to @correspondent_type, notice: 'Type de correspondant modifié avec succès.' }
         format.json { render :show, status: :ok, location: @correspondent_type }
         format.js
@@ -77,8 +76,7 @@ class CorrespondentTypesController < ApplicationController
   # DELETE /correspondent_types/1.json
   def destroy
     @correspondent_type.destroy
-    @correspondent_types = CorrespondentType.all
-
+    @correspondent_types = CorrespondentType.order(id: :desc)
     respond_to do |format|
       record_activity("Supprimer un type de correspondant (ID: #{@correspondent_type.id})")
 
