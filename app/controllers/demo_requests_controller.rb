@@ -13,7 +13,7 @@ class DemoRequestsController < ApplicationController
 	    	# New thread to send mail
         	Thread.new do
 				Rails.application.executor.wrap do
-	      			DemoRequestMailer.contact(@demo_request).deliver_now
+	      			DemoRequestsMailer.contact(@demo_request).deliver_now
 	      		end
 	      	end
 

@@ -44,6 +44,41 @@ module SharedUtils
                     
                 end
         end
+
+
+        def set_contact_mailer_settings
+    
+            smtp_config = SmtpServerSetting.new
+            smtp_config.host = "mail.suitecourrier.com"
+            smtp_config.address = "suitecourrier.com"
+            smtp_config.domain = "suitecourrier.com"
+            smtp_config.authentification = "plain"
+            smtp_config.user_name = "request@suitecourrier.com"
+            smtp_config.user_password = "Root@2021@#!*"
+            smtp_config.enable_starttls_auto = true
+            smtp_config.ssl = ""
+            
+            puts "DEMO REQUEST SMTP SETTING: #{smtp_config.inspect}"
+
+            
+            ActionMailer::Base.smtp_settings.merge!({
+                :host => smtp_config.host ,
+                :address => smtp_config.address , 
+                :port => smtp_config.port,
+                :domain => smtp_config.domain,
+                :authentication => smtp_config.authentification,
+                :user_name => smtp_config.user_name,
+                :password => smtp_config.user_password,
+                :enable_starttls_auto => smtp_config.enable_starttls_auto,
+                :ssl => smtp_config.ssl,
+                :openssl_verify_mode => 'none'
+            })
+
+            
+                
+            #return smtp_config
+
+        end
     
     end
     

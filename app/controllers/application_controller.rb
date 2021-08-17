@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
 
 
 	def setup_organization
+		
 		puts "Setup organization ...."
 		puts "Checking user profil...."
 		#if request.subdomain.present? && request.subdomain != 'www'   

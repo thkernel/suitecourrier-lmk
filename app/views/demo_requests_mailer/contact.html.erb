@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+    <p>
+      Bonjour,<br>
+      Vous avez reçus une nouvelle de demande de devis.<br>
+      <p>
+      Type d'organisation: <strong><%= @demo_request.organization_type %></strong><br> 
+      Organisation: <strong><%= @demo_request.name %></strong><br> 
+      Pays: <strong><%= @demo_request.country %></strong><br> 
+      Ville: <strong><%= @demo_request.city %></strong><br> 
+      Téléphone: <strong><%= @demo_request.phone_number %></strong><br> 
+      Email: <strong><%= @demo_request.email %></strong><br> 
+      Site web: <strong><%= @demo_request.website %></strong><br> 
+      Contenu: <strong><%= @demo_request.body %></strong><br> 
+      
+      </p>
+    </p>
+    <p>
+      Pour se connecter à l'application, suivez juste ce lien: <%= @url %>.<br>
+    </p>
+    <p>
+   
+    </p>
+  </body>
+</html>

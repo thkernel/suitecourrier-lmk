@@ -13,7 +13,7 @@ class QuoteRequestsController < ApplicationController
 	    	# New thread to send mail
         	Thread.new do
 				Rails.application.executor.wrap do
-	      			QuoteRequestMailer.contact(@quote_request).deliver_now
+	      			QuoteRequestsMailer.contact(@quote_request).deliver_now
 	      		end
             end
             flash[:notice] = "Nous avons bien reçu votre demande et vous contacterons bientôt!"

@@ -17,8 +17,8 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group customSelect">
-          <%= form.label :organization_type_id, "Type d'oragnisation", class: "required" %>
-          <%= form.collection_select(:organization_type_id, @organization_types, :name, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
+          <%= form.label :organization_type, "Type d'oragnisation", class: "required" %>
+          <%= form.collection_select(:organization_type, @organization_types, :name, :name, {prompt: "Sélectionner"}, class: "form-control", style: "width: 100%") %> 
       </div>
     </div>
 
