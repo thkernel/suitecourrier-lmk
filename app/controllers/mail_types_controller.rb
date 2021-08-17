@@ -29,7 +29,7 @@ class MailTypesController < ApplicationController
 
     respond_to do |format|
       if @mail_type.save
-        @mail_types = MailType.all
+        @mail_types = MailType.order(id: :desc)
         format.html { redirect_to @mail_type, notice: "Mail type was successfully created." }
         format.json { render :show, status: :created, location: @mail_type }
         format.js

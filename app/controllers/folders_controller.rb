@@ -110,7 +110,7 @@ end
   def create
     @folder = current_user.folders.build(folder_params)
 
-    @folder.name = folder_params[:name].upcase
+    #@folder.name = folder_params[:name].upcase
    
 
     respond_to do |format|
@@ -130,11 +130,11 @@ end
 
            
             
-          format.html { redirect_to browse_path(uid: Folder.find(@folder.parent_id).uid), notice: 'Folder was successfully created.' }
-          format.json { render :show, status: :created, location: @folder }
-          format.js
+          #format.html { redirect_to browse_path(uid: Folder.find(@folder.parent_id).uid), notice: 'Folder was successfully created.' }
+          #format.json { render :show, status: :created, location: @folder }
+          #format.js
           
-        else
+        #else
 
           #Thread.new do
            # Rails.application.executor.wrap do
@@ -150,7 +150,7 @@ end
           format.html { redirect_to folders_path, notice: 'Dossier crée avec succès.' }
           format.json { render :show, status: :created, location: @folder }
           format.js
-        end
+        #end
       else
         
         format.html { render :new }
@@ -169,7 +169,7 @@ end
     respond_to do |format|
       if @folder.update(folder_params)
         record_activity("Modifier un dossier (ID: #{@folder.id})")
-          @folders = Folder.order(id: :desc)
+         @folders = Folder.where(parent_id: nil).order(id: :desc)
         
           format.html { redirect_to folders_path, notice: 'Dossier modifié avec succès.' }
           format.json { head :no_content }
