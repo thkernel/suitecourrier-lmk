@@ -10,8 +10,8 @@ set :application, "suitecourrier.prod"               # the name of your website 
 set :deploy_to, "/home/ubuntu/apps/rails/suitecourrier/suitecourrier.prod"   # the path to your new deployment directory on the server - by default, the name of the application (e.g. "/var/www/sites/example.com")
 set :rails_env, "production"
 
-#server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
-server "suitecourrier.com", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
+server "51.38.235.131", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
+#server "suitecourrier.com", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "master"
 set :port, 3012
