@@ -35,12 +35,12 @@ install_plugin Capistrano::SCM::Git
 # require "capistrano/passenger"
 
 #require "capistrano/rvm"
- require "capistrano/rbenv"
+require "capistrano/rbenv"
 require "capistrano/rails"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
-require "whenever/capistrano"
+#require "whenever/capistrano"
 require 'capistrano/rails/collection'
 require 'capistrano/puma'
 install_plugin Capistrano::Puma  # Default puma tasks
