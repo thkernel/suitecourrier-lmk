@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+#ruby '2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -82,10 +82,10 @@ gem 'friendly_id', '~> 5.2', '>= 5.2.5'
 gem 'premailer-rails', '~> 1.10', '>= 1.10.2'
 gem 'remotipart', '~> 1.4', '>= 1.4.2'
 #gem 'paperclip', '~> 6.1'
-gem 'client_side_validations', '~> 14.1'
+#gem 'client_side_validations', '~> 14.1'
 gem 'action_mailer_auto_url_options', '~> 1.0', '>= 1.0.2'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
-gem 'kaminari', '~> 1.1', '>= 1.1.1'
+#gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'chosen-rails', '~> 1.8', '>= 1.8.7'
 gem 'apartment', '~> 2.2'
 gem 'chartkick', '~> 3.0', '>= 3.0.2'
