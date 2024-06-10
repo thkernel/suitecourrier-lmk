@@ -22,8 +22,7 @@
       <% if user_signed_in? %>
         <li class="nav-item">
         <!-- <a class="nav-link" href="#">Link</a> -->
-          <%= link_to raw('<i class="fa fa-user" aria-hidden="true"></i>
- Mon compte'), dashboard_path, class: "btn btn-link" %>
+          <%= link_to raw('<i class="fa fa-user" aria-hidden="true"></i>Mon compte'), dashboard_path, class: "btn btn-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete,  class: "btn btn-link"  %>
@@ -33,14 +32,17 @@
         <li class="nav-item">
         <!-- <a class="nav-link" href="#">Link</a> -->
           <!-- link_to "Se connecter", new_user_session_path, class: "btn btn-link" -->
-          <%= link_to "Demandez un devis", new_quote_request_path, class: "btn btn-primary" %>
+          <%= link_to "Demandez un devis", new_quote_request_path, class: "btn btn-outline-primary" %>
         </li>
         <li class="nav-item">
         <!-- <a class="nav-link" href="#">Link</a> -->
           <!-- link_to "S'inscrire", new_user_registration_path, class: "btn btn-primary" -->
           <%= link_to "Demandez un démo", new_demo_request_path, class: "btn btn-outline-primary" %>
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary " %>
 
         </li>
+     
+
       <% end %>
       
      
