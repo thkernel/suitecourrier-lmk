@@ -1,4 +1,4 @@
-class CreateStorageAreas < ActiveRecord::Migration[5.2]
+class CreateStorageAreas < ActiveRecord::Migration[6.1]
   def change
     create_table :storage_areas do |t|
       t.string :uid

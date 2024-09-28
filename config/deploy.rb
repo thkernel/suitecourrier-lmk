@@ -1,6 +1,6 @@
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.18.1"
+lock "~> 3.19.1"
 
 set :stages, %w(production staging)
 set :default_stage, "production"
@@ -60,7 +60,7 @@ set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 # For rbenvu usage
 # config/deploy.rb
 set :rbenv_type, :user # or :system, or :fullstaq (for Fullstaq Ruby), depends on your rbenv setup
-set :rbenv_ruby, '2.5.0'
+set :rbenv_ruby, '3.0.7'
 
 # in case you want to set ruby version from the file:
 # set :rbenv_ruby, File.read('.ruby-version').strip

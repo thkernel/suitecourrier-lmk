@@ -1,4 +1,4 @@
-class CreateStorageServiceSettings < ActiveRecord::Migration[5.2]
+class CreateStorageServiceSettings < ActiveRecord::Migration[6.1]
   def change
     create_table :storage_service_settings do |t|
       t.string :uid

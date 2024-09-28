@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_180051) do
+ActiveRecord::Schema.define(version: 2024_09_28_154157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "action"
     t.string "params"
     t.string "note"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_activity_logs_on_user_id"
   end
 
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "mail_category_id"
     t.integer "year"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["correspondent_id"], name: "index_arrival_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_arrival_mails_on_folder_id"
     t.index ["mail_category_id"], name: "index_arrival_mails_on_mail_category_id"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.integer "data_file_size"
     t.string "data_fingerprint"
     t.string "type", limit: 30
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
@@ -113,9 +113,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "user_id"
     t.string "commentable_type"
     t.bigint "commentable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_correspondent_types_on_user_id"
   end
 
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "contact_email"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["correspondent_type_id"], name: "index_correspondents_on_correspondent_type_id"
     t.index ["user_id"], name: "index_correspondents_on_user_id"
   end
@@ -184,8 +184,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "mail_priority_id"
     t.integer "year"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["correspondent_id"], name: "index_departure_mails_on_correspondent_id"
     t.index ["folder_id"], name: "index_departure_mails_on_folder_id"
     t.index ["initiating_entity_id"], name: "index_departure_mails_on_initiating_entity_id"
@@ -216,8 +216,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "status"
     t.integer "year"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["folder_id"], name: "index_documents_on_folder_id"
     t.index ["nature_id"], name: "index_documents_on_nature_id"
     t.index ["support_id"], name: "index_documents_on_support_id"
@@ -236,8 +236,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["entity_type_id"], name: "index_entities_on_entity_type_id"
     t.index ["parent_entity_id"], name: "index_entities_on_parent_entity_id"
     t.index ["user_id"], name: "index_entities_on_user_id"
@@ -249,8 +249,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_entity_types_on_user_id"
   end
 
@@ -260,8 +260,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "subject_class"
     t.text "description"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "folders", force: :cascade do |t|
@@ -272,8 +272,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "status"
     t.bigint "parent_id"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["parent_id"], name: "index_folders_on_parent_id"
     t.index ["user_id"], name: "index_folders_on_user_id"
   end
@@ -292,8 +292,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "document_reference_format"
     t.string "internal_memo_reference_format"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_general_settings_on_user_id"
   end
 
@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "task_status_id"
     t.text "description"
     t.bigint "imputation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["imputation_id"], name: "index_imputation_items_on_imputation_id"
     t.index ["task_priority_id"], name: "index_imputation_items_on_task_priority_id"
     t.index ["task_status_id"], name: "index_imputation_items_on_task_status_id"
@@ -326,10 +326,10 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.datetime "viewed_at"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["entity_id"], name: "index_imputations_on_entity_id"
-    t.index ["imputable_type", "imputable_id"], name: "index_imputations_on_imputable_type_and_imputable_id"
+    t.index ["imputable_type", "imputable_id"], name: "index_imputations_on_imputable"
     t.index ["recipient_id"], name: "index_imputations_on_recipient_id"
     t.index ["user_id"], name: "index_imputations_on_user_id"
   end
@@ -350,8 +350,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "status"
     t.integer "year"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["correspondent_id"], name: "index_internal_memos_on_correspondent_id"
     t.index ["folder_id"], name: "index_internal_memos_on_folder_id"
     t.index ["initiating_entity_id"], name: "index_internal_memos_on_initiating_entity_id"
@@ -368,8 +368,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_mail_categories_on_user_id"
   end
 
@@ -381,8 +381,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_mail_priorities_on_user_id"
   end
 
@@ -392,8 +392,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_mail_statuses_on_user_id"
   end
 
@@ -403,8 +403,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_mail_types_on_user_id"
   end
 
@@ -414,8 +414,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_natures_on_user_id"
   end
 
@@ -428,9 +428,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.datetime "readed_at"
     t.string "notificable_type"
     t.bigint "notificable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable"
     t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
   end
 
@@ -440,8 +440,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_organization_types_on_user_id"
   end
 
@@ -460,8 +460,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "web_site"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_type_id"], name: "index_organizations_on_organization_type_id"
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
@@ -471,8 +471,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "permission_id"
     t.string "action_name"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["permission_id"], name: "index_permission_items_on_permission_id"
   end
 
@@ -481,8 +481,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "feature_id"
     t.bigint "role_id"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["feature_id"], name: "index_permissions_on_feature_id"
     t.index ["role_id"], name: "index_permissions_on_role_id"
   end
@@ -495,8 +495,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_priorities_on_user_id"
   end
 
@@ -512,8 +512,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "status"
     t.bigint "entity_id"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["entity_id"], name: "index_profiles_on_entity_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
@@ -525,8 +525,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_register_types_on_user_id"
   end
 
@@ -540,8 +540,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["register_type_id"], name: "index_registers_on_register_type_id"
     t.index ["user_id"], name: "index_registers_on_user_id"
   end
@@ -551,8 +551,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "name"
     t.text "description"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "smtp_server_settings", force: :cascade do |t|
@@ -567,8 +567,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.boolean "enable_starttls_auto"
     t.boolean "ssl"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_smtp_server_settings_on_user_id"
   end
 
@@ -578,8 +578,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_statuses_on_user_id"
   end
 
@@ -592,8 +592,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_storage_areas_on_user_id"
   end
 
@@ -615,8 +615,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "microsoft_storage_access_key"
     t.string "microsoft_storage_container_name"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_storage_service_settings_on_user_id"
   end
 
@@ -624,8 +624,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "uid"
     t.string "storage_service_name"
     t.bigint "storage_service_setting_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["storage_service_setting_id"], name: "index_storage_services_on_storage_service_setting_id"
   end
 
@@ -635,8 +635,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_supports_on_user_id"
   end
 
@@ -648,6 +648,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.integer "tagger_id"
     t.string "context", limit: 128
     t.datetime "created_at"
+    t.string "tenant", limit: 128
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
@@ -657,6 +658,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
     t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+    t.index ["tenant"], name: "index_taggings_on_tenant"
   end
 
   create_table "tags", id: :serial, force: :cascade do |t|
@@ -674,8 +676,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.integer "processing_time_in_days"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_priorities_on_user_id"
   end
 
@@ -685,8 +687,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_statuses_on_user_id"
   end
 
@@ -696,8 +698,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_types_on_user_id"
   end
 
@@ -707,8 +709,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "title"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["task_type_id"], name: "index_tasks_on_task_type_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -726,8 +728,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "subdomain"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_type_id"], name: "index_tenants_on_organization_type_id"
     t.index ["user_id"], name: "index_tenants_on_user_id"
   end
@@ -739,8 +741,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.integer "processing_time_in_days"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ticket_priorities_on_user_id"
   end
 
@@ -750,8 +752,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ticket_statuses_on_user_id"
   end
 
@@ -761,8 +763,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.text "description"
     t.string "status"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ticket_types_on_user_id"
   end
 
@@ -770,8 +772,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.string "uid"
     t.bigint "ticket_id"
     t.bigint "recipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["recipient_id"], name: "index_ticket_users_on_recipient_id"
     t.index ["ticket_id"], name: "index_ticket_users_on_ticket_id"
   end
@@ -789,8 +791,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.bigint "ticket_status_id"
     t.integer "year"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["ticket_priority_id"], name: "index_tickets_on_ticket_priority_id"
     t.index ["ticket_status_id"], name: "index_tickets_on_ticket_status_id"
     t.index ["ticket_type_id"], name: "index_tickets_on_ticket_type_id"
@@ -821,8 +823,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_180051) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

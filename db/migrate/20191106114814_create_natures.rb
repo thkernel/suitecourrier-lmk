@@ -1,4 +1,4 @@
-class CreateNatures < ActiveRecord::Migration[5.2]
+class CreateNatures < ActiveRecord::Migration[6.1]
   def change
     create_table :natures do |t|
       t.string :uid

@@ -1,4 +1,4 @@
-class CreateDepartureMails < ActiveRecord::Migration[5.2]
+class CreateDepartureMails < ActiveRecord::Migration[6.1]
   def change
     create_table :departure_mails do |t|
       t.string :uid

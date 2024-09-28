@@ -1,4 +1,4 @@
-class CreateTenants < ActiveRecord::Migration[5.2]
+class CreateTenants < ActiveRecord::Migration[6.1]
   def change
     create_table :tenants do |t|
       t.string :uid

@@ -1,4 +1,4 @@
-class CreateStatuses < ActiveRecord::Migration[5.2]
+class CreateStatuses < ActiveRecord::Migration[6.1]
   def change
     create_table :statuses do |t|
       t.string :uid

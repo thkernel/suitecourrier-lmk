@@ -1,4 +1,4 @@
-class CreateRegisterTypes < ActiveRecord::Migration[5.2]
+class CreateRegisterTypes < ActiveRecord::Migration[6.1]
   def change
     create_table :register_types do |t|
       t.string :uid

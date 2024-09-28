@@ -1,4 +1,4 @@
-class CreateInternalMemos < ActiveRecord::Migration[5.2]
+class CreateInternalMemos < ActiveRecord::Migration[6.1]
   def change
     create_table :internal_memos do |t|
       t.string :uid

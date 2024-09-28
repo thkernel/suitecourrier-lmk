@@ -1,4 +1,4 @@
-class CreateActivityLogs < ActiveRecord::Migration[5.2]
+class CreateActivityLogs < ActiveRecord::Migration[6.1]
   def change
     create_table :activity_logs do |t|
       t.string :uid

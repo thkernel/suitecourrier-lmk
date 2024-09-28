@@ -1,4 +1,4 @@
-class CreateCorrespondentTypes < ActiveRecord::Migration[5.2]
+class CreateCorrespondentTypes < ActiveRecord::Migration[6.1]
   def change
     create_table :correspondent_types do |t|
       t.string :uid

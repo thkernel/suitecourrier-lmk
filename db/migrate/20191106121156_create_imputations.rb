@@ -1,4 +1,4 @@
-class CreateImputations < ActiveRecord::Migration[5.2]
+class CreateImputations < ActiveRecord::Migration[6.1]
   def change
     create_table :imputations do |t|
       t.string :uid

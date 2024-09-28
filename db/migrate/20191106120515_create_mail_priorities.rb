@@ -1,4 +1,4 @@
-class CreateMailPriorities < ActiveRecord::Migration[5.2]
+class CreateMailPriorities < ActiveRecord::Migration[6.1]
   def change
     create_table :mail_priorities do |t|
       t.string :name

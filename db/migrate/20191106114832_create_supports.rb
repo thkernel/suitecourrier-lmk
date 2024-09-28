@@ -1,4 +1,4 @@
-class CreateSupports < ActiveRecord::Migration[5.2]
+class CreateSupports < ActiveRecord::Migration[6.1]
   def change
     create_table :supports do |t|
       t.string :uid

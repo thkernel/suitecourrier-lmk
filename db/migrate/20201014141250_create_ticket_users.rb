@@ -1,4 +1,4 @@
-class CreateTicketUsers < ActiveRecord::Migration[5.2]
+class CreateTicketUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :ticket_users do |t|
       t.string :uid

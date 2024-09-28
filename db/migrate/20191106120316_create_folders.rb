@@ -1,4 +1,4 @@
-class CreateFolders < ActiveRecord::Migration[5.2]
+class CreateFolders < ActiveRecord::Migration[6.1]
   def change
     create_table :folders do |t|
       t.string :uid

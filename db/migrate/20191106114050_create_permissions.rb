@@ -1,4 +1,4 @@
-class CreatePermissions < ActiveRecord::Migration[5.2]
+class CreatePermissions < ActiveRecord::Migration[6.1]
   def change
     create_table :permissions do |t|
       t.string :uid

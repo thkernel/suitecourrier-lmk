@@ -1,4 +1,4 @@
-class CreatePriorities < ActiveRecord::Migration[5.2]
+class CreatePriorities < ActiveRecord::Migration[6.1]
   def change
     create_table :priorities do |t|
       t.string :uid

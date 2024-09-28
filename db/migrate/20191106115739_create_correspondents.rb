@@ -1,4 +1,4 @@
-class CreateCorrespondents < ActiveRecord::Migration[5.2]
+class CreateCorrespondents < ActiveRecord::Migration[6.1]
   def change
     create_table :correspondents do |t|
       t.string :uid
@@ -15,7 +15,7 @@ class CreateCorrespondents < ActiveRecord::Migration[5.2]
       t.string :zip_code
       t.string :email  
       t.string :contact_email
-      t.string :contact_phone
+      #t.string :contact_phone
       t.string :status
       t.references :user, foreign_key: true
 

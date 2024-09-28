@@ -1,4 +1,4 @@
-class CreateSmtpServerSettings < ActiveRecord::Migration[5.2]
+class CreateSmtpServerSettings < ActiveRecord::Migration[6.1]
   def change
     create_table :smtp_server_settings do |t|
       t.string :uid

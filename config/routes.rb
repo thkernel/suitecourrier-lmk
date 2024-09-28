@@ -294,11 +294,11 @@ Rails.application.routes.draw do
 
   get "request/new" => "requests#new_front_request" , as: :new_front_request
   get "request-success" => "requests#front_request_success" , as: :front_request_success
-	#post "/companies/new/" => "companies#create", as: :create_company
-	#get "/companies/new/" => "companies#new", as: :new_company
-	#get "/organization/:id" => "organizations#show", as: :show_organization
-	#get "/companies/edit/:id" => "companies#edit", as: :edit_company
-	#patch "/companies/:id"  => "companies#update", as: :company
+  #post "/companies/new/" => "companies#create", as: :create_company
+  #get "/companies/new/" => "companies#new", as: :new_company
+  #get "/organization/:id" => "organizations#show", as: :show_organization
+  #get "/companies/edit/:id" => "companies#edit", as: :edit_company
+  #patch "/companies/:id"  => "companies#update", as: :company
 
 
   get "/get/last_nature" => "natures#last_nature"
@@ -351,12 +351,12 @@ Rails.application.routes.draw do
   get "taks/all" => "tasks#search_tasks", as: :search_tasks
 
   get "/users"     => "custom_users#index", as: :all_users 
-	get "/users/unregistered"     => "custom_users#unregistered", as: :unregistered_commission_percentage 
-	post "/users/new"     => "custom_users#create", as: :create_user
-	get "/users/new"     => "custom_users#new", as: :new_user
-	get "/user/edit/:id" => "custom_users#edit", as: :edit_user
-	patch "/user/update/:id" => "custom_users#update", as: :update_user
-	delete "/user/destroy/:id" => "custom_users#destroy", as: :destroy_user
+  get "/users/unregistered"     => "custom_users#unregistered", as: :unregistered_commission_percentage 
+  post "/users/new"     => "custom_users#create", as: :create_user
+  get "/users/new"     => "custom_users#new", as: :new_user
+  get "/user/edit/:id" => "custom_users#edit", as: :edit_user
+  patch "/user/update/:id" => "custom_users#update", as: :update_user
+  delete "/user/destroy/:id" => "custom_users#destroy", as: :destroy_user
   get "/user/delete/:id" => "custom_users#delete", as: :delete_user
   
   get "/setup/admin" => "admin_setup#new", as: :new_admin
@@ -365,10 +365,10 @@ Rails.application.routes.draw do
   post 'utilities/backup' => "utilities#backup_database", as: :backup_database
 
 
-	get "/user/enable/:id" => "custom_users#get_enable", as: :get_enable_user_account
-	post "/user/enable/:id" => "custom_users#post_enable", as: :post_enable_user_account
-	get "/user/disable/:id" => "custom_users#get_disable", as: :get_disable_user_account
-	post "/user/disable/:id" => "custom_users#post_disable", as: :post_disable_user_account
+  get "/user/enable/:id" => "custom_users#get_enable", as: :get_enable_user_account
+  post "/user/enable/:id" => "custom_users#post_enable", as: :post_enable_user_account
+  get "/user/disable/:id" => "custom_users#get_disable", as: :get_disable_user_account
+  post "/user/disable/:id" => "custom_users#post_disable", as: :post_disable_user_account
 
 
   devise_for :users, path: '', controllers: { 
@@ -389,7 +389,7 @@ Rails.application.routes.draw do
     }
    
     devise_scope :user do
-      root to: "users/sessions#new"
+      #root to: "users/sessions#new"
       authenticated :user do
         root 'dashboard#index', as: :authenticated_root
       end
