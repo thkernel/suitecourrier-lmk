@@ -59,7 +59,7 @@ require("../vendor/backend/bracket/js/ResizeSensor");
 require("../vendor/backend/bracket/lib/jstree/dist/jstree.min");
 //require("../vendor/bracket/js/dashboard")
 
-require("./init_datatables")
+//require("./init_datatables")
 require("./init_select2")
 //require("./init_intl_tel_input")
 //require("./social-share-button")

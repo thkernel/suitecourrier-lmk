@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function() {
 
 // Ajax call.
 
-function ajaxRefresh(source, route, verb){
+window.ajaxRefresh = function(source, route, verb){
   console.log("Source: ", source);
   //$(source).empty();
   $(source).on('select2:opening', function() {
@@ -124,7 +124,7 @@ function ajaxRefresh(source, route, verb){
 
 };
 
-function ajaxFilterPost(source, route, verb){
+window.ajaxFilterPost = function(source, route, verb){
   console.log("Source: ", source);
   $(source).on("change", function() {
       $.ajax({
@@ -139,7 +139,7 @@ function ajaxFilterPost(source, route, verb){
   });
 };
 
-function ajaxFilterByID(source, route, verb){
+window.ajaxFilterByID = function(source, route, verb){
   console.log("Source: ", source);
   $(source).on("change", function() {
       $.ajax({
@@ -188,7 +188,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-function ajaxGetLastRecord(target, route, verb){
+window.ajaxGetLastRecord = function(target, route, verb){
     console.log("Source: ", route);
        console.log("IN ARRIVAL MAIL CORRESPONDENT");
     $.ajax({

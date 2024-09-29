@@ -57,57 +57,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-.jumbotron {
-  /*background-image: url("hero/hero-bamako.jpg");*/
-  background-size: cover;
-  background-position: center;
-    /*min-height: 350px;
-    height: 500px;*/
-    /*height: calc(100vh - 65px);*/
-    background-color: #673AB7 !important;
-    /*padding-top: 150px;*/
- 
-    /*margin-left: -15px !important;
-    margin-right: -15px !important;*/
-    border-radius: 0px !important;
-    position: relative;
-    /*background-color: #3b5170 !important;*/
-    background-color: #0d2953 !important;
-    margin-bottom: 0px !important; 
-}
-
-/*.jumbotron .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,.3);
-    z-index: 10;
-}*/
-.jumbotron-text{
-  color: white !important;
-  position: relative;
-  /*z-index: 20;*/
-  /*margin-bottom: 40px;*/
-}
-.jumbotron-form {
-  z-index: 10;
-  position: relative;
-  overflow: hidden;
-}
-
-
 .footer{
     left: 230px;
     width: 100%;
