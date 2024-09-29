@@ -14,14 +14,14 @@ set :rails_env, "production"
 server "suitecourrier.com", user: "root", roles: %w{app db web}, ssh_options: {forward_agent: true}
 
 set :branch, "master"
-set :port, 3016
+set :port, 3020
 
 
 
 
  set :nginx_config_name, "suitecourrier.prod"
  set :nginx_server_name, "suitecourrier.prod"
- set :puma_workers, 16
+ set :puma_workers, 6
 
 # role-based syntax
 # ==================
