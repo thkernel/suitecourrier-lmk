@@ -39,6 +39,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_record_slave (1.5.0)
+      activerecord (>= 3.0)
     activejob (6.1.7.8)
       activesupport (= 6.1.7.8)
       globalid (>= 0.3.6)
@@ -462,6 +464,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_record_slave
   acts-as-taggable-on (~> 8.0)
   acts_as_tree (~> 2.9, >= 2.9.1)
   annotate (~> 2.7, >= 2.7.5)

@@ -65,3 +65,14 @@ require("./init_select2")
 //require("./social-share-button")
 //require("./cookieconsent_init")
 require("./jstree_init")
+
+require("./arrival_mails")
+require("./imputations")
+require("./departure_mails")
+require("./documents")
+require("./custom_users")
+
+
+require("./custom")
+
+

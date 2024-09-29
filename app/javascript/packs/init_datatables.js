@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-      $('#datatable-default').DataTable({
+      $('#datatable1').DataTable({
         
         "searching": true,
         "ordering": true,

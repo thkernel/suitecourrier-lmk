@@ -7,7 +7,7 @@ class DepartureMailsMailer < ActionMailer::Base
     #include SmtpHelper
     helper :application
         
-    add_template_helper EmailHelper
+    #add_template_helper EmailHelper
     #add_template_helper ApplicationHelper
     #default from: "<salut.amos@gmail.com>"
     default from: "SuiteCourrier<#{SmtpServerSetting.take.user_name}>" if SmtpServerSetting.take.present?
