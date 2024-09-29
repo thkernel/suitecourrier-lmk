@@ -35,6 +35,8 @@ class Document < ApplicationRecord
 
   has_many_attached :files
 
+  has_rich_text :description
+
   # Validations.
   validates :name, presence: true
 

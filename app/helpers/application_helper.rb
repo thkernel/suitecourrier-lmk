@@ -281,4 +281,22 @@ module ApplicationHelper
 	 	end
 	 end
 
+
+	 def display_segment( node )
+    
+	    html = "<li>"
+	    node_class = node.children.length == 0 ? "file" : "folder"
+	   
+	    html << "<span class='#{node_class}'>#{h(node.name)} </span>"
+	   
+	    html << "<ul id=\"children_of_#{h(node.id)}\">"
+	 
+	    node.children.each{|child_node|
+	     
+	      html << display_segment( child_node ) 
+	    }
+	    html << "</ul></li>"
+	    
+	  end
+
 end

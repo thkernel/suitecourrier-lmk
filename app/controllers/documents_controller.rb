@@ -49,6 +49,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents/new
   def new
+    @root_node = Folder.where(parent_id: nil).first
+    puts "ROOT: #{@root_node.inspect}"
     @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
     @natures = Nature.all

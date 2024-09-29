@@ -31,5 +31,23 @@ class Folder < ApplicationRecord
   def to_param
     uid
   end
+
+  belongs_to :parent, class_name: "Folder", optional: true
+  has_many :children, class_name: "Folder", foreign_key: "parent_id"
+  
+
+
+  def parent_name
+    # it may not have a parent
+    parent.try(:name)
+  end
+
+  def has_parent?
+    parent.present?
+  end
+
+  def has_children?
+    children.exists?
+  end
   
 end

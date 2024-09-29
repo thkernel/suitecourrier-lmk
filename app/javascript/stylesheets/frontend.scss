@@ -1,0 +1,44 @@
+@import "application";
+
+
+//@import "../vendor/bracket/lib/datatables.net-dt/css/jquery.dataTables.min";
+//@import "../vendor/bracket/lib/datatables.net-responsive-dt/css/responsive.dataTables.min";
+//@import "../vendor/bracket/scss/bracket";
+
+
+//@import "../vendor/bracket/lib/intl-tel-input/build/css/intlTelInput.min";
+
+//@import "../vendor/bracket/scss/perfect-scrollbar.min";
+//@import "../vendor/bracket/lib/select2/css/select2.min";
+//@import "../vendor/bracket/lib/select2/css/select2-bootstrap.min";
+@import "../vendor/backend/bracket/lib/cookieconsent/dist/cookieconsent";
+
+@import "actiontext";
+@import "./actiontext.scss";
+
+
+@import "main";
+//@import "scss/perfect-scrollbar.min";
+//@import "lib/datatables.net-dt/css/jquery.dataTables.min";
+//@import "lib/datatables.net-responsive-dt/css/responsive.dataTables.min";
+@import "error";
+//@import "custom";
+@import "select2-bootstrap4";
+
+// FRONT
+
+@import "../vendor/frontend/assets/vendor/aos/aos.css";
+@import "../vendor/frontend/assets/vendor/boxicons/css/boxicons";
+//@import "../vendor/frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css";
+@import "../vendor/frontend/assets/vendor/glightbox/css/glightbox.min";
+@import "../vendor/frontend/assets/vendor/swiper/swiper-bundle.min";
+
+@import "../vendor/frontend/assets/css/style.scss";
+@import "social_share_button";
+
+@import "carousel";
+
+@import "search-filter";
+
+
+
