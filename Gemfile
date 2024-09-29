@@ -124,7 +124,7 @@ gem 'sidekiq', '~> 6.2', '>= 6.2.1'
 # This gem causes db:create to fail
 # You can enable it for tests as long as the db has been created
 group :production, :staging do
-  gem 'active_record_slave'
+  #gem 'active_record_slave'
 end
 
 
