@@ -4,9 +4,10 @@ require_relative "boot"
 #require "uri/generic"
 
 require "rails/all"
+require './lib/shared_utils/utils'
 require 'apartment/elevators/subdomain' # or 'domain', 'first_subdomain', 'host'
 
-require './lib/shared_utils/utils'
+
 #require './lib/outin_storage/outi
 
 # Require the gems listed in Gemfile, including any gems

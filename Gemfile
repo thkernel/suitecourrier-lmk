@@ -144,4 +144,7 @@ group :development do
   # For puma
   gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1'
   #gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+
+  gem 'capistrano-local-precompile', '~> 1.2.0', require: false
+
 end
