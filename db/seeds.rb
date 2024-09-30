@@ -241,7 +241,7 @@ end
 
 unless Folder.all.present?
 
-    parent = Folder.create({name: "/root", user_id: users.first.id}) # Create parent folder
+    parent = Folder.create({name: "ROOT", user_id: users.first.id}) # Create parent folder
 
     folders = Folder.create(
         [

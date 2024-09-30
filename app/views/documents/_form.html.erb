@@ -130,7 +130,7 @@
           <div class="card-body">
             <div class="form-group customSelect">
               <%= form.label :tag_list, "Etiquettes" %>
-              <%= form.collection_select(:tag_list, ActsAsTaggableOn::Tag.all, :name, :name, { value: @selected_tags}, class: "form-control", style: "width: 100%", multiple: true) %> 
+              <%= form.collection_select(:tag_list, ActsAsTaggableOn::Tag.all, :name, :name, { value: @selected_tags}, :id => "tag-list", class: "form-control", style: "width: 100%", multiple: true) %> 
              </div>
           </div>
         </div>

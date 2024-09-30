@@ -14,7 +14,7 @@ $(document).on('turbolinks:load', function(){
 
 });
 
-
+/*
 $(document).on('turbolinks:load', function() {  
 
   $('#nature_id').select2({
@@ -44,7 +44,216 @@ $(document).on('turbolinks:load', function() {
 
 });
 
+*/
 
+$(document).on('turbolinks:load', function() {  
+
+    new SlimSelect({
+      select: '#nature_id',
+      settings: {
+        
+        disabled: false,
+        alwaysOpen: false,
+        showSearch: true,
+        focusSearch: true,
+        searchPlaceholder: 'Recherche',
+        searchText: 'Aucun résultat',
+        searchingText: 'Recherche...',
+        searchHighlight: false,
+        closeOnSelect: true,
+        contentLocation: document.body,
+        contentPosition: 'absolute',
+        openPosition: 'auto', // options: auto, up, down
+        placeholderText: 'Sélectionner',
+        allowDeselect: false,
+        hideSelected: false,
+        showOptionTooltips: false,
+        minSelected: 0,
+        maxSelected: 1000,
+        timeoutDelay: 200,
+        maxValuesShown: 20,
+        maxValuesMessage: '{number} selected',
+        addableText: 'Appuyer "Entrée" ou sur le bouton "+" pour ajouter {value}',
+      },
+      events: {
+        // Allow anything
+        addable: function (value) { return value },
+
+        // or
+
+        // Decide what is allowed to be added
+        addable: function (value) {
+          // return false or null if you do not want to allow value to be submitted
+          if (value === 'bad') { return false }
+
+          // return new
+
+          // Return the value string
+          return value // Optional - value alteration // ex: value.toLowerCase()
+
+          // Optional - Return a valid data object.
+          // See methods/setData for list of valid options
+          return {
+            text: value,
+            value: value.toLowerCase()
+          }
+
+          // Optional - Return a promise with either a string or data object
+          return new Promise((resolve) => {
+            resolve({
+              text: value,
+              value: value,
+            })
+          })
+        }
+
+        
+      }
+
+    })
+
+});
+
+
+$(document).on('turbolinks:load', function() {  
+
+    new SlimSelect({
+      select: '#support_id',
+      settings: {
+        
+        disabled: false,
+        alwaysOpen: false,
+        showSearch: true,
+        focusSearch: true,
+        searchPlaceholder: 'Recherche',
+        searchText: 'Aucun résultat',
+        searchingText: 'Recherche...',
+        searchHighlight: false,
+        closeOnSelect: true,
+        contentLocation: document.body,
+        contentPosition: 'absolute',
+        openPosition: 'auto', // options: auto, up, down
+        placeholderText: 'Sélectionner',
+        allowDeselect: false,
+        hideSelected: false,
+        showOptionTooltips: false,
+        minSelected: 0,
+        maxSelected: 1000,
+        timeoutDelay: 200,
+        maxValuesShown: 20,
+        maxValuesMessage: '{number} selected',
+        addableText: 'Appuyer "Entrée" ou sur le bouton "+" pour ajouter {value}',
+      },
+      events: {
+        // Allow anything
+        addable: function (value) { return value },
+
+        // or
+
+        // Decide what is allowed to be added
+        addable: function (value) {
+          // return false or null if you do not want to allow value to be submitted
+          if (value === 'bad') { return false }
+
+          // return new
+
+          // Return the value string
+          return value // Optional - value alteration // ex: value.toLowerCase()
+
+          // Optional - Return a valid data object.
+          // See methods/setData for list of valid options
+          return {
+            text: value,
+            value: value.toLowerCase()
+          }
+
+          // Optional - Return a promise with either a string or data object
+          return new Promise((resolve) => {
+            resolve({
+              text: value,
+              value: value,
+            })
+          })
+        }
+
+        
+      }
+
+    })
+
+});
+
+
+$(document).on('turbolinks:load', function() {  
+
+    new SlimSelect({
+      select: '#tag-list',
+      settings: {
+        
+        disabled: false,
+        alwaysOpen: false,
+        showSearch: true,
+        focusSearch: true,
+        searchPlaceholder: 'Recherche',
+        searchText: 'Aucun résultat',
+        searchingText: 'Recherche...',
+        searchHighlight: false,
+        closeOnSelect: true,
+        contentLocation: document.body,
+        contentPosition: 'absolute',
+        openPosition: 'auto', // options: auto, up, down
+        placeholderText: 'Sélectionner',
+        allowDeselect: false,
+        hideSelected: false,
+        showOptionTooltips: false,
+        minSelected: 0,
+        maxSelected: 1000,
+        timeoutDelay: 200,
+        maxValuesShown: 20,
+        maxValuesMessage: '{number} selected',
+        addableText: 'Appuyer "Entrée" ou sur le bouton "+" pour ajouter {value}',
+      },
+      events: {
+        // Allow anything
+        addable: function (value) { return value },
+
+        // or
+
+        // Decide what is allowed to be added
+        addable: function (value) {
+          // return false or null if you do not want to allow value to be submitted
+          if (value === 'bad') { return false }
+
+          // return new
+
+          // Return the value string
+          return value // Optional - value alteration // ex: value.toLowerCase()
+
+          // Optional - Return a valid data object.
+          // See methods/setData for list of valid options
+          return {
+            text: value,
+            value: value.toLowerCase()
+          }
+
+          // Optional - Return a promise with either a string or data object
+          return new Promise((resolve) => {
+            resolve({
+              text: value,
+              value: value,
+            })
+          })
+        }
+
+        
+      }
+
+    })
+
+});
+
+
+/*
 
 $(document).on('turbolinks:load', function() {  
 
@@ -59,6 +268,7 @@ $(document).on('turbolinks:load', function() {
     });
 
 });
+*/
 
 
 
