@@ -49,9 +49,12 @@ class Folder < ApplicationRecord
   def set_default_parent
     default_parent = Folder.find_by(parent_id: nil)
 
-    unless self.parent.present?
-      self.parent_id =  default_parent.id
+    if default_parent.present?
+      unless self.parent.present?
+        self.parent_id =  default_parent.id
+      end
     end
+    
   end
 
   def has_children?
