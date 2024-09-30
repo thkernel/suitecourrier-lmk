@@ -13,11 +13,18 @@
 
 @import "../vendor/backend/bracket/scss/bracket";
 @import "../vendor/backend/bracket/lib/perfect-scrollbar/scs/perfect-scrollbar.min";
+
+/*
 @import "../vendor/backend/bracket/lib/select2/css/select2.min";
 @import "../vendor/backend/bracket/lib/select2/css/select2-bootstrap.min";
+*/
 @import "../vendor/backend/bracket/lib/jstree/dist/themes/default/style.css";
 @import "actiontext";
 @import "./actiontext.scss";
+
+@import "choices.js/src/styles/choices";
+
+@import "../vendor/backend/bracket/lib/slimselect/css/slimselect";
 
 
 //@import "style";

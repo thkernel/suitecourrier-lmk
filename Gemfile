@@ -110,7 +110,7 @@ gem 'dotenv-rails', '~> 2.7', '>= 2.7.6',  :groups => [:development, :test, :pro
 #gem 'acts-as-taggable-on', '~> 6.5'
 gem 'acts-as-taggable-on', '~> 8.0'
 
-gem 'select2-rails', '~> 4.0', '>= 4.0.13'
+#gem 'select2-rails', '~> 4.0', '>= 4.0.13'
 #gem 'google-api-client', '~> 0.43.0'
 gem 'google-api-client', '~> 0.53.0'
 gem 'countries', require: 'countries/global'

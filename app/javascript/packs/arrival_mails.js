@@ -65,7 +65,9 @@ $(document).on('turbolinks:load', function(){
 });
 
 
-$(document).on('turbolinks:load', function() {  
+//$(document).on('turbolinks:load', function() {  
+/*
+$(document).ready(function() {
 
   $('#nature_id').select2({
         
@@ -79,8 +81,11 @@ $(document).on('turbolinks:load', function() {
     });
 
 });
+*/
 
-$(document).on('turbolinks:load', function() {  
+//$(document).on('turbolinks:load', function() {  
+/*
+$(document).ready(function() {
 
   $('#support_id').select2({
         
@@ -94,8 +99,8 @@ $(document).on('turbolinks:load', function() {
 
 });
 
-$(document).on('turbolinks:load', function() {  
-
+//$(document).on('turbolinks:load', function() {  
+$(document).ready(function() {
   $('#correspondent_id').select2({
         
         escapeMarkup: function (markup) { return markup; },
@@ -106,10 +111,54 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
+});*/
+
+$(document).on('turbolinks:load', function() {  
+
+    new SlimSelect({
+      select: '#correspondent_id',
+      settings: {
+        
+        disabled: false,
+        alwaysOpen: false,
+        showSearch: true,
+        focusSearch: true,
+        searchPlaceholder: 'Search',
+        searchText: 'No Results',
+        searchingText: 'Searching...',
+        searchHighlight: false,
+        closeOnSelect: true,
+        contentLocation: document.body,
+        contentPosition: 'absolute',
+        openPosition: 'auto', // options: auto, up, down
+        placeholderText: 'Select Value',
+        allowDeselect: false,
+        hideSelected: false,
+        showOptionTooltips: false,
+        minSelected: 0,
+        maxSelected: 1000,
+        timeoutDelay: 200,
+        maxValuesShown: 20,
+        maxValuesMessage: '{number} selected',
+        addableText: 'Press "Enter" to add {value}',
+      },
+      events: {
+        // Allow anything
+        addable: function (value) { return value },
+
+        // or
+
+        
+      }
+    })
+
 });
 
 
-$(document).on('turbolinks:load', function() {  
+
+//$(document).on('turbolinks:load', function() { 
+/*
+$(document).ready(function() { 
 
   $('#folder_id').select2({
         
@@ -122,6 +171,7 @@ $(document).on('turbolinks:load', function() {
     });
 
 });
+*/
 
 
 

@@ -76,7 +76,7 @@
           <div class="form-group customSelect">
             <%= form.label :support_id, "Support", class: "required" %>
           
-              <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control",  required: true) %> 
+              <%= form.collection_select(:support_id, @supports, :id, :name, {prompt: "Sélectionner"}, :id => "support_id", class: "form-control customSelect",  required: true) %> 
               
             
           </div>
@@ -99,7 +99,7 @@
         <div class="col-md-3">
             <div class="form-group customSelect">
             <%= form.label :linked_to_mail, "Réponse à un courrier départ" %>
-            <%= form.select :linked_to_mail, [["Oui"], ["Non"]], {prompt: "Sélectionner"},  class: "form-control", required: true %>
+            <%= form.select :linked_to_mail, [["Oui"], ["Non"]], {prompt: "Sélectionner"},  class: "form-control",  required: true %>
           </div>
         </div>
 
@@ -177,7 +177,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group">
+            <div class="form-group customSelect">
               <%= form.label :correspondent_id, "Expéditeur", class: "required" %>
               
               <%= form.collection_select(:correspondent_id, @correspondents, :id, :correspondent_name, {prompt: "Sélectionner"}, :id => "correspondent_id", class: "form-control", style: "width: 100%", required: true) %> 

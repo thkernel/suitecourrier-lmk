@@ -50,7 +50,13 @@ require("../vendor/backend/bracket/lib/jquery-ui/ui/widgets/datepicker")
 //import "../vendor/bracket/lib/flot-spline/js/jquery.flot.spline.min";
 //import "../vendor/bracket/lib/jquery-sparkline/jquery.sparkline.min";
 //import "../vendor/bracket/lib/echarts/echarts.min";
-require("../vendor/backend/bracket/lib/select2/js/select2.full.min");
+
+
+/*
+import select2 from "../vendor/backend/bracket/lib/select2/js/select2.full.min";
+window.select2 = select2;
+
+*/
 
 
 require("../vendor/backend/bracket/lib/bootstrap/js/bootstrap.bundle.min");
@@ -60,19 +66,29 @@ require("../vendor/backend/bracket/lib/jstree/dist/jstree.min");
 //require("../vendor/bracket/js/dashboard")
 
 //require("./init_datatables")
-require("./init_select2")
+//require("./init_select2")
 //require("./init_intl_tel_input")
 //require("./social-share-button")
 //require("./cookieconsent_init")
 require("./jstree_init")
+require("./custom")
 
 require("./arrival_mails")
-require("./imputations")
-require("./departure_mails")
-require("./documents")
-require("./custom_users")
+//require("./imputations")
+//require("./departure_mails")
+//require("./documents")
+//require("./custom_users")
+//require("./packs/select2setup")
+//require("./select2setup")
+/*
+import Choices from 'choices.js';
+window.Choices = Choices;
+
+require("./choices_setup")
+*/
+
+require("./slimselect_setup");
 
 
-require("./custom")
 
 

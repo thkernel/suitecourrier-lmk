@@ -23,6 +23,7 @@ const images = require.context('../images', true)// For images accessibility
 
 // To fix rails-ujs error.
 window.jQuery = $;
+window.jquery = $;
 window.$ = $;
 
 
