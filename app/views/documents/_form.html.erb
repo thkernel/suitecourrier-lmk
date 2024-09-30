@@ -98,6 +98,8 @@
             <div class="form-group ">
               <!-- form.label :folder_id, "Classeur", class: "required" -->
               <!-- form.collection_select(:folder_id, @folders, :id, :name, {prompt: "Sélectionner"}, :id => "folder_id", class: "form-control", style: "width: 100%", required: true) --> 
+              <%= form.hidden_field :folder_id , :id => "folder-id" %>
+
 
             </div>
           </div>
@@ -110,6 +112,7 @@
           <div class="card-body">
             <p class="card-text">
               <div id="jstree">
+
                 <ul class="filtertree">
                   <%= display_segment(@root_node).html_safe %>
                 </ul>

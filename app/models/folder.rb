@@ -18,7 +18,7 @@ class Folder < ApplicationRecord
   include SharedUtils::Generate
   acts_as_tree 
 
-  before_save :generate_random_number_uid
+  before_save :generate_random_number_uid, :set_default_parent
   belongs_to :user
 
   has_many :arrival_mails, dependent: :destroy
@@ -44,6 +44,14 @@ class Folder < ApplicationRecord
 
   def has_parent?
     parent.present?
+  end
+
+  def set_default_parent
+    default_parent = Folder.find_by(parent_id: nil)
+
+    unless self.parent.present?
+      self.parent_id =  default_parent.id
+    end
   end
 
   def has_children?

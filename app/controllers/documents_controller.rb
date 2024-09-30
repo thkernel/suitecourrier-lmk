@@ -50,7 +50,8 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @root_node = Folder.where(parent_id: nil).first
-    puts "ROOT: #{@root_node.inspect}"
+   
+    
     @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
     @natures = Nature.all
@@ -60,6 +61,8 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+
+     @root_node = Folder.where(parent_id: nil).first
     @folders = Folder.where.not(parent_id: nil)
     @supports = Support.all 
     @natures = Nature.all
@@ -84,7 +87,8 @@ class DocumentsController < ApplicationController
         format.html { redirect_to documents_path, notice: 'Document enregistré avec succès.' }
         format.json { render :show, status: :created, location: @document }
       else
-        @folders = Folder.where.not(parent_id: nil)
+        @root_node = Folder.where(parent_id: nil).first
+        #@folders = Folder.where.not(parent_id: nil)
         @supports = Support.all 
         @natures = Nature.all
         format.html { render :new }
@@ -106,7 +110,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to documents_path, notice: 'Document modifié avec succès.' }
         format.json { render :show, status: :ok, location: @document }
       else
-
+        @root_node = Folder.where(parent_id: nil).first
         @folders = Folder.where.not(parent_id: nil)
         @supports = Support.all 
         @natures = Nature.all

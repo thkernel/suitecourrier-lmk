@@ -21,7 +21,7 @@ set :port, 3020
 
  set :nginx_config_name, "suitecourrier.prod"
  set :nginx_server_name, "suitecourrier.prod"
- set :puma_workers, 6
+ set :puma_workers, 16
 
 # role-based syntax
 # ==================
