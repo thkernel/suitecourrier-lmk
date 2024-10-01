@@ -107,7 +107,7 @@ function createNode(data){
           },
       	dataType: 'js',
       	url: "/folder/create-node",
-      	data: { data}
+      	data: { data},
 
        success: function(response) {
             
