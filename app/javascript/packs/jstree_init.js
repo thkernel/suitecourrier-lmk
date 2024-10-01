@@ -55,8 +55,19 @@ $(document).on('turbolinks:load', function() {
 	  
 	});
 
-
+	/*
 	$('#jstree').on("create_node.jstree", function (e, data) {
+		data = { 'type': data.node.type, 'id': data.node.parent, 'text': data.node.text }
+	  console.log("CREATED NODE", data);
+	  createNode(data);
+
+	  
+	});
+	*/
+
+
+
+	$('#jstree').on("rename_node.jstree", function (e, data) {
 		data = { 'type': data.node.type, 'id': data.node.parent, 'text': data.node.text }
 	  console.log("CREATED NODE", data);
 	  createNode(data);
@@ -90,14 +101,30 @@ function createNode(data){
 
 
 	$.ajax({
-          type: "POST",
-          headers: {
-              'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
-              },
-          dataType: 'js',
-          url: "/folder/create-node",
-          data: { data}
-      });
+    	type: "POST",
+     	headers: {
+          'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+          },
+      	dataType: 'js',
+      	url: "/folder/create-node",
+      	data: { data}
+
+       success: function(response) {
+            
+            console.log("RESPONSE");
+            //dta.instance.set_id(dta.node, d.id);
+            
+
+         
+            
+
+        },
+        error: function(xhr, textStatus, error) {
+            //console.log(xhr.responseText);
+            dta.instance.refresh();
+   
+        }
+     });
 
 }
 
@@ -137,3 +164,49 @@ $('#deliverable_search').keyup(function(){
 });
 
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$('#mytree').jstree(
+, 'contextmenu': {
+    'items': function (node) {
+        var tmp = $.jstree.defaults.contextmenu.items();
+        delete tmp.rename;
+        delete tmp.remove;
+        delete tmp.ccp;
+        tmp.create.label = "New Folder";
+        tmp.create.action = function (dta) {
+            // I have $10 for you if you can comprehensively explane everything going on in the following.
+            var inst = $.jstree.reference(dta.reference)
+            var obj = inst.get_node(dta.reference);
+            inst.create_node(obj, { type: "default" }, "last", function (new_node) {
+                setTimeout(function () { inst.edit(new_node); }, 0);
+            });
+        }
+        return tmp;
+    }
+
+    , 'check_callback': function (o, n, p, i, m) {
+        if (m && m.dnd && (m.pos !== 'i'))
+            return false;
+        /* not allowed options for this application
+        if(o === "move_node" || o === "copy_node") {
+            if(this.get_node(n).parent === this.get_node(p).id) { return false; }
+        }
+        */
+        return true;
+    }

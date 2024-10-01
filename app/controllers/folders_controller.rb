@@ -27,6 +27,20 @@ class FoldersController < ApplicationController
 
   def create_node
     puts "NODE CREATION DATA: #{params.inspect}"
+    data = params[:data]
+    folder = current_user.folders.build#(Folder.new
+    folder.parent_id = data[:id].to_i
+    folder.name = data[:text]
+
+    if folder.save
+
+      data = {:last_record => last_folder, :all_records => folders}
+      render :json => data
+    else
+      data = {:last_record => last_folder, :all_records => folders}
+    render :json => data
+    end
+
   end
 
   def download_drive_file 
