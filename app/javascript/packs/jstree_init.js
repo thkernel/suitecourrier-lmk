@@ -176,37 +176,3 @@ $('#deliverable_search').keyup(function(){
 
 
 
-
-
-
-
-
-$('#mytree').jstree(
-, 'contextmenu': {
-    'items': function (node) {
-        var tmp = $.jstree.defaults.contextmenu.items();
-        delete tmp.rename;
-        delete tmp.remove;
-        delete tmp.ccp;
-        tmp.create.label = "New Folder";
-        tmp.create.action = function (dta) {
-            // I have $10 for you if you can comprehensively explane everything going on in the following.
-            var inst = $.jstree.reference(dta.reference)
-            var obj = inst.get_node(dta.reference);
-            inst.create_node(obj, { type: "default" }, "last", function (new_node) {
-                setTimeout(function () { inst.edit(new_node); }, 0);
-            });
-        }
-        return tmp;
-    }
-
-    , 'check_callback': function (o, n, p, i, m) {
-        if (m && m.dnd && (m.pos !== 'i'))
-            return false;
-        /* not allowed options for this application
-        if(o === "move_node" || o === "copy_node") {
-            if(this.get_node(n).parent === this.get_node(p).id) { return false; }
-        }
-        */
-        return true;
-    }
