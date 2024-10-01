@@ -36,20 +36,21 @@ $(document).on('turbolinks:load', function() {
 	  },
 	  "plugins" : [
 	    "contextmenu", "dnd", "search",
-	    "state", "types", "wholerow"
+	    "state", "types", "crrm", "wholerow"
 	  ],
 	  "search": {
                     "case_sensitive": false,
                     "show_only_matches": true
-                }
+                },
+
 	});
 
 	$('#jstree').on("changed.jstree", function (e, data) {
 		
 	  console.log(data.selected);
 
-    $('#folder-id').val(data.selected);
-     //$("#"+price).val(_price);
+	    $('#folder-id').val(data.selected);
+	     //$("#"+price).val(_price);
 
 	  
 	});
@@ -58,17 +59,47 @@ $(document).on('turbolinks:load', function() {
 	$('#jstree').on("create_node.jstree", function (e, data) {
 		data = { 'type': data.node.type, 'id': data.node.parent, 'text': data.node.text }
 	  console.log("CREATED NODE", data);
+	  createNode(data);
 
 	  
 	});
 });
 
+
+// For search
 $(document).ready(function () {
     $(".search-input").keyup(function () {
         var searchString = $(this).val();
         $('#jstree').jstree('search', searchString);
     });
 });
+
+
+
+function createNode(data){
+	console.log("ON NODE CREATION FUNCTION");
+/*
+	$.get('/<whatever>/FolderBrowser?operation=create_node', { 'type': dta.node.type, 'id': dta.node.parent, 'text': dta.node.text })
+            .done(function (d) {
+                dta.instance.set_id(dta.node, d.id);
+            })
+            .fail(function () {
+                dta.instance.refresh();
+            });
+            */
+
+
+	$.ajax({
+          type: "POST",
+          headers: {
+              'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
+              },
+          dataType: 'js',
+          url: "/folder/create-node",
+          data: { data}
+      });
+
+}
 
 
 

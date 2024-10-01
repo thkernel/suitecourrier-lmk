@@ -25,6 +25,10 @@ class FoldersController < ApplicationController
   def show
   end
 
+  def create_node
+    puts "NODE CREATION DATA: #{params.inspect}"
+  end
+
   def download_drive_file 
     file_id = params[:key]
     puts "FileID: #{file_id}"

@@ -8,7 +8,7 @@ end
 
 Rails.application.routes.draw do
 
-
+  post "folder/create-node" => "folders#create_node"
   delete "delete-attachment" => 'attachments#delete', as: :delete_attachment
   resources :ticket_priorities, path: "ticket-priorities" do   
     get "delete"
