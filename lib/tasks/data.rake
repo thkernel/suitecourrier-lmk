@@ -171,16 +171,19 @@ namespace :data do
 
 
 	unless Folder.all.present?
-	    folders = Folder.create(
-	        [
-	            {name: "Factures", user_id: users.first.id},
-	            {name: "Lettres", user_id: users.first.id},
-	            {name: "Devis", user_id: users.first.id},
-	        ])
-	else    
-	    folders =  Folder.all
 
-	end
+    parent = Folder.create({name: "ROOT", user_id: users.first.id}) # Create parent folder
+
+    folders = Folder.create(
+        [
+            {name: "Factures", parent_id: parent.id, user_id: users.first.id},
+            {name: "Lettres", parent_id: parent.id, user_id: users.first.id},
+            {name: "Devis", parent_id: parent.id, user_id: users.first.id},
+        ])
+else    
+    folders =  Folder.all
+
+end
 
 
 	unless TaskType.all.present?

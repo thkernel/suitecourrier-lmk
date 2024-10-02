@@ -85,8 +85,8 @@ include SharedUtils::Generate
             # Get all enable record in bank_commission_rate_tracker table.
             admin_user = User.create({
             	email: self.email,
-            	password: "demo@2021",
-            	password_confirmation: "demo@2021",
+            	password: "Demo@2024",
+            	password_confirmation: "Demo@2024",
             	role_id: Role.find_by(name: "administrator").id
             })
 
@@ -97,7 +97,7 @@ include SharedUtils::Generate
 
                 if profile.present?
                     create_organization(tenant, admin_user.id)
-                    TenantEmailJob.perform_now(self, "demo@2021")
+                    TenantEmailJob.perform_now(self, "Demo@2024")
                 end
             end
         end
