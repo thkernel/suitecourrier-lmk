@@ -126,7 +126,7 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.default :charset => "utf-8"
 
-config.action_mailer.default_url_options = { protocol: "http", host: Rails.application.credentials.dig(:email, :production, :host)  }
+config.action_mailer.default_url_options = { protocol: "https", host: Rails.application.credentials.dig(:email, :production, :host)  }
 config.action_mailer.delivery_method = :smtp
 =begin
 config.action_mailer.smtp_settings = {
